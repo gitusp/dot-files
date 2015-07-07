@@ -1,0 +1,8 @@
+[user]
+	email = ususso@gmail.com
+	name = usp
+[color]
+	ui = auto
+[core]
+	excludesfile = /Users/usp/.gitignore_global
+	editor = vim
