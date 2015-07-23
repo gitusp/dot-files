@@ -4,8 +4,8 @@
 [color]
 	ui = auto
 [core]
-	excludesfile = .gitignore_global
+	excludesfile = ~/.gitignore_global
 	editor = vim
 [include]
-    path = .gitconfig.local
+    path = ~/.gitconfig.local
 
