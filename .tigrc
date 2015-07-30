@@ -1,2 +1,3 @@
 bind status D !rm %(file)
+bind generic + !git commit --amend
 
