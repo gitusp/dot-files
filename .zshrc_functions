@@ -1,0 +1,4 @@
+function pkill () {
+    ps -ef | peco | awk '{ print $2 }' | xargs kill
+}
+
