@@ -29,3 +29,10 @@ set shiftwidth=2
 nmap <silent> \w :tabnext<CR>
 nmap <silent> \q :tabprev<CR>
 nmap <silent> \t :tabnew<CR>
+nmap <silent> \e :NERDTreeToggle<CR>
+" Yunk to the system clipboard.
+map  <silent> \c "+y
+" Paste from the system clipboard.
+map  <silent> \v "+p
+map  <silent> \V "+P
+
