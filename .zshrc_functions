@@ -1,8 +1,8 @@
-function pkill () {
+function kkill () {
     ps -ef | peco | awk '{ print $2 }' | xargs kill
 }
 
 function ddate() {
-    echo -n `date +"%Y%m%d%H%M%S"`
+    date +"%Y%m%d%H%M%S"
 }
 
