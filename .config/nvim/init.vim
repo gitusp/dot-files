@@ -25,3 +25,7 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 
+" Custom key maps.
+nmap <silent> \w :tabnext<CR>
+nmap <silent> \q :tabprev<CR>
+nmap <silent> \t :tabnew<CR>
