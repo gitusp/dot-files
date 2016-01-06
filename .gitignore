@@ -1,2 +1,3 @@
-.vim/
 .gitconfig.local
+.config/nvim/plugged
+
