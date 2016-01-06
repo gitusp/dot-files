@@ -1,3 +1,4 @@
 .gitconfig.local
 .config/nvim/plugged
+.config/nvim/.netrwhist
 
