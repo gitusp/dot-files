@@ -5,6 +5,7 @@ call plug#begin()
 Plug 'junegunn/seoul256.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-fugitive'
 
 " End vim-plug section.
 call plug#end()
