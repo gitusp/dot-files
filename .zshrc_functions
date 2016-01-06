@@ -6,3 +6,7 @@ function ddate() {
     date +"%Y%m%d%H%M%S"
 }
 
+function aawk() {
+    awk "{ print $"$1" }"
+}
+
