@@ -7,6 +7,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
+Plug 'kien/ctrlp.vim'
 
 " End vim-plug section.
 call plug#end()
