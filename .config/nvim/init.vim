@@ -12,6 +12,7 @@ Plug 'bling/vim-airline'
 Plug 'junegunn/vim-easy-align'
 Plug 'Raimondi/delimitMate'
 Plug 'kchmck/vim-coffee-script'
+Plug 'mattn/emmet-vim'
 
 " End vim-plug section.
 call plug#end()
