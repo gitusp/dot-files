@@ -10,7 +10,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'kien/ctrlp.vim'
 Plug 'bling/vim-airline'
 Plug 'junegunn/vim-easy-align'
-Plug 'Raimondi/delimitMate'
 Plug 'kchmck/vim-coffee-script'
 Plug 'mattn/emmet-vim'
 
