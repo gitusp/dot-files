@@ -32,13 +32,14 @@ set tabstop=2
 set shiftwidth=2
 
 " Custom key maps.
-nmap <silent> \w :tabnext<CR>
-nmap <silent> \q :tabprev<CR>
-nmap <silent> \t :tabnew<CR>
-nmap <silent> \e :NERDTreeToggle<CR>
+nmap <silent> \w      :tabnext<CR>
+nmap <silent> \q      :tabprev<CR>
+nmap <silent> \t      :tabnew<CR>
+nmap <silent> \<S-T>  :tab split<CR>
+nmap <silent> \e      :NERDTreeToggle<CR>
 " Yunk to the system clipboard.
-map  <silent> \c "+y
+map  <silent> \c      "+y
 " Paste from the system clipboard.
-map  <silent> \v "+p
-map  <silent> \V "+P
+map  <silent> \v      "+p
+map  <silent> \V      "+P
 
