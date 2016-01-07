@@ -8,12 +8,16 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
 Plug 'kien/ctrlp.vim'
+Plug 'bling/vim-airline'
 
 " End vim-plug section.
 call plug#end()
 
 " Set color schema.
 colo seoul256
+
+" Set up vim-airline.
+let g:airline_powerline_fonts = 1
 
 " General settings.
 set number
