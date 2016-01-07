@@ -2,7 +2,7 @@
 call plug#begin()
 
 " List vim-plug packages.
-Plug 'junegunn/seoul256.vim'
+Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
@@ -14,7 +14,7 @@ Plug 'bling/vim-airline'
 call plug#end()
 
 " Set color schema.
-colo seoul256
+colorscheme Tomorrow-Night-Bright
 
 " Set up vim-airline.
 let g:airline_powerline_fonts = 1
