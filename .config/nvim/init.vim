@@ -11,6 +11,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'bling/vim-airline'
 Plug 'junegunn/vim-easy-align'
 Plug 'Raimondi/delimitMate'
+Plug 'kchmck/vim-coffee-script'
 
 " End vim-plug section.
 call plug#end()
