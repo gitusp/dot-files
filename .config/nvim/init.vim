@@ -9,6 +9,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
 Plug 'kien/ctrlp.vim'
 Plug 'bling/vim-airline'
+Plug 'junegunn/vim-easy-align'
 
 " End vim-plug section.
 call plug#end()
