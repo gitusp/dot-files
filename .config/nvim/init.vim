@@ -45,3 +45,8 @@ map  <silent> \c      "+y
 map  <silent> \v      "+p
 map  <silent> \V      "+P
 
+" Load local settings.
+if filereadable(glob('~/.config/nvim/local.vim'))
+  source ~/.config/nvim/local.vim
+endif
+
