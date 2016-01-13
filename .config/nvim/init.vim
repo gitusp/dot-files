@@ -12,6 +12,7 @@ Plug 'bling/vim-airline'
 Plug 'junegunn/vim-easy-align'
 Plug 'kchmck/vim-coffee-script'
 Plug 'mattn/emmet-vim'
+Plug 'easymotion/vim-easymotion'
 
 " End vim-plug section.
 call plug#end()
@@ -43,6 +44,8 @@ map  <silent> \c      "+y
 " Paste from the system clipboard.
 map  <silent> \v      "+p
 map  <silent> \V      "+P
+" Settings for EasyMotion.
+map  <silent> \s      \\s
 
 " Load local settings.
 if filereadable(glob('~/.config/nvim/local.vim'))
