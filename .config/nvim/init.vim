@@ -28,8 +28,6 @@ set number
 set ignorecase
 set smartcase
 set mouse-=a
-set cursorline
-set cursorcolumn
 
 " Indent settings.
 set expandtab
