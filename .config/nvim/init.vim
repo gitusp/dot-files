@@ -43,10 +43,10 @@ nmap <silent> ô :tabnew<CR>
 nmap <silent> Ô :tab split<CR>
 nmap <silent> å :NERDTreeToggle<CR>
 " Yunk to the system clipboard.
-map  <silent> ã "+y
+map  <silent> ù "+y
 " Paste from the system clipboard.
-map  <silent> ö "+p
-map  <silent> Ö "+P
+map  <silent> ð "+p
+map  <silent> Ð "+P
 " Settings for EasyMotion.
 map  <silent> ó \\s
 
