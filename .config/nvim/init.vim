@@ -37,18 +37,18 @@ set tabstop=2
 set shiftwidth=2
 
 " Custom key maps.
-nmap <silent> \w      :tabnext<CR>
-nmap <silent> \q      :tabprev<CR>
-nmap <silent> \t      :tabnew<CR>
-nmap <silent> \<S-T>  :tab split<CR>
-nmap <silent> \e      :NERDTreeToggle<CR>
+nmap <silent> ÷ :tabnext<CR>
+nmap <silent> ñ :tabprev<CR>
+nmap <silent> ô :tabnew<CR>
+nmap <silent> Ô :tab split<CR>
+nmap <silent> å :NERDTreeToggle<CR>
 " Yunk to the system clipboard.
-map  <silent> \c      "+y
+map  <silent> ã "+y
 " Paste from the system clipboard.
-map  <silent> \v      "+p
-map  <silent> \V      "+P
+map  <silent> ö "+p
+map  <silent> Ö "+P
 " Settings for EasyMotion.
-map  <silent> \s      \\s
+map  <silent> ó \\s
 
 " Load local settings.
 if filereadable(glob('~/.config/nvim/local.vim'))
