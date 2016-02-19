@@ -28,6 +28,7 @@ set number
 set ignorecase
 set smartcase
 set mouse-=a
+set nowrapscan
 
 " Indent settings.
 set expandtab
