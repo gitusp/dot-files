@@ -13,6 +13,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'kchmck/vim-coffee-script'
 Plug 'mattn/emmet-vim'
 Plug 'easymotion/vim-easymotion'
+Plug 'leafgarland/typescript-vim'
 
 " End vim-plug section.
 call plug#end()
