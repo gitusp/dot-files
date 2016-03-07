@@ -41,7 +41,7 @@ nmap <silent> <M-w>   :tabnext<CR>
 nmap <silent> <M-q>   :tabprev<CR>
 nmap <silent> <M-t>   :tabnew<CR>
 nmap <silent> <M-S-t> :tab split<CR>
-nmap <silent> <M-e>   :NERDTreeToggle<CR>
+nmap <silent> <M-e>   :NERDTreeToggle<CR> :NERDTreeMirror<CR>
 " Yunk to the system clipboard.
 map  <silent> <M-y>   "+y
 " Paste from the system clipboard.
