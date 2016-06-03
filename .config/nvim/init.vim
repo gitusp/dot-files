@@ -4,7 +4,6 @@ call plug#begin()
 " List vim-plug packages.
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
 Plug 'kien/ctrlp.vim'
