@@ -50,6 +50,9 @@ map      <silent> <M-p>   "+p
 map      <silent> <M-P>   "+P
 " Settings for EasyMotion.
 map      <silent> <M-s>   \\s
+" Settings for EasyAlign.
+nmap              ga      <Plug>(EasyAlign)
+xmap              ga      <Plug>(EasyAlign)<Paste>
 
 " Load local settings.
 if filereadable(glob('~/.config/nvim/local.vim'))
