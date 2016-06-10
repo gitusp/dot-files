@@ -14,6 +14,7 @@ Plug 'mattn/emmet-vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'leafgarland/typescript-vim'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'tpope/vim-surround'
 
 " End vim-plug section.
 call plug#end()
