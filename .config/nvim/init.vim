@@ -63,3 +63,8 @@ if filereadable(glob('~/.config/nvim/local.vim'))
   source ~/.config/nvim/local.vim
 endif
 
+" Set indent size.
+augroup fileTypeIndent
+    autocmd!
+    autocmd BufNewFile,BufRead *.php setlocal tabstop=4 shiftwidth=4
+augroup END
