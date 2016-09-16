@@ -15,6 +15,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'leafgarland/typescript-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-abolish'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 
