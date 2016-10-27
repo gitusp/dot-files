@@ -18,6 +18,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'jwalton512/vim-blade'
 
 " End vim-plug section.
 call plug#end()
@@ -69,3 +70,8 @@ augroup fileTypeIndent
     autocmd!
     autocmd BufNewFile,BufRead *.php setlocal tabstop=4 shiftwidth=4
 augroup END
+
+" Ignore settings
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.jpg,*.png
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
+
