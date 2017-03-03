@@ -42,6 +42,7 @@ set tabstop=2
 set shiftwidth=2
 
 " Custom key maps.
+nnoremap <silent> <C-c>   <ESC>
 nnoremap <silent> <C-l>   :noh<CR><C-l>
 nmap     <silent> <M-w>   :tabnext<CR>
 nmap     <silent> <M-q>   :tabprev<CR>
