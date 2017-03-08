@@ -347,6 +347,7 @@ you should place your code here."
   (evil-leader/set-key "r x" 'cut-to-clipboard)
   (evil-leader/set-key "r c" 'copy-to-clipboard)
   (evil-leader/set-key "r v" 'paste-from-clipboard)
+  (evil-leader/set-key "f T" 'neotree-find)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
