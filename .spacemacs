@@ -300,6 +300,52 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
+
+  (defun cut-to-clipboard ()
+    "Cuts selection to x-clipboard."
+    (interactive)
+    (if (display-graphic-p)
+        (message "Not supported.")
+      (if (region-active-p)
+          (progn
+            (shell-command-on-region (region-beginning) (region-end) "pbcopy")
+            (kill-region (region-beginning) (region-end))
+            (message "Cut region to clipboard!"))
+        (message "No region active; can't cut to clipboard!")))
+    )
+
+  (defun copy-to-clipboard ()
+    "Copies selection to x-clipboard."
+    (interactive)
+    (if (display-graphic-p)
+        (message "Not supported.")
+      (if (region-active-p)
+          (progn
+            (shell-command-on-region (region-beginning) (region-end) "pbcopy")
+            (deactivate-mark)
+            (message "Copied region to clipboard!"))
+        (message "No region active; can't copy to clipboard!")))
+    )
+
+  (defun paste-from-clipboard ()
+    "Pastes from x-clipboard."
+    (interactive)
+    (if (display-graphic-p)
+        (message "Not supported.")
+      (if (region-active-p)
+          (progn
+            (kill-region (region-beginning) (region-end))
+            (insert (shell-command-to-string "pbpaste"))
+            (message "Pasted from clipboard to region!"))
+        (progn
+          (insert (shell-command-to-string "pbpaste"))
+          (message "Pasted from clipboard!")))
+      )
+    )
+
+  (evil-leader/set-key "r x" 'cut-to-clipboard)
+  (evil-leader/set-key "r c" 'copy-to-clipboard)
+  (evil-leader/set-key "r v" 'paste-from-clipboard)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
