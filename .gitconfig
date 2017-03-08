@@ -1,16 +1,7 @@
-[user]
-	email = ususso@gmail.com
-	name = usp
 [color]
 	ui = auto
 [core]
 	excludesfile = ~/.gitignore_global
-	editor = nvim
+	editor = emacs
 [include]
     path = ~/.gitconfig.local
-
-[github]
-	user = gitusp
-[ghi]
-	token = !security find-internet-password -a gitusp -s github.com -l 'ghi token' -w
-[pr-release]
