@@ -38,8 +38,8 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
-     ;; auto-completion
-     ;; better-defaults
+     auto-completion
+     better-defaults
      emacs-lisp
      git
      markdown
@@ -55,7 +55,9 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(
+                                      smartrep
+                                      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -102,7 +104,7 @@ values."
    ;; with `:variables' keyword (similar to layers). Check the editing styles
    ;; section of the documentation for details on available variables.
    ;; (default 'vim)
-   dotspacemacs-editing-style 'vim
+   dotspacemacs-editing-style 'hybrid
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
@@ -317,52 +319,6 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 
-  (defun cut-to-clipboard ()
-    "Cuts selection to x-clipboard."
-    (interactive)
-    (if (display-graphic-p)
-        (message "Not supported.")
-      (if (region-active-p)
-          (progn
-            (shell-command-on-region (region-beginning) (region-end) "pbcopy")
-            (kill-region (region-beginning) (region-end))
-            (message "Cut region to clipboard!"))
-        (message "No region active; can't cut to clipboard!")))
-    )
-
-  (defun copy-to-clipboard ()
-    "Copies selection to x-clipboard."
-    (interactive)
-    (if (display-graphic-p)
-        (message "Not supported.")
-      (if (region-active-p)
-          (progn
-            (shell-command-on-region (region-beginning) (region-end) "pbcopy")
-            (deactivate-mark)
-            (message "Copied region to clipboard!"))
-        (message "No region active; can't copy to clipboard!")))
-    )
-
-  (defun paste-from-clipboard ()
-    "Pastes from x-clipboard."
-    (interactive)
-    (if (display-graphic-p)
-        (message "Not supported.")
-      (if (region-active-p)
-          (progn
-            (kill-region (region-beginning) (region-end))
-            (insert (shell-command-to-string "pbpaste"))
-            (message "Pasted from clipboard to region!"))
-        (progn
-          (insert (shell-command-to-string "pbpaste"))
-          (message "Pasted from clipboard!")))
-      )
-    )
-
-  (evil-leader/set-key "r x" 'cut-to-clipboard)
-  (evil-leader/set-key "r c" 'copy-to-clipboard)
-  (evil-leader/set-key "r v" 'paste-from-clipboard)
-
   (defun neotree-peek ()
     (interactive)
     (neotree-enter)
@@ -371,6 +327,49 @@ you should place your code here."
 
   (with-eval-after-load 'neotree
     (evil-define-key 'evilified neotree-mode-map (kbd "TAB") 'neotree-peek))
+
+  ;;
+  ;; Multiple Cursors Section
+  ;;
+
+  (require 'multiple-cursors)
+  (require 'smartrep)
+
+  (declare-function smartrep-define-key "smartrep")
+
+  (smartrep-define-key evil-hybrid-state-map "C-."
+    '(("l"        . 'mc/mark-next-like-this)
+      ("w"        . 'mc/mark-next-word-like-this)
+      ("s"        . 'mc/skip-to-next-like-this)
+      ("y"        . 'mc/mark-next-symbol-like-this)
+      ("u"        . 'mc/unmark-next-like-this)
+
+      ("L"        . 'mc/mark-previous-like-this)
+      ("W"        . 'mc/mark-previous-word-like-this)
+      ("S"        . 'mc/skip-to-previous-like-this)
+      ("Y"        . 'mc/mark-previous-symbol-like-this)
+      ("U"        . 'mc/unmark-previous-like-this)
+
+      ("C-l"      . 'mc/mark-all-like-this)
+      ("C-w"      . 'mc/mark-all-words-like-this)
+      ("C-y"      . 'mc/mark-all-symbols-like-this)
+      ("C-r"      . 'mc/mark-all-in-region)
+      ("C-d"      . 'mc/mark-all-like-this-dwim)
+
+      ("e"        . 'mc/edit-lines)
+      ("E"        . 'mc/edit-beginnings-of-lines)
+      ("C-E"      . 'mc/edit-ends-of-lines)
+
+      ("p"        . 'mc/mark-pop)
+
+      ("n"        . 'mc/insert-numbers)
+
+      ("o"        . 'mc/sort-regions)
+      ("O"        . 'mc/reverse-regions)))
+
+  ;;
+  ;; End of Multiple Cursors Section
+  ;;
 
   )
 
@@ -383,7 +382,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (web-mode web-beautify tern tagedit smeargle slim-mode scss-mode sass-mode pug-mode orgit org mmm-mode markdown-toc markdown-mode magit-gitflow livid-mode skewer-mode simple-httpd less-css-mode json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc helm-gitignore helm-css-scss haml-mode gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md evil-magit magit magit-popup git-commit with-editor emmet-mode coffee-mode ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build spacemacs-theme))))
+    (smartrep region-bindings-mode mwim web-mode web-beautify tagedit smeargle slim-mode scss-mode sass-mode pug-mode orgit org mmm-mode markdown-toc markdown-mode magit-gitflow livid-mode skewer-mode simple-httpd less-css-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc helm-gitignore helm-css-scss helm-company helm-c-yasnippet haml-mode gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md evil-magit magit magit-popup git-commit with-editor emmet-mode company-web web-completion-data company-tern dash-functional tern company-statistics company coffee-mode auto-yasnippet yasnippet ac-ispell auto-complete ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build spacemacs-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
