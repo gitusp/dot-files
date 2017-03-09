@@ -362,7 +362,16 @@ you should place your code here."
   (evil-leader/set-key "r x" 'cut-to-clipboard)
   (evil-leader/set-key "r c" 'copy-to-clipboard)
   (evil-leader/set-key "r v" 'paste-from-clipboard)
-  (evil-leader/set-key "f T" 'neotree-find)
+
+  (defun neotree-peek ()
+    (interactive)
+    (neotree-enter)
+    (select-window-0)
+    )
+
+  (with-eval-after-load 'neotree
+    (evil-define-key 'evilified neotree-mode-map (kbd "TAB") 'neotree-peek))
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
