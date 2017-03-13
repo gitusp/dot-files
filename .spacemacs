@@ -344,21 +344,27 @@ you should place your code here."
       ("y"        . 'mc/mark-next-symbol-like-this)
       ("u"        . 'mc/unmark-next-like-this)
 
+      ("C-w"      . 'mc/mark-next-like-this-word)
+      ("C-y"      . 'mc/mark-next-like-this-symbol)
+
       ("L"        . 'mc/mark-previous-like-this)
       ("W"        . 'mc/mark-previous-word-like-this)
       ("S"        . 'mc/skip-to-previous-like-this)
       ("Y"        . 'mc/mark-previous-symbol-like-this)
       ("U"        . 'mc/unmark-previous-like-this)
 
-      ("C-l"      . 'mc/mark-all-like-this)
-      ("C-w"      . 'mc/mark-all-words-like-this)
-      ("C-y"      . 'mc/mark-all-symbols-like-this)
-      ("C-r"      . 'mc/mark-all-in-region)
-      ("C-d"      . 'mc/mark-all-like-this-dwim)
+      ("C-S-w"    . 'mc/mark-previous-like-this-word)
+      ("C-S-y"    . 'mc/mark-previous-like-this-symbol)
+
+      ("M-l"      . 'mc/mark-all-like-this)
+      ("M-w"      . 'mc/mark-all-words-like-this)
+      ("M-y"      . 'mc/mark-all-symbols-like-this)
+      ("M-r"      . 'mc/mark-all-in-region)
+      ("M-d"      . 'mc/mark-all-like-this-dwim)
 
       ("e"        . 'mc/edit-lines)
       ("E"        . 'mc/edit-beginnings-of-lines)
-      ("C-E"      . 'mc/edit-ends-of-lines)
+      ("C-e"      . 'mc/edit-ends-of-lines)
 
       ("p"        . 'mc/mark-pop)
 
