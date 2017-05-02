@@ -59,9 +59,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(
-                                      smartrep
-                                      )
+   dotspacemacs-additional-packages '()
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -332,55 +330,6 @@ you should place your code here."
   (with-eval-after-load 'neotree
     (evil-define-key 'evilified neotree-mode-map (kbd "TAB") 'neotree-peek))
 
-  ;;
-  ;; Multiple Cursors Section
-  ;;
-
-  (require 'multiple-cursors)
-  (require 'smartrep)
-
-  (declare-function smartrep-define-key "smartrep")
-
-  (smartrep-define-key evil-hybrid-state-map "C-."
-    '(("l"        . 'mc/mark-next-like-this)
-      ("w"        . 'mc/mark-next-word-like-this)
-      ("s"        . 'mc/skip-to-next-like-this)
-      ("y"        . 'mc/mark-next-symbol-like-this)
-      ("u"        . 'mc/unmark-next-like-this)
-
-      ("C-w"      . 'mc/mark-next-like-this-word)
-      ("C-y"      . 'mc/mark-next-like-this-symbol)
-
-      ("L"        . 'mc/mark-previous-like-this)
-      ("W"        . 'mc/mark-previous-word-like-this)
-      ("S"        . 'mc/skip-to-previous-like-this)
-      ("Y"        . 'mc/mark-previous-symbol-like-this)
-      ("U"        . 'mc/unmark-previous-like-this)
-
-      ("C-S-w"    . 'mc/mark-previous-like-this-word)
-      ("C-S-y"    . 'mc/mark-previous-like-this-symbol)
-
-      ("M-l"      . 'mc/mark-all-like-this)
-      ("M-w"      . 'mc/mark-all-words-like-this)
-      ("M-y"      . 'mc/mark-all-symbols-like-this)
-      ("M-r"      . 'mc/mark-all-in-region)
-      ("M-d"      . 'mc/mark-all-like-this-dwim)
-
-      ("e"        . 'mc/edit-lines)
-      ("E"        . 'mc/edit-beginnings-of-lines)
-      ("C-e"      . 'mc/edit-ends-of-lines)
-
-      ("p"        . 'mc/mark-pop)
-
-      ("n"        . 'mc/insert-numbers)
-
-      ("o"        . 'mc/sort-regions)
-      ("O"        . 'mc/reverse-regions)))
-
-  ;;
-  ;; End of Multiple Cursors Section
-  ;;
-
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -392,7 +341,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tagedit spaceline powerline smeargle smartrep slim-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters pug-mode projectile-rails rake inflections popwin phpunit phpcbf php-extras php-auto-yasnippets persp-mode pcre2el paradox spinner orgit org-plus-contrib org-bullets open-junk-file neotree mwim move-text mmm-mode minitest markdown-toc markdown-mode magit-gitflow macrostep lorem-ipsum livid-mode skewer-mode simple-httpd linum-relative link-hint less-css-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-gitignore request helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haml-mode google-translate golden-ratio gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flx-ido flx fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit magit-popup git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight emmet-mode elisp-slime-nav dumb-jump f drupal-mode php-mode diminish define-word csv-mode company-web web-completion-data company-tern s dash-functional tern company-statistics company column-enforce-mode coffee-mode clean-aindent-mode chruby bundler inf-ruby bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup))))
+    (yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tagedit spaceline powerline smeargle slim-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters pug-mode projectile-rails rake inflections popwin phpunit phpcbf php-extras php-auto-yasnippets persp-mode pcre2el paradox spinner orgit org-plus-contrib org-bullets open-junk-file neotree mwim move-text mmm-mode minitest markdown-toc markdown-mode magit-gitflow macrostep lorem-ipsum livid-mode skewer-mode simple-httpd linum-relative link-hint less-css-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-gitignore request helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haml-mode google-translate golden-ratio gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flx-ido flx fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit magit-popup git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight emmet-mode elisp-slime-nav dumb-jump f drupal-mode php-mode diminish define-word csv-mode company-web web-completion-data company-tern s dash-functional tern company-statistics company column-enforce-mode coffee-mode clean-aindent-mode chruby bundler inf-ruby bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
