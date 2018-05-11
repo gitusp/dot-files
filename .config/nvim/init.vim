@@ -1,78 +1,29 @@
-" Begin vim-plug section.
+"
+" Begin plugin section.
+"
 call plug#begin()
 
-" List vim-plug packages.
-Plug 'chriskempson/vim-tomorrow-theme'
+" Highlight trailing spaces.
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/nerdtree'
-Plug 'kien/ctrlp.vim'
-Plug 'bling/vim-airline'
-Plug 'junegunn/vim-easy-align'
-Plug 'kchmck/vim-coffee-script'
-Plug 'mattn/emmet-vim'
-Plug 'easymotion/vim-easymotion'
-Plug 'leafgarland/typescript-vim'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'tpope/vim-surround'
+
+" Colorscheme
+Plug 'chriskempson/vim-tomorrow-theme'
+
+" Better substitution
 Plug 'tpope/vim-abolish'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'jwalton512/vim-blade'
 
-" End vim-plug section.
 call plug#end()
+"
+" End plugin section.
+"
 
+"
+" General Settings
+"
 " Set color schema.
 colorscheme Tomorrow-Night-Bright
 
-" Set up vim-airline.
-let g:airline_powerline_fonts = 1
-
-" General settings.
-set number
+" Search settings
 set ignorecase
 set smartcase
-set mouse-=a
-set nowrapscan
-
-" Indent settings.
-set expandtab
-set tabstop=2
-set shiftwidth=2
-
-" Custom key maps.
-nnoremap <silent> <C-c>   <ESC>
-nnoremap <silent> <C-l>   :noh<CR><C-l>
-nmap     <silent> <M-w>   :tabnext<CR>
-nmap     <silent> <M-q>   :tabprev<CR>
-nmap     <silent> <M-t>   :tabnew<CR>
-nmap     <silent> <M-S-t> :tab split<CR>
-nmap     <silent> <M-e>   :NERDTreeToggle<CR> :NERDTreeMirror<CR>
-nmap     <silent> <M-c>   :NERDTreeFind<CR>
-" Yunk to the system clipboard.
-map      <silent> <M-y>   "+y
-" Paste from the system clipboard.
-map      <silent> <M-p>   "+p
-map      <silent> <M-P>   "+P
-" Settings for EasyMotion.
-map      <silent> <M-f>   \\s
-" Settings for EasyAlign.
-nmap              ga      <Plug>(EasyAlign)
-xmap              ga      <Plug>(EasyAlign)<Paste>
-
-" Load local settings.
-if filereadable(glob('~/.config/nvim/local.vim'))
-  source ~/.config/nvim/local.vim
-endif
-
-" Set indent size.
-augroup fileTypeIndent
-    autocmd!
-    autocmd BufNewFile,BufRead *.php setlocal tabstop=4 shiftwidth=4
-augroup END
-
-" Ignore settings
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.jpg,*.png
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
 
