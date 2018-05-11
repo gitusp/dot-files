@@ -19,6 +19,10 @@ Plug 'tpope/vim-surround'
 Plug 'editorconfig/editorconfig-vim'
 " Better status line
 Plug 'vim-airline/vim-airline'
+" Dark powered asynchronous completion framework
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" ternjs integration
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 
 call plug#end()
 "
@@ -70,4 +74,16 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \   'javascript': ['prettier', 'eslint'],
 \}
+
+"
+" General completion settings
+"
+let g:deoplete#enable_at_startup = 1
+
+"
+" Javascript settings
+"
+let g:javascript_plugin_jsdoc = 1
+let g:deoplete#sources#ternjs#types = 1
+let g:deoplete#sources#ternjs#in_literal = 0
 
