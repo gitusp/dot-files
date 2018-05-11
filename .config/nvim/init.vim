@@ -38,7 +38,15 @@ set smartcase
 let g:ackprg = 'ag'
 
 "
+" Custom mappings
 "
+nnoremap <C-l> :noh<CR><C-l>
+nnoremap <C-w><C-w>n :tabnew<CR>
+nnoremap <C-w><C-w><C-n> :tabnew<CR>
+nnoremap <C-w><C-w>l :tabnext<CR>
+nnoremap <C-w><C-w><C-l> :tabnext<CR>
+nnoremap <C-w><C-w>h :tabprev<CR>
+nnoremap <C-w><C-w><C-h> :tabprev<CR>
 
 "
 " ALE settings
