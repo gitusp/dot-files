@@ -11,6 +11,8 @@ Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'tpope/vim-abolish'
 " Syntax checker
 Plug 'vim-syntastic/syntastic'
+" Javascript syntax highlight
+Plug 'pangloss/vim-javascript'
 
 call plug#end()
 "
