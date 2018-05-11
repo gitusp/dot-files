@@ -10,10 +10,10 @@ Plug 'chriskempson/vim-tomorrow-theme'
 " Better substitution
 Plug 'tpope/vim-abolish'
 " Syntax checker
-Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
 " Javascript syntax highlight
 Plug 'pangloss/vim-javascript'
-" Grep
+" In-editor better grep
 Plug 'mileszs/ack.vim'
 " Surrounding helper
 Plug 'tpope/vim-surround'
@@ -38,35 +38,26 @@ set smartcase
 let g:ackprg = 'ag'
 
 "
-" Syntastic settings
 "
-" Add syntastic messages to statusline.
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-" Symbols
-let g:syntastic_error_symbol = '🌸'
-let g:syntastic_style_error_symbol = '🌸'
-let g:syntastic_warning_symbol = '🍀'
-let g:syntastic_style_warning_symbol = '🍀'
-
-" Remove background from error/warning signs.
-highlight link SyntasticErrorSign SignColumn
-highlight link SyntasticWarningSign SignColumn
-highlight link SyntasticStyleErrorSign SignColumn
-highlight link SyntasticStyleWarningSign SignColumn
-
-" General settings
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_loc_list_height = 5
 
 "
-" JavaScript settings
+" ALE settings
 "
-" NOTE: Install eslint project-locally, but install eslint-cli globally.
-let g:syntastic_javascript_checkers=['eslint']
+let g:ale_sign_column_always = 1
+let g:ale_open_list = 1
+let g:ale_sign_error = '🌸'
+let g:ale_sign_warning = '🍀'
+let g:ale_fix_on_save = 1
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
+
+" NOTE: Each linter's setup tips
+" eslint: Install `eslint` project-locally while install `eslint-cli` globally.
+" prettier: Install `prettier` project-locally while install `prettier-cli` globally.
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\}
+let g:ale_fixers = {
+\   'javascript': ['prettier', 'eslint'],
+\}
 
