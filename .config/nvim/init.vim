@@ -25,6 +25,8 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 " Open required files by `gf`.
 Plug 'moll/vim-node'
+" Tern commands
+Plug 'ternjs/tern_for_vim'
 
 call plug#end()
 "
@@ -55,6 +57,8 @@ nnoremap <C-w><C-w>l :tabnext<CR>
 nnoremap <C-w><C-w><C-l> :tabnext<CR>
 nnoremap <C-w><C-w>h :tabprev<CR>
 nnoremap <C-w><C-w><C-h> :tabprev<CR>
+" ft specific mappings
+autocmd FileType javascript nnoremap <buffer> <C-]> :TernDef<CR>
 
 "
 " ALE settings
