@@ -17,6 +17,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'mileszs/ack.vim'
 " Surrounding helper
 Plug 'tpope/vim-surround'
+" Load editorconfig.
+Plug 'editorconfig/editorconfig-vim'
 
 call plug#end()
 "
@@ -52,7 +54,6 @@ nnoremap <C-w><C-w><C-h> :tabprev<CR>
 " ALE settings
 "
 let g:ale_sign_column_always = 1
-let g:ale_open_list = 1
 let g:ale_sign_error = '🌸'
 let g:ale_sign_warning = '🍀'
 let g:ale_fix_on_save = 1
