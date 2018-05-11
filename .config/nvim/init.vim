@@ -5,12 +5,12 @@ call plug#begin()
 
 " Highlight trailing spaces.
 Plug 'ntpeters/vim-better-whitespace'
-
 " Colorscheme
 Plug 'chriskempson/vim-tomorrow-theme'
-
 " Better substitution
 Plug 'tpope/vim-abolish'
+" Syntax checker
+Plug 'vim-syntastic/syntastic'
 
 call plug#end()
 "
@@ -26,4 +26,37 @@ colorscheme Tomorrow-Night-Bright
 " Search settings
 set ignorecase
 set smartcase
+
+"
+" Syntastic settings
+"
+" Add syntastic messages to statusline.
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+" Symbols
+let g:syntastic_error_symbol = '🌸'
+let g:syntastic_style_error_symbol = '🌸'
+let g:syntastic_warning_symbol = '🍀'
+let g:syntastic_style_warning_symbol = '🍀'
+
+" Remove background from error/warning signs.
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
+
+" General settings
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_loc_list_height = 5
+
+"
+" JavaScript settings
+"
+" NOTE: Install eslint project-locally, but install eslint-cli globally.
+let g:syntastic_javascript_checkers=['eslint']
 
