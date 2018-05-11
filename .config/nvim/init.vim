@@ -15,6 +15,8 @@ Plug 'vim-syntastic/syntastic'
 Plug 'pangloss/vim-javascript'
 " Grep
 Plug 'mileszs/ack.vim'
+" Surrounding helper
+Plug 'tpope/vim-surround'
 
 call plug#end()
 "
