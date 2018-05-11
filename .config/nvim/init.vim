@@ -23,6 +23,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " ternjs integration
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+" Open required files by `gf`.
+Plug 'moll/vim-node'
 
 call plug#end()
 "
