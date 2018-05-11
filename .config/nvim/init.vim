@@ -13,6 +13,8 @@ Plug 'tpope/vim-abolish'
 Plug 'vim-syntastic/syntastic'
 " Javascript syntax highlight
 Plug 'pangloss/vim-javascript'
+" Grep
+Plug 'mileszs/ack.vim'
 
 call plug#end()
 "
@@ -22,12 +24,16 @@ call plug#end()
 "
 " General Settings
 "
-" Set color schema.
 colorscheme Tomorrow-Night-Bright
-
-" Search settings
 set ignorecase
 set smartcase
+
+"
+" Search settings
+"
+" NOTE: This requires ag command.
+" NOTE: To ignore files, put them in `.gitignore` or `.agignore`.
+let g:ackprg = 'ag'
 
 "
 " Syntastic settings
