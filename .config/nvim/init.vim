@@ -3,8 +3,6 @@
 "
 call plug#begin()
 
-" Highlight trailing spaces.
-Plug 'ntpeters/vim-better-whitespace'
 " Colorscheme
 Plug 'chriskempson/vim-tomorrow-theme'
 " Better substitution
