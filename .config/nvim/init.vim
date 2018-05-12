@@ -8,11 +8,11 @@ Plug 'chriskempson/vim-tomorrow-theme'
 " Better substitution
 Plug 'tpope/vim-abolish'
 " Syntax checker
-Plug 'w0rp/ale'
+Plug 'w0rp/ale', { 'do': 'npm install -g eslint-cli prettier' }
 " Javascript syntax highlight
 Plug 'pangloss/vim-javascript'
 " In-editor better grep
-Plug 'mileszs/ack.vim'
+Plug 'mileszs/ack.vim', { 'do': 'brew install the_silver_searcher' }
 " Surrounding helper
 Plug 'tpope/vim-surround'
 " Load editorconfig.
@@ -26,7 +26,7 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 " Open required files by `gf`.
 Plug 'moll/vim-node'
 " Tern commands
-Plug 'ternjs/tern_for_vim'
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install -g tern' }
 
 call plug#end()
 "
