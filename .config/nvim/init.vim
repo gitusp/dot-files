@@ -71,9 +71,9 @@ let g:airline#extensions#ale#enabled = 1
 highlight clear ALEErrorSign
 highlight clear ALEWarningSign
 
-" NOTE: Each linter's setup tips
+" NOTE: Each linter and prettier's setup tips
 " eslint: Install `eslint` project-locally while install `eslint-cli` globally.
-" prettier: Install `prettier` project-locally while install `prettier-cli` globally.
+" prettier: Install `prettier` globally.
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \}
