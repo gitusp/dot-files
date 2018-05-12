@@ -93,3 +93,7 @@ let g:javascript_plugin_jsdoc = 1
 let g:deoplete#sources#ternjs#types = 1
 let g:deoplete#sources#ternjs#in_literal = 0
 
+" Use the same tern command for `tern_for_vim`.
+let g:tern#command = ['tern']
+let g:tern#arguments = ['--persistent']
+
