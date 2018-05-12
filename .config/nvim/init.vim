@@ -5,16 +5,10 @@ call plug#begin()
 
 " Colorscheme
 Plug 'chriskempson/vim-tomorrow-theme'
-" Better substitution
-Plug 'tpope/vim-abolish'
 " Syntax checker
 Plug 'w0rp/ale', { 'do': 'npm install -g eslint-cli prettier' }
 " Javascript syntax highlight
 Plug 'pangloss/vim-javascript'
-" In-editor better grep
-Plug 'mileszs/ack.vim', { 'do': 'brew install the_silver_searcher' }
-" Surrounding helper
-Plug 'tpope/vim-surround'
 " Load editorconfig.
 Plug 'editorconfig/editorconfig-vim'
 " Better status line
@@ -27,6 +21,14 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'moll/vim-node'
 " Tern commands
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install -g tern' }
+" Surrounding helper
+Plug 'tpope/vim-surround'
+" Better substitution
+Plug 'tpope/vim-abolish'
+" Git integration
+Plug 'tpope/vim-fugitive'
+" Better file explorer
+Plug 'tpope/vim-vinegar'
 
 call plug#end()
 "
@@ -39,13 +41,6 @@ call plug#end()
 colorscheme Tomorrow-Night-Bright
 set ignorecase
 set smartcase
-
-"
-" Search settings
-"
-" NOTE: This requires ag command.
-" NOTE: To ignore files, put them in `.gitignore` or `.agignore`.
-let g:ackprg = 'ag'
 
 "
 " Custom mappings
