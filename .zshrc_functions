@@ -1,4 +1,7 @@
-alias scratch='nvim --cmd "cd ~/Scratches" ~/Scratches/`date +%F`.md'
+function scratch () {
+	d=${1:-+0}
+	nvim --cmd 'cd ~/Scratches' ~/Scratches/`date -v${d}d +%F`.md
+}
 
 function scratchlist () {
 	n=${1:-3}
