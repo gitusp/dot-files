@@ -1,15 +1,8 @@
+# NOTE: Use vim to achieve the following purposes.
+# search: vim[grep] needle * | copen
+# browse: [v]new | read ! head *
+# peek: `gf` or `<C-w>f` while browsing
 function scratch () {
-	d=${1:-+0}
-	nvim --cmd 'cd ~/Scratches' ~/Scratches/`date -v${d}d +%F`.md
-}
-
-function scratchlist () {
-	n=${1:-3}
-	for s in `ls ~/Scratches`
-	do
-		echo $(tput sgr 0 1)$s$(tput sgr0)
-		head -n$n ~/Scratches/$s | sed 's/^/  /'
-		echo
-	done
+	nvim --cmd 'cd ~/Scratches' ~/Scratches/`date $* +%F`.md
 }
 
