@@ -45,13 +45,14 @@ set smartcase
 "
 " Custom mappings
 "
+" NOTE: Do not assign these like `inoremap ( ()` or `inoremap [ []`, which
+" output other characters aside from what you typed.
 nnoremap <C-c> :noh<CR>
-nnoremap <C-w><C-w>n :tabnew<CR>
-nnoremap <C-w><C-w><C-n> :tabnew<CR>
-nnoremap <C-w><C-w>l :tabnext<CR>
-nnoremap <C-w><C-w><C-l> :tabnext<CR>
-nnoremap <C-w><C-w>h :tabprev<CR>
-nnoremap <C-w><C-w><C-h> :tabprev<CR>
+nnoremap <Tab>n :tabnew<CR>
+nnoremap <Tab>l :tabnext<CR>
+nnoremap <Tab>h :tabprev<CR>
+nnoremap <Tab>L :execute 'tabmove ' . (tabpagenr() + 1)<CR>
+nnoremap <Tab>H :execute 'tabmove ' . (tabpagenr() - 2)<CR>
 " ft specific mappings
 autocmd FileType javascript nnoremap <buffer> <C-]> :TernDef<CR>
 autocmd FileType javascript nnoremap <buffer> <C-[> :TernRefs<CR>
