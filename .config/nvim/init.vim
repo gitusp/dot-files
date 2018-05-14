@@ -29,6 +29,9 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-fugitive'
 " Better file explorer
 Plug 'tpope/vim-vinegar'
+" Markdown support
+Plug 'plasticboy/vim-markdown'
+Plug 'iamcco/markdown-preview.vim'
 
 call plug#end()
 "
