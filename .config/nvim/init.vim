@@ -47,12 +47,18 @@ set smartcase
 "
 " NOTE: Do not assign these like `inoremap ( ()` or `inoremap [ []`, which
 " output other characters aside from what you typed.
-nnoremap <C-c> :noh<CR>
+
+" Tabs
 nnoremap <Tab>n :tabnew<CR>
 nnoremap <Tab>l :tabnext<CR>
 nnoremap <Tab>h :tabprev<CR>
 nnoremap <Tab>L :execute 'tabmove ' . (tabpagenr() + 1)<CR>
 nnoremap <Tab>H :execute 'tabmove ' . (tabpagenr() - 2)<CR>
+
+" Copied from tpope's dotfile
+nnoremap Y y$
+nnoremap <C-l> :noh<CR>
+
 " ft specific mappings
 autocmd FileType javascript nnoremap <buffer> <C-]> :TernDef<CR>
 autocmd FileType javascript nnoremap <buffer> <C-[> :TernRefs<CR>
