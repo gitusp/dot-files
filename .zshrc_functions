@@ -1,12 +1,2 @@
-function kkill () {
-    ps -ef | peco | awk '{ print $2 }' | xargs kill
-}
-
-function ddate() {
-    date +"%Y%m%d%H%M%S"
-}
-
-function aawk() {
-    awk "{ print $"$1" }"
-}
+alias scratch='nvim ~/Scratches/`date +%F`.md'
 
