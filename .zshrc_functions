@@ -1,2 +1,12 @@
-alias scratch='nvim ~/Scratches/`date +%F`.md'
+alias scratch='nvim --cmd "cd ~/Scratches" ~/Scratches/`date +%F`.md'
+
+function scratchlist () {
+	n=${1:-3}
+	for s in `ls ~/Scratches`
+	do
+		echo $(tput sgr 0 1)$s$(tput sgr0)
+		head -n$n ~/Scratches/$s | sed 's/^/  /'
+		echo
+	done
+}
 
