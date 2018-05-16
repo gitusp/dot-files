@@ -3,7 +3,7 @@
 # browse: [v]new | read ! head *
 # peek: `gf` or `<C-w>f` while browsing
 function scratch () {
-	sfx=${1:-default}
-	nvim --cmd 'cd ~/Scratches' ~/Scratches/`date +%F`-$sfx.md
+	sfx=`echo $1 | sed 's/^\(.\)/-\1/'`
+	nvim --cmd 'cd ~/Scratches' ~/Scratches/`date +%F`$sfx.md
 }
 
