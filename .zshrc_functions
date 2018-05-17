@@ -1,9 +1,8 @@
-# NOTE: Use vim to achieve the following purposes.
-# search: vim[grep] needle * | copen
-# browse: [v]new | read ! head *
-# peek: `gf` or `<C-w>f` while browsing
 function scratch () {
-	sfx=`echo $1 | sed 's/^\(.\)/-\1/'`
-	nvim --cmd 'cd ~/Scratches' ~/Scratches/`date +%F`$sfx.md
+	nvim --cmd 'cd ~/Scratches' ~/Scratches/`scratchf $1`
+}
+
+function scratchf () {
+	echo `date +%F``echo $1 | sed 's/^\(.\)/-\1/'`.md
 }
 
