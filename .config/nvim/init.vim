@@ -60,7 +60,7 @@ nnoremap <Tab>H :execute 'tabmove ' . (tabpagenr() - 2)<CR>
 
 " Copied from tpope's dotfile
 nnoremap Y y$
-nnoremap <C-l> :noh<CR>
+nnoremap <C-l> :noh<CR><C-l>
 
 " ft specific mappings
 autocmd FileType javascript nnoremap <buffer> <C-]> :TernDef<CR>
