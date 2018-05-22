@@ -64,7 +64,6 @@ nnoremap <C-l> :noh<CR><C-l>
 
 " ft specific mappings
 autocmd FileType javascript nnoremap <buffer> <C-]> :TernDef<CR>
-autocmd FileType javascript nnoremap <buffer> <C-[> :TernRefs<CR>
 
 "
 " ALE settings
