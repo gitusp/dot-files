@@ -29,6 +29,8 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-fugitive'
 " Better file explorer
 Plug 'tpope/vim-vinegar'
+" Text alignment
+Plug 'godlygeek/tabular'
 " Markdown support
 Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/markdown-preview.vim'
