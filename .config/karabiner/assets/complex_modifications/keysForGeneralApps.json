@@ -77,7 +77,8 @@
                 "left_control"
               ],
               "optional": [
-                "any"
+                "left_command",
+                "right_command"
               ]
             }
           },
