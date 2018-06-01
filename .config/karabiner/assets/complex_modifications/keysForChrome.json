@@ -24,9 +24,9 @@
           ],
           "conditions": [
             {
-              "type": "frontmost_application_if",
+              "type": "frontmost_application_unless",
               "bundle_identifiers": [
-                "^com\\.google\\.Chrome$"
+                "^com\\.apple\\.Terminal$"
               ]
             }
           ]
@@ -56,9 +56,9 @@
           ],
           "conditions": [
             {
-              "type": "frontmost_application_if",
+              "type": "frontmost_application_unless",
               "bundle_identifiers": [
-                "^com\\.google\\.Chrome$"
+                "^com\\.apple\\.Terminal$"
               ]
             }
           ]
@@ -88,9 +88,9 @@
           ],
           "conditions": [
             {
-              "type": "frontmost_application_if",
+              "type": "frontmost_application_unless",
               "bundle_identifiers": [
-                "^com\\.google\\.Chrome$"
+                "^com\\.apple\\.Terminal$"
               ]
             }
           ]
@@ -117,9 +117,9 @@
           ],
           "conditions": [
             {
-              "type": "frontmost_application_if",
+              "type": "frontmost_application_unless",
               "bundle_identifiers": [
-                "^com\\.google\\.Chrome$"
+                "^com\\.apple\\.Terminal$"
               ]
             }
           ]
