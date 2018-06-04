@@ -9,6 +9,8 @@ Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'w0rp/ale', { 'do': 'npm install -g eslint-cli prettier' }
 " Javascript syntax highlight
 Plug 'pangloss/vim-javascript'
+" Pug syntax highlight
+Plug 'digitaltoad/vim-pug'
 " Load editorconfig.
 Plug 'editorconfig/editorconfig-vim'
 " Better status line
