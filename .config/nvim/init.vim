@@ -36,6 +36,11 @@ Plug 'godlygeek/tabular'
 " Markdown support
 Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/markdown-preview.vim'
+" Session manager
+Plug 'tpope/vim-obsession'
+" Avoid distractions
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 
 call plug#end()
 "
@@ -65,6 +70,9 @@ nnoremap <Tab>H :execute 'tabmove ' . (tabpagenr() - 2)<CR>
 " Copied from tpope's dotfile
 nnoremap Y y$
 nnoremap <C-l> :noh<CR><C-l>
+
+" Hyperfocus
+nnoremap <C-g> :Goyo<CR>
 
 " ft specific mappings
 autocmd FileType javascript nnoremap <buffer> <C-]> :TernDef<CR>
@@ -105,4 +113,8 @@ let g:deoplete#sources#ternjs#in_literal = 0
 " Use the same tern command for `tern_for_vim`.
 let g:tern#command = ['tern']
 let g:tern#arguments = ['--persistent']
+
+" Hyperfocus
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
 
