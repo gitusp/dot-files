@@ -115,6 +115,19 @@ let g:tern#command = ['tern']
 let g:tern#arguments = ['--persistent']
 
 " Hyperfocus
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
+function! s:goyo_enter()
+  Limelight
+  if exists('$TMUX')
+    silent !tmux set status off
+  endif
+endfunction
 
+function! s:goyo_leave()
+  Limelight!
+  if exists('$TMUX')
+    silent !tmux set status on
+  endif
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
