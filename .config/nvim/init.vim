@@ -69,6 +69,9 @@ nnoremap <C-l> :noh<CR><C-l>
 " Terminal mode
 tnoremap <Esc> <C-\><C-n>
 
+" Airline settings
+let g:airline#extensions#tabline#enabled = 1
+
 "
 " ALE settings
 "
