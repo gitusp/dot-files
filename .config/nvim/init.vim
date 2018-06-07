@@ -36,6 +36,9 @@ Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/markdown-preview.vim'
 " Session manager
 Plug 'tpope/vim-obsession'
+" Fuzzy finder
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 "
@@ -69,7 +72,20 @@ nnoremap <C-l> :noh<CR><C-l>
 " Terminal mode
 tnoremap <Esc> <C-\><C-n>
 
+" FZF
+nnoremap <C-g>f :Files<CR>
+nnoremap <C-g><C-f> :Files<CR>
+nnoremap <C-g>b :Buffers<CR>
+nnoremap <C-g><C-b> :Buffers<CR>
+nnoremap <C-g>a :Ag<CR>
+nnoremap <C-g><C-a> :Ag<CR>
+nnoremap <C-g>h :History<CR>
+nnoremap <C-g><C-h> :History<CR>
+nnoremap <C-c> :Commands<CR>
+
+"
 " Airline settings
+"
 let g:airline#extensions#tabline#enabled = 1
 
 "
