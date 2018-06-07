@@ -21,8 +21,6 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 " Open required files by `gf`.
 Plug 'moll/vim-node'
-" Tern commands
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install -g tern' }
 " Surrounding helper
 Plug 'tpope/vim-surround'
 " Better substitution
@@ -31,7 +29,7 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-fugitive'
 " Better file explorer
 Plug 'tpope/vim-vinegar'
-" Text alignment
+" Text alignment - e.g. TableFormat
 Plug 'godlygeek/tabular'
 " Markdown support
 Plug 'plasticboy/vim-markdown'
@@ -71,9 +69,6 @@ nnoremap <C-l> :noh<CR><C-l>
 " Terminal mode
 tnoremap <Esc> <C-\><C-n>
 
-" ft specific mappings
-autocmd FileType javascript nnoremap <buffer> <C-]> :TernDef<CR>
-
 "
 " ALE settings
 "
@@ -106,8 +101,4 @@ let g:deoplete#enable_at_startup = 1
 let g:javascript_plugin_jsdoc = 1
 let g:deoplete#sources#ternjs#types = 1
 let g:deoplete#sources#ternjs#in_literal = 0
-
-" Use the same tern command for `tern_for_vim`.
-let g:tern#command = ['tern']
-let g:tern#arguments = ['--persistent']
 
