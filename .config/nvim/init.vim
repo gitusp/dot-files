@@ -81,7 +81,11 @@ nnoremap <C-g>a :Ag<CR>
 nnoremap <C-g><C-a> :Ag<CR>
 nnoremap <C-g>h :History<CR>
 nnoremap <C-g><C-h> :History<CR>
-nnoremap <C-c> :Commands<CR>
+
+" Alias
+cabbrev te tabedit
+cabbrev tn tabnext
+cabbrev tp tabprevious
 
 "
 " Airline settings
