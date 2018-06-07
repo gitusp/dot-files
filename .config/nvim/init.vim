@@ -58,12 +58,12 @@ set smartcase
 " NOTE: Do not assign these like `inoremap ( ()` or `inoremap [ []`, which
 " output other characters aside from what you typed.
 
-" Tabs
-nnoremap <Tab>n :tabnew<CR>
-nnoremap <Tab>l :tabnext<CR>
-nnoremap <Tab>h :tabprev<CR>
-nnoremap <Tab>L :execute 'tabmove ' . (tabpagenr() + 1)<CR>
-nnoremap <Tab>H :execute 'tabmove ' . (tabpagenr() - 2)<CR>
+" Repeat the last command
+nnoremap <Tab> @:
+
+" Indent
+nnoremap > >>
+nnoremap < <<
 
 " Copied from tpope's dotfile
 nnoremap Y y$
@@ -87,6 +87,7 @@ nnoremap <C-c> :Commands<CR>
 " Airline settings
 "
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
 
 "
 " ALE settings
