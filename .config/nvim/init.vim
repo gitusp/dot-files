@@ -38,9 +38,6 @@ Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/markdown-preview.vim'
 " Session manager
 Plug 'tpope/vim-obsession'
-" Avoid distractions
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
 
 call plug#end()
 "
@@ -71,8 +68,8 @@ nnoremap <Tab>H :execute 'tabmove ' . (tabpagenr() - 2)<CR>
 nnoremap Y y$
 nnoremap <C-l> :noh<CR><C-l>
 
-" Hyperfocus
-nnoremap <C-g> :Goyo<CR>
+" Terminal mode
+tnoremap <Esc> <C-\><C-n>
 
 " ft specific mappings
 autocmd FileType javascript nnoremap <buffer> <C-]> :TernDef<CR>
@@ -114,20 +111,3 @@ let g:deoplete#sources#ternjs#in_literal = 0
 let g:tern#command = ['tern']
 let g:tern#arguments = ['--persistent']
 
-" Hyperfocus
-function! s:goyo_enter()
-  Limelight
-  if exists('$TMUX')
-    silent !tmux set status off
-  endif
-endfunction
-
-function! s:goyo_leave()
-  Limelight!
-  if exists('$TMUX')
-    silent !tmux set status on
-  endif
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
