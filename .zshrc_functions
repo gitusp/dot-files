@@ -6,3 +6,5 @@ function scratchf () {
 	echo `date +%F``echo $1 | sed 's/^\(.\)/-\1/'`.md
 }
 
+alias ggl='googler -len'
+
