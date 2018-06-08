@@ -38,8 +38,6 @@ Plug 'iamcco/markdown-preview.vim'
 Plug 'tpope/vim-obsession'
 " Comment plugin
 Plug 'tpope/vim-commentary'
-" Utility mappings
-Plug 'tpope/vim-unimpaired'
 " Case preserving substitution(currently its live preview is not supported)
 Plug 'tpope/vim-abolish'
 " Fuzzy finder
@@ -62,15 +60,17 @@ set inccommand=nosplit
 "
 " Custom mappings
 "
-nnoremap          >           >>
-nnoremap          <           <<
-nnoremap          Y           y$
-nnoremap          _           @:
-nnoremap <silent> +           :Files<CR>
-nnoremap <silent> <C-l>       :noh<CR><C-l>
-nnoremap <silent> <C-n>       :tabnext<CR>
-nnoremap <silent> <C-p>       :tabprevious<CR>
-tnoremap          <Esc>       <C-\><C-n>
+nnoremap          >     >>
+nnoremap          <     <<
+nnoremap          Y     y$
+nnoremap          _     @:
+nnoremap <silent> +     :Files<CR>
+nnoremap <silent> <C-l> :noh<CR><C-l>
+nnoremap <silent> [t    :tabprevious<CR>
+nnoremap <silent> ]t    :tabnext<CR>
+nnoremap <silent> [T    :tabfirst<CR>
+nnoremap <silent> ]T    :tablast<CR>
+tnoremap          <Esc> <C-\><C-n>
 
 "
 " Airline settings
