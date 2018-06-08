@@ -23,8 +23,8 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'moll/vim-node'
 " Surrounding helper
 Plug 'tpope/vim-surround'
-" Better substitution
-Plug 'tpope/vim-abolish'
+" Enable to repeat surrounding
+Plug 'tpope/vim-repeat'
 " Git integration
 Plug 'tpope/vim-fugitive'
 " Better file explorer
@@ -56,37 +56,15 @@ set inccommand=nosplit
 "
 " Custom mappings
 "
-" NOTE: Do not assign these like `inoremap ( ()` or `inoremap [ []`, which
-" output other characters aside from what you typed.
-
-" Repeat the last command
-nnoremap <Tab> @:
-
-" Indent
-nnoremap > >>
-nnoremap < <<
-
-" Copied from tpope's dotfile
-nnoremap Y y$
-nnoremap <C-l> :noh<CR><C-l>
-
-" Terminal mode
-tnoremap <Esc> <C-\><C-n>
-
-" FZF
-nnoremap <C-g>f :Files<CR>
-nnoremap <C-g><C-f> :Files<CR>
-nnoremap <C-g>b :Buffers<CR>
-nnoremap <C-g><C-b> :Buffers<CR>
-nnoremap <C-g>a :Ag<CR>
-nnoremap <C-g><C-a> :Ag<CR>
-nnoremap <C-g>h :History<CR>
-nnoremap <C-g><C-h> :History<CR>
-
-" Alias
-cabbrev te tabedit
-cabbrev tn tabnext
-cabbrev tp tabprevious
+nnoremap          >           >>
+nnoremap          <           <<
+nnoremap          Y           y$
+nnoremap          _           @:
+nnoremap <silent> +           :Files<CR>
+nnoremap <silent> <C-l>       :noh<CR><C-l>
+nnoremap <silent> <C-n>       :tabnext<CR>
+nnoremap <silent> <C-p>       :tabprevious<CR>
+tnoremap          <Esc>       <C-\><C-n>
 
 "
 " Airline settings
