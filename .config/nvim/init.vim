@@ -21,9 +21,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 " Open required files by `gf`.
 Plug 'moll/vim-node'
-" Surrounding helper
-Plug 'tpope/vim-surround'
-" Enable to repeat surrounding
+" Enable plugin command repeat
 Plug 'tpope/vim-repeat'
 " Git integration
 Plug 'tpope/vim-fugitive'
@@ -34,15 +32,13 @@ Plug 'godlygeek/tabular'
 " Markdown support
 Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/markdown-preview.vim'
-" Session manager
-Plug 'tpope/vim-obsession'
-" Comment plugin
-Plug 'tpope/vim-commentary'
-" Case preserving substitution(currently its live preview is not supported)
-Plug 'tpope/vim-abolish'
 " Fuzzy finder
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+" Middle range precise movement
+Plug 'justinmk/vim-sneak'
+" Wide range precise movement
+Plug 'easymotion/vim-easymotion'
 
 call plug#end()
 "
@@ -60,17 +56,31 @@ set inccommand=nosplit
 "
 " Custom mappings
 "
+nmap              s     <Plug>Sneak_s
+nmap              S     <Plug>Sneak_S
+nmap              <C-s> <Plug>(easymotion-overwin-f2)
 nnoremap          >     >>
 nnoremap          <     <<
 nnoremap          Y     y$
 nnoremap          _     @:
+nnoremap          X     qx
+nnoremap          x     @x
 nnoremap <silent> +     :Files<CR>
 nnoremap <silent> <C-l> :noh<CR><C-l>
 nnoremap <silent> [t    :tabprevious<CR>
 nnoremap <silent> ]t    :tabnext<CR>
 nnoremap <silent> [T    :tabfirst<CR>
 nnoremap <silent> ]T    :tablast<CR>
+xmap              s     <Plug>Sneak_s
+xmap              S     <Plug>Sneak_S
+omap              s     <Plug>Sneak_s
+omap              S     <Plug>Sneak_S
 tnoremap          <Esc> <C-\><C-n>
+
+"
+" Sneak settings
+"
+highlight! link Sneak Normal
 
 "
 " Airline settings
