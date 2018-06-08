@@ -56,26 +56,26 @@ set inccommand=nosplit
 "
 " Custom mappings
 "
-nmap              s     <Plug>Sneak_s
-nmap              S     <Plug>Sneak_S
-nmap              <C-s> <Plug>(easymotion-overwin-f2)
-nnoremap          >     >>
-nnoremap          <     <<
-nnoremap          Y     y$
-nnoremap          _     @:
-nnoremap          X     qx
-nnoremap          x     @x
-nnoremap <silent> +     :Files<CR>
-nnoremap <silent> <C-l> :noh<CR><C-l>
-nnoremap <silent> [t    :tabprevious<CR>
-nnoremap <silent> ]t    :tabnext<CR>
-nnoremap <silent> [T    :tabfirst<CR>
-nnoremap <silent> ]T    :tablast<CR>
-xmap              s     <Plug>Sneak_s
-xmap              S     <Plug>Sneak_S
-omap              s     <Plug>Sneak_s
-omap              S     <Plug>Sneak_S
-tnoremap          <Esc> <C-\><C-n>
+nmap              s       <Plug>Sneak_s
+nmap              S       <Plug>Sneak_S
+nmap              <Space> <Plug>(easymotion-overwin-f2)
+nnoremap          >       >>
+nnoremap          <       <<
+nnoremap          Y       y$
+nnoremap          _       @:
+nnoremap          X       :nnoremap x 
+nnoremap <silent> x       :echo 'Reserved for temporary assignment'<CR>
+nnoremap <silent> +       :Files<CR>
+nnoremap <silent> <C-l>   :noh<CR><C-l>
+nnoremap <silent> [t      :tabprevious<CR>
+nnoremap <silent> ]t      :tabnext<CR>
+nnoremap <silent> [T      :tabfirst<CR>
+nnoremap <silent> ]T      :tablast<CR>
+xmap              s       <Plug>Sneak_s
+xmap              S       <Plug>Sneak_S
+omap              s       <Plug>Sneak_s
+omap              S       <Plug>Sneak_S
+tnoremap          <Esc>   <C-\><C-n>
 
 "
 " Sneak settings
