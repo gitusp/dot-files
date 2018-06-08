@@ -51,6 +51,7 @@ call plug#end()
 colorscheme Tomorrow-Night
 set ignorecase
 set smartcase
+set inccommand=nosplit
 
 "
 " Custom mappings
