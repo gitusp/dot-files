@@ -36,6 +36,12 @@ Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/markdown-preview.vim'
 " Session manager
 Plug 'tpope/vim-obsession'
+" Comment plugin
+Plug 'tpope/vim-commentary'
+" Utility mappings
+Plug 'tpope/vim-unimpaired'
+" Case preserving substitution(currently its live preview is not supported)
+Plug 'tpope/vim-abolish'
 " Fuzzy finder
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
