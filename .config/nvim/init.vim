@@ -58,8 +58,12 @@ set inccommand=nosplit
 "
 " Custom mappings
 "
-nmap              s       <Plug>Sneak_s
-nmap              S       <Plug>Sneak_S
+map               f       <Plug>Sneak_f
+map               F       <Plug>Sneak_F
+map               t       <Plug>Sneak_t
+map               T       <Plug>Sneak_T
+map               s       <Plug>Sneak_s
+map               S       <Plug>Sneak_S
 nmap              <Space> <Plug>(easymotion-overwin-f2)
 nnoremap          >       >>
 nnoremap          <       <<
@@ -73,16 +77,12 @@ nnoremap <silent> [t      :tabprevious<CR>
 nnoremap <silent> ]t      :tabnext<CR>
 nnoremap <silent> [T      :tabfirst<CR>
 nnoremap <silent> ]T      :tablast<CR>
-xmap              s       <Plug>Sneak_s
-xmap              S       <Plug>Sneak_S
-omap              s       <Plug>Sneak_s
-omap              S       <Plug>Sneak_S
 tnoremap          <Esc>   <C-\><C-n>
 
 "
 " Sneak settings
 "
-highlight! link Sneak Normal
+highlight! link Sneak IncSearch
 
 "
 " Airline settings
