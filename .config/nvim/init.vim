@@ -39,6 +39,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-sneak'
 " Wide range precise movement
 Plug 'easymotion/vim-easymotion'
+" auto close
+Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 "
