@@ -35,12 +35,11 @@ Plug 'iamcco/markdown-preview.vim'
 " Fuzzy finder
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-" Middle range precise movement
-Plug 'justinmk/vim-sneak'
-" Wide range precise movement
-Plug 'easymotion/vim-easymotion'
 " auto close
 Plug 'jiangmiao/auto-pairs'
+" utils
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
 
 call plug#end()
 "
@@ -58,31 +57,24 @@ set inccommand=nosplit
 "
 " Custom mappings
 "
-map               f       <Plug>Sneak_f
-map               F       <Plug>Sneak_F
-map               t       <Plug>Sneak_t
-map               T       <Plug>Sneak_T
-map               s       <Plug>Sneak_s
-map               S       <Plug>Sneak_S
-nmap              <Space> <Plug>(easymotion-overwin-f2)
 nnoremap          >       >>
 nnoremap          <       <<
 nnoremap          Y       y$
 nnoremap          _       @:
-nnoremap          X       :nnoremap x 
-nnoremap <silent> x       :echo 'Reserved for temporary assignment'<CR>
+nnoremap <silent> s       :sp<CR>
+nnoremap <silent> S       :vsp<CR>
+nnoremap <silent> x       :q<CR>
+nnoremap <silent> X       :q!<CR>
 nnoremap <silent> +       :Files<CR>
 nnoremap <silent> <C-l>   :noh<CR><C-l>
 nnoremap <silent> [t      :tabprevious<CR>
 nnoremap <silent> ]t      :tabnext<CR>
 nnoremap <silent> [T      :tabfirst<CR>
 nnoremap <silent> ]T      :tablast<CR>
+nnoremap <silent> <Space> :w<CR>
+vnoremap <silent> s       :sp<CR>
+vnoremap <silent> S       :vsp<CR>
 tnoremap          <Esc>   <C-\><C-n>
-
-"
-" Sneak settings
-"
-highlight! link Sneak IncSearch
 
 "
 " Airline settings
