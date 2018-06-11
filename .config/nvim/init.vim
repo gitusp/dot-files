@@ -42,6 +42,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 " Snippets
 Plug 'SirVer/ultisnips'
+" Better substitution(currently not supporting live preview)
+Plug 'tpope/vim-abolish'
 
 call plug#end()
 "

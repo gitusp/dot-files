@@ -6,6 +6,12 @@ snippet re
 require('${2}')
 endsnippet
 
+snippet as
+async (${1}) => {
+  ${2}
+}
+endsnippet
+
 snippet =>
 (${1}) => {
   ${2}
@@ -22,4 +28,10 @@ snippet it
 it('should ${1}', () => {
   ${2}
 })
+endsnippet
+
+snippet mo
+module.exports = {
+  ${1},
+}
 endsnippet
