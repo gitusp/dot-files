@@ -61,34 +61,51 @@ set inccommand=nosplit
 "
 " Custom mappings
 "
+let mapleader = 'x'
 " Normal mode - normal assignments
-nnoremap          >       >>
-nnoremap          <       <<
-nnoremap          Y       y$
-nnoremap          _       @:
-nnoremap <silent> +       :Files<CR>
-nnoremap <silent> <C-l>   :noh<CR><C-l>
-nnoremap <silent> [b      :bprevious<CR>
-nnoremap <silent> ]b      :bnext<CR>
-nnoremap <silent> [B      :bfirst<CR>
-nnoremap <silent> ]B      :blast<CR>
-nnoremap <silent> [t      :tabprevious<CR>
-nnoremap <silent> ]t      :tabnext<CR>
-nnoremap <silent> [T      :tabfirst<CR>
-nnoremap <silent> ]T      :tablast<CR>
-nnoremap <silent> <Space> :w<CR>
+nnoremap          >         >>
+nnoremap          <         <<
+nnoremap          Y         y$
+nnoremap          _         @:
+nnoremap <silent> +         :Files<CR>
+nnoremap <silent> <C-l>     :noh<CR><C-l>
+nnoremap <silent> [b        :bprevious<CR>
+nnoremap <silent> ]b        :bnext<CR>
+nnoremap <silent> [B        :bfirst<CR>
+nnoremap <silent> ]B        :blast<CR>
+nnoremap <silent> [t        :tabprevious<CR>
+nnoremap <silent> ]t        :tabnext<CR>
+nnoremap <silent> [T        :tabfirst<CR>
+nnoremap <silent> ]T        :tablast<CR>
+nnoremap <silent> <Space>   :w<CR>
 " Normal mode - aggresive assignments
-nnoremap          x       <Nop>
-nnoremap          X       <Nop>
-nnoremap <silent> s       :sp<CR>
-nnoremap <silent> S       :vsp<CR>
+nnoremap          x         <Nop>
+nnoremap          X         <Nop>
+nnoremap <silent> s         :sp<CR>
+nnoremap <silent> S         :vsp<CR>
+nnoremap          <Leader>y "+y
+nnoremap          <Leader>Y "+Y
+nnoremap          <Leader>p "+p
+nnoremap          <Leader>P "+P
+nnoremap          <Leader>d "_d
+nnoremap          <Leader>D "_D
+nnoremap          <Leader>c "_c
+nnoremap          <Leader>C "_C
 " Insert mode - aggresive assignments
-vnoremap          x       <Nop>
-vnoremap          X       <Nop>
-vnoremap          s       <Nop>
-vnoremap          S       <Nop>
+vnoremap          x         <Nop>
+vnoremap          X         <Nop>
+vnoremap          s         <Nop>
+vnoremap          S         <Nop>
+vnoremap          <Leader>y "+y
+vnoremap          <Leader>Y "+Y
+vnoremap          <Leader>p "+p
+vnoremap          <Leader>P "+P
+vnoremap          <Leader>d "_d
+vnoremap          <Leader>D "_D
+vnoremap          <Leader>c "_c
+vnoremap          <Leader>C "_C
 " Terminal mode
-tnoremap          <Esc>   <C-\><C-n>
+tnoremap          <Esc>     <C-\><C-n>
 
 "
 " Airline settings
