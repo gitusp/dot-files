@@ -61,25 +61,33 @@ set inccommand=nosplit
 "
 " Custom mappings
 "
+" Normal mode - normal assignments
 nnoremap          >       >>
 nnoremap          <       <<
 nnoremap          Y       y$
 nnoremap          _       @:
-nnoremap <silent> s       :sp<CR>
-nnoremap <silent> S       :vsp<CR>
-nnoremap <silent> x       :bprevious<CR>
-nnoremap <silent> X       :bnext<CR>
 nnoremap <silent> +       :Files<CR>
 nnoremap <silent> <C-l>   :noh<CR><C-l>
+nnoremap <silent> [b      :bprevious<CR>
+nnoremap <silent> ]b      :bnext<CR>
+nnoremap <silent> [B      :bfirst<CR>
+nnoremap <silent> ]B      :blast<CR>
 nnoremap <silent> [t      :tabprevious<CR>
 nnoremap <silent> ]t      :tabnext<CR>
 nnoremap <silent> [T      :tabfirst<CR>
 nnoremap <silent> ]T      :tablast<CR>
 nnoremap <silent> <Space> :w<CR>
-vnoremap <silent> s       :sp<CR>
-vnoremap <silent> S       :vsp<CR>
-vnoremap <silent> x       :bprevious<CR>
-vnoremap <silent> X       :bnext<CR>
+" Normal mode - aggresive assignments
+nnoremap          x       <Nop>
+nnoremap          X       <Nop>
+nnoremap <silent> s       :sp<CR>
+nnoremap <silent> S       :vsp<CR>
+" Insert mode - aggresive assignments
+vnoremap          x       <Nop>
+vnoremap          X       <Nop>
+vnoremap          s       <Nop>
+vnoremap          S       <Nop>
+" Terminal mode
 tnoremap          <Esc>   <C-\><C-n>
 
 "
