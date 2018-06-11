@@ -66,8 +66,8 @@ nnoremap          Y       y$
 nnoremap          _       @:
 nnoremap <silent> s       :sp<CR>
 nnoremap <silent> S       :vsp<CR>
-nnoremap <silent> x       :q<CR>
-nnoremap <silent> X       :q!<CR>
+nnoremap <silent> x       :bprevious<CR>
+nnoremap <silent> X       :bnext<CR>
 nnoremap <silent> +       :Files<CR>
 nnoremap <silent> <C-l>   :noh<CR><C-l>
 nnoremap <silent> [t      :tabprevious<CR>
@@ -77,6 +77,8 @@ nnoremap <silent> ]T      :tablast<CR>
 nnoremap <silent> <Space> :w<CR>
 vnoremap <silent> s       :sp<CR>
 vnoremap <silent> S       :vsp<CR>
+vnoremap <silent> x       :bprevious<CR>
+vnoremap <silent> X       :bnext<CR>
 tnoremap          <Esc>   <C-\><C-n>
 
 "
