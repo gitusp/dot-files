@@ -42,7 +42,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 " Snippets
 Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 
 call plug#end()
 "
@@ -93,6 +92,8 @@ let g:airline_powerline_fonts = 1
 let g:UltiSnipsExpandTrigger = '<Tab>'
 let g:UltiSnipsJumpForwardTrigger = '<C-f>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-b>'
+let g:UltiSnipsEditSplit = 'vertical'
+let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
 
 "
 " ALE settings
