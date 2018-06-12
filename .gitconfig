@@ -1,7 +1,11 @@
 [color]
-	ui = auto
+  ui = auto
 [core]
-	excludesfile = ~/.gitignore_global
-	editor = emacs
+  excludesfile = ~/.gitignore_global
+  editor = nvim
 [include]
-    path = ~/.gitconfig.local
+  path = ~/.gitconfig.local
+[alias]
+  # copied from: https://www.colinodell.com/blog/201803/four-useful-git-aliases
+  fixup = !sh -c 'REV=$(git rev-parse $1) && git commit --fixup $@ && git rebase -i --autostash --autosquash $REV^' -
+
