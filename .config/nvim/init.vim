@@ -78,11 +78,7 @@ nnoremap <silent> ]t        :tabnext<CR>
 nnoremap <silent> [T        :tabfirst<CR>
 nnoremap <silent> ]T        :tablast<CR>
 nnoremap <silent> <Space>   :w<CR>
-" Normal mode - aggresive assignments
-nnoremap          x         <Nop>
-nnoremap          X         <Nop>
-nnoremap <silent> s         :sp<CR>
-nnoremap <silent> S         :vsp<CR>
+" Normal mode - with <Leader>
 nnoremap          <Leader>y "+y
 nnoremap          <Leader>Y "+Y
 nnoremap          <Leader>p "+p
@@ -91,11 +87,18 @@ nnoremap          <Leader>d "_d
 nnoremap          <Leader>D "_D
 nnoremap          <Leader>c "_c
 nnoremap          <Leader>C "_C
-" Insert mode - aggresive assignments
+nnoremap <silent> <Leader>s :UltiSnipsEdit<CR>
+" Normal mode - aggresive assignments
+nnoremap          x         <Nop>
+nnoremap          X         <Nop>
+nnoremap <silent> s         :sp<CR>
+nnoremap <silent> S         :vsp<CR>
+" Visual mode - aggresive assignments
 vnoremap          x         <Nop>
 vnoremap          X         <Nop>
 vnoremap          s         <Nop>
 vnoremap          S         <Nop>
+" Visual mode - with <Leader>
 vnoremap          <Leader>y "+y
 vnoremap          <Leader>Y "+Y
 vnoremap          <Leader>p "+p
