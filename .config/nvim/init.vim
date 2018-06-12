@@ -80,8 +80,9 @@ nnoremap <silent> <Space> :w<CR>
 " Normal mode - aggresive assignments
 nnoremap <silent> x       :e .scratch.md<CR>
 nnoremap <silent> X       :e `scratchf`<CR>
-nnoremap <silent> s       :vsp<CR>
-nnoremap <silent> S       :sp<CR>
+nnoremap <silent> s       :vsplit<CR>
+nnoremap <silent> S       :split<CR>
+nnoremap <silent> <C-g>   :terminal<CR>iggl 
 " Visual mode - aggresive assignments
 vnoremap          x       <Nop>
 vnoremap          X       <Nop>
