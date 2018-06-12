@@ -62,33 +62,33 @@ set inccommand=nosplit
 " Custom mappings
 "
 " Normal mode - normal assignments
-nnoremap          >             >>
-nnoremap          <             <<
-nnoremap          Y             y$
-nnoremap          _             @:
-nnoremap <silent> +             :Files<CR>
-nnoremap <silent> <C-l>         :noh<CR><C-l>
-nnoremap <silent> [b            :bprevious<CR>
-nnoremap <silent> ]b            :bnext<CR>
-nnoremap <silent> [B            :bfirst<CR>
-nnoremap <silent> ]B            :blast<CR>
-nnoremap <silent> [t            :tabprevious<CR>
-nnoremap <silent> ]t            :tabnext<CR>
-nnoremap <silent> [T            :tabfirst<CR>
-nnoremap <silent> ]T            :tablast<CR>
-nnoremap <silent> <Space>       :w<CR>
+nnoremap          >       >>
+nnoremap          <       <<
+nnoremap          Y       y$
+nnoremap          _       @:
+nnoremap <silent> +       :Files<CR>
+nnoremap <silent> <C-l>   :noh<CR><C-l>
+nnoremap <silent> [b      :bprevious<CR>
+nnoremap <silent> ]b      :bnext<CR>
+nnoremap <silent> [B      :bfirst<CR>
+nnoremap <silent> ]B      :blast<CR>
+nnoremap <silent> [t      :tabprevious<CR>
+nnoremap <silent> ]t      :tabnext<CR>
+nnoremap <silent> [T      :tabfirst<CR>
+nnoremap <silent> ]T      :tablast<CR>
+nnoremap <silent> <Space> :w<CR>
 " Normal mode - aggresive assignments
-nnoremap <silent> x             :e .scratch.md<CR>
-nnoremap <silent> X             :e `scratchf`<CR>
-nnoremap <silent> s             :vsp<CR>
-nnoremap <silent> S             :sp<CR>
+nnoremap <silent> x       :e .scratch.md<CR>
+nnoremap <silent> X       :e `scratchf`<CR>
+nnoremap <silent> s       :vsp<CR>
+nnoremap <silent> S       :sp<CR>
 " Visual mode - aggresive assignments
-vnoremap          x             <Nop>
-vnoremap          X             <Nop>
-vnoremap          s             <Nop>
-vnoremap          S             <Nop>
+vnoremap          x       <Nop>
+vnoremap          X       <Nop>
+vnoremap          s       <Nop>
+vnoremap          S       <Nop>
 " Terminal mode
-tnoremap          <Esc>         <C-\><C-n>
+tnoremap          <Esc>   <C-\><C-n>
 
 "
 " Airline settings
