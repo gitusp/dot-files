@@ -1,9 +1,9 @@
 function scratch () {
-	nvim --cmd 'cd ~/Scratches' ~/Scratches/`scratchf $1`
+	nvim --cmd 'cd ~/Scratches' `scratchf $1`
 }
 
 function scratchf () {
-	echo `date +%F``echo $1 | sed 's/^\(.\)/-\1/'`.md
+	echo ~/Scratches/`date +%F``echo $1 | sed 's/^\(.\)/-\1/'`.md
 }
 
 alias ggl='googler -len'
