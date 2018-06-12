@@ -66,8 +66,7 @@ nnoremap          >       >>
 nnoremap          <       <<
 nnoremap          Y       y$
 nnoremap          _       @:
-nnoremap <silent> +       :Files<CR>
-nnoremap <silent> <C-l>   :noh<CR><C-l>
+nnoremap <silent> +       :tabedit<CR>
 nnoremap <silent> [b      :bprevious<CR>
 nnoremap <silent> ]b      :bnext<CR>
 nnoremap <silent> [B      :bfirst<CR>
@@ -76,18 +75,39 @@ nnoremap <silent> [t      :tabprevious<CR>
 nnoremap <silent> ]t      :tabnext<CR>
 nnoremap <silent> [T      :tabfirst<CR>
 nnoremap <silent> ]T      :tablast<CR>
+nnoremap <silent> <C-l>   :noh<CR><C-l>
+nnoremap <silent> <C-p>   :terminal<CR>i
 nnoremap <silent> <Space> :w<CR>
 " Normal mode - aggresive assignments
 nnoremap <silent> x       :e .scratch.md<CR>
 nnoremap <silent> X       :e `scratchf`<CR>
-nnoremap <silent> s       :vsplit<CR>
-nnoremap <silent> S       :split<CR>
-nnoremap <silent> <C-g>   :terminal<CR>iggl 
+nnoremap <silent> s       :split<CR>
+nnoremap <silent> S       :vsplit<CR>
+" Normal mode - meta assignments
+nnoremap <silent> <M-a>   :Ag<CR>
+nnoremap <silent> <M-c>   :Commands<CR>
+nnoremap <silent> <M-d>   :Gdiff<CR>
+nnoremap <silent> <M-f>   :Files<CR>
+nnoremap <silent> <M-l>   :BLines<CR>
+nnoremap <silent> <S-M-l> :Lines<CR>
+nnoremap <silent> <M-r>   :Gread<CR>
+nnoremap <silent> <M-s>   :Gstatus<CR>
+nnoremap <silent> <M-u>   :UltiSnipsEdit<CR>
+nnoremap <silent> <M-w>   :Gwrite<CR>
+nnoremap          <M-p>   "+p
+nnoremap          <S-M-p> "+P
+nnoremap          <M-y>   "+y
+nmap              <S-M-y> "+Y
 " Visual mode - aggresive assignments
 vnoremap          x       <Nop>
 vnoremap          X       <Nop>
 vnoremap          s       <Nop>
 vnoremap          S       <Nop>
+" Visual mode - meta assignments
+vnoremap          <M-p>   "+p
+vnoremap          <S-M-p> "+P
+vnoremap          <M-y>   "+y
+vnoremap          <S-M-y> "+Y
 " Terminal mode
 tnoremap          <Esc>   <C-\><C-n>
 
