@@ -61,7 +61,6 @@ set inccommand=nosplit
 "
 " Custom mappings
 "
-let mapleader = 'x'
 " Normal mode - normal assignments
 nnoremap          >             >>
 nnoremap          <             <<
@@ -78,40 +77,16 @@ nnoremap <silent> ]t            :tabnext<CR>
 nnoremap <silent> [T            :tabfirst<CR>
 nnoremap <silent> ]T            :tablast<CR>
 nnoremap <silent> <Space>       :w<CR>
-" Normal mode - with <Leader>
-nmap              <leader><tab> <plug>(fzf-maps-n)
-nnoremap          <Leader>y     "+y
-nnoremap          <Leader>Y     "+Y
-nnoremap          <Leader>p     "+p
-nnoremap          <Leader>P     "+P
-nnoremap          <Leader>d     "_d
-nnoremap          <Leader>D     "_D
-nnoremap          <Leader>c     "_c
-nnoremap          <Leader>C     "_C
-nnoremap <silent> <Leader>s     :UltiSnipsEdit<CR>
-nnoremap <silent> <Leader>t     :tabe<CR>
 " Normal mode - aggresive assignments
-nnoremap          x             <Nop>
-nnoremap          X             <Nop>
-nnoremap <silent> s             :sp<CR>
-nnoremap <silent> S             :vsp<CR>
+nnoremap <silent> x             :e .scratch.md<CR>
+nnoremap <silent> X             :e `scratchf`<CR>
+nnoremap <silent> s             :vsp<CR>
+nnoremap <silent> S             :sp<CR>
 " Visual mode - aggresive assignments
 vnoremap          x             <Nop>
 vnoremap          X             <Nop>
 vnoremap          s             <Nop>
 vnoremap          S             <Nop>
-" Visual mode - with <Leader>
-xmap              <leader><tab> <plug>(fzf-maps-x)
-vnoremap          <Leader>y     "+y
-vnoremap          <Leader>Y     "+Y
-vnoremap          <Leader>p     "+p
-vnoremap          <Leader>P     "+P
-vnoremap          <Leader>d     "_d
-vnoremap          <Leader>D     "_D
-vnoremap          <Leader>c     "_c
-vnoremap          <Leader>C     "_C
-" Operation mode
-omap              <leader><tab> <plug>(fzf-maps-o)
 " Terminal mode
 tnoremap          <Esc>         <C-\><C-n>
 
