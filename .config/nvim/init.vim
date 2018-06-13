@@ -86,12 +86,9 @@ nnoremap <silent> X       :e `scratchf`<CR>
 nnoremap <silent> s       :split<CR>
 nnoremap <silent> S       :vsplit<CR>
 " Normal mode - meta assignments
-nnoremap <silent> <M-a>   :Ag<CR>
 nnoremap <silent> <M-c>   :Commands<CR>
 nnoremap <silent> <M-d>   :Gdiff<CR>
 nnoremap <silent> <M-f>   :Files<CR>
-nnoremap <silent> <M-l>   :BLines<CR>
-nnoremap <silent> <S-M-l> :Lines<CR>
 nnoremap <silent> <M-r>   :Gread<CR>
 nnoremap <silent> <M-s>   :Gstatus<CR>
 nnoremap <silent> <M-u>   :UltiSnipsEdit<CR>
