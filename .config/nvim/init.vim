@@ -44,6 +44,8 @@ Plug 'tpope/vim-commentary'
 Plug 'SirVer/ultisnips'
 " Better substitution(currently not supporting live preview)
 Plug 'tpope/vim-abolish'
+" Readline style insertion
+Plug 'tpope/vim-rsi'
 
 call plug#end()
 "
@@ -75,7 +77,7 @@ nnoremap <silent> [t      :tabprevious<CR>
 nnoremap <silent> ]t      :tabnext<CR>
 nnoremap <silent> [T      :tabfirst<CR>
 nnoremap <silent> ]T      :tablast<CR>
-nnoremap <silent> <C-l>   :noh<CR><C-l>
+nnoremap <silent> <C-l>   :nohlsearch<CR><C-l>
 nnoremap <silent> <C-p>   :terminal<CR>i
 nnoremap <silent> <Space> :w<CR>
 " Normal mode - aggresive assignments
@@ -110,6 +112,17 @@ vnoremap          <M-y>   "+y
 vnoremap          <S-M-y> "+Y
 " Terminal mode
 tnoremap          <Esc>   <C-\><C-n>
+
+"
+" AutoPairs Settings
+"
+" Change mapping since it conflicts with paste from `system clipboard`.
+let g:AutoPairsShortcutToggle = '<M-q>'
+
+"
+" ft specific mappings
+"
+autocmd FileType markdown nnoremap <silent> <M-m> :MarkdownPreview<CR>
 
 "
 " Airline settings
