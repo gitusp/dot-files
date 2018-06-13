@@ -25,8 +25,6 @@ Plug 'moll/vim-node'
 Plug 'tpope/vim-repeat'
 " Git integration
 Plug 'tpope/vim-fugitive'
-" Better file explorer
-Plug 'tpope/vim-vinegar'
 " Text alignment - e.g. TableFormat
 Plug 'godlygeek/tabular'
 " Markdown support
@@ -46,6 +44,8 @@ Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-abolish'
 " Readline style insertion
 Plug 'tpope/vim-rsi'
+" Minimalist's better netrw
+Plug 'justinmk/vim-dirvish'
 
 call plug#end()
 "
