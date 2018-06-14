@@ -1,13 +1,13 @@
 {
-  "title": "Add eisuu to vimesc",
+  "title": "Fuzzy colon",
   "rules": [
     {
-      "description": "Add eisuu to vimesc",
+      "description": "Fuzzy colon",
       "manipulators": [
         {
           "type": "basic",
           "from": {
-            "key_code": "open_bracket",
+            "key_code": "semicolon",
             "modifiers": {
               "mandatory": [
                 "left_control"
@@ -16,12 +16,9 @@
           },
           "to": [
             {
-              "key_code": "japanese_eisuu"
-            },
-            {
-              "key_code": "open_bracket",
+              "key_code": "semicolon",
               "modifiers": [
-                "left_control"
+                "left_shift"
               ]
             }
           ],

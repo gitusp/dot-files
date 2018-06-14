@@ -59,56 +59,61 @@ colorscheme Tomorrow-Night
 set ignorecase
 set smartcase
 set inccommand=nosplit
+autocmd TermOpen * startinsert
 
 "
 " Custom mappings
 "
 " Normal mode - normal assignments
-nnoremap          >       >>
-nnoremap          <       <<
-nnoremap          Y       y$
-nnoremap          _       @:
-nnoremap <silent> +       :tabedit<CR>
-nnoremap <silent> [b      :bprevious<CR>
-nnoremap <silent> ]b      :bnext<CR>
-nnoremap <silent> [B      :bfirst<CR>
-nnoremap <silent> ]B      :blast<CR>
-nnoremap <silent> [t      :tabprevious<CR>
-nnoremap <silent> ]t      :tabnext<CR>
-nnoremap <silent> [T      :tabfirst<CR>
-nnoremap <silent> ]T      :tablast<CR>
-nnoremap <silent> <C-l>   :nohlsearch<CR><C-l>
-nnoremap <silent> <C-p>   :terminal<CR>i
-nnoremap <silent> <Space> :w<CR>
+nnoremap          >           >>
+nnoremap          <           <<
+nnoremap          Y           y$
+nnoremap          _           @:
+nnoremap <silent> +           :Files<CR>
+nnoremap <silent> [b          :bprevious<CR>
+nnoremap <silent> ]b          :bnext<CR>
+nnoremap <silent> [B          :bfirst<CR>
+nnoremap <silent> ]B          :blast<CR>
+nnoremap <silent> [t          :tabprevious<CR>
+nnoremap <silent> ]t          :tabnext<CR>
+nnoremap <silent> [T          :tabfirst<CR>
+nnoremap <silent> ]T          :tablast<CR>
+nnoremap <silent> <C-l>       :Lines<CR>
+nnoremap <silent> <Esc>       :nohlsearch<CR>
+nnoremap <silent> <Space>     :w<CR>
 " Normal mode - aggresive assignments
-nnoremap <silent> x       :e .scratch.md<CR>
-nnoremap <silent> X       :e `scratchf`<CR>
-nnoremap <silent> s       :split<CR>
-nnoremap <silent> S       :vsplit<CR>
+nnoremap <silent> x           :e .scratch.md<CR>
+nnoremap <silent> X           :e `scratchf`<CR>
+nnoremap <silent> s           :split<CR>
+nnoremap <silent> S           :vsplit<CR>
 " Normal mode - meta assignments
-nnoremap <silent> <M-c>   :Commands<CR>
-nnoremap <silent> <M-d>   :Gdiff<CR>
-nnoremap <silent> <M-f>   :Files<CR>
-nnoremap <silent> <M-r>   :Gread<CR>
-nnoremap <silent> <M-s>   :Gstatus<CR>
-nnoremap <silent> <M-u>   :UltiSnipsEdit<CR>
-nnoremap <silent> <M-w>   :Gwrite<CR>
-nnoremap          <M-p>   "+p
-nnoremap          <S-M-p> "+P
-nnoremap          <M-y>   "+y
-nmap              <S-M-y> "+Y
+nnoremap          <M-p>       "+p
+nnoremap          <S-M-p>     "+P
+nnoremap          <M-y>       "+y
+nmap              <S-M-y>     "+Y
 " Visual mode - aggresive assignments
-vnoremap          x       <Nop>
-vnoremap          X       <Nop>
-vnoremap          s       <Nop>
-vnoremap          S       <Nop>
+vnoremap          x           <Nop>
+vnoremap          X           <Nop>
+vnoremap          s           <Nop>
+vnoremap          S           <Nop>
 " Visual mode - meta assignments
-vnoremap          <M-p>   "+p
-vnoremap          <S-M-p> "+P
-vnoremap          <M-y>   "+y
-vnoremap          <S-M-y> "+Y
+vnoremap          <M-p>       "+p
+vnoremap          <S-M-p>     "+P
+vnoremap          <M-y>       "+y
+vnoremap          <S-M-y>     "+Y
 " Terminal mode
-tnoremap          <Esc>   <C-\><C-n>
+tnoremap          <Esc>       <C-\><C-n>
+" Insert mode
+imap              <C-x><C-l>  <Plug>(fzf-complete-line)
+
+"
+" Shortcuts
+"
+cabbrev gs Gstatus
+cabbrev gd Gdiff
+cabbrev te tabedit
+cabbrev hc History:
+cabbrev ue UltiSnipsEdit
 
 "
 " AutoPairs Settings
