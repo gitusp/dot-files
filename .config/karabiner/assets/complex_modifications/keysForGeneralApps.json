@@ -66,39 +66,6 @@
       ]
     },
     {
-      "description": "return_or_enter",
-      "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "m",
-            "modifiers": {
-              "mandatory": [
-                "left_control"
-              ],
-              "optional": [
-                "left_command",
-                "right_command"
-              ]
-            }
-          },
-          "to": [
-            {
-              "key_code": "return_or_enter"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "frontmost_application_unless",
-              "bundle_identifiers": [
-                "^com\\.apple\\.Terminal$"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
       "description": "delete_or_backspace",
       "manipulators": [
         {

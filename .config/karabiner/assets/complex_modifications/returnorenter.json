@@ -1,0 +1,31 @@
+{
+  "title": "Fuzzy enter",
+  "rules": [
+    {
+      "description": "return_or_enter",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": [
+                "left_control"
+              ],
+              "optional": [
+                "left_command",
+                "right_command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "return_or_enter"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
