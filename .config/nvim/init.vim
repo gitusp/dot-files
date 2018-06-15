@@ -105,6 +105,7 @@ vnoremap          <M-y>       "+y
 vnoremap          <S-M-y>     "+Y
 " Terminal mode
 tnoremap          <Esc>       <C-\><C-n>
+tmap              <C-j>       <C-m>
 " Insert mode
 imap              <C-x><C-l>  <Plug>(fzf-complete-line)
 
