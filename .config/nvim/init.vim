@@ -65,6 +65,7 @@ autocmd TermOpen * startinsert
 " Custom mappings
 "
 " Normal mode - normal assignments
+nmap              <C-j>       <C-m>
 nnoremap          >           >>
 nnoremap          <           <<
 nnoremap          Y           y$
@@ -109,6 +110,7 @@ imap              <C-x><C-l>  <Plug>(fzf-complete-line)
 "
 " Shortcuts
 "
+cabbrev ag Ag
 cabbrev gs Gstatus
 cabbrev gd Gdiff
 cabbrev te tabedit
