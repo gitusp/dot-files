@@ -59,6 +59,7 @@ colorscheme Tomorrow-Night
 set ignorecase
 set smartcase
 set inccommand=nosplit
+set hidden
 autocmd TermOpen * startinsert
 
 "
@@ -79,8 +80,9 @@ nnoremap <silent> [t          :tabprevious<CR>
 nnoremap <silent> ]t          :tabnext<CR>
 nnoremap <silent> [T          :tabfirst<CR>
 nnoremap <silent> ]T          :tablast<CR>
-nnoremap <silent> <C-l>       :Lines<CR>
-nnoremap <silent> <Esc>       :nohlsearch<CR>
+nnoremap <silent> <C-g>       :Lines<CR>
+nnoremap <silent> <C-l>       :nohlsearch<CR><C-l>
+nnoremap <silent> <C-p>       :Buffers<CR>
 nnoremap <silent> <Space>     :w<CR>
 nnoremap <silent> <C-Space>   :call CursorPing()<CR>
 " Normal mode - aggresive assignments
@@ -105,7 +107,7 @@ vnoremap          <M-y>       "+y
 vnoremap          <S-M-y>     "+Y
 " Terminal mode
 tnoremap          <Esc>       <C-\><C-n>
-tmap              <C-j>       <C-m>
+tnoremap          <C-j>       <C-m>
 " Insert mode
 imap              <C-x><C-l>  <Plug>(fzf-complete-line)
 
@@ -115,8 +117,7 @@ imap              <C-x><C-l>  <Plug>(fzf-complete-line)
 cabbrev ag Ag
 cabbrev gs Gstatus
 cabbrev gd Gdiff
-cabbrev te tabedit
-cabbrev hc History:
+cabbrev h: History:
 cabbrev ue UltiSnipsEdit
 
 "
@@ -133,7 +134,6 @@ autocmd FileType markdown nnoremap <silent> <M-m> :MarkdownPreview<CR>
 "
 " Airline settings
 "
-let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
 "
