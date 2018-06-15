@@ -82,6 +82,7 @@ nnoremap <silent> ]T          :tablast<CR>
 nnoremap <silent> <C-l>       :Lines<CR>
 nnoremap <silent> <Esc>       :nohlsearch<CR>
 nnoremap <silent> <Space>     :w<CR>
+nnoremap <silent> <C-Space>   :call CursorPing()<CR>
 " Normal mode - aggresive assignments
 nnoremap <silent> x           :e .scratch.md<CR>
 nnoremap <silent> X           :e `scratchf`<CR>
@@ -175,4 +176,14 @@ let g:deoplete#enable_at_startup = 1
 let g:javascript_plugin_jsdoc = 1
 let g:deoplete#sources#ternjs#types = 1
 let g:deoplete#sources#ternjs#in_literal = 0
+
+"
+" Cursor Ping
+"
+function! CursorPing()
+  set cursorline cursorcolumn
+  redraw
+  sleep 50m
+  set nocursorline nocursorcolumn
+endfunction
 
