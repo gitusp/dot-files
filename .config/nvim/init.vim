@@ -44,6 +44,8 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-rsi'
 " Minimalist's better netrw
 Plug 'justinmk/vim-dirvish'
+" History util
+Plug 'mbbill/undotree'
 
 call plug#end()
 "
@@ -62,6 +64,9 @@ set inccommand=nosplit
 set laststatus=0
 set noshowmode
 set noruler
+" Undo settings
+set undodir=~/.config/nvim/undodir/
+set undofile
 " Other settings
 set hidden
 autocmd TermOpen * startinsert
@@ -84,6 +89,7 @@ nnoremap <silent> [t          :tabprevious<CR>
 nnoremap <silent> ]t          :tabnext<CR>
 nnoremap <silent> [T          :tabfirst<CR>
 nnoremap <silent> ]T          :tablast<CR>
+nnoremap <silent> <C-k>       :Commands<CR>
 nnoremap <silent> <C-l>       :nohlsearch<CR><C-l>
 nnoremap <silent> <C-n>       :Lines<CR>
 nnoremap <silent> <C-p>       :Buffers<CR>
@@ -121,8 +127,6 @@ imap              <C-x><C-l>  <Plug>(fzf-complete-line)
 cabbrev ag Ag
 cabbrev gs Gstatus
 cabbrev gd Gdiff
-cabbrev h: History:
-cabbrev ue UltiSnipsEdit
 
 "
 " AutoPairs Settings
