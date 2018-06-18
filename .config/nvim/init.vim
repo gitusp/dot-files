@@ -13,8 +13,6 @@ Plug 'pangloss/vim-javascript'
 Plug 'digitaltoad/vim-pug'
 " Load editorconfig.
 Plug 'editorconfig/editorconfig-vim'
-" Better status line
-Plug 'vim-airline/vim-airline'
 " Dark powered asynchronous completion framework
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " ternjs integration
@@ -56,9 +54,15 @@ call plug#end()
 " General Settings
 "
 colorscheme Tomorrow-Night
+" Search settings
 set ignorecase
 set smartcase
 set inccommand=nosplit
+" Hide disruptive navigations.
+set laststatus=0
+set noshowmode
+set noruler
+" Other settings
 set hidden
 autocmd TermOpen * startinsert
 
@@ -80,8 +84,8 @@ nnoremap <silent> [t          :tabprevious<CR>
 nnoremap <silent> ]t          :tabnext<CR>
 nnoremap <silent> [T          :tabfirst<CR>
 nnoremap <silent> ]T          :tablast<CR>
-nnoremap <silent> <C-g>       :Lines<CR>
 nnoremap <silent> <C-l>       :nohlsearch<CR><C-l>
+nnoremap <silent> <C-n>       :Lines<CR>
 nnoremap <silent> <C-p>       :Buffers<CR>
 nnoremap <silent> <Space>     :w<CR>
 nnoremap <silent> <C-Space>   :call CursorPing()<CR>
@@ -132,11 +136,6 @@ let g:AutoPairsShortcutToggle = '<M-q>'
 autocmd FileType markdown nnoremap <silent> <M-m> :MarkdownPreview<CR>
 
 "
-" Airline settings
-"
-let g:airline_powerline_fonts = 1
-
-"
 " Snips
 "
 let g:UltiSnipsExpandTrigger = '<Tab>'
@@ -152,7 +151,6 @@ let g:ale_sign_column_always = 1
 let g:ale_sign_error = '🌸'
 let g:ale_sign_warning = '🍀'
 let g:ale_fix_on_save = 1
-let g:airline#extensions#ale#enabled = 1
 highlight clear ALEErrorSign
 highlight clear ALEWarningSign
 
