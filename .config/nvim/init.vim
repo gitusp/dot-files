@@ -40,8 +40,6 @@ Plug 'tpope/vim-commentary'
 Plug 'SirVer/ultisnips'
 " Better substitution(currently not supporting live preview)
 Plug 'tpope/vim-abolish'
-" Readline style insertion
-Plug 'tpope/vim-rsi'
 " Minimalist's better netrw
 Plug 'justinmk/vim-dirvish'
 " History util
