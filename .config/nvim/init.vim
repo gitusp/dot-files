@@ -69,6 +69,7 @@ set undofile
 " Other settings
 set hidden
 autocmd TermOpen * startinsert
+set nofoldenable
 
 "
 " Custom mappings
