@@ -23,6 +23,7 @@ Plug 'moll/vim-node'
 Plug 'tpope/vim-repeat'
 " Git integration
 Plug 'tpope/vim-fugitive'
+Plug 'gregsexton/gitv', {'on': ['Gitv']}
 " Text alignment - e.g. TableFormat
 Plug 'godlygeek/tabular'
 " Markdown support
@@ -125,6 +126,7 @@ imap              <C-x><C-l>  <Plug>(fzf-complete-line)
 cabbrev ag Ag
 cabbrev gs Gstatus
 cabbrev gd Gdiff
+cabbrev gv Gitv
 
 "
 " AutoPairs Settings
