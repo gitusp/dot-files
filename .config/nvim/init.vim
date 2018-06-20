@@ -91,7 +91,6 @@ nnoremap <silent> [t          :tabprevious<CR>
 nnoremap <silent> ]t          :tabnext<CR>
 nnoremap <silent> [T          :tabfirst<CR>
 nnoremap <silent> ]T          :tablast<CR>
-nnoremap <silent> <C-g>       :Lines<CR>
 nnoremap <silent> <C-k>       :Commands<CR>
 nnoremap <silent> <C-l>       :nohlsearch<CR><C-l>
 nnoremap <silent> <C-p>       :Buffers<CR>
@@ -102,6 +101,7 @@ nnoremap <silent> x           :e .scratch.md<CR>
 nnoremap <silent> X           :e `scratchf`<CR>
 nnoremap <silent> s           :split<CR>
 nnoremap <silent> S           :vsplit<CR>
+nnoremap <silent> <C-g>       :Lines<CR>
 " Normal mode - meta assignments
 nnoremap          <M-p>       "+p
 nnoremap          <S-M-p>     "+P
