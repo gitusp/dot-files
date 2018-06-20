@@ -79,6 +79,10 @@ nnoremap          <           <<
 nnoremap          Y           y$
 nnoremap          _           @:
 nnoremap <silent> +           :Files<CR>
+nnoremap <silent> [a          :ALEPreviousWrap<CR>
+nnoremap <silent> ]a          :ALENextWrap<CR>
+nnoremap <silent> [A          :ALEFirst<CR>
+nnoremap <silent> ]A          :ALELast<CR>
 nnoremap <silent> [b          :bprevious<CR>
 nnoremap <silent> ]b          :bnext<CR>
 nnoremap <silent> [B          :bfirst<CR>
@@ -157,12 +161,10 @@ let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
 " ALE settings
 "
 let g:ale_sign_column_always = 1
-let g:ale_sign_error = '🌸'
-let g:ale_sign_warning = '🍀'
+let g:ale_sign_warning = '──'
+let g:ale_sign_error = '══'
 let g:ale_fix_on_save = 1
 let g:airline#extensions#ale#enabled = 1
-highlight clear ALEErrorSign
-highlight clear ALEWarningSign
 
 " NOTE: Each linter and prettier's setup tips
 " eslint: Install `eslint` project-locally while install `eslint-cli` globally.
