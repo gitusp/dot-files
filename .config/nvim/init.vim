@@ -68,6 +68,7 @@ set undofile
 set hidden
 autocmd TermOpen * startinsert
 set nofoldenable
+set lazyredraw
 
 "
 " Custom mappings
@@ -120,6 +121,8 @@ tnoremap          <Esc>       <C-\><C-n>
 tnoremap          <C-j>       <C-m>
 " Insert mode
 imap              <C-x><C-l>  <Plug>(fzf-complete-line)
+" File specific mappings
+autocmd FileType help nnoremap <silent><buffer> q :q<CR>
 
 "
 " Shortcuts
