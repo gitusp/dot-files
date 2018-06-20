@@ -91,9 +91,7 @@ nnoremap <silent> [t          :tabprevious<CR>
 nnoremap <silent> ]t          :tabnext<CR>
 nnoremap <silent> [T          :tabfirst<CR>
 nnoremap <silent> ]T          :tablast<CR>
-nnoremap <silent> <C-k>       :Commands<CR>
 nnoremap <silent> <C-l>       :nohlsearch<CR><C-l>
-nnoremap <silent> <C-p>       :Buffers<CR>
 nnoremap <silent> <Space>     :w<CR>
 nnoremap <silent> <C-Space>   :call CursorPing()<CR>
 " Normal mode - aggresive assignments
@@ -136,11 +134,6 @@ cabbrev gv Gitv
 "
 " Change mapping since it conflicts with paste from `system clipboard`.
 let g:AutoPairsShortcutToggle = '<M-q>'
-
-"
-" ft specific mappings
-"
-autocmd FileType markdown nnoremap <silent> <M-m> :MarkdownPreview<CR>
 
 "
 " Airline settings
