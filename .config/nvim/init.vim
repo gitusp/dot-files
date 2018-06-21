@@ -129,11 +129,10 @@ autocmd FileType help nnoremap <silent><buffer> q :q<CR>
 "
 " Shortcuts
 "
-cabbrev ag Ag
-cabbrev gs Gstatus
-cabbrev gd Gdiff
-cabbrev gv Gitv
-
+cabbrev <expr> ag getcmdtype() == ':' ? 'Ag'      : 'ag'
+cabbrev <expr> gs getcmdtype() == ':' ? 'Gstatus' : 'gs'
+cabbrev <expr> gd getcmdtype() == ':' ? 'Gdiff'   : 'gd'
+cabbrev <expr> gv getcmdtype() == ':' ? 'Gitv'    : 'gv'
 "
 " AutoPairs Settings
 "
