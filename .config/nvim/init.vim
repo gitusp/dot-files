@@ -47,6 +47,8 @@ Plug 'tpope/vim-abolish'
 Plug 'justinmk/vim-dirvish'
 " History util
 Plug 'mbbill/undotree'
+" Fancy start screen
+Plug 'mhinz/vim-startify'
 
 call plug#end()
 "
@@ -93,6 +95,7 @@ nnoremap <silent> ]t          :tabnext<CR>
 nnoremap <silent> [T          :tabfirst<CR>
 nnoremap <silent> ]T          :tablast<CR>
 nnoremap <silent> gl          :Lines<CR>
+nnoremap <silent> gs          :Gstatus<CR>
 nnoremap <silent> <C-L>       :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 nnoremap <silent> <Space>     :w<CR>
 nnoremap <silent> <C-Space>   :Commands<CR>
@@ -123,6 +126,7 @@ tnoremap          <Esc>       <C-\><C-N>
 tnoremap          <C-J>       <C-M>
 " Insert mode
 imap              <C-X><C-L>  <Plug>(fzf-complete-line)
+inoremap          <C-C>       <Esc>
 " File specific mappings
 autocmd FileType help nnoremap <silent><buffer> q :q<CR>
 
@@ -130,9 +134,9 @@ autocmd FileType help nnoremap <silent><buffer> q :q<CR>
 " Shortcuts
 "
 cabbrev <expr> ag getcmdtype() == ':' ? 'Ag'      : 'ag'
-cabbrev <expr> gs getcmdtype() == ':' ? 'Gstatus' : 'gs'
 cabbrev <expr> gd getcmdtype() == ':' ? 'Gdiff'   : 'gd'
 cabbrev <expr> gv getcmdtype() == ':' ? 'Gitv'    : 'gv'
+
 "
 " AutoPairs Settings
 "
