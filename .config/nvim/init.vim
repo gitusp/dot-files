@@ -74,7 +74,7 @@ set lazyredraw
 " Custom mappings
 "
 " Normal mode - normal assignments
-nmap              <C-j>       <C-m>
+nmap              <C-J>       <C-M>
 nnoremap          >           >>
 nnoremap          <           <<
 nnoremap          Y           y$
@@ -92,19 +92,21 @@ nnoremap <silent> [t          :tabprevious<CR>
 nnoremap <silent> ]t          :tabnext<CR>
 nnoremap <silent> [T          :tabfirst<CR>
 nnoremap <silent> ]T          :tablast<CR>
-nnoremap <silent> <C-l>       :nohlsearch<CR><C-l>
+nnoremap <silent> gl          :Lines<CR>
+nnoremap <silent> <C-L>       :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 nnoremap <silent> <Space>     :w<CR>
 nnoremap <silent> <C-Space>   :call CursorPing()<CR>
+nnoremap <silent> z<Space>    :call IwhiteToggle()<CR>
 " Normal mode - aggresive assignments
 nnoremap <silent> x           :e .scratch.md<CR>
 nnoremap <silent> X           :e `scratchf`<CR>
 nnoremap <silent> s           :split<CR>
 nnoremap <silent> S           :vsplit<CR>
-nnoremap <silent> <C-g>       :Lines<CR>
 " Normal mode - meta assignments
 nnoremap          <M-p>       "+p
 nnoremap          <S-M-p>     "+P
 nnoremap          <M-y>       "+y
+nnoremap          <M-y><M-y>  "+yy
 nmap              <S-M-y>     "+Y
 " Visual mode - aggresive assignments
 vnoremap          x           <Nop>
@@ -117,10 +119,10 @@ vnoremap          <S-M-p>     "+P
 vnoremap          <M-y>       "+y
 vnoremap          <S-M-y>     "+Y
 " Terminal mode
-tnoremap          <Esc>       <C-\><C-n>
-tnoremap          <C-j>       <C-m>
+tnoremap          <Esc>       <C-\><C-N>
+tnoremap          <C-J>       <C-M>
 " Insert mode
-imap              <C-x><C-l>  <Plug>(fzf-complete-line)
+imap              <C-X><C-L>  <Plug>(fzf-complete-line)
 " File specific mappings
 autocmd FileType help nnoremap <silent><buffer> q :q<CR>
 
@@ -148,8 +150,8 @@ let g:airline#extensions#tabline#enabled = 1
 " Snips
 "
 let g:UltiSnipsExpandTrigger = '<Tab>'
-let g:UltiSnipsJumpForwardTrigger = '<C-f>'
-let g:UltiSnipsJumpBackwardTrigger = '<C-b>'
+let g:UltiSnipsJumpForwardTrigger = '<C-F>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-B>'
 let g:UltiSnipsEditSplit = 'vertical'
 let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
 
@@ -192,5 +194,16 @@ function! CursorPing()
   redraw
   sleep 50m
   set nocursorline nocursorcolumn
+endfunction
+
+"
+" Toggle diffopt
+"
+function! IwhiteToggle()
+ if &diffopt =~ 'iwhite'
+   set diffopt-=iwhite
+ else
+   set diffopt+=iwhite
+ endif
 endfunction
 
