@@ -95,7 +95,7 @@ nnoremap <silent> ]T          :tablast<CR>
 nnoremap <silent> gl          :Lines<CR>
 nnoremap <silent> <C-L>       :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 nnoremap <silent> <Space>     :w<CR>
-nnoremap <silent> <C-Space>   :call CursorPing()<CR>
+nnoremap <silent> <C-Space>   :Commands<CR>
 nnoremap <silent> z<Space>    :call IwhiteToggle()<CR>
 " Normal mode - aggresive assignments
 nnoremap <silent> x           :e .scratch.md<CR>
@@ -184,16 +184,6 @@ let g:deoplete#enable_at_startup = 1
 let g:javascript_plugin_jsdoc = 1
 let g:deoplete#sources#ternjs#types = 1
 let g:deoplete#sources#ternjs#in_literal = 0
-
-"
-" Cursor Ping
-"
-function! CursorPing()
-  set cursorline cursorcolumn
-  redraw
-  sleep 50m
-  set nocursorline nocursorcolumn
-endfunction
 
 "
 " Toggle diffopt
