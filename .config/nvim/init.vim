@@ -66,6 +66,11 @@ set inccommand=nosplit
 " Undo settings
 set undodir=~/.config/nvim/undodir/
 set undofile
+" This aligns the command when you hit <C-F>
+set laststatus=2
+set cmdheight=2
+autocmd CmdwinEnter * set laststatus=0 | set cmdheight=1
+autocmd CmdwinLeave * set laststatus=2 | set cmdheight=2
 " Other settings
 set hidden
 autocmd TermOpen * startinsert
