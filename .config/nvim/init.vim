@@ -126,7 +126,6 @@ tnoremap          <Esc>       <C-\><C-N>
 tnoremap          <C-J>       <C-M>
 " Insert mode
 imap              <C-X><C-L>  <Plug>(fzf-complete-line)
-inoremap          <C-C>       <Esc>
 " File specific mappings
 autocmd FileType help nnoremap <silent><buffer> q :q<CR>
 

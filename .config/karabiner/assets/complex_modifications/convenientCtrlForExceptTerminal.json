@@ -1,5 +1,5 @@
 {
-  "title": "keys for chrome",
+  "title": "Convenient ctrl(^terminal)",
   "rules": [
     {
       "description": "down",
@@ -81,6 +81,38 @@
           "to": [
             {
               "key_code": "delete_or_backspace"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "return_or_enter",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": [
+                "left_control"
+              ],
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "return_or_enter"
             }
           ],
           "conditions": [

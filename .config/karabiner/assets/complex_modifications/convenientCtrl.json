@@ -1,0 +1,30 @@
+{
+  "title": "Convenient ctrl",
+  "rules": [
+    {
+      "description": "<C-I> to <Tab>",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "i",
+            "modifiers": {
+              "mandatory": [
+                "left_control"
+              ],
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "tab"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
