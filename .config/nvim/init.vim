@@ -66,6 +66,11 @@ set inccommand=nosplit
 " Undo settings
 set undodir=~/.config/nvim/undodir/
 set undofile
+" Default tab settings
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set smarttab
 " Other settings
 set hidden
 autocmd TermOpen * startinsert
