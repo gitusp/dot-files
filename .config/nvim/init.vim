@@ -124,6 +124,11 @@ vnoremap          <S-M-y>     "+Y
 " Terminal mode
 tnoremap          <Esc>       <C-\><C-N>
 tnoremap          <C-J>       <C-M>
+" Command line mode(excerpt from rsi.vim)
+cnoremap          <C-A> <Home>
+cnoremap          <C-B> <Left>
+cnoremap <expr>   <C-D> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
+cnoremap <expr>   <C-F> getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
 " Insert mode
 imap              <C-X><C-L>  <Plug>(fzf-complete-line)
 " File specific mappings
