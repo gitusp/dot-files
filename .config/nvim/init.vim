@@ -101,15 +101,17 @@ nnoremap <silent> [T          :tabfirst<CR>
 nnoremap <silent> ]T          :tablast<CR>
 nnoremap <silent> gl          :Lines<CR>
 nnoremap <silent> gs          :Gstatus<CR>
+nnoremap <silent> sh          :split<CR>
+nnoremap <silent> sv          :vsplit<CR>
 nnoremap <silent> <C-L>       :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 nnoremap <silent> <Space>     :w<CR>
 nnoremap <silent> <C-Space>   :Commands<CR>
 nnoremap <silent> z<Space>    :call IwhiteToggle()<CR>
 " Normal mode - aggresive assignments
-nnoremap <silent> x           :e .scratch.md<CR>
-nnoremap <silent> X           :e `scratchf`<CR>
-nnoremap <silent> s           :split<CR>
-nnoremap <silent> S           :vsplit<CR>
+nnoremap          x           <Nop>
+nnoremap          X           <Nop>
+nnoremap          s           <Nop>
+nnoremap          S           <Nop>
 " Normal mode - meta assignments
 nnoremap          <M-p>       "+p
 nnoremap          <S-M-p>     "+P
@@ -130,10 +132,10 @@ vnoremap          <S-M-y>     "+Y
 tnoremap          <Esc>       <C-\><C-N>
 tnoremap          <C-J>       <C-M>
 " Command line mode(excerpt from rsi.vim)
-cnoremap          <C-A> <Home>
-cnoremap          <C-B> <Left>
-cnoremap <expr>   <C-D> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
-cnoremap <expr>   <C-F> getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
+cnoremap          <C-A>       <Home>
+cnoremap          <C-B>       <Left>
+cnoremap <expr>   <C-D>       getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
+cnoremap <expr>   <C-F>       getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
 " Insert mode
 imap              <C-X><C-L>  <Plug>(fzf-complete-line)
 " File specific mappings
@@ -142,9 +144,9 @@ autocmd FileType help nnoremap <silent><buffer> q :q<CR>
 "
 " Shortcuts
 "
-cabbrev <expr> ag getcmdtype() == ':' ? 'Ag'      : 'ag'
-cabbrev <expr> gd getcmdtype() == ':' ? 'Gdiff'   : 'gd'
-cabbrev <expr> gv getcmdtype() == ':' ? 'Gitv'    : 'gv'
+cabbrev <expr> ag getcmdtype() == ':' ? 'Ag'    : 'ag'
+cabbrev <expr> gd getcmdtype() == ':' ? 'Gdiff' : 'gd'
+cabbrev <expr> gv getcmdtype() == ':' ? 'Gitv'  : 'gv'
 
 "
 " AutoPairs Settings
