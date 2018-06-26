@@ -101,28 +101,16 @@ nnoremap <silent> [T          :tabfirst<CR>
 nnoremap <silent> ]T          :tablast<CR>
 nnoremap <silent> gl          :Lines<CR>
 nnoremap <silent> gs          :Gstatus<CR>
-nnoremap <silent> sh          :split<CR>
-nnoremap <silent> sv          :vsplit<CR>
 nnoremap <silent> <C-L>       :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 nnoremap <silent> <Space>     :w<CR>
 nnoremap <silent> <C-Space>   :Commands<CR>
 nnoremap <silent> z<Space>    :call IwhiteToggle()<CR>
-" Normal mode - aggresive assignments
-nnoremap          x           <Nop>
-nnoremap          X           <Nop>
-nnoremap          s           <Nop>
-nnoremap          S           <Nop>
 " Normal mode - meta assignments
 nnoremap          <M-p>       "+p
 nnoremap          <S-M-p>     "+P
 nnoremap          <M-y>       "+y
 nnoremap          <M-y><M-y>  "+yy
 nmap              <S-M-y>     "+Y
-" Visual mode - aggresive assignments
-vnoremap          x           <Nop>
-vnoremap          X           <Nop>
-vnoremap          s           <Nop>
-vnoremap          S           <Nop>
 " Visual mode - meta assignments
 vnoremap          <M-p>       "+p
 vnoremap          <S-M-p>     "+P
