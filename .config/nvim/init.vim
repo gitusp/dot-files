@@ -141,6 +141,12 @@ imap              <C-X><C-L>  <Plug>(fzf-complete-line)
 " File specific mappings
 autocmd FileType help nnoremap <silent><buffer> q :q<CR>
 
+" 
+" Custom commands
+"
+command! -nargs=? Scratch :e `scratchf <args>`
+command!          LScratch :e .scratch.md
+
 "
 " Shortcuts
 "
