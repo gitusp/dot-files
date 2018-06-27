@@ -87,6 +87,7 @@ nnoremap          <           <<
 nnoremap          Y           y$
 nnoremap          _           @:
 nnoremap <silent> +           :Files<CR>
+nnoremap <silent> <C-_>       :Buffers<CR>
 nnoremap <silent> [a          :ALEPreviousWrap<CR>
 nnoremap <silent> ]a          :ALENextWrap<CR>
 nnoremap <silent> [A          :ALEFirst<CR>
@@ -131,8 +132,7 @@ autocmd FileType help nnoremap <silent><buffer> q :q<CR>
 " 
 " Custom commands
 "
-command! -nargs=? Scratch :e `scratchf <args>`
-command!          LScratch :e .scratch.md
+command! -nargs=? Scratch call Scratchf('<args>')
 
 "
 " Shortcuts
@@ -141,6 +141,7 @@ cabbrev <expr> ag getcmdtype() == ':' ? 'Ag'      : 'ag'
 cabbrev <expr> gd getcmdtype() == ':' ? 'Gdiff'   : 'gd'
 cabbrev <expr> gs getcmdtype() == ':' ? 'Gstatus' : 'gs'
 cabbrev <expr> gv getcmdtype() == ':' ? 'Gitv'    : 'gv'
+cabbrev <expr> sc getcmdtype() == ':' ? 'Scratch' : 'sc'
 
 "
 " AutoPairs Settings
@@ -205,3 +206,13 @@ function! IwhiteToggle()
  endif
 endfunction
 
+"
+" Opens scratch file
+"
+function! Scratchf(name)
+  if a:name == '.'
+    edit .scratch.md
+  else
+    execute 'e ' . system('scratchf ' . a:name)
+  endif
+endfunction
