@@ -100,7 +100,6 @@ nnoremap <silent> ]t          :tabnext<CR>
 nnoremap <silent> [T          :tabfirst<CR>
 nnoremap <silent> ]T          :tablast<CR>
 nnoremap <silent> gl          :Lines<CR>
-nnoremap <silent> gs          :Gstatus<CR>
 nnoremap <silent> <C-L>       :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 nnoremap <silent> <Space>     :w<CR>
 nnoremap <silent> <C-Space>   :Commands<CR>
@@ -138,9 +137,10 @@ command!          LScratch :e .scratch.md
 "
 " Shortcuts
 "
-cabbrev <expr> ag getcmdtype() == ':' ? 'Ag'    : 'ag'
-cabbrev <expr> gd getcmdtype() == ':' ? 'Gdiff' : 'gd'
-cabbrev <expr> gv getcmdtype() == ':' ? 'Gitv'  : 'gv'
+cabbrev <expr> ag getcmdtype() == ':' ? 'Ag'      : 'ag'
+cabbrev <expr> gd getcmdtype() == ':' ? 'Gdiff'   : 'gd'
+cabbrev <expr> gs getcmdtype() == ':' ? 'Gstatus' : 'gs'
+cabbrev <expr> gv getcmdtype() == ':' ? 'Gitv'    : 'gv'
 
 "
 " AutoPairs Settings
