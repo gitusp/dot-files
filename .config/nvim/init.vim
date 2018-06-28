@@ -87,7 +87,6 @@ nnoremap          <           <<
 nnoremap          Y           y$
 nnoremap          _           @:
 nnoremap <silent> +           :Files<CR>
-nnoremap <silent> <C-_>       :Buffers<CR>
 nnoremap <silent> [a          :ALEPreviousWrap<CR>
 nnoremap <silent> ]a          :ALENextWrap<CR>
 nnoremap <silent> [A          :ALEFirst<CR>
@@ -100,6 +99,7 @@ nnoremap <silent> [t          :tabprevious<CR>
 nnoremap <silent> ]t          :tabnext<CR>
 nnoremap <silent> [T          :tabfirst<CR>
 nnoremap <silent> ]T          :tablast<CR>
+nnoremap <silent> gb          :Buffers<CR>
 nnoremap <silent> gl          :Lines<CR>
 nnoremap <silent> <C-L>       :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 nnoremap <silent> <Space>     :w<CR>
@@ -137,11 +137,12 @@ command! -nargs=? Scratch call Scratchf('<args>')
 "
 " Shortcuts
 "
-cabbrev <expr> ag getcmdtype() == ':' ? 'Ag'      : 'ag'
-cabbrev <expr> gd getcmdtype() == ':' ? 'Gdiff'   : 'gd'
-cabbrev <expr> gs getcmdtype() == ':' ? 'Gstatus' : 'gs'
-cabbrev <expr> gv getcmdtype() == ':' ? 'Gitv'    : 'gv'
-cabbrev <expr> sc getcmdtype() == ':' ? 'Scratch' : 'sc'
+cabbrev <expr> ag getcmdtype() == ':' ? 'Ag'              : 'ag'
+cabbrev <expr> gd getcmdtype() == ':' ? 'Gdiff'           : 'gd'
+cabbrev <expr> gs getcmdtype() == ':' ? 'Gstatus'         : 'gs'
+cabbrev <expr> gv getcmdtype() == ':' ? 'Gitv'            : 'gv'
+cabbrev <expr> sc getcmdtype() == ':' ? 'Scratch'         : 'sc'
+cabbrev <expr> un getcmdtype() == ':' ? 'UndotreeToggle'  : 'un'
 
 "
 " AutoPairs Settings
