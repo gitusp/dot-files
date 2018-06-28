@@ -129,6 +129,7 @@ cnoremap          <C-B>       <Left>
 cnoremap <expr>   <C-D>       getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
 cnoremap <expr>   <C-F>       getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
 " Insert mode
+imap              <C-J>       <C-M>
 imap              <C-X><C-L>  <Plug>(fzf-complete-line)
 " File specific mappings
 autocmd FileType help nnoremap <silent><buffer> q :q<CR>
@@ -141,12 +142,13 @@ command! -nargs=? Scratch call Scratchf('<args>')
 "
 " Shortcuts
 "
-cabbrev <expr> ag getcmdtype() == ':' ? 'Ag'              : 'ag'
-cabbrev <expr> gd getcmdtype() == ':' ? 'Gdiff'           : 'gd'
-cabbrev <expr> gs getcmdtype() == ':' ? 'Gstatus'         : 'gs'
-cabbrev <expr> gv getcmdtype() == ':' ? 'Gitv'            : 'gv'
-cabbrev <expr> sc getcmdtype() == ':' ? 'Scratch'         : 'sc'
-cabbrev <expr> un getcmdtype() == ':' ? 'UndotreeToggle'  : 'un'
+cabbrev <expr> ag getcmdtype() == ':' && getcmdline() == 'ag' ? 'Ag'              : 'ag'
+cabbrev <expr> gd getcmdtype() == ':' && getcmdline() == 'gd' ? 'Gdiff'           : 'gd'
+cabbrev <expr> gs getcmdtype() == ':' && getcmdline() == 'gs' ? 'Gstatus'         : 'gs'
+cabbrev <expr> gv getcmdtype() == ':' && getcmdline() == 'gv' ? 'Gitv'            : 'gv'
+cabbrev <expr> sc getcmdtype() == ':' && getcmdline() == 'sc' ? 'Scratch'         : 'sc'
+cabbrev <expr> un getcmdtype() == ':' && getcmdline() == 'un' ? 'UndotreeToggle'  : 'un'
+cabbrev <expr> de getcmdtype() == ':' && getcmdline() == 'de' ? 'Deol'            : 'de'
 
 "
 " AutoPairs Settings
@@ -221,3 +223,8 @@ function! Scratchf(name)
     execute 'e ' . system('scratchf ' . a:name)
   endif
 endfunction
+
+"
+" Deol settings
+"
+let g:deol#prompt_pattern = '\$ '
