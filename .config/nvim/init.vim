@@ -19,6 +19,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " ternjs integration
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+" zsh integration
+Plug 'zchee/deoplete-zsh'
 " Open required files by `gf`.
 Plug 'moll/vim-node'
 " Enable plugin command repeat
@@ -49,6 +51,8 @@ Plug 'justinmk/vim-dirvish'
 Plug 'mbbill/undotree'
 " Fancy start screen
 Plug 'mhinz/vim-startify'
+" Edit terminal commands
+Plug 'Shougo/deol.nvim'
 
 call plug#end()
 "
