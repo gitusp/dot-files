@@ -122,8 +122,9 @@ vnoremap          <M-y>       "+y
 vnoremap          <S-M-y>     "+Y
 " Terminal mode
 tnoremap          <Esc>       <C-\><C-N>
+" TODO: Move this mapping to plugin
+tnoremap <silent> <C-F>       <C-\><C-N>:call Tedit()<CR>
 tnoremap          <C-J>       <C-M>
-tnoremap <silent> <C-_>       <C-\><C-N>:call Tedit()<CR>
 " Command line mode(excerpt from rsi.vim)
 cnoremap          <C-A>       <Home>
 cnoremap          <C-B>       <Left>
@@ -229,42 +230,48 @@ endfunction
 "
 " TODO: Make this function into a plugin.
 function! Tedit()
-  " Get the current command line and the position.
-  let original_register_t = @t
-  normal "ty$
-  let characters_after_cursor = @t
-  normal "tyy
-  " TODO: Make prompt style configurable
-  let line = substitute(substitute(@t, '\n$', '', ''), '^\$ ', '', '')
-  let @t = original_register_t
+  let pos =  getpos('.')
+  let line =  getline('.')
 
-  " Keep the terminal job id in a function local variable.
-  let terminal_job_id = b:terminal_job_id
+  if pos[2] < strlen(line)
+    " Just move the cursor to the right.
+    startinsert
+    call feedkeys("\<Right>")
+  else
+    " TODO: Make prompt style configurable
+    let cmd = substitute(line, '^\$ \?', '', '')
 
-  " Split command editor
-  " TODO: Do not split duplicatedly when there's already a tedit winow.
-  belowright split tedit
-  setlocal bufhidden=wipe
-  setlocal buftype=nofile
-  " TODO: Proper shell type.
-  setlocal filetype=zsh
-  resize 5
-  let b:target_terminal_job_id = terminal_job_id
+    " Keep the terminal job id in a function local variable.
+    let terminal_job_id = b:terminal_job_id
 
-  " TODO: Make history loader configurable
-  " TODO: Fix multibyte bugs -> https://syossan.hateblo.jp/entry/2017/10/09/181928
-  silent read !cat ~/.zhistory | perl -pe 's/.*?;//'
+    " Split command editor
+    " TODO: Do not split duplicatedly when there's already a tedit winow.
+    belowright split tedit
+    " TODO: Check if the local settings are enough.
+    setlocal bufhidden=wipe
+    setlocal buftype=nofile
+    " TODO: Proper shell type.
+    setlocal filetype=zsh
+    " TODO: configurable
+    resize 7
+    let b:target_terminal_job_id = terminal_job_id
 
-  " Append current command and move the cursor to the original position.
-  call append('$', line)
-  let col = strlen(line) - strlen(characters_after_cursor) + 2
-  execute 'normal j' . col . '|'
+    " TODO: Make history loader configurable
+    " TODO: Fix multibyte bugs -> https://syossan.hateblo.jp/entry/2017/10/09/181928
+    silent read !cat ~/.zhistory | perl -pe 's/.*?;//'
 
-  " Configure new win's mappings
-  " TODO: Move cursor to the original buf by `setpos` after close.
-  imap     <buffer><silent> <CR> <Esc><CR>
-  nnoremap <buffer><silent> <CR> :call Texec()<CR>:close<CR>i
-  nnoremap <buffer><silent> <C-C> :close<CR>i
+    " Append current command and move the cursor to the original position.
+    " TODO: Check if the last line is empty and use setline if needed.
+    call append('$', cmd)
+    normal j$
+
+    " Configure new win's mappings
+    " TODO: Move cursor to the original buf by `setpos` instead of just feed
+    " `i`
+    imap     <buffer><silent> <CR> <Esc><CR>
+    nnoremap <buffer><silent> <CR> :call Texec()<CR>:close<CR>i
+    nnoremap <buffer><silent> <C-C> :close<CR>i
+  endif
 endfunction
 
 function! Texec()
