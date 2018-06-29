@@ -19,8 +19,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " ternjs integration
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-" zsh integration
-Plug 'zchee/deoplete-zsh'
 " Open required files by `gf`.
 Plug 'moll/vim-node'
 " Enable plugin command repeat
@@ -51,8 +49,6 @@ Plug 'justinmk/vim-dirvish'
 Plug 'mbbill/undotree'
 " Fancy start screen
 Plug 'mhinz/vim-startify'
-" Edit terminal commands
-Plug 'Shougo/deol.nvim'
 
 call plug#end()
 "
@@ -129,7 +125,6 @@ cnoremap          <C-B>       <Left>
 cnoremap <expr>   <C-D>       getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
 cnoremap <expr>   <C-F>       getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
 " Insert mode
-imap              <C-J>       <C-M>
 imap              <C-X><C-L>  <Plug>(fzf-complete-line)
 " File specific mappings
 autocmd FileType help nnoremap <silent><buffer> q :q<CR>
@@ -148,7 +143,6 @@ cabbrev <expr> gs getcmdtype() == ':' && getcmdline() == 'gs' ? 'Gstatus'       
 cabbrev <expr> gv getcmdtype() == ':' && getcmdline() == 'gv' ? 'Gitv'            : 'gv'
 cabbrev <expr> sc getcmdtype() == ':' && getcmdline() == 'sc' ? 'Scratch'         : 'sc'
 cabbrev <expr> un getcmdtype() == ':' && getcmdline() == 'un' ? 'UndotreeToggle'  : 'un'
-cabbrev <expr> de getcmdtype() == ':' && getcmdline() == 'de' ? 'Deol'            : 'de'
 
 "
 " AutoPairs Settings
@@ -224,7 +218,3 @@ function! Scratchf(name)
   endif
 endfunction
 
-"
-" Deol settings
-"
-let g:deol#prompt_pattern = '\$ '
