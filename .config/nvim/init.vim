@@ -19,6 +19,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " ternjs integration
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+" zsh integration
+Plug 'zchee/deoplete-zsh'
 " Open required files by `gf`.
 Plug 'moll/vim-node'
 " Enable plugin command repeat
@@ -49,6 +51,8 @@ Plug 'justinmk/vim-dirvish'
 Plug 'mbbill/undotree'
 " Fancy start screen
 Plug 'mhinz/vim-startify'
+" Dockerfile syntax
+Plug 'ekalinin/Dockerfile.vim'
 
 call plug#end()
 "
@@ -119,12 +123,14 @@ vnoremap          <S-M-y>     "+Y
 " Terminal mode
 tnoremap          <Esc>       <C-\><C-N>
 tnoremap          <C-J>       <C-M>
+tnoremap <silent> <C-_>       <C-\><C-N>:call Tedit()<CR>
 " Command line mode(excerpt from rsi.vim)
 cnoremap          <C-A>       <Home>
 cnoremap          <C-B>       <Left>
 cnoremap <expr>   <C-D>       getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
 cnoremap <expr>   <C-F>       getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
 " Insert mode
+imap              <C-J>       <C-M>
 imap              <C-X><C-L>  <Plug>(fzf-complete-line)
 " File specific mappings
 autocmd FileType help nnoremap <silent><buffer> q :q<CR>
@@ -216,5 +222,52 @@ function! Scratchf(name)
   else
     execute 'e ' . system('scratchf ' . a:name)
   endif
+endfunction
+
+"
+" Opens Tedit buffer
+"
+" TODO: Make this function into a plugin.
+function! Tedit()
+  " Get the current command line and the position.
+  let original_register_t = @t
+  normal "ty$
+  let characters_after_cursor = @t
+  normal "tyy
+  " TODO: Make prompt style configurable
+  let line = substitute(substitute(@t, '\n$', '', ''), '^\$ ', '', '')
+  let @t = original_register_t
+
+  " Keep the terminal job id in a function local variable.
+  let terminal_job_id = b:terminal_job_id
+
+  " Split command editor
+  " TODO: Do not split duplicatedly when there's already a tedit winow.
+  belowright split tedit
+  setlocal bufhidden=wipe
+  setlocal buftype=nofile
+  " TODO: Proper shell type.
+  setlocal filetype=zsh
+  resize 5
+  let b:target_terminal_job_id = terminal_job_id
+
+  " TODO: Make history loader configurable
+  " TODO: Fix multibyte bugs -> https://syossan.hateblo.jp/entry/2017/10/09/181928
+  silent read !cat ~/.zhistory | perl -pe 's/.*?;//'
+
+  " Append current command and move the cursor to the original position.
+  call append('$', line)
+  let col = strlen(line) - strlen(characters_after_cursor) + 2
+  execute 'normal j' . col . '|'
+
+  " Configure new win's mappings
+  " TODO: Move cursor to the original buf by `setpos` after close.
+  imap     <buffer><silent> <CR> <Esc><CR>
+  nnoremap <buffer><silent> <CR> :call Texec()<CR>:close<CR>i
+  nnoremap <buffer><silent> <C-C> :close<CR>i
+endfunction
+
+function! Texec()
+  call jobsend(b:target_terminal_job_id, "\<C-U>" . getline('.') . "\<CR>")
 endfunction
 
