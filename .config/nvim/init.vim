@@ -53,6 +53,8 @@ Plug 'mbbill/undotree'
 Plug 'mhinz/vim-startify'
 " Dockerfile syntax
 Plug 'ekalinin/Dockerfile.vim'
+" Terminal command editing in the vim way
+Plug 'gitusp/tedit.vim'
 
 call plug#end()
 "
@@ -77,7 +79,6 @@ set expandtab
 set smarttab
 " Other settings
 set hidden
-autocmd TermOpen * startinsert
 set nofoldenable
 set lazyredraw
 
@@ -122,8 +123,6 @@ vnoremap          <M-y>       "+y
 vnoremap          <S-M-y>     "+Y
 " Terminal mode
 tnoremap          <Esc>       <C-\><C-N>
-" TODO: Move this mapping to plugin
-tnoremap <silent> <C-F>       <C-\><C-N>:call Tedit()<CR>
 tnoremap          <C-J>       <C-M>
 " Command line mode(excerpt from rsi.vim)
 cnoremap          <C-A>       <Home>
@@ -133,8 +132,15 @@ cnoremap <expr>   <C-F>       getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Righ
 " Insert mode
 imap              <C-J>       <C-M>
 imap              <C-X><C-L>  <Plug>(fzf-complete-line)
-" File specific mappings
-autocmd FileType help nnoremap <silent><buffer> q :q<CR>
+
+"
+" autocmd
+"
+augroup vimrc
+	autocmd!
+	autocmd TermOpen * startinsert
+	autocmd FileType help nnoremap <silent><buffer> q :q<CR>
+augroup END
 
 " 
 " Custom commands
@@ -226,66 +232,10 @@ function! Scratchf(name)
 endfunction
 
 "
-" Opens Tedit buffer
+" Tedit settings
 "
-" TODO: Make this function into a plugin.
-" Settings
 let g:tedit_prompt_regex = '^\$ \?'
 let g:tedit_window_height = 7
 " NOTE: .zsh_history has tricky encoding.
 let g:tedit_history_loader = 'cat ~/.zhistory | ruby -e ''puts STDIN.binmode.read.gsub(/\x83(.)/n){($1.ord^32).chr}'' | sed ''s/[^;]*;//'''
-" TODO: fallback to default value, like get(g:, '...', 'default value')
-
-function! Tedit()
-  let pos =  getpos('.')
-  let line =  getline('.')
-
-  if pos[2] < strlen(line)
-    " Just move the cursor to the right.
-    startinsert
-    call feedkeys("\<Right>")
-  else
-    let cmd = substitute(line, g:tedit_prompt_regex, '', '')
-
-    " Keep the terminal job id in a function local variable.
-    let terminal_job_id = b:terminal_job_id
-    let terminal_win_id = win_getid()
-
-    " Split command editor
-    belowright split tedit
-    setlocal bufhidden=wipe
-    setlocal buftype=nofile
-    " NOTE: Best with 'Shougo/deoplete.nvim' and 'zchee/deoplete-zsh'.
-    setlocal filetype=zsh
-    execute 'resize ' . g:tedit_window_height
-    let b:target_terminal_job_id = terminal_job_id
-    let b:target_win_id = terminal_win_id
-
-    " Load history
-    execute 'silent read !' . g:tedit_history_loader
-
-    " Append current command and move the cursor to the original position.
-    if getline('$') == ''
-      call setline('$', cmd)
-    else
-      call append('$', cmd)
-    endif
-    normal j$
-
-    " Configure new win's mappings
-    imap     <buffer><silent> <CR> <Esc><CR>
-    nnoremap <buffer><silent> <CR> :call Texec(0)<CR>
-    nnoremap <buffer><silent> <C-C> :call Texec(1)<CR>
-
-    " Close tedit when the cursor will leave.
-    " TODO: Show warning before leave if can.
-    autocmd WinLeave <buffer> close
-  endif
-endfunction
-
-function! Texec(dry)
-  call jobsend(b:target_terminal_job_id, "\<C-U>" . getline('.') . (a:dry ? '' : "\<CR>"))
-  call win_gotoid(b:target_win_id)
-  startinsert
-endfunction
 
