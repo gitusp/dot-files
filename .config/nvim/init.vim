@@ -263,8 +263,11 @@ function! Tedit()
           \ sed 's/[^;]*;//'
 
     " Append current command and move the cursor to the original position.
-    " TODO: Check if the last line is empty and use setline if needed.
-    call append('$', cmd)
+    if getline('$') == ''
+      call setline('$', cmd)
+    else
+      call append('$', cmd)
+    endif
     normal j$
 
     " Configure new win's mappings
