@@ -229,6 +229,13 @@ endfunction
 " Opens Tedit buffer
 "
 " TODO: Make this function into a plugin.
+" Settings
+let g:tedit_prompt_regex = '^\$ \?'
+let g:tedit_window_height = 7
+" NOTE: .zsh_history has tricky encoding.
+let g:tedit_history_loader = 'cat ~/.zhistory | ruby -e ''puts STDIN.binmode.read.gsub(/\x83(.)/n){($1.ord^32).chr}'' | sed ''s/[^;]*;//'''
+" TODO: fallback to default value, like get(g:, '...', 'default value')
+
 function! Tedit()
   let pos =  getpos('.')
   let line =  getline('.')
@@ -238,28 +245,24 @@ function! Tedit()
     startinsert
     call feedkeys("\<Right>")
   else
-    " TODO: Make prompt style configurable
-    let cmd = substitute(line, '^\$ \?', '', '')
+    let cmd = substitute(line, g:tedit_prompt_regex, '', '')
 
     " Keep the terminal job id in a function local variable.
     let terminal_job_id = b:terminal_job_id
+    let terminal_win_id = win_getid()
 
     " Split command editor
     belowright split tedit
-    " TODO: Check if the local settings are enough.
     setlocal bufhidden=wipe
     setlocal buftype=nofile
-    " TODO: Proper shell type.
+    " NOTE: Best with 'Shougo/deoplete.nvim' and 'zchee/deoplete-zsh'.
     setlocal filetype=zsh
-    " TODO: configurable
-    resize 7
+    execute 'resize ' . g:tedit_window_height
     let b:target_terminal_job_id = terminal_job_id
+    let b:target_win_id = terminal_win_id
 
-    " TODO: Make history loader configurable
-    " NOTE: .zsh_history has tricky encoding.
-    silent read !cat ~/.zhistory |
-          \ ruby -e 'puts STDIN.binmode.read.gsub(/\x83(.)/n){($1.ord^32).chr}' |
-          \ sed 's/[^;]*;//'
+    " Load history
+    execute 'silent read !' . g:tedit_history_loader
 
     " Append current command and move the cursor to the original position.
     if getline('$') == ''
@@ -270,11 +273,9 @@ function! Tedit()
     normal j$
 
     " Configure new win's mappings
-    " TODO: Move cursor to the original buf by `setpos` instead of just feed
-    " `i`
     imap     <buffer><silent> <CR> <Esc><CR>
-    nnoremap <buffer><silent> <CR> :call Texec(0)<CR>:close<CR>i
-    nnoremap <buffer><silent> <C-C> :call Texec(1)<CR>:close<CR>i
+    nnoremap <buffer><silent> <CR> :call Texec(0)<CR>
+    nnoremap <buffer><silent> <C-C> :call Texec(1)<CR>
 
     " Close tedit when the cursor will leave.
     " TODO: Show warning before leave if can.
@@ -284,5 +285,7 @@ endfunction
 
 function! Texec(dry)
   call jobsend(b:target_terminal_job_id, "\<C-U>" . getline('.') . (a:dry ? '' : "\<CR>"))
+  call win_gotoid(b:target_win_id)
+  startinsert
 endfunction
 
