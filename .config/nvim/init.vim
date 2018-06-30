@@ -257,8 +257,11 @@ function! Tedit()
     let b:target_terminal_job_id = terminal_job_id
 
     " TODO: Make history loader configurable
-    " TODO: Fix multibyte bugs -> https://syossan.hateblo.jp/entry/2017/10/09/181928
-    silent read !cat ~/.zhistory | perl -pe 's/.*?;//'
+    " NOTE: .zsh_history has tricky encoding.
+    " TODO: write it in perl
+    silent read !cat ~/.zhistory |
+          \ ruby -e 'puts STDIN.binmode.read.gsub(/\x83(.)/n){($1.ord^32).chr}' |
+          \ perl -pe 's/.*?;//'
 
     " Append current command and move the cursor to the original position.
     " TODO: Check if the last line is empty and use setline if needed.
