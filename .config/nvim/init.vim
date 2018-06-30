@@ -245,7 +245,6 @@ function! Tedit()
     let terminal_job_id = b:terminal_job_id
 
     " Split command editor
-    " TODO: Do not split duplicatedly when there's already a tedit winow.
     belowright split tedit
     " TODO: Check if the local settings are enough.
     setlocal bufhidden=wipe
@@ -274,12 +273,16 @@ function! Tedit()
     " TODO: Move cursor to the original buf by `setpos` instead of just feed
     " `i`
     imap     <buffer><silent> <CR> <Esc><CR>
-    nnoremap <buffer><silent> <CR> :call Texec()<CR>:close<CR>i
-    nnoremap <buffer><silent> <C-C> :close<CR>i
+    nnoremap <buffer><silent> <CR> :call Texec(0)<CR>:close<CR>i
+    nnoremap <buffer><silent> <C-C> :call Texec(1)<CR>:close<CR>i
+
+    " Close tedit when the cursor will leave.
+    " TODO: Show warning before leave if can.
+    autocmd WinLeave <buffer> close
   endif
 endfunction
 
-function! Texec()
-  call jobsend(b:target_terminal_job_id, "\<C-U>" . getline('.') . "\<CR>")
+function! Texec(dry)
+  call jobsend(b:target_terminal_job_id, "\<C-U>" . getline('.') . (a:dry ? '' : "\<CR>"))
 endfunction
 
