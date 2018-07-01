@@ -235,7 +235,6 @@ endfunction
 " Tedit settings
 "
 let g:tedit_prompt_regex = '^\$ \?'
-let g:tedit_window_height = 7
 " NOTE: .zsh_history has tricky encoding.
 let g:tedit_history_loader = 'cat ~/.zhistory | ruby -e ''puts STDIN.binmode.read.gsub(/\x83(.)/n){($1.ord^32).chr}'' | sed ''s/[^;]*;//'''
 
