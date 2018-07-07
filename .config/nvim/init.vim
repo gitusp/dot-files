@@ -238,3 +238,8 @@ let g:tedit_prompt_regex = '^\$ \?'
 " NOTE: .zhistory has tricky encoding.
 let g:tedit_history_loader = 'cat ~/.zhistory | perl -pe ''s/^.*?;//; s/\x83(.)/chr(ord($1)^32)/eg'''
 
+"
+" Markdown settings
+"
+map <Plug> <Plug>Markdown_MoveToCurHeader
+
