@@ -55,6 +55,8 @@ Plug 'mhinz/vim-startify'
 Plug 'ekalinin/Dockerfile.vim'
 " Terminal command editing in the vim way
 Plug 'gitusp/tedit.vim'
+" Go support
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 "
