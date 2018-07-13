@@ -60,6 +60,8 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " NOTE: Skip creating symlinks while it's required in this plugin's README - it seems just unnecessary.
 Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': 'go get -u github.com/mdempsky/gocode' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}
+" CSV Support
+Plug 'mechatroner/rainbow_csv'
 
 call plug#end()
 "
