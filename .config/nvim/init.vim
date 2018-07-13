@@ -62,6 +62,8 @@ Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': 'go get -u github.com/mdempsky/go
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 " CSV Support
 Plug 'mechatroner/rainbow_csv'
+" nginx conf file syntax
+Plug 'chr4/nginx.vim'
 
 call plug#end()
 "
@@ -165,6 +167,7 @@ cabbrev <expr> ag getcmdtype() == ':' && getcmdline() == 'ag' ? 'Ag'            
 cabbrev <expr> gd getcmdtype() == ':' && getcmdline() == 'gd' ? 'Gdiff'           : 'gd'
 cabbrev <expr> gs getcmdtype() == ':' && getcmdline() == 'gs' ? 'Gstatus'         : 'gs'
 cabbrev <expr> gv getcmdtype() == ':' && getcmdline() == 'gv' ? 'Gitv'            : 'gv'
+cabbrev <expr> gw getcmdtype() == ':' && getcmdline() == 'gw' ? 'Gwrite'          : 'gw'
 cabbrev <expr> sc getcmdtype() == ':' && getcmdline() == 'sc' ? 'Scratch'         : 'sc'
 cabbrev <expr> st getcmdtype() == ':' && getcmdline() == 'st' ? 'Startify'        : 'st'
 cabbrev <expr> un getcmdtype() == ':' && getcmdline() == 'un' ? 'UndotreeToggle'  : 'un'
