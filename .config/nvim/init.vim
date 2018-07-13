@@ -177,7 +177,7 @@ cabbrev <expr> tf getcmdtype() == ':' && getcmdline() == 'tf' ? 'TestFile'      
 cabbrev <expr> ts getcmdtype() == ':' && getcmdline() == 'ts' ? 'TestSuite'       : 'ts'
 cabbrev <expr> tl getcmdtype() == ':' && getcmdline() == 'tl' ? 'TestLast'        : 'tl'
 cabbrev <expr> tv getcmdtype() == ':' && getcmdline() == 'tv' ? 'TestVisit'       : 'tv'
-cabbrev <expr> un getcmdtype() == ':' && getcmdline() == 'un' ? 'UndotreeToggle'  : 'un'
+cabbrev <expr> ut getcmdtype() == ':' && getcmdline() == 'ut' ? 'UndotreeToggle'  : 'ut'
 
 "
 " AutoPairs Settings
