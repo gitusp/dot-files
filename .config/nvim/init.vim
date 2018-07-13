@@ -166,6 +166,7 @@ cabbrev <expr> gd getcmdtype() == ':' && getcmdline() == 'gd' ? 'Gdiff'         
 cabbrev <expr> gs getcmdtype() == ':' && getcmdline() == 'gs' ? 'Gstatus'         : 'gs'
 cabbrev <expr> gv getcmdtype() == ':' && getcmdline() == 'gv' ? 'Gitv'            : 'gv'
 cabbrev <expr> sc getcmdtype() == ':' && getcmdline() == 'sc' ? 'Scratch'         : 'sc'
+cabbrev <expr> st getcmdtype() == ':' && getcmdline() == 'st' ? 'Startify'        : 'st'
 cabbrev <expr> un getcmdtype() == ':' && getcmdline() == 'un' ? 'UndotreeToggle'  : 'un'
 
 "
