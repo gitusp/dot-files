@@ -64,6 +64,8 @@ Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'mechatroner/rainbow_csv'
 " nginx conf file syntax
 Plug 'chr4/nginx.vim'
+" Unified interface test runner
+Plug 'janko-m/vim-test'
 
 call plug#end()
 "
@@ -170,6 +172,11 @@ cabbrev <expr> gv getcmdtype() == ':' && getcmdline() == 'gv' ? 'Gitv'          
 cabbrev <expr> gw getcmdtype() == ':' && getcmdline() == 'gw' ? 'Gwrite'          : 'gw'
 cabbrev <expr> sc getcmdtype() == ':' && getcmdline() == 'sc' ? 'Scratch'         : 'sc'
 cabbrev <expr> st getcmdtype() == ':' && getcmdline() == 'st' ? 'Startify'        : 'st'
+cabbrev <expr> tn getcmdtype() == ':' && getcmdline() == 'tn' ? 'TestNearest'     : 'tn'
+cabbrev <expr> tf getcmdtype() == ':' && getcmdline() == 'tf' ? 'TestFile'        : 'tf'
+cabbrev <expr> ts getcmdtype() == ':' && getcmdline() == 'ts' ? 'TestSuite'       : 'ts'
+cabbrev <expr> tl getcmdtype() == ':' && getcmdline() == 'tl' ? 'TestLast'        : 'tl'
+cabbrev <expr> tv getcmdtype() == ':' && getcmdline() == 'tv' ? 'TestVisit'       : 'tv'
 cabbrev <expr> un getcmdtype() == ':' && getcmdline() == 'un' ? 'UndotreeToggle'  : 'un'
 
 "
