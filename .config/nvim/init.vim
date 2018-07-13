@@ -57,6 +57,9 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'gitusp/tedit.vim'
 " Go support
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" NOTE: Skip creating symlinks while it's required in this plugin's README - it seems just unnecessary.
+Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': 'go get -u github.com/mdempsky/gocode' }
+Plug 'zchee/deoplete-go', { 'do': 'make'}
 
 call plug#end()
 "
@@ -102,6 +105,10 @@ nnoremap <silent> [b          :bprevious<CR>
 nnoremap <silent> ]b          :bnext<CR>
 nnoremap <silent> [B          :bfirst<CR>
 nnoremap <silent> ]B          :blast<CR>
+nnoremap <silent> [q          :cprevious<CR>
+nnoremap <silent> ]q          :cnext<CR>
+nnoremap <silent> [Q          :cfirst<CR>
+nnoremap <silent> ]Q          :clast<CR>
 nnoremap <silent> [t          :tabprevious<CR>
 nnoremap <silent> ]t          :tabnext<CR>
 nnoremap <silent> [T          :tabfirst<CR>
@@ -212,6 +219,10 @@ let g:deoplete#sources#ternjs#types = 1
 let g:deoplete#sources#ternjs#in_literal = 0
 
 "
+" Go settings
+"
+let g:deoplete#sources#go#source_importer = 1
+
 " Toggle diffopt
 "
 function! IwhiteToggle()
