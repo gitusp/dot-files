@@ -60,6 +60,9 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " NOTE: Skip creating symlinks while it's required in this plugin's README - it seems just unnecessary.
 Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': 'go get -u github.com/mdempsky/gocode' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}
+" NOTE: Simpler integration with delve since vim-go's full integration is not
+" available for neovim yet.
+Plug 'sebdah/vim-delve'
 " CSV Support
 Plug 'mechatroner/rainbow_csv'
 " nginx conf file syntax
