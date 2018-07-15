@@ -95,6 +95,7 @@ set smarttab
 set hidden
 set nofoldenable
 set lazyredraw
+set completeopt-=preview
 
 "
 " Custom mappings
