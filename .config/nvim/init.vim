@@ -95,6 +95,7 @@ set smarttab
 set hidden
 set nofoldenable
 set lazyredraw
+set noshowmode
 set completeopt-=preview
 
 "
