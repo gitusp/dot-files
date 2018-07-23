@@ -57,7 +57,7 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'gitusp/tedit.vim'
 " Go support
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-" NOTE: Skip creating symlinks while it's required in this plugin's README - it seems just unnecessary.
+" NOTE: Skip creating symlinks though it's required in this plugin's README - it seems just unnecessary.
 Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': 'go get -u github.com/mdempsky/gocode' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 " NOTE: Simpler integration with delve since vim-go's full integration is not
