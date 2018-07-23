@@ -126,6 +126,7 @@ nnoremap <silent> [T          :tabfirst<CR>
 nnoremap <silent> ]T          :tablast<CR>
 nnoremap <silent> gb          :Buffers<CR>
 nnoremap <silent> gl          :Lines<CR>
+nmap     <silent> gs          :Gstatus<CR>
 nnoremap <silent> <C-L>       :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 nnoremap <silent> <Space>     :w<CR>
 nnoremap <silent> <C-Space>   :Commands<CR>
@@ -167,22 +168,6 @@ augroup END
 "
 command! -nargs=? Scratch call Scratchf('<args>')
 
-"
-" Shortcuts
-"
-cabbrev <expr> ag getcmdtype() == ':' && getcmdline() == 'ag' ? 'Ag'              : 'ag'
-cabbrev <expr> gd getcmdtype() == ':' && getcmdline() == 'gd' ? 'Gdiff'           : 'gd'
-cabbrev <expr> gs getcmdtype() == ':' && getcmdline() == 'gs' ? 'Gstatus'         : 'gs'
-cabbrev <expr> gv getcmdtype() == ':' && getcmdline() == 'gv' ? 'Gitv'            : 'gv'
-cabbrev <expr> gw getcmdtype() == ':' && getcmdline() == 'gw' ? 'Gwrite'          : 'gw'
-cabbrev <expr> sc getcmdtype() == ':' && getcmdline() == 'sc' ? 'Scratch'         : 'sc'
-cabbrev <expr> st getcmdtype() == ':' && getcmdline() == 'st' ? 'Startify'        : 'st'
-cabbrev <expr> tn getcmdtype() == ':' && getcmdline() == 'tn' ? 'TestNearest'     : 'tn'
-cabbrev <expr> tf getcmdtype() == ':' && getcmdline() == 'tf' ? 'TestFile'        : 'tf'
-cabbrev <expr> ts getcmdtype() == ':' && getcmdline() == 'ts' ? 'TestSuite'       : 'ts'
-cabbrev <expr> tl getcmdtype() == ':' && getcmdline() == 'tl' ? 'TestLast'        : 'tl'
-cabbrev <expr> tv getcmdtype() == ':' && getcmdline() == 'tv' ? 'TestVisit'       : 'tv'
-cabbrev <expr> ut getcmdtype() == ':' && getcmdline() == 'ut' ? 'UndotreeToggle'  : 'ut'
 
 "
 " AutoPairs Settings
