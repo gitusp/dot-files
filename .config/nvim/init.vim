@@ -124,9 +124,7 @@ nnoremap <silent> [t          :tabprevious<CR>
 nnoremap <silent> ]t          :tabnext<CR>
 nnoremap <silent> [T          :tabfirst<CR>
 nnoremap <silent> ]T          :tablast<CR>
-nnoremap <silent> gb          :Buffers<CR>
 nnoremap <silent> gl          :Lines<CR>
-nmap     <silent> gs          :Gstatus<CR>
 nnoremap <silent> <C-L>       :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 nnoremap <silent> <Space>     :w<CR>
 nnoremap <silent> <C-Space>   :Commands<CR>
