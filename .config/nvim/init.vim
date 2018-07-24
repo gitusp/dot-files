@@ -69,6 +69,8 @@ Plug 'mechatroner/rainbow_csv'
 Plug 'chr4/nginx.vim'
 " Unified interface test runner
 Plug 'janko-m/vim-test'
+" auto save
+Plug '907th/vim-auto-save'
 
 call plug#end()
 "
@@ -126,8 +128,7 @@ nnoremap <silent> [T          :tabfirst<CR>
 nnoremap <silent> ]T          :tablast<CR>
 nnoremap <silent> gl          :Lines<CR>
 nnoremap <silent> <C-L>       :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-nnoremap <silent> <Space>     :w<CR>
-nnoremap <silent> <C-Space>   :Commands<CR>
+nnoremap <silent> <Space>     :Commands<CR>
 nnoremap <silent> z<Space>    :call IwhiteToggle()<CR>
 " Normal mode - meta assignments
 nnoremap          <M-p>       "+p
@@ -256,4 +257,15 @@ let g:tedit_history_loader = 'cat ~/.zhistory | perl -pe ''s/^.*?;//; s/\x83(.)/
 " Markdown settings
 "
 map <Plug> <Plug>Markdown_MoveToCurHeader
+
+"
+" FZF settings
+"
+let g:fzf_commands_expect = 'space'
+
+"
+" Auto save settings
+"
+let g:auto_save = 1
+let g:auto_save_silent = 1
 
