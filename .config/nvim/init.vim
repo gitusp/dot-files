@@ -128,7 +128,8 @@ nnoremap <silent> [T          :tabfirst<CR>
 nnoremap <silent> ]T          :tablast<CR>
 nnoremap <silent> gl          :Lines<CR>
 nnoremap <silent> <C-L>       :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-nnoremap <silent> <Space>     :Commands<CR>
+nnoremap          <Space>     :
+nnoremap <silent> <C-Space>   :Commands<CR>
 nnoremap <silent> z<Space>    :call IwhiteToggle()<CR>
 " Normal mode - meta assignments
 nnoremap          <M-p>       "+p
@@ -195,7 +196,6 @@ let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
 let g:ale_sign_column_always = 1
 let g:ale_sign_warning = '──'
 let g:ale_sign_error = '══'
-let g:ale_fix_on_save = 1
 let g:airline#extensions#ale#enabled = 1
 
 " NOTE: Each linter and prettier's setup tips
@@ -257,11 +257,6 @@ let g:tedit_history_loader = 'cat ~/.zhistory | perl -pe ''s/^.*?;//; s/\x83(.)/
 " Markdown settings
 "
 map <Plug> <Plug>Markdown_MoveToCurHeader
-
-"
-" FZF settings
-"
-let g:fzf_commands_expect = 'space'
 
 "
 " Auto save settings
