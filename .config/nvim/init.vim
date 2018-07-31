@@ -126,11 +126,11 @@ nnoremap <silent> ]t          :tabnext<CR>
 nnoremap <silent> [T          :tabfirst<CR>
 nnoremap <silent> ]T          :tablast<CR>
 nnoremap <silent> <C-L>       :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+nnoremap <silent> <C-Space>   :Commands<CR>
 nnoremap <silent> z<Space>    :call IwhiteToggle()<CR>
 " Normal mode - mappings with <Leader>
 nnoremap <silent> <Leader>af  :ALEFix<CR>
 nnoremap <silent> <Leader>b   :Buffers<CR>
-nnoremap <silent> <Leader>c   :Commands<CR>
 nnoremap <silent> <Leader>f   :Files<CR>
 nnoremap <silent> <Leader>h   :History<CR>
 nnoremap <silent> <Leader>gd  :Gdiff<CR>
@@ -138,6 +138,7 @@ nnoremap <silent> <Leader>gs  :Gstatus<CR>
 nnoremap <silent> <Leader>l   :Lines<CR>
 nnoremap <silent> <Leader>tl  :TestLast<CR>
 nnoremap <silent> <Leader>tn  :TestNearest<CR>
+nnoremap <silent> <Leader>ut  :UndotreeToggle<CR>
 " Normal mode - meta assignments
 nnoremap          <M-p>       "+p
 nnoremap          <S-M-p>     "+P
@@ -167,7 +168,9 @@ imap              <C-X><C-L>  <Plug>(fzf-complete-line)
 augroup vimrc
   autocmd!
   autocmd TermOpen * startinsert
-  autocmd FileType help nnoremap <silent><buffer> q :q<CR>
+  autocmd FileType help     nnoremap <silent><buffer> q           :q<CR>
+  autocmd FileType markdown nnoremap <silent><buffer> <Leader>mp  :MarkdownPreview<CR>
+  autocmd FileType markdown nnoremap <silent><buffer> <Leader>tf  :TableFormat<CR>
 augroup END
 
 "
