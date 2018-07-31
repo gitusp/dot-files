@@ -103,13 +103,12 @@ set completeopt-=preview
 "
 " Custom mappings
 "
+let mapleader = ' '
 " Normal mode - normal assignments
 nmap              <C-J>       <C-M>
 nnoremap          >           >>
 nnoremap          <           <<
 nnoremap          Y           y$
-nnoremap <silent> _           :Files<CR>
-nnoremap <silent> +           :History<CR>
 nnoremap <silent> [a          :ALEPreviousWrap<CR>
 nnoremap <silent> ]a          :ALENextWrap<CR>
 nnoremap <silent> [A          :ALEFirst<CR>
@@ -126,12 +125,19 @@ nnoremap <silent> [t          :tabprevious<CR>
 nnoremap <silent> ]t          :tabnext<CR>
 nnoremap <silent> [T          :tabfirst<CR>
 nnoremap <silent> ]T          :tablast<CR>
-nnoremap <silent> gb          :Buffers<CR>
-nnoremap <silent> gl          :Lines<CR>
 nnoremap <silent> <C-L>       :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-nnoremap <silent> <Space>     @:
-nnoremap <silent> <C-Space>   :Commands<CR>
 nnoremap <silent> z<Space>    :call IwhiteToggle()<CR>
+" Normal mode - mappings with <Leader>
+nnoremap <silent> <Leader>af  :ALEFix<CR>
+nnoremap <silent> <Leader>b   :Buffers<CR>
+nnoremap <silent> <Leader>c   :Commands<CR>
+nnoremap <silent> <Leader>f   :Files<CR>
+nnoremap <silent> <Leader>h   :History<CR>
+nnoremap <silent> <Leader>gd  :Gdiff<CR>
+nnoremap <silent> <Leader>gs  :Gstatus<CR>
+nnoremap <silent> <Leader>l   :Lines<CR>
+nnoremap <silent> <Leader>tl  :TestLast<CR>
+nnoremap <silent> <Leader>tn  :TestNearest<CR>
 " Normal mode - meta assignments
 nnoremap          <M-p>       "+p
 nnoremap          <S-M-p>     "+P
@@ -181,18 +187,6 @@ let g:AutoPairsShortcutToggle = '<M-q>'
 "
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-
-" Display the last command in the z section.
-call airline#parts#define_function('lcommand', 'GetLastCommand')
-let g:airline_section_y = airline#section#create(['linenr', 'maxlinenr', ' |%3v'])
-let g:airline_section_z = airline#section#create(['lcommand'])
-function! GetLastCommand()
-  if 12 < strlen(@:)
-    return @:[:11] . '…'
-  else
-    return @:
-  endif
-endfunction
 
 "
 " Snips
