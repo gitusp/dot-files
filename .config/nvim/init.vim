@@ -20,7 +20,8 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " ternjs integration
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 " zsh integration
-Plug 'zchee/deoplete-zsh'
+" NOTE: Disabled since it seems to have an issue with the newest deoplete.nvim.
+" Plug 'zchee/deoplete-zsh'
 " Open required files by `gf`.
 Plug 'moll/vim-node'
 " Enable plugin command repeat
@@ -232,8 +233,9 @@ let g:deoplete#sources#ternjs#in_literal = 0
 
 "
 " Go settings
+" NOTE: Importing sources is extremely slow.
 "
-let g:deoplete#sources#go#source_importer = 1
+" let g:deoplete#sources#go#source_importer = 1
 
 " Toggle diffopt
 "
