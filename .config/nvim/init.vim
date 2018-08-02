@@ -135,6 +135,7 @@ nnoremap <silent> <Leader>f   :Files<CR>
 nnoremap <silent> <Leader>h   :History<CR>
 nnoremap <silent> <Leader>gd  :Gdiff<CR>
 nnoremap <silent> <Leader>gs  :Gstatus<CR>
+nnoremap <silent> <Leader>gv  :Gitv<CR>
 nnoremap <silent> <Leader>l   :Lines<CR>
 nnoremap <silent> <Leader>tl  :TestLast<CR>
 nnoremap <silent> <Leader>tn  :TestNearest<CR>
