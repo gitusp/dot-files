@@ -135,7 +135,7 @@ nnoremap <silent> <Leader>f   :Files<CR>
 nnoremap <silent> <Leader>h   :History<CR>
 nnoremap <silent> <Leader>gd  :Gdiff<CR>
 nnoremap <silent> <Leader>gs  :Gstatus<CR>
-nnoremap <silent> <Leader>gv  :Gitv<CR>
+nnoremap <silent> <Leader>gv  :Gitv --all<CR>
 nnoremap <silent> <Leader>l   :Lines<CR>
 nnoremap <silent> <Leader>tl  :TestLast<CR>
 nnoremap <silent> <Leader>tn  :TestNearest<CR>
@@ -178,7 +178,6 @@ augroup END
 " Custom commands
 "
 command! -nargs=? Scratch call Scratchf('<args>')
-
 
 "
 " AutoPairs Settings
@@ -270,4 +269,9 @@ map <Plug> <Plug>Markdown_MoveToCurHeader
 "
 let g:auto_save = 1
 let g:auto_save_silent = 1
+
+"
+" Test settings
+"
+let test#go#gotest#options = '-v'
 
