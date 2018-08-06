@@ -71,6 +71,8 @@ Plug 'chr4/nginx.vim'
 Plug 'janko-m/vim-test'
 " auto save
 Plug '907th/vim-auto-save'
+" Support terraform
+Plug 'hashivim/vim-terraform'
 
 call plug#end()
 "
