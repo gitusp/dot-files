@@ -218,6 +218,7 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \}
 let g:ale_fixers = {
+\   'go': ['gofmt'],
 \   'javascript': ['prettier', 'eslint'],
 \}
 
@@ -232,6 +233,11 @@ let g:deoplete#enable_at_startup = 1
 let g:javascript_plugin_jsdoc = 1
 let g:deoplete#sources#ternjs#types = 1
 let g:deoplete#sources#ternjs#in_literal = 0
+
+"
+" Golang settings
+"
+let g:go_fmt_autosave = 0
 
 "
 " Toggle diffopt
