@@ -111,6 +111,7 @@ nmap              <C-J>       <C-M>
 nnoremap          >           >>
 nnoremap          <           <<
 nnoremap          Y           y$
+nnoremap          Q           @q
 nnoremap          _           @:
 nnoremap <silent> [a          :ALEPreviousWrap<CR>
 nnoremap <silent> ]a          :ALENextWrap<CR>
