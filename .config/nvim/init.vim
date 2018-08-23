@@ -6,7 +6,7 @@ call plug#begin()
 " Colorscheme
 Plug 'chriskempson/vim-tomorrow-theme'
 " Syntax checker
-Plug 'w0rp/ale', { 'do': 'npm install -g eslint-cli prettier' }
+Plug 'w0rp/ale'
 " Javascript syntax highlight
 Plug 'pangloss/vim-javascript'
 " Pug syntax highlight
@@ -15,12 +15,6 @@ Plug 'digitaltoad/vim-pug'
 Plug 'editorconfig/editorconfig-vim'
 " Better status line
 Plug 'vim-airline/vim-airline'
-" Dark powered asynchronous completion framework
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" ternjs integration
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-" zsh integration
-Plug 'Shougo/deoplete-zsh'
 " Open required files by `gf`.
 Plug 'moll/vim-node'
 " Enable plugin command repeat
@@ -55,14 +49,6 @@ Plug 'mhinz/vim-startify'
 Plug 'ekalinin/Dockerfile.vim'
 " Terminal command editing in the vim way
 Plug 'gitusp/tedit.vim'
-" Go support
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-" NOTE: Skip creating symlinks though it's required in this plugin's README - it seems just unnecessary.
-Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': 'go get -u github.com/mdempsky/gocode' }
-Plug 'zchee/deoplete-go', { 'do': 'make'}
-" NOTE: Simpler integration with delve since vim-go's full integration is not
-" available for neovim yet.
-Plug 'sebdah/vim-delve'
 " CSV Support
 Plug 'mechatroner/rainbow_csv'
 " nginx conf file syntax
@@ -73,6 +59,15 @@ Plug 'janko-m/vim-test'
 Plug '907th/vim-auto-save'
 " Support terraform
 Plug 'hashivim/vim-terraform'
+" LSP Client
+Plug 'autozimu/LanguageClient-neovim', {
+  \ 'branch': 'next',
+  \ 'do': 'bash install.sh',
+  \ }
+" Completion Manager
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-ultisnips'
 
 call plug#end()
 "
@@ -95,12 +90,14 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set smarttab
+" Display settings
+set nofoldenable
+set noshowmode
+set lazyredraw
+set shortmess+=c
 " Other settings
 set hidden
-set nofoldenable
-set lazyredraw
-set noshowmode
-set completeopt-=preview
+set completeopt=noinsert,menuone,noselect
 
 "
 " Custom mappings
@@ -161,10 +158,10 @@ imap              <C-X><C-L>  <Plug>(fzf-complete-line)
 "
 augroup vimrc
   autocmd!
-  autocmd TermOpen * startinsert
-  autocmd FileType help     nnoremap <silent><buffer> q           :q<CR>
-  autocmd FileType markdown nnoremap <silent><buffer> <Leader>mp  :MarkdownPreview<CR>
-  autocmd FileType markdown nnoremap <silent><buffer> <Leader>tf  :TableFormat<CR>
+  autocmd BufEnter *  call ncm2#enable_for_buffer()
+  autocmd TermOpen *  startinsert
+  autocmd FileType go nnoremap <silent><buffer> K  :call LanguageClient#textDocument_hover()<CR>
+  autocmd FileType go nnoremap <silent><buffer> gd :call LanguageClient#textDocument_definition()<CR>
 augroup END
 
 "
@@ -187,6 +184,8 @@ let g:airline#extensions#tabline#enabled = 1
 "
 " Snips
 "
+" Completor Integration
+inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
 let g:UltiSnipsExpandTrigger = '<Tab>'
 let g:UltiSnipsJumpForwardTrigger = '<C-F>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-B>'
@@ -201,33 +200,33 @@ let g:ale_sign_warning = '──'
 let g:ale_sign_error = '══'
 let g:airline#extensions#ale#enabled = 1
 
-" NOTE: Each linter and prettier's setup tips
+" Linters
+" Setup tips:
 " eslint: Install `eslint` project-locally while install `eslint-cli` globally.
-" prettier: Install `prettier` globally.
 let g:ale_linters = {
+\   'go': ['gometalinter'],
 \   'javascript': ['eslint'],
 \}
+let g:ale_go_gometalinter_options = "--fast"
+
+" Fixers
 let g:ale_fixers = {
-\   'go': ['gofmt'],
+\   'go': ['goimports'],
 \   'javascript': ['prettier', 'eslint'],
 \}
 
 "
-" General completion settings
+" LSP Settings
 "
-let g:deoplete#enable_at_startup = 1
+let g:LanguageClient_serverCommands = {
+  \ 'go': ['go-langserver', '-gocodecompletion'],
+  \ }
+let g:LanguageClient_autoStart = 1
 
 "
 " Javascript settings
 "
 let g:javascript_plugin_jsdoc = 1
-let g:deoplete#sources#ternjs#types = 1
-let g:deoplete#sources#ternjs#in_literal = 0
-
-"
-" Golang settings
-"
-let g:go_fmt_autosave = 0
 
 "
 " Toggle diffopt
@@ -261,6 +260,7 @@ let g:tedit_history_loader = 'cat ~/.zhistory | perl -pe ''s/^.*?;//; s/\x83(.)/
 "
 " Markdown settings
 "
+" NOTE: To avoid conflicting
 map <Plug> <Plug>Markdown_MoveToCurHeader
 
 "
