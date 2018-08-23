@@ -204,10 +204,17 @@ let g:airline#extensions#ale#enabled = 1
 " Setup tips:
 " eslint: Install `eslint` project-locally while install `eslint-cli` globally.
 let g:ale_linters = {
-\   'go': ['gometalinter'],
 \   'javascript': ['eslint'],
 \}
-let g:ale_go_gometalinter_options = "--fast"
+" Faster go linter
+call ale#linter#Define('go', {
+\   'name': 'revive',
+\   'output_stream': 'both',
+\   'executable': 'revive',
+\   'read_buffer': 0,
+\   'command': 'revive %t',
+\   'callback': 'ale#handlers#unix#HandleAsWarning',
+\})
 
 " Fixers
 let g:ale_fixers = {
