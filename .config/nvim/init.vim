@@ -144,17 +144,6 @@ nnoremap <silent> <Leader>l   :Lines<CR>
 nnoremap <silent> <Leader>tl  :TestLast<CR>
 nnoremap <silent> <Leader>tn  :TestNearest<CR>
 nnoremap <silent> <Leader>ut  :UndotreeToggle<CR>
-" Normal mode - meta assignments
-nnoremap          <M-p>       "+p
-nnoremap          <S-M-p>     "+P
-nnoremap          <M-y>       "+y
-nnoremap          <M-y><M-y>  "+yy
-nmap              <S-M-y>     "+Y
-" Visual mode - meta assignments
-vnoremap          <M-p>       "+p
-vnoremap          <S-M-p>     "+P
-vnoremap          <M-y>       "+y
-vnoremap          <S-M-y>     "+Y
 " Terminal mode
 tnoremap          <Esc>       <C-\><C-N>
 tnoremap          <C-J>       <C-M>
