@@ -162,6 +162,7 @@ augroup vimrc
   autocmd TermOpen *  startinsert
   autocmd FileType go nnoremap <silent><buffer> K  :call LanguageClient#textDocument_hover()<CR>
   autocmd FileType go nnoremap <silent><buffer> gd :call LanguageClient#textDocument_definition()<CR>
+  autocmd FileType go setlocal noexpandtab
 augroup END
 
 "
