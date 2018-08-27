@@ -104,54 +104,55 @@ set completeopt=noinsert,menuone,noselect
 "
 let mapleader = ' '
 " Normal mode - normal assignments
-nmap              <C-J>       <C-M>
-nnoremap          >           >>
-nnoremap          <           <<
-nnoremap          Y           y$
-nnoremap          Q           @q
-nnoremap          _           @:
-nnoremap <silent> [a          :ALEPreviousWrap<CR>
-nnoremap <silent> ]a          :ALENextWrap<CR>
-nnoremap <silent> [A          :ALEFirst<CR>
-nnoremap <silent> ]A          :ALELast<CR>
-nnoremap <silent> [b          :bprevious<CR>
-nnoremap <silent> ]b          :bnext<CR>
-nnoremap <silent> [B          :bfirst<CR>
-nnoremap <silent> ]B          :blast<CR>
-nnoremap <silent> [q          :cprevious<CR>
-nnoremap <silent> ]q          :cnext<CR>
-nnoremap <silent> [Q          :cfirst<CR>
-nnoremap <silent> ]Q          :clast<CR>
-nnoremap <silent> [t          :tabprevious<CR>
-nnoremap <silent> ]t          :tabnext<CR>
-nnoremap <silent> [T          :tabfirst<CR>
-nnoremap <silent> ]T          :tablast<CR>
-nnoremap <silent> <C-L>       :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-nnoremap <silent> <C-Space>   :Commands<CR>
-nnoremap <silent> z<Space>    :call IwhiteToggle()<CR>
+nmap              <C-J>         <C-M>
+nnoremap          >             >>
+nnoremap          <             <<
+nnoremap          Y             y$
+nnoremap          Q             @q
+nnoremap          _             @:
+nnoremap <silent> [a            :ALEPreviousWrap<CR>
+nnoremap <silent> ]a            :ALENextWrap<CR>
+nnoremap <silent> [A            :ALEFirst<CR>
+nnoremap <silent> ]A            :ALELast<CR>
+nnoremap <silent> [b            :bprevious<CR>
+nnoremap <silent> ]b            :bnext<CR>
+nnoremap <silent> [B            :bfirst<CR>
+nnoremap <silent> ]B            :blast<CR>
+nnoremap <silent> [q            :cprevious<CR>
+nnoremap <silent> ]q            :cnext<CR>
+nnoremap <silent> [Q            :cfirst<CR>
+nnoremap <silent> ]Q            :clast<CR>
+nnoremap <silent> [t            :tabprevious<CR>
+nnoremap <silent> ]t            :tabnext<CR>
+nnoremap <silent> [T            :tabfirst<CR>
+nnoremap <silent> ]T            :tablast<CR>
+nnoremap <silent> <C-L>         :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+nnoremap <silent> <C-Space>     :Commands<CR>
+nnoremap <silent> z<Space>      :call IwhiteToggle()<CR>
 " Normal mode - mappings with <Leader>
-nnoremap <silent> <Leader>af  :ALEFix<CR>
-nnoremap <silent> <Leader>b   :Buffers<CR>
-nnoremap <silent> <Leader>f   :Files<CR>
-nnoremap <silent> <Leader>h   :History<CR>
-nnoremap <silent> <Leader>gd  :Gdiff<CR>
-nnoremap <silent> <Leader>gs  :Gstatus<CR>
-nnoremap <silent> <Leader>gv  :Gitv --all<CR>
-nnoremap <silent> <Leader>l   :Lines<CR>
-nnoremap <silent> <Leader>tl  :TestLast<CR>
-nnoremap <silent> <Leader>tn  :TestNearest<CR>
-nnoremap <silent> <Leader>ut  :UndotreeToggle<CR>
+nnoremap <silent> <Leader>af    :ALEFix<CR>
+nnoremap <silent> <Leader>b     :Buffers<CR>
+nnoremap <silent> <Leader>f     :Files<CR>
+nnoremap <silent> <Leader>h     :History<CR>
+nnoremap <silent> <Leader>gd    :Gdiff<CR>
+nnoremap <silent> <Leader>gs    :Gstatus<CR>
+nnoremap <silent> <Leader>gv    :Gitv --all<CR>
+nnoremap <silent> <Leader>l     :Lines<CR>
+nnoremap <silent> <Leader>tl    :TestLast<CR>
+nnoremap <silent> <Leader>tn    :TestNearest<CR>
+nnoremap <silent> <Leader>ut    :UndotreeToggle<CR>
+nmap              <Leader><Tab> <Plug>(fzf-maps-n)
 " Terminal mode
-tnoremap          <Esc>       <C-\><C-N>
-tnoremap          <C-J>       <C-M>
+tnoremap          <Esc>         <C-\><C-N>
+tnoremap          <C-J>         <C-M>
 " Command line mode(excerpt from rsi.vim)
-cnoremap          <C-A>       <Home>
-cnoremap          <C-B>       <Left>
-cnoremap <expr>   <C-D>       getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
-cnoremap <expr>   <C-F>       getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
+cnoremap          <C-A>         <Home>
+cnoremap          <C-B>         <Left>
+cnoremap <expr>   <C-D>         getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
+cnoremap <expr>   <C-F>         getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
 " Insert mode
-imap              <C-J>       <C-M>
-imap              <C-X><C-L>  <Plug>(fzf-complete-line)
+imap              <C-J>         <C-M>
+imap              <C-X><C-L>    <Plug>(fzf-complete-line)
 
 "
 " autocmd
