@@ -68,6 +68,8 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2-ultisnips'
+" Buffer util
+Plug 'qpkorr/vim-bufkill'
 
 call plug#end()
 "
@@ -127,6 +129,7 @@ nnoremap <silent> ]t            :tabnext<CR>
 nnoremap <silent> [T            :tabfirst<CR>
 nnoremap <silent> ]T            :tablast<CR>
 nnoremap <silent> <C-L>         :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+nnoremap <silent> <C-P>         :BD<CR>
 nnoremap <silent> <C-Space>     :Commands<CR>
 nnoremap <silent> z<Space>      :call IwhiteToggle()<CR>
 " Normal mode - mappings with <Leader>
@@ -283,3 +286,7 @@ let g:auto_save_silent = 1
 "
 let test#go#gotest#options = '-v'
 
+"
+" Bufkill settings
+"
+let g:BufKillCreateMappings = 0
