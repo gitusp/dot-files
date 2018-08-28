@@ -285,6 +285,7 @@ let g:auto_save_silent = 1
 " Test settings
 "
 let test#go#gotest#options = '-v'
+let test#strategy = "neovim"
 
 "
 " Bufkill settings
