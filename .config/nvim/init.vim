@@ -124,11 +124,11 @@ nnoremap <silent> <C-K>         :BD<CR>
 nnoremap <silent> <C-L>         :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 nnoremap <silent> <C-N>         :bnext<CR>
 nnoremap <silent> <C-P>         :bprevious<CR>
-nnoremap <silent> <C-Space>     :Commands<CR>
 nnoremap <silent> z<Space>      :call IwhiteToggle()<CR>
 " Normal mode - mappings with <Leader>
 nnoremap <silent> <Leader>af    :ALEFix<CR>
 nnoremap <silent> <Leader>b     :Buffers<CR>
+nnoremap <silent> <Leader>c     :Commands<CR>
 nnoremap <silent> <Leader>f     :Files<CR>
 nnoremap <silent> <Leader>h     :History<CR>
 nnoremap <silent> <Leader>gd    :Gdiff<CR>
