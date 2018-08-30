@@ -116,14 +116,16 @@ nnoremap <silent> [a            :ALEPreviousWrap<CR>
 nnoremap <silent> ]a            :ALENextWrap<CR>
 nnoremap <silent> [A            :ALEFirst<CR>
 nnoremap <silent> ]A            :ALELast<CR>
+nnoremap <silent> [b            :bprevious<CR>
+nnoremap <silent> ]b            :bnext<CR>
+nnoremap <silent> [B            :bfirst<CR>
+nnoremap <silent> ]B            :blast<CR>
 nnoremap <silent> [q            :cprevious<CR>
 nnoremap <silent> ]q            :cnext<CR>
 nnoremap <silent> [Q            :cfirst<CR>
 nnoremap <silent> ]Q            :clast<CR>
-nnoremap <silent> <C-K>         :BD<CR>
 nnoremap <silent> <C-L>         :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-nnoremap <silent> <C-N>         :bnext<CR>
-nnoremap <silent> <C-P>         :bprevious<CR>
+nnoremap <silent> <C-P>         :BD<CR>
 nnoremap <silent> z<Space>      :call IwhiteToggle()<CR>
 " Normal mode - mappings with <Leader>
 nnoremap <silent> <Leader>af    :ALEFix<CR>
