@@ -69,7 +69,7 @@ Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2-ultisnips'
 " Buffer util
-Plug 'qpkorr/vim-bufkill'
+Plug 'moll/vim-bbye'
 
 call plug#end()
 "
@@ -125,7 +125,7 @@ nnoremap <silent> ]q            :cnext<CR>
 nnoremap <silent> [Q            :cfirst<CR>
 nnoremap <silent> ]Q            :clast<CR>
 nnoremap <silent> <C-L>         :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-nnoremap <silent> <C-P>         :BD<CR>
+nnoremap <silent> <C-P>         :Bdelete<CR>
 nnoremap <silent> z<Space>      :call IwhiteToggle()<CR>
 " Normal mode - mappings with <Leader>
 nnoremap <silent> <Leader>af    :ALEFix<CR>
@@ -283,7 +283,3 @@ let g:auto_save_silent = 1
 let test#go#gotest#options = '-v'
 let test#strategy = "neovim"
 
-"
-" Bufkill settings
-"
-let g:BufKillCreateMappings = 0
