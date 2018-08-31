@@ -21,7 +21,7 @@ Plug 'moll/vim-node'
 Plug 'tpope/vim-repeat'
 " Git integration
 Plug 'tpope/vim-fugitive'
-Plug 'gregsexton/gitv', {'on': ['Gitv']}
+Plug 'junegunn/gv.vim'
 " Text alignment - e.g. TableFormat
 Plug 'godlygeek/tabular'
 " Markdown support
@@ -68,8 +68,10 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2-ultisnips'
-" Buffer util
-Plug 'moll/vim-bbye'
+" Better search
+Plug 'junegunn/vim-slash'
+" Register util
+Plug 'junegunn/vim-peekaboo'
 
 call plug#end()
 "
@@ -124,8 +126,6 @@ nnoremap <silent> [q            :cprevious<CR>
 nnoremap <silent> ]q            :cnext<CR>
 nnoremap <silent> [Q            :cfirst<CR>
 nnoremap <silent> ]Q            :clast<CR>
-nnoremap <silent> <C-L>         :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-nnoremap <silent> <C-P>         :Bdelete<CR>
 nnoremap <silent> z<Space>      :call IwhiteToggle()<CR>
 " Normal mode - mappings with <Leader>
 nnoremap <silent> <Leader>af    :ALEFix<CR>
@@ -135,7 +135,7 @@ nnoremap <silent> <Leader>f     :Files<CR>
 nnoremap <silent> <Leader>h     :History<CR>
 nnoremap <silent> <Leader>gd    :Gdiff<CR>
 nnoremap <silent> <Leader>gs    :Gstatus<CR>
-nnoremap <silent> <Leader>gv    :Gitv --all<CR>
+nnoremap <silent> <Leader>gv    :GV --all<CR>
 nnoremap <silent> <Leader>l     :Lines<CR>
 nnoremap <silent> <Leader>tl    :TestLast<CR>
 nnoremap <silent> <Leader>tn    :TestNearest<CR>
