@@ -13,8 +13,6 @@ Plug 'pangloss/vim-javascript'
 Plug 'digitaltoad/vim-pug'
 " Load editorconfig.
 Plug 'editorconfig/editorconfig-vim'
-" Better status line
-Plug 'vim-airline/vim-airline'
 " Open required files by `gf`.
 Plug 'moll/vim-node'
 " Enable plugin command repeat
@@ -107,8 +105,6 @@ set completeopt=noinsert,menuone,noselect
 let mapleader = ' '
 " Normal mode - normal assignments
 nmap              <C-J>         <C-M>
-nnoremap          >             >>
-nnoremap          <             <<
 nnoremap          Y             y$
 nnoremap          Q             @q
 nnoremap          _             @:
@@ -124,18 +120,20 @@ nnoremap <silent> [q            :cprevious<CR>
 nnoremap <silent> ]q            :cnext<CR>
 nnoremap <silent> [Q            :cfirst<CR>
 nnoremap <silent> ]Q            :clast<CR>
+nnoremap <silent> [t            :tabprevious<CR>
+nnoremap <silent> ]t            :tabnext<CR>
+nnoremap <silent> [T            :tabfirst<CR>
+nnoremap <silent> ]T            :tablast<CR>
 nnoremap <silent> <C-L>         :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 nnoremap <silent> z<Space>      :call IwhiteToggle()<CR>
 " Normal mode - mappings with <Leader>
-nnoremap <silent> <Leader>af    :ALEFix<CR>
+nnoremap <silent> <Leader>f     :ALEFix<CR>
 nnoremap <silent> <Leader>b     :Buffers<CR>
 nnoremap <silent> <Leader>c     :Commands<CR>
-nnoremap <silent> <Leader>f     :Files<CR>
 nnoremap <silent> <Leader>h     :History<CR>
 nnoremap <silent> <Leader>gd    :Gdiff<CR>
 nnoremap <silent> <Leader>gs    :Gstatus<CR>
 nnoremap <silent> <Leader>gv    :GV --all<CR>
-nnoremap <silent> <Leader>l     :Lines<CR>
 nnoremap <silent> <Leader>tl    :TestLast<CR>
 nnoremap <silent> <Leader>tn    :TestNearest<CR>
 nnoremap <silent> <Leader>ut    :UndotreeToggle<CR>
@@ -176,12 +174,6 @@ command! -nargs=? Scratch call Scratchf('<args>')
 let g:AutoPairsShortcutToggle = '<M-q>'
 
 "
-" Airline settings
-"
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-
-"
 " Snips
 "
 " Completor Integration
@@ -198,7 +190,6 @@ let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
 let g:ale_sign_column_always = 1
 let g:ale_sign_warning = '──'
 let g:ale_sign_error = '══'
-let g:airline#extensions#ale#enabled = 1
 
 " Linters
 " Setup tips:
