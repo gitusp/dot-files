@@ -68,8 +68,6 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2-ultisnips'
-" Better search
-Plug 'junegunn/vim-slash'
 " Register util
 Plug 'junegunn/vim-peekaboo'
 
@@ -126,6 +124,7 @@ nnoremap <silent> [q            :cprevious<CR>
 nnoremap <silent> ]q            :cnext<CR>
 nnoremap <silent> [Q            :cfirst<CR>
 nnoremap <silent> ]Q            :clast<CR>
+nnoremap <silent> <C-L>         :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 nnoremap <silent> z<Space>      :call IwhiteToggle()<CR>
 " Normal mode - mappings with <Leader>
 nnoremap <silent> <Leader>af    :ALEFix<CR>
