@@ -127,18 +127,21 @@ nnoremap <silent> ]T            :tablast<CR>
 nnoremap <silent> <C-L>         :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 nnoremap <silent> z<Space>      :call IwhiteToggle()<CR>
 " Normal mode - mappings with <Leader>
+nnoremap <silent> <Leader>a     :Ag <C-R><C-W><CR>
+nnoremap <silent> <Leader>A     :Ag <C-R><C-A><CR>
 nnoremap <silent> <Leader>b     :Buffers<CR>
 nnoremap <silent> <Leader>c     :Commands<CR>
 nnoremap <silent> <Leader>f     :ALEFix<CR>
+nnoremap <silent> <Leader>g     :BLines<CR>
 nnoremap <silent> <Leader>h     :History<CR>
-nnoremap <silent> <Leader>gd    :Gdiff<CR>
-nnoremap <silent> <Leader>gs    :Gstatus<CR>
-nnoremap <silent> <Leader>gv    :GV --all<CR>
-nnoremap <silent> <Leader>l     :BLines<CR>
-nnoremap <silent> <Leader>tl    :TestLast<CR>
-nnoremap <silent> <Leader>tn    :TestNearest<CR>
-nnoremap <silent> <Leader>ut    :UndotreeToggle<CR>
+nnoremap <silent> <Leader>l     :TestLast<CR>
+nnoremap <silent> <Leader>n     :TestNearest<CR>
+nnoremap <silent> <Leader>s     :Gstatus<CR>
+nnoremap <silent> <Leader>u     :UndotreeToggle<CR>
+nnoremap <silent> <Leader>v     :GV --all<CR>
 nmap              <Leader><Tab> <Plug>(fzf-maps-n)
+" Visual mode - mappings with <Leader>
+xnoremap <silent> <Leader>a     y:Ag <C-R>"<CR>
 " Terminal mode
 tnoremap          <Esc>         <C-\><C-N>
 tnoremap          <C-J>         <C-M>
