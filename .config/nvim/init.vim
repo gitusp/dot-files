@@ -68,6 +68,8 @@ Plug 'ncm2/ncm2-ultisnips'
 Plug 'junegunn/vim-peekaboo'
 " auto save
 Plug '907th/vim-auto-save'
+" Faker
+Plug 'tkhren/vim-fake'
 
 call plug#end()
 "
