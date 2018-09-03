@@ -129,19 +129,20 @@ nnoremap <silent> z<Space>      :call IwhiteToggle()<CR>
 " Normal mode - mappings with <Leader>
 nmap              <Leader><Tab> <Plug>(fzf-maps-n)
 nnoremap <silent> <Leader>af    :ALEFix<CR>
-nnoremap <silent> <Leader>b     :Buffers<CR>
-nnoremap <silent> <Leader>c     :Commands<CR>
-nnoremap <silent> <Leader>f     :Files<CR>
 nnoremap <silent> <Leader>gd    :Gdiff<CR>
 nnoremap <silent> <Leader>gr    :Gread<CR>
 nnoremap <silent> <Leader>gs    :Gstatus<CR>
 nnoremap <silent> <Leader>gv    :GV --all<CR>
 nnoremap <silent> <Leader>gw    :Gwrite<CR>
-nnoremap <silent> <Leader>h     :History<CR>
-nnoremap <silent> <Leader>l     :BLines<CR>
+nnoremap <silent> <Leader>fb    :Buffers<CR>
+nnoremap <silent> <Leader>fc    :Commands<CR>
+nnoremap <silent> <Leader>ff    :Files<CR>
+nnoremap <silent> <Leader>fh    :History<CR>
+nnoremap <silent> <Leader>f:    :History:<CR>
+nnoremap <silent> <Leader>f/    :History/<CR>
+nnoremap <silent> <Leader>fl    :BLines<CR>
 nnoremap <silent> <Leader>tl    :TestLast<CR>
 nnoremap <silent> <Leader>tn    :TestNearest<CR>
-nnoremap <silent> <Leader>ue    :UltiSnipsEdit<CR>
 nnoremap <silent> <Leader>ut    :UndotreeToggle<CR>
 " Terminal mode
 tnoremap          <Esc>         <C-\><C-N>
