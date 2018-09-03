@@ -66,6 +66,8 @@ Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2-ultisnips'
 " Register util
 Plug 'junegunn/vim-peekaboo'
+" auto save
+Plug '907th/vim-auto-save'
 
 call plug#end()
 "
@@ -126,6 +128,7 @@ nnoremap <silent> <C-L>         :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':'
 nnoremap <silent> z<Space>      :call IwhiteToggle()<CR>
 " Normal mode - mappings with <Leader>
 nmap              <Leader><Tab> <Plug>(fzf-maps-n)
+nnoremap <silent> <Leader>af    :ALEFix<CR>
 nnoremap <silent> <Leader>b     :Buffers<CR>
 nnoremap <silent> <Leader>c     :Commands<CR>
 nnoremap <silent> <Leader>f     :Files<CR>
@@ -264,8 +267,13 @@ let g:tedit_history_loader = 'cat ~/.zhistory | perl -pe ''s/^.*?;//; s/\x83(.)/
 map <Plug> <Plug>Markdown_MoveToCurHeader
 
 "
+" Auto save settings
+"
+let g:auto_save = 1
+let g:auto_save_silent = 1
+
+"
 " Test settings
 "
 let test#go#gotest#options = '-v'
 let test#strategy = "neovim"
-
