@@ -53,8 +53,6 @@ Plug 'mechatroner/rainbow_csv'
 Plug 'chr4/nginx.vim'
 " Unified interface test runner
 Plug 'janko-m/vim-test'
-" auto save
-Plug '907th/vim-auto-save'
 " Support terraform
 Plug 'hashivim/vim-terraform'
 " LSP Client
@@ -195,6 +193,7 @@ let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
 let g:ale_sign_column_always = 1
 let g:ale_sign_warning = '──'
 let g:ale_sign_error = '══'
+let g:ale_fix_on_save = 1
 
 " Linters
 " Setup tips:
@@ -265,12 +264,6 @@ let g:tedit_history_loader = 'cat ~/.zhistory | perl -pe ''s/^.*?;//; s/\x83(.)/
 "
 " NOTE: To avoid conflicting
 map <Plug> <Plug>Markdown_MoveToCurHeader
-
-"
-" Auto save settings
-"
-let g:auto_save = 1
-let g:auto_save_silent = 1
 
 "
 " Test settings
