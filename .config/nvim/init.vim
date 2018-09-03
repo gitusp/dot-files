@@ -126,8 +126,6 @@ nnoremap <silent> <C-L>         :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':'
 nnoremap <silent> z<Space>      :call IwhiteToggle()<CR>
 " Normal mode - mappings with <Leader>
 nmap              <Leader><Tab> <Plug>(fzf-maps-n)
-nnoremap <silent> <Leader>af    :ALEFix<CR>
-nnoremap <silent> <Leader>ag    :Ag <C-R><C-W><CR>
 nnoremap <silent> <Leader>b     :Buffers<CR>
 nnoremap <silent> <Leader>c     :Commands<CR>
 nnoremap <silent> <Leader>f     :Files<CR>
@@ -140,6 +138,7 @@ nnoremap <silent> <Leader>h     :History<CR>
 nnoremap <silent> <Leader>l     :BLines<CR>
 nnoremap <silent> <Leader>tl    :TestLast<CR>
 nnoremap <silent> <Leader>tn    :TestNearest<CR>
+nnoremap <silent> <Leader>ue    :UltiSnipsEdit<CR>
 nnoremap <silent> <Leader>ut    :UndotreeToggle<CR>
 " Terminal mode
 tnoremap          <Esc>         <C-\><C-N>
@@ -193,7 +192,6 @@ let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
 let g:ale_sign_column_always = 1
 let g:ale_sign_warning = '──'
 let g:ale_sign_error = '══'
-let g:ale_fix_on_save = 1
 
 " Linters
 " Setup tips:
