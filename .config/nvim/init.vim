@@ -68,8 +68,6 @@ Plug 'ncm2/ncm2-ultisnips'
 Plug 'junegunn/vim-peekaboo'
 " auto save
 Plug '907th/vim-auto-save'
-" Faker
-Plug 'tkhren/vim-fake'
 
 call plug#end()
 "
@@ -126,8 +124,10 @@ nnoremap <silent> [t            :tabprevious<CR>
 nnoremap <silent> ]t            :tabnext<CR>
 nnoremap <silent> [T            :tabfirst<CR>
 nnoremap <silent> ]T            :tablast<CR>
+nnoremap <silent> <C-A>         :call <SID>CycleMetasyntacticVariables(1)<CR>
+nnoremap <silent> <C-X>         :call <SID>CycleMetasyntacticVariables(-1)<CR>
 nnoremap <silent> <C-L>         :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-nnoremap <silent> z<Space>      :call IwhiteToggle()<CR>
+nnoremap <silent> z<Space>      :call <SID>IwhiteToggle()<CR>
 " Normal mode - mappings with <Leader>
 nmap              <Leader><Tab> <Plug>(fzf-maps-n)
 nnoremap <silent> <Leader>af    :ALEFix<CR>
@@ -172,7 +172,7 @@ augroup END
 "
 " Custom commands
 "
-command! -nargs=? Scratch call Scratchf('<args>')
+command! -nargs=? Scratch call <SID>Scratchf('<args>')
 
 "
 " AutoPairs Settings
@@ -234,28 +234,6 @@ let g:LanguageClient_autoStart = 1
 let g:javascript_plugin_jsdoc = 1
 
 "
-" Toggle diffopt
-"
-function! IwhiteToggle()
- if &diffopt =~ 'iwhite'
-   set diffopt-=iwhite
- else
-   set diffopt+=iwhite
- endif
-endfunction
-
-"
-" Opens scratch file
-"
-function! Scratchf(name)
-  if a:name == '.'
-    edit .scratch.md
-  else
-    execute 'e ' . system('scratchf ' . a:name)
-  endif
-endfunction
-
-"
 " Tedit settings
 "
 let g:tedit_prompt_regex = '^\$ \?'
@@ -279,3 +257,51 @@ let g:auto_save_silent = 1
 "
 let test#go#gotest#options = '-v'
 let test#strategy = "neovim"
+
+"
+" Toggle diffopt
+"
+function! s:IwhiteToggle()
+ if &diffopt =~ 'iwhite'
+   set diffopt-=iwhite
+ else
+   set diffopt+=iwhite
+ endif
+endfunction
+
+"
+" Opens scratch file
+"
+function! s:Scratchf(name)
+  if a:name == '.'
+    edit .scratch.md
+  else
+    execute 'e ' . system('scratchf ' . a:name)
+  endif
+endfunction
+
+"
+" thanks to https://gist.github.com/hail2u/6561431
+"
+function! s:CycleMetasyntacticVariables(num)
+  let vars = ['foo', 'bar', 'baz', 'qux', 'quux', 'corge', 'grault', 'garply', 'waldo', 'fred', 'plugh', 'xyzzy', 'thud']
+  let cvar = expand('<cword>')
+  let i = index(vars, cvar)
+
+  if (i == -1)
+    if (a:num > 0)
+      execute "normal! \<C-A>"
+    else
+      execute "normal! \<C-X>"
+    endif
+
+    return
+  endif
+
+  let i += a:num
+  let ni = i % len(vars)
+
+  call setreg('m', vars[ni])
+  normal! "_viw"mp
+endfunction
+
