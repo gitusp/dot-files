@@ -141,6 +141,7 @@ nnoremap <silent> <Leader>fh    :History<CR>
 nnoremap <silent> <Leader>f:    :History:<CR>
 nnoremap <silent> <Leader>f/    :History/<CR>
 nnoremap <silent> <Leader>fl    :BLines<CR>
+nnoremap <silent> <Leader>st    :below split<CR>:terminal<CR>
 nnoremap <silent> <Leader>tl    :TestLast<CR>
 nnoremap <silent> <Leader>tn    :TestNearest<CR>
 nnoremap <silent> <Leader>ut    :UndotreeToggle<CR>
