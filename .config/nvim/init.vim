@@ -141,7 +141,7 @@ nnoremap <silent> <Leader>fh    :History<CR>
 nnoremap <silent> <Leader>f:    :History:<CR>
 nnoremap <silent> <Leader>f/    :History/<CR>
 nnoremap <silent> <Leader>fl    :BLines<CR>
-nnoremap <silent> <Leader>st    :below split<CR>:terminal<CR>
+nnoremap <silent> <Leader>st    :split<CR>:terminal<CR>
 nnoremap <silent> <Leader>tl    :TestLast<CR>
 nnoremap <silent> <Leader>tn    :TestNearest<CR>
 nnoremap <silent> <Leader>ut    :UndotreeToggle<CR>
@@ -161,11 +161,12 @@ imap              <C-J>         <C-M>
 "
 augroup vimrc
   autocmd!
-  autocmd BufEnter *  call ncm2#enable_for_buffer()
-  autocmd TermOpen *  startinsert
-  autocmd FileType go nnoremap <silent><buffer> K  :call LanguageClient#textDocument_hover()<CR>
-  autocmd FileType go nnoremap <silent><buffer> gd :call LanguageClient#textDocument_definition()<CR>
-  autocmd FileType go setlocal noexpandtab
+  autocmd BufEnter *              call ncm2#enable_for_buffer()
+  autocmd TermOpen *              startinsert
+  autocmd BufEnter COMMIT_EDITMSG startinsert
+  autocmd FileType go             nnoremap <silent><buffer> K  :call LanguageClient#textDocument_hover()<CR>
+  autocmd FileType go             nnoremap <silent><buffer> gd :call LanguageClient#textDocument_definition()<CR>
+  autocmd FileType go             setlocal noexpandtab
 augroup END
 
 "
