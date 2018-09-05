@@ -164,9 +164,10 @@ augroup vimrc
   autocmd BufEnter *              call ncm2#enable_for_buffer()
   autocmd TermOpen *              startinsert
   autocmd BufEnter COMMIT_EDITMSG startinsert
+  autocmd FileType go             setlocal noexpandtab
   autocmd FileType go             nnoremap <silent><buffer> K  :call LanguageClient#textDocument_hover()<CR>
   autocmd FileType go             nnoremap <silent><buffer> gd :call LanguageClient#textDocument_definition()<CR>
-  autocmd FileType go             setlocal noexpandtab
+  autocmd FileType help           nnoremap <silent><buffer> q  :q<CR>
 augroup END
 
 "
