@@ -41,8 +41,6 @@ Plug 'tpope/vim-abolish'
 Plug 'justinmk/vim-dirvish'
 " History util
 Plug 'mbbill/undotree'
-" Fancy start screen
-Plug 'mhinz/vim-startify'
 " Dockerfile syntax
 Plug 'ekalinin/Dockerfile.vim'
 " Terminal command editing in the vim way
