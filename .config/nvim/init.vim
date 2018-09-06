@@ -66,6 +66,8 @@ Plug 'ncm2/ncm2-ultisnips'
 Plug 'junegunn/vim-peekaboo'
 " auto save
 Plug '907th/vim-auto-save'
+" split helper
+Plug 'wellle/visual-split.vim'
 
 call plug#end()
 "
@@ -148,11 +150,6 @@ nnoremap <silent> <Leader>ut    :UndotreeToggle<CR>
 " Terminal mode
 tnoremap          <Esc>         <C-\><C-N>
 tnoremap          <C-J>         <C-M>
-" Command line mode(excerpt from rsi.vim)
-cnoremap          <C-A>         <Home>
-cnoremap          <C-B>         <Left>
-cnoremap <expr>   <C-D>         getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
-cnoremap <expr>   <C-F>         getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
 " Insert mode
 imap              <C-J>         <C-M>
 
@@ -174,12 +171,6 @@ augroup END
 " Custom commands
 "
 command! -nargs=? Scratch call <SID>Scratchf('<args>')
-
-"
-" AutoPairs Settings
-"
-" Change mapping since it conflicts with paste from `system clipboard`.
-let g:AutoPairsShortcutToggle = '<M-q>'
 
 "
 " Snips
