@@ -21,6 +21,15 @@
             {
               "key_code": "tab"
             }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^io\\.alacritty$"
+              ]
+            }
           ]
         }
       ]
