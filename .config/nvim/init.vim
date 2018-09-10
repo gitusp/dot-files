@@ -75,7 +75,7 @@ call plug#end()
 "
 " General Settings
 "
-colorscheme Tomorrow-Night
+colorscheme Tomorrow-Night-Bright
 " Search settings
 set ignorecase
 set smartcase
