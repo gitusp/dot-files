@@ -102,7 +102,6 @@ set completeopt=noinsert,menuone,noselect
 "
 let mapleader = ' '
 " Normal mode - normal assignments
-nmap              <C-J>         <C-M>
 nnoremap          Y             y$
 nnoremap          Q             @q
 nnoremap          _             @:
@@ -147,9 +146,6 @@ nnoremap <silent> <Leader>tn    :TestNearest<CR>
 nnoremap <silent> <Leader>ut    :UndotreeToggle<CR>
 " Terminal mode
 tnoremap          <Esc>         <C-\><C-N>
-tnoremap          <C-J>         <C-M>
-" Insert mode
-imap              <C-J>         <C-M>
 
 "
 " autocmd
