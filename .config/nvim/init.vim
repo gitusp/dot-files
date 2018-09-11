@@ -128,6 +128,7 @@ nnoremap <silent> z<Space>      :call <SID>IwhiteToggle()<CR>
 " Normal mode - mappings with <Leader>
 nmap              <Leader><Tab> <Plug>(fzf-maps-n)
 nnoremap <silent> <Leader>af    :ALEFix<CR>
+nnoremap <silent> <Leader>gc    :Gcommit<CR>
 nnoremap <silent> <Leader>gd    :Gdiff<CR>
 nnoremap <silent> <Leader>gr    :Gread<CR>
 nnoremap <silent> <Leader>gs    :Gstatus<CR>
