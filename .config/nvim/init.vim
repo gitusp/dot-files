@@ -131,7 +131,6 @@ nnoremap <silent> <Leader>af    :ALEFix<CR>
 nnoremap <silent> <Leader>gd    :Gdiff<CR>
 nnoremap <silent> <Leader>gr    :Gread<CR>
 nnoremap <silent> <Leader>gs    :Gstatus<CR>
-nnoremap <silent> <Leader>gv    :GV --all<CR>
 nnoremap <silent> <Leader>gw    :Gwrite<CR>
 nnoremap <silent> <Leader>fb    :Buffers<CR>
 nnoremap <silent> <Leader>fc    :Commands<CR>
