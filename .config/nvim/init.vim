@@ -245,6 +245,11 @@ let test#go#gotest#options = '-v'
 let test#strategy = "neovim"
 
 "
+" nvr settings
+"
+let $VISUAL = 'nvr -cc split --remote-wait --remote-send i'
+
+"
 " Toggle diffopt
 "
 function! s:IwhiteToggle()
