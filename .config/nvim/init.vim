@@ -132,6 +132,7 @@ nnoremap <silent> <Leader>gc    :Gcommit<CR>
 nnoremap <silent> <Leader>gd    :Gdiff<CR>
 nnoremap <silent> <Leader>gr    :Gread<CR>
 nnoremap <silent> <Leader>gs    :Gstatus<CR>
+nnoremap <silent> <Leader>gv    :GV<CR>
 nnoremap <silent> <Leader>gw    :Gwrite<CR>
 nnoremap <silent> <Leader>fb    :Buffers<CR>
 nnoremap <silent> <Leader>fc    :Commands<CR>
@@ -144,6 +145,9 @@ nnoremap <silent> <Leader>st    :split<CR>:terminal<CR>
 nnoremap <silent> <Leader>tl    :TestLast<CR>
 nnoremap <silent> <Leader>tn    :TestNearest<CR>
 nnoremap <silent> <Leader>ut    :UndotreeToggle<CR>
+" Normal mode - mappings with <C-Space>
+nnoremap          <C-Space>gc   :Gcommit --
+nnoremap          <C-Space>gv   :GV --
 " Terminal mode
 tnoremap          <Esc>         <C-\><C-N>
 
