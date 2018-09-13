@@ -145,9 +145,6 @@ nnoremap <silent> <Leader>st    :split<CR>:terminal<CR>
 nnoremap <silent> <Leader>tl    :TestLast<CR>
 nnoremap <silent> <Leader>tn    :TestNearest<CR>
 nnoremap <silent> <Leader>ut    :UndotreeToggle<CR>
-" Normal mode - mappings with <C-Space>
-nnoremap          <C-Space>gc   :Gcommit --
-nnoremap          <C-Space>gv   :GV --
 " Terminal mode
 tnoremap          <Esc>         <C-\><C-N>
 
