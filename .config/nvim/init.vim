@@ -119,8 +119,6 @@ nnoremap <silent> [t            :tabprevious<CR>
 nnoremap <silent> ]t            :tabnext<CR>
 nnoremap <silent> [T            :tabfirst<CR>
 nnoremap <silent> ]T            :tablast<CR>
-nnoremap <silent> <C-A>         :call <SID>CycleMetasyntacticVariables(1)<CR>
-nnoremap <silent> <C-X>         :call <SID>CycleMetasyntacticVariables(-1)<CR>
 nnoremap <silent> <C-L>         :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 nnoremap <silent> z<Space>      :call <SID>IwhiteToggle()<CR>
 " Normal mode - mappings with <Leader>
@@ -139,7 +137,6 @@ nnoremap <silent> <Leader>fh    :History<CR>
 nnoremap <silent> <Leader>f:    :History:<CR>
 nnoremap <silent> <Leader>f/    :History/<CR>
 nnoremap <silent> <Leader>fl    :BLines<CR>
-nnoremap <silent> <Leader>st    :split<CR>:terminal<CR>
 nnoremap <silent> <Leader>tl    :TestLast<CR>
 nnoremap <silent> <Leader>tn    :TestNearest<CR>
 nnoremap <silent> <Leader>ut    :UndotreeToggle<CR>
@@ -261,30 +258,5 @@ function! s:Scratchf(name)
   else
     execute 'e ' . system('scratchf ' . a:name)
   endif
-endfunction
-
-"
-" thanks to https://gist.github.com/hail2u/6561431
-"
-function! s:CycleMetasyntacticVariables(num)
-  let vars = ['foo', 'bar', 'baz', 'qux', 'quux', 'corge', 'grault', 'garply', 'waldo', 'fred', 'plugh', 'xyzzy', 'thud']
-  let cvar = expand('<cword>')
-  let i = index(vars, cvar)
-
-  if (i == -1)
-    if (a:num > 0)
-      execute "normal! \<C-A>"
-    else
-      execute "normal! \<C-X>"
-    endif
-
-    return
-  endif
-
-  let i += a:num
-  let ni = i % len(vars)
-
-  call setreg('m', vars[ni])
-  normal! "_viw"mp
 endfunction
 
