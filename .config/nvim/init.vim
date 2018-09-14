@@ -43,8 +43,6 @@ Plug 'justinmk/vim-dirvish'
 Plug 'mbbill/undotree'
 " Dockerfile syntax
 Plug 'ekalinin/Dockerfile.vim'
-" Terminal command editing in the vim way
-Plug 'gitusp/tedit.vim'
 " CSV Support
 Plug 'mechatroner/rainbow_csv'
 " nginx conf file syntax
@@ -219,13 +217,6 @@ let g:LanguageClient_autoStart = 1
 " Javascript settings
 "
 let g:javascript_plugin_jsdoc = 1
-
-"
-" Tedit settings
-"
-let g:tedit_prompt_regex = '^\$ \?'
-" NOTE: .zhistory has tricky encoding.
-let g:tedit_history_loader = 'cat ~/.zhistory | perl -pe ''s/^.*?;//; s/\x83(.)/chr(ord($1)^32)/eg'''
 
 "
 " Markdown settings
