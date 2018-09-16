@@ -115,9 +115,6 @@ nnoremap <silent> [b            :bprevious<CR>
 nnoremap <silent> ]b            :bnext<CR>
 nnoremap <silent> [B            :bfirst<CR>
 nnoremap <silent> ]B            :blast<CR>
-" NOTE: `f` stands for 'flip'
-nnoremap <silent> [f            :SwitchReverse<CR>
-nnoremap <silent> ]f            :Switch<CR>
 " NOTE: `h` stands for 'history'
 nnoremap <silent> [h            :BufSurfBack<CR>
 nnoremap <silent> ]h            :BufSurfForward<CR>
@@ -134,6 +131,8 @@ nnoremap <silent> <C-L>         :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':'
 nnoremap <silent> z<Space>      :call <SID>IwhiteToggle()<CR>
 " Normal mode - mappings with <Leader>
 nmap              <Leader><Tab> <Plug>(fzf-maps-n)
+nnoremap <silent> <Leader><C-A> :Switch<CR>
+nnoremap <silent> <Leader><C-X> :SwitchReverse<CR>
 nnoremap <silent> <Leader>af    :ALEFix<CR>
 nnoremap <silent> <Leader>gc    :Gcommit<CR>
 nnoremap <silent> <Leader>gd    :Gdiff<CR>
