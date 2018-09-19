@@ -126,8 +126,6 @@ nnoremap <silent> <C-L>         :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':'
 nnoremap <silent> z<Space>      :call <SID>IwhiteToggle()<CR>
 " Normal mode - mappings with <Leader>
 nmap              <Leader><Tab> <Plug>(fzf-maps-n)
-nnoremap <silent> <Leader><C-A> :Switch<CR>
-nnoremap <silent> <Leader><C-X> :SwitchReverse<CR>
 nnoremap <silent> <Leader>af    :ALEFix<CR>
 nnoremap <silent> <Leader>gc    :Gcommit<CR>
 nnoremap <silent> <Leader>gd    :Gdiff<CR>
@@ -145,6 +143,11 @@ nnoremap <silent> <Leader>fl    :BLines<CR>
 nnoremap <silent> <Leader>tl    :TestLast<CR>
 nnoremap <silent> <Leader>tn    :TestNearest<CR>
 nnoremap <silent> <Leader>ut    :UndotreeToggle<CR>
+" Normal mode - mappings with <Meta>
+nnoremap <silent> <M-a>         :Switch<CR>
+nnoremap <silent> <M-x>         :SwitchReverse<CR>
+nnoremap <silent> <M-i>         :call <SID>GoToJumpList("1\<C-I>")<CR>
+nnoremap <silent> <M-o>         :call <SID>GoToJumpList("\<C-O>")<CR>
 " Terminal mode
 tnoremap          <Esc>         <C-\><C-N>
 
@@ -273,3 +276,19 @@ function! s:Scratchf(name)
   endif
 endfunction
 
+"
+" Jump to another file
+"
+function! s:GoToJumpList(key)
+  let lastBufName = expand('%')
+  let i = 0
+  while i < 256
+    execute 'normal! ' . a:key
+    let bufName = expand('%')
+    if bufName != lastBufName
+      break
+    endif
+    let lastBufName = bufName
+    let i += 1
+  endwhile
+endfunction
