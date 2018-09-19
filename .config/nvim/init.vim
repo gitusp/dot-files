@@ -66,8 +66,6 @@ Plug 'junegunn/vim-peekaboo'
 Plug '907th/vim-auto-save'
 " word switcher
 Plug 'AndrewRadev/switch.vim'
-" buffer util
-Plug 'ton/vim-bufsurf'
 
 call plug#end()
 "
@@ -115,9 +113,6 @@ nnoremap <silent> [b            :bprevious<CR>
 nnoremap <silent> ]b            :bnext<CR>
 nnoremap <silent> [B            :bfirst<CR>
 nnoremap <silent> ]B            :blast<CR>
-" NOTE: `h` stands for 'history'
-nnoremap <silent> [h            :BufSurfBack<CR>
-nnoremap <silent> ]h            :BufSurfForward<CR>
 " NOTE: `q` stands for 'quickfix'
 nnoremap <silent> [q            :cprevious<CR>
 nnoremap <silent> ]q            :cnext<CR>
