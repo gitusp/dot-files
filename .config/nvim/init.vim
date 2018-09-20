@@ -146,8 +146,8 @@ nnoremap <silent> <Leader>ut    :UndotreeToggle<CR>
 " Normal mode - mappings with <Meta>
 nnoremap <silent> <M-a>         :Switch<CR>
 nnoremap <silent> <M-x>         :SwitchReverse<CR>
-nnoremap <silent> <M-i>         :call <SID>GoToJumpList("1\<C-I>")<CR>
-nnoremap <silent> <M-o>         :call <SID>GoToJumpList("\<C-O>")<CR>
+nnoremap <silent> <M-i>         :call <SID>SuperJump("1\<C-I>")<CR>
+nnoremap <silent> <M-o>         :call <SID>SuperJump("\<C-O>")<CR>
 " Terminal mode
 tnoremap          <Esc>         <C-\><C-N>
 
@@ -279,16 +279,19 @@ endfunction
 "
 " Jump to another file
 "
-function! s:GoToJumpList(key)
-  let lastBufName = expand('%')
+function! s:SuperJump(key)
+  let lastBufnr = bufnr('%')
   let i = 0
   while i < 256
     execute 'normal! ' . a:key
-    let bufName = expand('%')
-    if bufName != lastBufName
-      break
+    let currentBufnr = bufnr('%')
+    if currentBufnr != lastBufnr
+      let lastBufnr = currentBufnr
+      if &filetype != 'dirvish'
+        break
+      endif
     endif
-    let lastBufName = bufName
     let i += 1
   endwhile
 endfunction
+
