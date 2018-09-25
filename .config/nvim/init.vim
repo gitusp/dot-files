@@ -185,8 +185,10 @@ let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
 " ALE settings
 "
 let g:ale_sign_column_always = 1
-let g:ale_sign_warning = '──'
-let g:ale_sign_error = '══'
+let g:ale_sign_error = "◉"
+let g:ale_sign_warning = "◉"
+highlight ALEErrorSign ctermfg=9
+highlight ALEWarningSign ctermfg=11
 
 " Linters
 " Setup tips:
