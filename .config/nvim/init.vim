@@ -60,8 +60,6 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2-ultisnips'
-" Register util
-Plug 'junegunn/vim-peekaboo'
 " auto save
 Plug '907th/vim-auto-save'
 " word switcher
