@@ -28,8 +28,6 @@ Plug 'iamcco/markdown-preview.vim'
 " Fuzzy finder
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-" auto close
-Plug 'jiangmiao/auto-pairs'
 " utils
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -64,6 +62,8 @@ Plug 'ncm2/ncm2-ultisnips'
 Plug '907th/vim-auto-save'
 " word switcher
 Plug 'AndrewRadev/switch.vim'
+" Auto pairing
+Plug 'cohama/lexima.vim'
 
 call plug#end()
 "
