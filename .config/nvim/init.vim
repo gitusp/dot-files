@@ -77,7 +77,7 @@ colorscheme Tomorrow-Night-Bright
 " Search settings
 set ignorecase
 set smartcase
-set inccommand=nosplit
+set inccommand=split
 " Undo settings
 set undodir=~/.config/nvim/undodir/
 set undofile
