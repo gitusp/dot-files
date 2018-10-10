@@ -169,15 +169,24 @@ augroup END
 command! -nargs=? Scratch call <SID>Scratchf('<args>')
 
 "
-" Snips
-"
 " Completor Integration
-inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
-let g:UltiSnipsExpandTrigger = '<Tab>'
-let g:UltiSnipsJumpForwardTrigger = '<C-F>'
-let g:UltiSnipsJumpBackwardTrigger = '<C-B>'
-let g:UltiSnipsEditSplit = 'vertical'
-let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
+" See https://github.com/ncm2/ncm2-ultisnips/issues/6#issuecomment-410186456
+"
+inoremap <silent> <expr> <Tab> ncm2_ultisnips#expand_or("\<Plug>(ultisnips_expand_or_jump_or_tab)")
+inoremap <silent> <Plug>(ultisnips_expand_or_jump_or_tab) <C-R>=<SID>UltiSnipsExpandOrJumpOrTab()<CR>
+snoremap <silent> <Tab> <Esc>:call UltiSnips#ExpandSnippetOrJump()<cr>
+let g:UltiSnipsExpandTrigger       = "<Plug>(ultisnips_expand)"
+let g:UltiSnipsJumpForwardTrigger  = "<Plug>(ultisnips_jump_forward)"
+let g:UltiSnipsJumpBackwardTrigger = "<M-i>"
+
+function! s:UltiSnipsExpandOrJumpOrTab()
+  call UltiSnips#ExpandSnippetOrJump()
+  if g:ulti_expand_or_jump_res > 0
+    return ""
+  else
+    return "\<Tab>"
+  endif
+endfunction
 
 "
 " ALE settings
