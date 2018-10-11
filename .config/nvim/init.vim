@@ -58,6 +58,8 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2-ultisnips'
+" Register util
+Plug 'junegunn/vim-peekaboo'
 " auto save
 Plug '907th/vim-auto-save'
 " word switcher
@@ -271,6 +273,7 @@ let g:which_key_map.u = {
       \ 's': ['Scratch',        'Open Global Scratch'],
       \ 'S': ['Scratch .',      'Open Local Scratch'],
       \ 'u': ['UndotreeToggle', 'Undo Tree Toggle'],
+      \ 't': ['terminal',       'Open Terminal'],
       \ }
 
 "
