@@ -92,7 +92,6 @@ set expandtab
 set smarttab
 " Display settings
 set nofoldenable
-set noshowmode
 set lazyredraw
 set shortmess+=c
 " Other settings
@@ -136,6 +135,7 @@ augroup vimrc
   autocmd FileType go             nnoremap <silent><buffer> K  :call LanguageClient#textDocument_hover()<CR>
   autocmd FileType go             nnoremap <silent><buffer> gd :call LanguageClient#textDocument_definition()<CR>
   autocmd FileType help           nnoremap <silent><buffer> q  :q<CR>
+  autocmd FileType which_key      set laststatus=0 noshowmode | autocmd BufLeave <buffer> set laststatus=2 showmode
 augroup END
 
 "
