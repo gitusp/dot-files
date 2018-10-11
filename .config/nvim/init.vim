@@ -68,6 +68,8 @@ Plug 'AndrewRadev/switch.vim'
 Plug 'cohama/lexima.vim'
 " Guide key
 Plug 'liuchengxu/vim-which-key'
+" Align helper
+Plug 'junegunn/vim-easy-align'
 
 call plug#end()
 "
@@ -236,8 +238,14 @@ let $VISUAL = 'nvr -cc split --remote-wait --remote-send i'
 " which key
 "
 nnoremap <silent> <Space> :WhichKey '<Space>'<CR>
+xnoremap <silent> <Space> :WhichKeyVisual '<Space>'<CR>
 call which_key#register('<Space>', "g:which_key_map")
 let g:which_key_map =  {}
+let g:which_key_map.a = {
+      \ 'name': '+auto-format',
+      \ 'a': ['<Plug>(EasyAlign)', 'Align'],
+      \ 'f': ['ALEFix',            'Fix'],
+      \ }
 let g:which_key_map.d = {
       \ 'name': '+diff',
       \ 'i': ['ToggleIwhite', 'Toggle iwhite for diffopt'],
@@ -271,7 +279,6 @@ let g:which_key_map.t = {
       \ }
 let g:which_key_map.u = {
       \ 'name': '+utils',
-      \ 'f': ['ALEFix',         'Fix'],
       \ 's': ['Scratch',        'Open Global Scratch'],
       \ 'S': ['Scratch .',      'Open Local Scratch'],
       \ 'u': ['UndotreeToggle', 'Undo Tree Toggle'],
