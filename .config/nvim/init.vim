@@ -260,6 +260,7 @@ let g:which_key_map.g = {
       \ 'r': ['Gread',    'Read'],
       \ 's': ['Gstatus',  'Status'],
       \ 'v': ['GV',       'Visual Log'],
+      \ 'V': ['GV --all', 'Visual Log (all)'],
       \ 'w': ['Gwrite',   'Write'],
       \ }
 let g:which_key_map.t = {
