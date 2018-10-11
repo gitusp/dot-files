@@ -64,6 +64,8 @@ Plug '907th/vim-auto-save'
 Plug 'AndrewRadev/switch.vim'
 " Auto pairing
 Plug 'cohama/lexima.vim'
+" Guide key
+Plug 'liuchengxu/vim-which-key'
 
 call plug#end()
 "
@@ -98,7 +100,6 @@ set completeopt=noinsert,menuone,noselect
 "
 " Custom mappings
 "
-let mapleader = ' '
 " Normal mode - normal assignments
 nnoremap          Y             y$
 nnoremap          Q             @q
@@ -107,40 +108,12 @@ nnoremap <silent> [a            :ALEPreviousWrap<CR>
 nnoremap <silent> ]a            :ALENextWrap<CR>
 nnoremap <silent> [A            :ALEFirst<CR>
 nnoremap <silent> ]A            :ALELast<CR>
-nnoremap <silent> [b            :bprevious<CR>
-nnoremap <silent> ]b            :bnext<CR>
-nnoremap <silent> [B            :bfirst<CR>
-nnoremap <silent> ]B            :blast<CR>
 " NOTE: `q` stands for 'quickfix'
 nnoremap <silent> [q            :cprevious<CR>
 nnoremap <silent> ]q            :cnext<CR>
 nnoremap <silent> [Q            :cfirst<CR>
 nnoremap <silent> ]Q            :clast<CR>
-nnoremap <silent> [t            :tabprevious<CR>
-nnoremap <silent> ]t            :tabnext<CR>
-nnoremap <silent> [T            :tabfirst<CR>
-nnoremap <silent> ]T            :tablast<CR>
 nnoremap <silent> <C-L>         :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-nnoremap <silent> z<Space>      :call <SID>IwhiteToggle()<CR>
-" Normal mode - mappings with <Leader>
-nmap              <Leader><Tab> <Plug>(fzf-maps-n)
-nnoremap <silent> <Leader>af    :ALEFix<CR>
-nnoremap <silent> <Leader>gc    :Gcommit<CR>
-nnoremap <silent> <Leader>gd    :Gdiff<CR>
-nnoremap <silent> <Leader>gr    :Gread<CR>
-nnoremap <silent> <Leader>gs    :Gstatus<CR>
-nnoremap <silent> <Leader>gv    :GV<CR>
-nnoremap <silent> <Leader>gw    :Gwrite<CR>
-nnoremap <silent> <Leader>fb    :Buffers<CR>
-nnoremap <silent> <Leader>fc    :Commands<CR>
-nnoremap <silent> <Leader>ff    :Files<CR>
-nnoremap <silent> <Leader>fh    :History<CR>
-nnoremap <silent> <Leader>f:    :History:<CR>
-nnoremap <silent> <Leader>f/    :History/<CR>
-nnoremap <silent> <Leader>fl    :BLines<CR>
-nnoremap <silent> <Leader>tl    :TestLast<CR>
-nnoremap <silent> <Leader>tn    :TestNearest<CR>
-nnoremap <silent> <Leader>ut    :UndotreeToggle<CR>
 " Normal mode - mappings with <Meta>
 nnoremap <silent> <M-a>         :Switch<CR>
 nnoremap <silent> <M-x>         :SwitchReverse<CR>
@@ -167,6 +140,7 @@ augroup END
 " Custom commands
 "
 command! -nargs=? Scratch call <SID>Scratchf('<args>')
+command! -nargs=0 ToggleIwhite call <SID>ToggleIwhite()
 
 "
 " Completor Integration
@@ -256,6 +230,50 @@ let test#strategy = "neovim"
 let $VISUAL = 'nvr -cc split --remote-wait --remote-send i'
 
 "
+" which key
+"
+nnoremap <silent> <Space> :WhichKey '<Space>'<CR>
+call which_key#register('<Space>', "g:which_key_map")
+let g:which_key_map =  {}
+let g:which_key_map.d = {
+      \ 'name': '+diff',
+      \ 'i': ['ToggleIwhite', 'Toggle iwhite for diffopt'],
+      \ 'o': ['diffoff',      'Diff Off'],
+      \ 't': ['diffthis',     'Diff This'],
+      \ }
+let g:which_key_map.f = {
+      \ 'name': '+fzf',
+      \ 'b': ['Buffers',  'Buffers'],
+      \ 'c': ['Commands', 'Commands'],
+      \ 'f': ['Files',    'Files'],
+      \ 'h': ['History',  'File History'],
+      \ ':': ['History:', 'Command History'],
+      \ '/': ['History/', 'Search History'],
+      \ 'l': ['BLines',   'Buffer Lines'],
+      \ }
+let g:which_key_map.g = {
+      \ 'name': '+git',
+      \ 'c': ['Gcommit',  'Commit'],
+      \ 'd': ['Gdiff',    'Diff'],
+      \ 'r': ['Gread',    'Read'],
+      \ 's': ['Gstatus',  'Status'],
+      \ 'v': ['GV',       'Visual Log'],
+      \ 'w': ['Gwrite',   'Write'],
+      \ }
+let g:which_key_map.t = {
+      \ 'name': '+test',
+      \ 'l': ['TestLast',     'Last'],
+      \ 'n': ['TestNearest',  'Nearest'],
+      \ }
+let g:which_key_map.u = {
+      \ 'name': '+utils',
+      \ 'f': ['ALEFix',         'Fix'],
+      \ 's': ['Scratch',        'Open Global Scratch'],
+      \ 'S': ['Scratch .',      'Open Local Scratch'],
+      \ 'u': ['UndotreeToggle', 'Undo Tree Toggle'],
+      \ }
+
+"
 " word switcher settings
 "
 let g:switch_mapping = ""
@@ -266,7 +284,7 @@ let g:switch_custom_definitions = [
 "
 " Toggle diffopt
 "
-function! s:IwhiteToggle()
+function! s:ToggleIwhite()
  if &diffopt =~ 'iwhite'
    set diffopt-=iwhite
  else
