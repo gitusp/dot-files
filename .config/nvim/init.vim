@@ -327,6 +327,7 @@ function! s:SuperJump(key)
     if currentBufnr != lastBufnr
       let lastBufnr = currentBufnr
       if &filetype != 'dirvish'
+        echo expand('%')
         break
       endif
     endif
