@@ -279,8 +279,8 @@ let g:which_key_map.t = {
       \ }
 let g:which_key_map.u = {
       \ 'name': '+utils',
-      \ 's': ['Scratch',        'Open Global Scratch'],
-      \ 'S': ['Scratch .',      'Open Local Scratch'],
+      \ 's': ['Scratch .',      'Open Local Scratch'],
+      \ 'S': ['Scratch',        'Open Global Scratch'],
       \ 'u': ['UndotreeToggle', 'Undo Tree Toggle'],
       \ 't': ['terminal',       'Open Terminal'],
       \ }
