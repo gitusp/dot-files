@@ -144,8 +144,9 @@ augroup END
 "
 " Custom commands
 "
-command! -nargs=? Scratch call <SID>Scratchf('<args>')
-command! -nargs=0 ToggleIwhite call <SID>ToggleIwhite()
+command!       -nargs=? Scratch call <SID>Scratchf('<args>')
+command!       -nargs=0 ToggleIwhite call <SID>ToggleIwhite()
+command! -bang -nargs=* WAg call fzf#vim#ag(<q-args>, '--word-regexp', <bang>0)
 
 "
 " Completor Integration
@@ -257,6 +258,7 @@ let g:which_key_map.f = {
       \ 'b': ['Buffers',  'Buffers'],
       \ 'c': ['Commands', 'Commands'],
       \ 'f': ['Files',    'Files'],
+      \ 'g': ['GFiles',   'Git Files'],
       \ 'h': ['History',  'File History'],
       \ ':': ['History:', 'Command History'],
       \ '/': ['History/', 'Search History'],
