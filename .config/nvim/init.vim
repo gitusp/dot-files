@@ -144,7 +144,7 @@ augroup END
 "
 " Custom commands
 "
-command!       -nargs=? Scratch call <SID>Scratchf('<args>')
+command!       -nargs=? Note call <SID>Notef('<args>')
 command!       -nargs=0 ToggleIwhite call <SID>ToggleIwhite()
 command! -bang -nargs=* WAg call fzf#vim#ag(<q-args>, '--word-regexp', <bang>0)
 
@@ -281,10 +281,11 @@ let g:which_key_map.t = {
       \ }
 let g:which_key_map.u = {
       \ 'name': '+utils',
-      \ 's': ['Scratch .',      'Open Local Scratch'],
-      \ 'S': ['Scratch',        'Open Global Scratch'],
-      \ 'u': ['UndotreeToggle', 'Undo Tree Toggle'],
+      \ 'n': ['Note .',         'Open Local Note'],
+      \ 'N': ['Note',           'Open Global Note'],
+      \ 's': ['set spell!',     'Toggle Spell Check'],
       \ 't': ['terminal',       'Open Terminal'],
+      \ 'u': ['UndotreeToggle', 'Undo Tree Toggle'],
       \ }
 
 "
@@ -307,13 +308,13 @@ function! s:ToggleIwhite()
 endfunction
 
 "
-" Opens scratch file
+" Opens note file
 "
-function! s:Scratchf(name)
+function! s:Notef(name)
   if a:name == '.'
-    edit .scratch.md
+    edit .note.md
   else
-    execute 'e ' . system('scratchf ' . a:name)
+    execute 'e ' . system('notef ' . a:name)
   endif
 endfunction
 
