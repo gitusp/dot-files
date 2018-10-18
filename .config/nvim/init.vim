@@ -28,9 +28,10 @@ Plug 'iamcco/markdown-preview.vim'
 " Fuzzy finder
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-" utils
-Plug 'tpope/vim-surround'
+" Comment out/in
 Plug 'tpope/vim-commentary'
+" Text Surrounding
+Plug 'machakann/vim-sandwich'
 " Snippets
 Plug 'SirVer/ultisnips'
 " Better substitution(currently not supporting live preview)
@@ -167,6 +168,11 @@ function! s:UltiSnipsExpandOrJumpOrTab()
     return "\<Tab>"
   endif
 endfunction
+
+"
+" Sandwich settings
+"
+runtime macros/sandwich/keymap/surround.vim
 
 "
 " ALE settings
