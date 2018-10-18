@@ -24,7 +24,7 @@ Plug 'junegunn/gv.vim'
 Plug 'godlygeek/tabular'
 " Markdown support
 Plug 'plasticboy/vim-markdown'
-Plug 'iamcco/markdown-preview.vim'
+Plug 'junegunn/vim-xmark', { 'do': 'make' }
 " Fuzzy finder
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
@@ -133,6 +133,7 @@ tnoremap          <Esc>         <C-\><C-N>
 augroup vimrc
   autocmd!
   autocmd BufEnter *              call ncm2#enable_for_buffer()
+  autocmd BufEnter *              if &filetype ==# 'markdown' | call <SID>RegisterMarkdownWhichKey() | endif
   autocmd TermOpen *              startinsert
   autocmd BufEnter COMMIT_EDITMSG startinsert
   autocmd FileType go             setlocal noexpandtab
@@ -141,6 +142,21 @@ augroup vimrc
   autocmd FileType help           nnoremap <silent><buffer> q  :q<CR>
   autocmd FileType which_key      set laststatus=0 noshowmode | autocmd BufLeave <buffer> set laststatus=1 showmode
 augroup END
+
+function! s:RegisterMarkdownWhichKey()
+  let g:which_key_map.a.t = ['TableFormat', 'Format Table']
+  let g:which_key_map.m = {
+        \ 'name': '+markdown-preview',
+        \ 'c': ['Xmark!', 'Close'],
+        \ 'o': ['Xmark',  'Open'],
+        \ 'h': ['Xmark<', 'Left'],
+        \ 'j': ['Xmark-', 'Bottom'],
+        \ 'k': ['Xmark+', 'Top'],
+        \ 'l': ['Xmark>', 'Right'],
+        \ }
+  autocmd BufLeave <buffer> if has_key(g:which_key_map.a, 't') | unlet g:which_key_map.a.t | endif
+  autocmd BufLeave <buffer> if has_key(g:which_key_map, 'm') | unlet g:which_key_map.m | endif
+endfunction
 
 "
 " Custom commands
