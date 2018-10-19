@@ -293,13 +293,13 @@ let g:which_key_map.g = {
       \ 'name': '+git',
       \ 'c': ['Gcommit',  'Commit'],
       \ 'd': ['Gdiff',    'Diff'],
+      \ 'p': ['Gpush',    'Push'],
+      \ 'P': ['Gpush -f', 'Push'],
       \ 'r': ['Gread',    'Read'],
       \ 's': ['Gstatus',  'Status'],
       \ 'v': ['GV',       'Visual Log'],
       \ 'V': ['GV --all', 'Visual Log (all)'],
       \ 'w': ['Gwrite',   'Write'],
-      \ '>': ['Gpush',    'Git Push'],
-      \ '<': ['Gpull',    'Git Pull'],
       \ }
 let g:which_key_map.t = {
       \ 'name': '+test',
