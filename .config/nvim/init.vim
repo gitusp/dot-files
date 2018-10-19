@@ -71,6 +71,8 @@ Plug 'cohama/lexima.vim'
 Plug 'liuchengxu/vim-which-key'
 " Align helper
 Plug 'junegunn/vim-easy-align'
+" Async task runner
+Plug 'tpope/vim-dispatch'
 
 call plug#end()
 "
@@ -294,7 +296,7 @@ let g:which_key_map.g = {
       \ 'c': ['Gcommit',  'Commit'],
       \ 'd': ['Gdiff',    'Diff'],
       \ 'p': ['Gpush',    'Push'],
-      \ 'P': ['Gpush -f', 'Push'],
+      \ 'P': ['Gpush -f', 'Force Push'],
       \ 'r': ['Gread',    'Read'],
       \ 's': ['Gstatus',  'Status'],
       \ 'v': ['GV',       'Visual Log'],
