@@ -127,6 +127,8 @@ nnoremap <silent> <M-i>         :call <SID>SuperJump("1\<C-I>")<CR>
 nnoremap <silent> <M-o>         :call <SID>SuperJump("\<C-O>")<CR>
 " Terminal mode
 tnoremap          <Esc>         <C-\><C-N>
+" Insert mode
+imap              <C-X><C-L>    <Plug>(fzf-complete-buffer-line)
 
 "
 " autocmd
@@ -296,6 +298,8 @@ let g:which_key_map.g = {
       \ 'v': ['GV',       'Visual Log'],
       \ 'V': ['GV --all', 'Visual Log (all)'],
       \ 'w': ['Gwrite',   'Write'],
+      \ '>': ['Gpush',    'Git Push'],
+      \ '<': ['Gpull',    'Git Pull'],
       \ }
 let g:which_key_map.t = {
       \ 'name': '+test',
