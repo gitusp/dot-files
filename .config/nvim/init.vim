@@ -97,6 +97,7 @@ set smarttab
 set nofoldenable
 set lazyredraw
 set shortmess+=c
+set shortmess+=I
 set laststatus=1
 " Other settings
 set hidden
