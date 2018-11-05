@@ -75,6 +75,10 @@ Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-dispatch'
 " Highlight trailing spaces
 Plug 'ntpeters/vim-better-whitespace'
+" Powerful matcher
+Plug 'andymass/vim-matchup'
+" Extended text objects
+Plug 'wellle/targets.vim'
 
 call plug#end()
 "
@@ -263,6 +267,11 @@ let test#strategy = "neovim"
 " nvr settings
 "
 let $VISUAL = 'nvr -cc split --remote-wait --remote-send i'
+
+"
+" matchup settings
+"
+let g:matchup_transmute_enabled = 1
 
 "
 " which key
