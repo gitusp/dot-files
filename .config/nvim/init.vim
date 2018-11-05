@@ -106,7 +106,7 @@ set nofoldenable
 set lazyredraw
 set shortmess+=c
 set shortmess+=I
-set laststatus=1
+set laststatus=2
 " Other settings
 set hidden
 set completeopt=noinsert,menuone,noselect
@@ -151,7 +151,7 @@ augroup vimrc
   autocmd FileType go             nnoremap <silent><buffer> K  :call LanguageClient#textDocument_hover()<CR>
   autocmd FileType go             nnoremap <silent><buffer> gd :call LanguageClient#textDocument_definition()<CR>
   autocmd FileType help           nnoremap <silent><buffer> q  :q<CR>
-  autocmd FileType which_key      set laststatus=0 noshowmode | autocmd BufLeave <buffer> set laststatus=1 showmode
+  autocmd FileType which_key      set laststatus=0 noshowmode | autocmd BufLeave <buffer> set laststatus=2 showmode
 augroup END
 
 function! s:RegisterMarkdownWhichKey()
@@ -370,7 +370,6 @@ function! s:SuperJump(key)
     if currentBufnr != lastBufnr
       let lastBufnr = currentBufnr
       if &filetype != 'dirvish'
-        echo expand('%')
         break
       endif
     endif
