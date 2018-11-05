@@ -73,6 +73,7 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'junegunn/vim-easy-align'
 " Async task runner
 Plug 'tpope/vim-dispatch'
+Plug 'radenling/vim-dispatch-neovim'
 " Highlight trailing spaces
 Plug 'ntpeters/vim-better-whitespace'
 " Powerful matcher
