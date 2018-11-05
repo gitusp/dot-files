@@ -304,15 +304,15 @@ let g:which_key_map.f = {
       \ }
 let g:which_key_map.g = {
       \ 'name': '+git',
-      \ 'c': ['Gcommit',  'Commit'],
-      \ 'd': ['Gdiff',    'Diff'],
-      \ 'p': ['Gpush',    'Push'],
-      \ 'P': ['Gpush -f', 'Force Push'],
-      \ 'r': ['Gread',    'Read'],
-      \ 's': ['Gstatus',  'Status'],
-      \ 'v': ['GV',       'Visual Log'],
-      \ 'V': ['GV --all', 'Visual Log (all)'],
-      \ 'w': ['Gwrite',   'Write'],
+      \ 'c': ['Gcommit',              'Commit'],
+      \ 'd': ['Gdiff',                'Diff'],
+      \ 'p': ['Gpush origin HEAD',    'Push'],
+      \ 'P': ['Gpush -f origin HEAD', 'Force Push'],
+      \ 'r': ['Gread',                'Read'],
+      \ 's': ['Gstatus',              'Status'],
+      \ 'v': ['GV',                   'Visual Log'],
+      \ 'V': ['GV --all',             'Visual Log (all)'],
+      \ 'w': ['Gwrite',               'Write'],
       \ }
 let g:which_key_map.t = {
       \ 'name': '+test',
