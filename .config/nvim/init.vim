@@ -361,6 +361,8 @@ endfunction
 
 "
 " Jump to another file
+" TODO: Rollback position when the final destination is supposed to be avoided.
+" TODO: Jump more intelligently using `ls`.
 "
 function! s:SuperJump(key)
   let lastBufnr = bufnr('%')
@@ -369,10 +371,10 @@ function! s:SuperJump(key)
     execute 'normal! ' . a:key
     let currentBufnr = bufnr('%')
     if currentBufnr != lastBufnr
-      let lastBufnr = currentBufnr
-      if &filetype != 'dirvish'
+      if &filetype != 'dirvish' && expand('%') !~ '.git/' && expand('%') !~ 'fugitive://'
         break
       endif
+      let lastBufnr = currentBufnr
     endif
     let i += 1
   endwhile
