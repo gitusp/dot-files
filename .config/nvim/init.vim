@@ -307,6 +307,7 @@ let g:which_key_map.g = {
       \ 'name': '+git',
       \ 'c': ['Gcommit',              'Commit'],
       \ 'd': ['Gdiff',                'Diff'],
+      \ 'f': ['Gfetch',               'Fetch'],
       \ 'p': ['Gpush origin HEAD',    'Push'],
       \ 'P': ['Gpush -f origin HEAD', 'Force Push'],
       \ 'r': ['Gread',                'Read'],
