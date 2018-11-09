@@ -173,7 +173,7 @@ endfunction
 "
 " Custom commands
 "
-command!       -nargs=? Note call <SID>Notef('<args>')
+command!       -nargs=? Note call <SID>Note('<args>')
 command!       -nargs=0 ToggleIwhite call <SID>ToggleIwhite()
 command! -bang -nargs=* WAg call fzf#vim#ag(<q-args>, '--word-regexp', <bang>0)
 
@@ -352,7 +352,7 @@ endfunction
 "
 " Opens note file
 "
-function! s:Notef(name)
+function! s:Note(name)
   if a:name == '.'
     edit .note.md
   else
