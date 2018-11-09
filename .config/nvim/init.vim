@@ -147,7 +147,7 @@ augroup vimrc
   autocmd BufEnter *              call ncm2#enable_for_buffer()
   autocmd BufEnter *              if &filetype ==# 'markdown' | call <SID>RegisterMarkdownWhichKey() | endif
   autocmd TermOpen *              startinsert
-  autocmd BufEnter COMMIT_EDITMSG startinsert
+  autocmd BufRead  COMMIT_EDITMSG if getline('.') == '' | startinsert | endif
   autocmd FileType go             setlocal noexpandtab
   autocmd FileType go             nnoremap <silent><buffer> K  :call LanguageClient#textDocument_hover()<CR>
   autocmd FileType go             nnoremap <silent><buffer> gd :call LanguageClient#textDocument_definition()<CR>
