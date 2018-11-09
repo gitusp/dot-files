@@ -145,7 +145,7 @@ imap              <C-X><C-L>    <Plug>(fzf-complete-buffer-line)
 augroup vimrc
   autocmd!
   autocmd BufEnter *              call ncm2#enable_for_buffer()
-  autocmd BufEnter *              if &filetype ==# 'markdown' | call <SID>RegisterMarkdownWhichKey() | endif
+  autocmd BufEnter *              if &filetype ==# 'markdown' | call <SID>HandleMarkdownBufEnter() | endif
   autocmd TermOpen *              startinsert
   autocmd BufRead  COMMIT_EDITMSG if getline('.') == '' | startinsert | endif
   autocmd FileType go             setlocal noexpandtab
@@ -154,6 +154,11 @@ augroup vimrc
   autocmd FileType help           nnoremap <silent><buffer> q  :q<CR>
   autocmd FileType which_key      set laststatus=0 noshowmode | autocmd BufLeave <buffer> set laststatus=2 showmode
 augroup END
+
+function! s:HandleMarkdownBufEnter()
+  call <SID>RegisterMarkdownWhichKey()
+  autocmd BufLeave <buffer> call <SID>ClearMarkdownWhichKey()
+endfunction
 
 function! s:RegisterMarkdownWhichKey()
   let g:which_key_map.a.t = ['TableFormat', 'Format Table']
@@ -166,8 +171,11 @@ function! s:RegisterMarkdownWhichKey()
         \ 'k': ['Xmark+', 'Top'],
         \ 'l': ['Xmark>', 'Right'],
         \ }
-  autocmd BufLeave <buffer> if has_key(g:which_key_map.a, 't') | unlet g:which_key_map.a.t | endif
-  autocmd BufLeave <buffer> if has_key(g:which_key_map, 'm') | unlet g:which_key_map.m | endif
+endfunction
+
+function! s:ClearMarkdownWhichKey()
+  if has_key(g:which_key_map.a, 't') | unlet g:which_key_map.a.t | endif
+  if has_key(g:which_key_map, 'm') | unlet g:which_key_map.m | endif
 endfunction
 
 "
