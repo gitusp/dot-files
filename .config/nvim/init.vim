@@ -78,6 +78,8 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'andymass/vim-matchup'
 " Extended text objects
 Plug 'wellle/targets.vim'
+" Emoji completion
+Plug 'junegunn/vim-emoji'
 
 call plug#end()
 "
@@ -109,6 +111,7 @@ set laststatus=2
 " Other settings
 set hidden
 set completeopt=noinsert,menuone,noselect
+set completefunc=emoji#complete
 
 "
 " Custom mappings
