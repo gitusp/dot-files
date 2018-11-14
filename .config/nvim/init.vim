@@ -69,8 +69,6 @@ Plug 'AndrewRadev/switch.vim'
 Plug 'cohama/lexima.vim'
 " Guide key
 Plug 'liuchengxu/vim-which-key'
-" Align helper
-Plug 'junegunn/vim-easy-align'
 " Async task runner
 Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
@@ -291,7 +289,6 @@ call which_key#register('<Space>', "g:which_key_map")
 let g:which_key_map =  {}
 let g:which_key_map.a = {
       \ 'name': '+auto-format',
-      \ 'a': ['<Plug>(EasyAlign)', 'Align'],
       \ 'f': ['ALEFix',            'Fix'],
       \ }
 let g:which_key_map.d = {
