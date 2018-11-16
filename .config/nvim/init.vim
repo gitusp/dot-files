@@ -80,6 +80,8 @@ Plug 'andymass/vim-matchup'
 Plug 'wellle/targets.vim'
 " Emoji completion
 Plug 'junegunn/vim-emoji'
+" Local vimrc
+Plug 'embear/vim-localvimrc'
 
 call plug#end()
 "
