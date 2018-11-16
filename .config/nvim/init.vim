@@ -154,6 +154,8 @@ augroup vimrc
   autocmd FileType go             setlocal noexpandtab
   autocmd FileType go             nnoremap <silent><buffer> K  :call LanguageClient#textDocument_hover()<CR>
   autocmd FileType go             nnoremap <silent><buffer> gd :call LanguageClient#textDocument_definition()<CR>
+  autocmd FileType javascript     nnoremap <silent><buffer> K  :call LanguageClient#textDocument_hover()<CR>
+  autocmd FileType javascript     nnoremap <silent><buffer> gd :call LanguageClient#textDocument_definition()<CR>
   autocmd FileType help           nnoremap <silent><buffer> q  :q<CR>
   autocmd FileType which_key      set laststatus=0 noshowmode | autocmd BufLeave <buffer> set laststatus=2 showmode
 augroup END
@@ -246,6 +248,7 @@ let g:ale_fixers = {
 
 "
 " LSP Settings
+" TODO: Javascript Language Server
 "
 let g:LanguageClient_serverCommands = {
   \ 'go': ['go-langserver', '-gocodecompletion'],
