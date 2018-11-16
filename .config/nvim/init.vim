@@ -297,7 +297,7 @@ call which_key#register('<Space>', "g:which_key_map")
 let g:which_key_map =  {}
 let g:which_key_map.a = {
       \ 'name': '+auto-format',
-      \ 'f': ['ALEFix',            'Fix'],
+      \ 'f': ['ALEFix', 'Fix'],
       \ }
 let g:which_key_map.d = {
       \ 'name': '+diff',
