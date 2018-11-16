@@ -9,6 +9,7 @@ Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'w0rp/ale'
 " Javascript syntax highlight
 Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 " Pug syntax highlight
 Plug 'digitaltoad/vim-pug'
 " Load editorconfig.
