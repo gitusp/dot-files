@@ -189,7 +189,6 @@ endfunction
 "
 command!       -nargs=? Note call <SID>Note('<args>')
 command!       -nargs=0 ToggleIwhite call <SID>ToggleIwhite()
-command! -bang -nargs=* WAg call fzf#vim#ag(<q-args>, '--word-regexp', <bang>0)
 
 "
 " Completor Integration
@@ -273,6 +272,14 @@ map <Plug> <Plug>Markdown_MoveToCurHeader
 "
 let g:auto_save = 1
 let g:auto_save_silent = 1
+
+"
+" FZF settings
+"
+" Add --hidden to default :Rg
+command! -bang -nargs=* Rg  call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden ".shellescape(<q-args>), 1, <bang>0)
+" with --word-regexp version
+command! -bang -nargs=* WRg  call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden --word-regexp ".shellescape(<q-args>), 1, <bang>0)
 
 "
 " Test settings
