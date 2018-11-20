@@ -187,8 +187,8 @@ endfunction
 "
 " Custom commands
 "
-command!       -nargs=? Note call <SID>Note('<args>')
-command!       -nargs=0 ToggleIwhite call <SID>ToggleIwhite()
+command! -nargs=? Note call <SID>Note('<args>')
+command! -nargs=0 ToggleIwhite call <SID>ToggleIwhite()
 
 "
 " Completor Integration
@@ -337,6 +337,10 @@ let g:which_key_map.g = {
       \ 'v': ['GV',                   'Visual Log'],
       \ 'V': ['GV --all',             'Visual Log (all)'],
       \ 'w': ['Gwrite',               'Write'],
+      \ }
+let g:which_key_map.l = {
+      \ 'name': '+LSP',
+      \ 'c': ['call LanguageClient_contextMenu()', 'Context Menu'],
       \ }
 let g:which_key_map.t = {
       \ 'name': '+test',
