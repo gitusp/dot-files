@@ -153,12 +153,12 @@ augroup vimrc
   autocmd TermOpen *              startinsert
   autocmd BufRead  COMMIT_EDITMSG if getline('.') == '' | startinsert | endif
   autocmd FileType go             setlocal noexpandtab
-  autocmd FileType go             nnoremap <silent><buffer> K  :call LanguageClient#textDocument_hover()<CR>
-  autocmd FileType go             nnoremap <silent><buffer> gd :call LanguageClient#textDocument_definition()<CR>
-  autocmd FileType javascript     nnoremap <silent><buffer> K  :call LanguageClient#textDocument_hover()<CR>
-  autocmd FileType javascript     nnoremap <silent><buffer> gd :call LanguageClient#textDocument_definition()<CR>
   autocmd FileType help           nnoremap <silent><buffer> q  :q<CR>
   autocmd FileType which_key      set laststatus=0 noshowmode | autocmd BufLeave <buffer> set laststatus=2 showmode
+  " LSP
+  autocmd FileType go,haskell,javascript,javascript.jsx nnoremap <silent><buffer> K  :call LanguageClient#textDocument_hover()<CR>
+  autocmd FileType go,haskell,javascript,javascript.jsx nnoremap <silent><buffer> gd :call LanguageClient#textDocument_definition()<CR>
+  autocmd BufEnter * if index(['go', 'haskell', 'javascript', 'javascript.jsx'], &filetype) != -1 | call <SID>HandleLSPBufEnter() | endif
 augroup END
 
 function! s:HandleMarkdownBufEnter()
@@ -182,6 +182,22 @@ endfunction
 function! s:ClearMarkdownWhichKey()
   if has_key(g:which_key_map.a, 't') | unlet g:which_key_map.a.t | endif
   if has_key(g:which_key_map, 'm') | unlet g:which_key_map.m | endif
+endfunction
+
+function! s:HandleLSPBufEnter()
+  call <SID>RegisterLSPWhichKey()
+  autocmd BufLeave <buffer> call <SID>ClearLSPWhichKey()
+endfunction
+
+function! s:RegisterLSPWhichKey()
+  let g:which_key_map.l = {
+        \ 'name': '+LSP',
+        \ 'c': ['call LanguageClient_contextMenu()', 'Context Menu'],
+        \ }
+endfunction
+
+function! s:ClearLSPWhichKey()
+  if has_key(g:which_key_map, 'l') | unlet g:which_key_map.l | endif
 endfunction
 
 "
@@ -251,7 +267,8 @@ let g:ale_fixers = {
 " TODO: Javascript Language Server
 "
 let g:LanguageClient_serverCommands = {
-  \ 'go': ['go-langserver', '-gocodecompletion'],
+  \ 'go':      ['go-langserver', '-gocodecompletion'],
+  \ 'haskell': ['hie-wrapper'],
   \ }
 let g:LanguageClient_autoStart = 1
 
@@ -337,10 +354,6 @@ let g:which_key_map.g = {
       \ 'v': ['GV',                   'Visual Log'],
       \ 'V': ['GV --all',             'Visual Log (all)'],
       \ 'w': ['Gwrite',               'Write'],
-      \ }
-let g:which_key_map.l = {
-      \ 'name': '+LSP',
-      \ 'c': ['call LanguageClient_contextMenu()', 'Context Menu'],
       \ }
 let g:which_key_map.t = {
       \ 'name': '+test',
