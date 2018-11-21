@@ -268,7 +268,7 @@ selection:
 
 dynamic_title: false
 
-hide_cursor_when_typing: true
+hide_cursor_when_typing: false
 
 # Cursor style
 #
