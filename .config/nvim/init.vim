@@ -297,6 +297,7 @@ let g:auto_save_silent = 1
 command! -bang -nargs=* Rg  call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden ".shellescape(<q-args>), 1, <bang>0)
 " with --word-regexp version
 command! -bang -nargs=* WRg  call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden --word-regexp ".shellescape(<q-args>), 1, <bang>0)
+let $FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 
 "
 " Test settings
