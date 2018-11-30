@@ -5,8 +5,6 @@ call plug#begin()
 
 " Colorscheme
 Plug 'chriskempson/vim-tomorrow-theme'
-" Syntax checker
-Plug 'w0rp/ale'
 " Javascript syntax highlight
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
@@ -82,6 +80,10 @@ Plug 'junegunn/vim-emoji'
 Plug 'embear/vim-localvimrc'
 " Grep helper
 Plug 'mhinz/vim-grepper'
+" Fuzzy finder
+Plug 'ctrlpvim/ctrlp.vim'
+" Code formatter
+Plug 'sbdchd/neoformat'
 
 call plug#end()
 "
@@ -124,15 +126,14 @@ nnoremap          Q             @q
 nnoremap          _             @:
 nmap              gs            <plug>(GrepperOperator)
 nnoremap          gss           :Grepper<CR>
-nnoremap <silent> [a            :ALEPreviousWrap<CR>
-nnoremap <silent> ]a            :ALENextWrap<CR>
-nnoremap <silent> [A            :ALEFirst<CR>
-nnoremap <silent> ]A            :ALELast<CR>
-" NOTE: `q` stands for 'quickfix'
 nnoremap <silent> [q            :cprevious<CR>
 nnoremap <silent> ]q            :cnext<CR>
 nnoremap <silent> [Q            :cfirst<CR>
 nnoremap <silent> ]Q            :clast<CR>
+nnoremap <silent> [l            :lprevious<CR>
+nnoremap <silent> ]l            :lnext<CR>
+nnoremap <silent> [L            :lfirst<CR>
+nnoremap <silent> ]L            :llast<CR>
 nnoremap <silent> <C-L>         :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 " Normal mode - mappings with <Meta>
 nnoremap <silent> <M-a>         :Switch<CR>
@@ -159,6 +160,7 @@ augroup vimrc
   " LSP
   autocmd FileType go,haskell,javascript,javascript.jsx nnoremap <silent><buffer> K  :call LanguageClient#textDocument_hover()<CR>
   autocmd FileType go,haskell,javascript,javascript.jsx nnoremap <silent><buffer> gd :call LanguageClient#textDocument_definition()<CR>
+  autocmd FileType go,haskell,javascript,javascript.jsx setlocal signcolumn=yes
   autocmd BufEnter * if index(['go', 'haskell', 'javascript', 'javascript.jsx'], &filetype) != -1 | call <SID>HandleLSPBufEnter() | endif
 augroup END
 
@@ -233,40 +235,11 @@ endfunction
 runtime macros/sandwich/keymap/surround.vim
 
 "
-" ALE settings
-"
-let g:ale_sign_column_always = 1
-let g:ale_sign_error = "◉"
-let g:ale_sign_warning = "◉"
-highlight ALEErrorSign ctermfg=9
-highlight ALEWarningSign ctermfg=11
-
-" Linters
-" Setup tips:
-" eslint: Install `eslint` project-locally while install `eslint-cli` globally.
-let g:ale_linters = {
-\   'javascript': ['eslint'],
-\}
-" Faster go linter
-call ale#linter#Define('go', {
-\   'name': 'revive',
-\   'output_stream': 'both',
-\   'executable': 'revive',
-\   'read_buffer': 0,
-\   'command': 'revive %t',
-\   'callback': 'ale#handlers#unix#HandleAsWarning',
-\})
-
-" Fixers
-let g:ale_fixers = {
-\   'go': ['goimports'],
-\   'javascript': ['prettier', 'eslint'],
-\}
-
-"
 " LSP Settings
 " TODO: Javascript Language Server
 "
+highlight ALEErrorSign ctermfg=9
+highlight ALEWarningSign ctermfg=11
 let g:LanguageClient_serverCommands = {
   \ 'go':      ['go-langserver', '-gocodecompletion'],
   \ 'haskell': ['hie-wrapper'],
@@ -322,7 +295,7 @@ let g:which_key_map.d = {
       \ }
 let g:which_key_map.f = {
       \ 'name': '+format',
-      \ 'f': ['ALEFix', 'Fix'],
+      \ 'f': ['Neoformat', 'Format'],
       \ }
 let g:which_key_map.g = {
       \ 'name': '+git',
@@ -368,6 +341,11 @@ let g:grepper = {
       \ 'tools':      ['rg', 'rg-in-word'],
       \ 'quickfix':   0
       \ }
+
+"
+" Fuzzy finder
+"
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 "
 " Toggle diffopt
