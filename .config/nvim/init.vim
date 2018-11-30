@@ -26,9 +26,6 @@ Plug 'godlygeek/tabular'
 " Markdown support
 Plug 'plasticboy/vim-markdown'
 Plug 'junegunn/vim-xmark', { 'do': 'make' }
-" Fuzzy finder
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
 " Comment out/in
 Plug 'tpope/vim-commentary'
 " Text Surrounding
@@ -83,6 +80,8 @@ Plug 'wellle/targets.vim'
 Plug 'junegunn/vim-emoji'
 " Local vimrc
 Plug 'embear/vim-localvimrc'
+" Grep helper
+Plug 'mhinz/vim-grepper'
 
 call plug#end()
 "
@@ -123,6 +122,8 @@ set completefunc=emoji#complete
 nnoremap          Y             y$
 nnoremap          Q             @q
 nnoremap          _             @:
+nmap              gs            <plug>(GrepperOperator)
+nnoremap          gss           :Grepper<CR>
 nnoremap <silent> [a            :ALEPreviousWrap<CR>
 nnoremap <silent> ]a            :ALENextWrap<CR>
 nnoremap <silent> [A            :ALEFirst<CR>
@@ -138,10 +139,10 @@ nnoremap <silent> <M-a>         :Switch<CR>
 nnoremap <silent> <M-x>         :SwitchReverse<CR>
 nnoremap <silent> <M-i>         :call <SID>SuperJump("1\<C-I>")<CR>
 nnoremap <silent> <M-o>         :call <SID>SuperJump("\<C-O>")<CR>
+" Visual mode
+xmap              gs            <plug>(GrepperOperator)
 " Terminal mode
 tnoremap          <Esc>         <C-\><C-N>
-" Insert mode
-imap              <C-X><C-L>    <Plug>(fzf-complete-buffer-line)
 
 "
 " autocmd
@@ -167,7 +168,7 @@ function! s:HandleMarkdownBufEnter()
 endfunction
 
 function! s:RegisterMarkdownWhichKey()
-  let g:which_key_map.a.t = ['TableFormat', 'Format Table']
+  let g:which_key_map.f.t = ['TableFormat', 'Table']
   let g:which_key_map.m = {
         \ 'name': '+markdown-preview',
         \ 'c': ['Xmark!', 'Close'],
@@ -180,7 +181,7 @@ function! s:RegisterMarkdownWhichKey()
 endfunction
 
 function! s:ClearMarkdownWhichKey()
-  if has_key(g:which_key_map.a, 't') | unlet g:which_key_map.a.t | endif
+  if has_key(g:which_key_map.f, 't') | unlet g:which_key_map.f.t | endif
   if has_key(g:which_key_map, 'm') | unlet g:which_key_map.m | endif
 endfunction
 
@@ -291,15 +292,6 @@ let g:auto_save = 1
 let g:auto_save_silent = 1
 
 "
-" FZF settings
-"
-" Add --hidden to default :Rg
-command! -bang -nargs=* Rg  call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden ".shellescape(<q-args>), 1, <bang>0)
-" with --word-regexp version
-command! -bang -nargs=* WRg  call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden --word-regexp ".shellescape(<q-args>), 1, <bang>0)
-let $FZF_DEFAULT_COMMAND='rg --hidden -l ""'
-
-"
 " Test settings
 "
 let test#go#gotest#options = '-v'
@@ -322,10 +314,6 @@ nnoremap <silent> <Space> :WhichKey '<Space>'<CR>
 xnoremap <silent> <Space> :WhichKeyVisual '<Space>'<CR>
 call which_key#register('<Space>', "g:which_key_map")
 let g:which_key_map =  {}
-let g:which_key_map.a = {
-      \ 'name': '+auto-format',
-      \ 'f': ['ALEFix', 'Fix'],
-      \ }
 let g:which_key_map.d = {
       \ 'name': '+diff',
       \ 'i': ['ToggleIwhite', 'Toggle iwhite for diffopt'],
@@ -333,15 +321,8 @@ let g:which_key_map.d = {
       \ 't': ['diffthis',     'Diff This'],
       \ }
 let g:which_key_map.f = {
-      \ 'name': '+fzf',
-      \ 'b': ['Buffers',  'Buffers'],
-      \ 'c': ['Commands', 'Commands'],
-      \ 'f': ['Files',    'Files'],
-      \ 'g': ['GFiles',   'Git Files'],
-      \ 'h': ['History',  'File History'],
-      \ ':': ['History:', 'Command History'],
-      \ '/': ['History/', 'Search History'],
-      \ 'l': ['BLines',   'Buffer Lines'],
+      \ 'name': '+format',
+      \ 'f': ['ALEFix', 'Fix'],
       \ }
 let g:which_key_map.g = {
       \ 'name': '+git',
@@ -377,6 +358,16 @@ let g:switch_mapping = ""
 let g:switch_custom_definitions = [
 \   ['foo', 'bar', 'baz', 'qux', 'quux', 'corge', 'grault', 'garply', 'waldo', 'fred', 'plugh', 'xyzzy', 'thud']
 \ ]
+
+"
+" Grepper settings
+"
+let g:grepper = {
+      \ 'rg':         { 'grepprg': 'rg --vimgrep --no-heading --smart-case --hidden --glob !.git --word-regexp' },
+      \ 'rg-in-word': { 'grepprg': 'rg --vimgrep --no-heading --smart-case --hidden --glob !.git' },
+      \ 'tools':      ['rg', 'rg-in-word'],
+      \ 'quickfix':   0
+      \ }
 
 "
 " Toggle diffopt
