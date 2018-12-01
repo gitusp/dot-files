@@ -57,8 +57,6 @@ Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2-ultisnips'
 " Register util
 Plug 'junegunn/vim-peekaboo'
-" auto save
-Plug '907th/vim-auto-save'
 " word switcher
 Plug 'AndrewRadev/switch.vim'
 " Auto pairing
@@ -125,7 +123,7 @@ nnoremap          Y             y$
 nnoremap          Q             @q
 nnoremap          _             @:
 nmap              gs            <plug>(GrepperOperator)
-nnoremap          gss           :Grepper<CR>
+nnoremap <silent> gss           :Grepper<CR>
 nnoremap <silent> [q            :cprevious<CR>
 nnoremap <silent> ]q            :cnext<CR>
 nnoremap <silent> [Q            :cfirst<CR>
@@ -135,6 +133,7 @@ nnoremap <silent> ]l            :lnext<CR>
 nnoremap <silent> [L            :lfirst<CR>
 nnoremap <silent> ]L            :llast<CR>
 nnoremap <silent> <C-L>         :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+nnoremap <silent> <Esc>         :w<CR>
 " Normal mode - mappings with <Meta>
 nnoremap <silent> <M-a>         :Switch<CR>
 nnoremap <silent> <M-x>         :SwitchReverse<CR>
@@ -257,12 +256,6 @@ let g:javascript_plugin_flow = 1
 "
 " NOTE: To avoid conflicting
 map <Plug> <Plug>Markdown_MoveToCurHeader
-
-"
-" Auto save settings
-"
-let g:auto_save = 1
-let g:auto_save_silent = 1
 
 "
 " Test settings
