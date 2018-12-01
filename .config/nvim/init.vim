@@ -151,11 +151,14 @@ augroup vimrc
   autocmd!
   autocmd BufEnter *              call ncm2#enable_for_buffer()
   autocmd BufEnter *              if &filetype ==# 'markdown' | call <SID>HandleMarkdownBufEnter() | endif
+  autocmd FileType go             setlocal noexpandtab
+  autocmd FileType which_key      set laststatus=0 noshowmode | autocmd BufLeave <buffer> set laststatus=2 showmode
+  " convenient shortcuts
+  autocmd FileType help           nnoremap <silent><buffer> q     :q<CR>
+  autocmd BufRead  COMMIT_EDITMSG nnoremap <silent><buffer> <Esc> :wq<CR>
+  " auto-startinsert
   autocmd TermOpen *              startinsert
   autocmd BufRead  COMMIT_EDITMSG if getline('.') == '' | startinsert | endif
-  autocmd FileType go             setlocal noexpandtab
-  autocmd FileType help           nnoremap <silent><buffer> q  :q<CR>
-  autocmd FileType which_key      set laststatus=0 noshowmode | autocmd BufLeave <buffer> set laststatus=2 showmode
   " LSP
   autocmd FileType go,haskell,javascript,javascript.jsx nnoremap <silent><buffer> K  :call LanguageClient#textDocument_hover()<CR>
   autocmd FileType go,haskell,javascript,javascript.jsx nnoremap <silent><buffer> gd :call LanguageClient#textDocument_definition()<CR>
