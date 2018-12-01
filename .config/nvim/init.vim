@@ -161,6 +161,8 @@ augroup vimrc
   autocmd FileType go,haskell,javascript,javascript.jsx nnoremap <silent><buffer> gd :call LanguageClient#textDocument_definition()<CR>
   autocmd FileType go,haskell,javascript,javascript.jsx setlocal signcolumn=yes
   autocmd BufEnter * if index(['go', 'haskell', 'javascript', 'javascript.jsx'], &filetype) != -1 | call <SID>HandleLSPBufEnter() | endif
+  " Neoformat
+  autocmd BufWritePre *.js undojoin | Neoformat
 augroup END
 
 function! s:HandleMarkdownBufEnter()
@@ -169,7 +171,10 @@ function! s:HandleMarkdownBufEnter()
 endfunction
 
 function! s:RegisterMarkdownWhichKey()
-  let g:which_key_map.f.t = ['TableFormat', 'Table']
+  let g:which_key_map.f = {
+        \ 'name': '+format',
+        \ 't': ['TableFormat', 'Table'],
+        \ }
   let g:which_key_map.m = {
         \ 'name': '+markdown-preview',
         \ 'c': ['Xmark!', 'Close'],
@@ -182,7 +187,7 @@ function! s:RegisterMarkdownWhichKey()
 endfunction
 
 function! s:ClearMarkdownWhichKey()
-  if has_key(g:which_key_map.f, 't') | unlet g:which_key_map.f.t | endif
+  if has_key(g:which_key_map, 'f') | unlet g:which_key_map.f | endif
   if has_key(g:which_key_map, 'm') | unlet g:which_key_map.m | endif
 endfunction
 
@@ -192,6 +197,7 @@ function! s:HandleLSPBufEnter()
 endfunction
 
 function! s:RegisterLSPWhichKey()
+  " TODO: Expand context menu
   let g:which_key_map.l = {
         \ 'name': '+LSP',
         \ 'c': ['call LanguageClient_contextMenu()', 'Context Menu'],
@@ -285,10 +291,6 @@ let g:which_key_map.d = {
       \ 'i': ['ToggleIwhite', 'Toggle iwhite for diffopt'],
       \ 'o': ['diffoff',      'Diff Off'],
       \ 't': ['diffthis',     'Diff This'],
-      \ }
-let g:which_key_map.f = {
-      \ 'name': '+format',
-      \ 'f': ['Neoformat', 'Format'],
       \ }
 let g:which_key_map.g = {
       \ 'name': '+git',
