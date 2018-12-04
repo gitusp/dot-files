@@ -348,7 +348,8 @@ let g:grepper = {
 "
 " Fuzzy finder
 "
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+let g:ctrlp_user_command = 'rg %s --files --hidden --glob !.git'
+let g:ctrlp_use_caching = 0
 
 "
 " Toggle diffopt
