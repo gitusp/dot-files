@@ -165,7 +165,7 @@ augroup vimrc
   autocmd FileType go,haskell,javascript,javascript.jsx setlocal signcolumn=yes
   autocmd BufEnter * if index(['go', 'haskell', 'javascript', 'javascript.jsx'], &filetype) != -1 | call <SID>HandleLSPBufEnter() | endif
   " Neoformat
-  autocmd BufWritePre *.js undojoin | Neoformat
+  autocmd BufWritePre *.js try | undojoin | catch | endtry | Neoformat
 augroup END
 
 function! s:HandleMarkdownBufEnter()
