@@ -5,6 +5,3 @@ function note () {
 function notef () {
 	echo ~/Notes/`date +%F``echo $1 | sed 's/^\(.\)/-\1/'`.md
 }
-
-# alacritty new instance
-alias ani='open -na alacritty'
