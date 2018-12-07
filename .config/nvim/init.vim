@@ -326,7 +326,6 @@ let g:which_key_map.u = {
       \ 'n': ['Note .',         'Open Local Note'],
       \ 'N': ['Note',           'Open Global Note'],
       \ 's': ['set spell!',     'Toggle Spell Check'],
-      \ 't': ['terminal',       'Open Terminal'],
       \ 'u': ['UndotreeToggle', 'Undo Tree Toggle'],
       \ }
 
