@@ -83,6 +83,8 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'nixprime/cpsm', { 'do': 'bash install.sh' }
 " Code formatter
 Plug 'sbdchd/neoformat'
+" Stylus syntax highlight
+Plug 'iloginow/vim-stylus'
 
 call plug#end()
 "
