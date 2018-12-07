@@ -80,6 +80,7 @@ Plug 'embear/vim-localvimrc'
 Plug 'mhinz/vim-grepper'
 " Fuzzy finder
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'nixprime/cpsm', { 'do': 'bash install.sh' }
 " Code formatter
 Plug 'sbdchd/neoformat'
 
@@ -350,6 +351,7 @@ let g:grepper = {
 "
 let g:ctrlp_user_command = 'rg %s --files --hidden --glob !.git'
 let g:ctrlp_use_caching = 0
+let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 
 "
 " Toggle diffopt
