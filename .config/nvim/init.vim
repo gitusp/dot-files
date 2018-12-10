@@ -297,12 +297,6 @@ nnoremap <silent> <Space> :WhichKey '<Space>'<CR>
 xnoremap <silent> <Space> :WhichKeyVisual '<Space>'<CR>
 call which_key#register('<Space>', "g:which_key_map")
 let g:which_key_map =  {}
-let g:which_key_map.d = {
-      \ 'name': '+diff',
-      \ 'i': ['ToggleIwhite', 'Toggle iwhite for diffopt'],
-      \ 'o': ['diffoff',      'Diff Off'],
-      \ 't': ['diffthis',     'Diff This'],
-      \ }
 let g:which_key_map.g = {
       \ 'name': '+git',
       \ 'c': ['Gcommit',              'Commit'],
@@ -316,6 +310,11 @@ let g:which_key_map.g = {
       \ 'V': ['GV --all',             'Visual Log (all)'],
       \ 'w': ['Gwrite',               'Write'],
       \ }
+let g:which_key_map.n = {
+      \ 'name': '+note',
+      \ 'g': ['Note',   'Open Global Note'],
+      \ 'l': ['Note .', 'Open Local Note'],
+      \ }
 let g:which_key_map.t = {
       \ 'name': '+test',
       \ 'l': ['TestLast',     'Last'],
@@ -323,8 +322,7 @@ let g:which_key_map.t = {
       \ }
 let g:which_key_map.u = {
       \ 'name': '+utils',
-      \ 'n': ['Note .',         'Open Local Note'],
-      \ 'N': ['Note',           'Open Global Note'],
+      \ 'i': ['ToggleIwhite',   'Toggle iwhite for diffopt'],
       \ 's': ['set spell!',     'Toggle Spell Check'],
       \ 'u': ['UndotreeToggle', 'Undo Tree Toggle'],
       \ }
