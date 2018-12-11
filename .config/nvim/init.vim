@@ -254,7 +254,7 @@ highlight ALEErrorSign ctermfg=9
 highlight ALEWarningSign ctermfg=11
 let g:LanguageClient_serverCommands = {
   \ 'go':      ['go-langserver', '-gocodecompletion'],
-  \ 'haskell': ['hie-wrapper'],
+  \ 'haskell': ['hie-wrapper', '--lsp'],
   \ }
 let g:LanguageClient_autoStart = 1
 
@@ -295,7 +295,6 @@ let g:matchup_transmute_enabled = 1
 " which key
 "
 nnoremap <silent> <Space> :WhichKey '<Space>'<CR>
-xnoremap <silent> <Space> :WhichKeyVisual '<Space>'<CR>
 call which_key#register('<Space>', "g:which_key_map")
 let g:which_key_map =  {}
 let g:which_key_map.g = {
@@ -316,16 +315,15 @@ let g:which_key_map.n = {
       \ 'g': ['Note',   'Open Global Note'],
       \ 'l': ['Note .', 'Open Local Note'],
       \ }
+let g:which_key_map.s = {
+      \ 'name': '+settings',
+      \ 'i': ['ToggleIwhite', 'Toggle iwhite for diffopt'],
+      \ 's': ['set spell!',   'Toggle Spell Check'],
+      \ }
 let g:which_key_map.t = {
       \ 'name': '+test',
       \ 'l': ['TestLast',     'Last'],
       \ 'n': ['TestNearest',  'Nearest'],
-      \ }
-let g:which_key_map.u = {
-      \ 'name': '+utils',
-      \ 'i': ['ToggleIwhite',   'Toggle iwhite for diffopt'],
-      \ 's': ['set spell!',     'Toggle Spell Check'],
-      \ 'u': ['UndotreeToggle', 'Undo Tree Toggle'],
       \ }
 
 "
