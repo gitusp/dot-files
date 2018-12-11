@@ -55,6 +55,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2-ultisnips'
+Plug 'ncm2/ncm2-path'
 " Register util
 Plug 'junegunn/vim-peekaboo'
 " word switcher
