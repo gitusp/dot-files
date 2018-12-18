@@ -86,6 +86,9 @@ Plug 'nixprime/cpsm', { 'do': 'bash install.sh' }
 Plug 'sbdchd/neoformat'
 " Stylus syntax highlight
 Plug 'iloginow/vim-stylus'
+" Fuzzy helper
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 "
@@ -147,6 +150,8 @@ nnoremap <silent> <M-o>         :call <SID>SuperJump("\<C-O>")<CR>
 xmap              gs            <plug>(GrepperOperator)
 " Terminal mode
 tnoremap          <Esc>         <C-\><C-N>
+" Insert mode
+imap              <C-X><C-L>    <Plug>(fzf-complete-line)
 
 "
 " autocmd
