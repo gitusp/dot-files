@@ -129,6 +129,7 @@ set completefunc=emoji#complete
 nnoremap          Y             y$
 nnoremap          Q             @q
 nnoremap          _             @:
+nnoremap          gl            :Lines<CR>
 nmap              gs            <plug>(GrepperOperator)
 nnoremap <silent> gss           :Grepper<CR>
 nnoremap <silent> [q            :cprevious<CR>
