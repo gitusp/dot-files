@@ -220,6 +220,7 @@ endfunction
 "
 command! -nargs=? Note call <SID>Note('<args>')
 command! -nargs=0 ToggleIwhite call <SID>ToggleIwhite()
+command! -nargs=0 SwitchDiffAlgorithm call <SID>SwitchDiffAlgorithm()
 
 "
 " Completor Integration
@@ -317,8 +318,9 @@ let g:which_key_map.n = {
       \ }
 let g:which_key_map.s = {
       \ 'name': '+settings',
-      \ 'i': ['ToggleIwhite', 'Toggle iwhite for diffopt'],
-      \ 's': ['set spell!',   'Toggle Spell Check'],
+      \ 'a': ['SwitchDiffAlgorithm', 'Switch algorithm for diffopt'],
+      \ 'i': ['ToggleIwhite',        'Toggle iwhite for diffopt'],
+      \ 's': ['set spell!',          'Toggle Spell Check'],
       \ }
 let g:which_key_map.t = {
       \ 'name': '+test',
@@ -360,6 +362,28 @@ function! s:ToggleIwhite()
  else
    set diffopt+=iwhite
  endif
+endfunction
+
+"
+" Switch diff algorithm
+"
+function! s:SwitchDiffAlgorithm()
+  let algorithms = ['myers', 'minimal', 'patience', 'histogram']
+  if &diffopt !~ 'algorithm'
+    " Set default algorithm
+    set diffopt+=algorithm:myers
+  endif
+  let i = 0
+  while i < len(algorithms)
+    if &diffopt =~ 'algorithm:' . algorithms[i]
+      let j = i == len(algorithms) - 1 ? 0 : i + 1
+      execute 'set diffopt-=algorithm:' . algorithms[i]
+      execute 'set diffopt+=algorithm:' . algorithms[j]
+      echo 'algorithm:' . algorithms[j]
+      break
+    endif
+    let i = i + 1
+  endwhile
 endfunction
 
 "
