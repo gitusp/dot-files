@@ -228,9 +228,11 @@ endfunction
 "
 " Custom commands
 "
-command! -nargs=? Note call <SID>Note('<args>')
-command! -nargs=0 ToggleIwhite call <SID>ToggleIwhite()
-command! -nargs=0 SwitchDiffAlgorithm call <SID>SwitchDiffAlgorithm()
+command!       -nargs=? Note                call <SID>Note('<args>')
+command!       -nargs=0 ToggleIwhite        call <SID>ToggleIwhite()
+command!       -nargs=0 SwitchDiffAlgorithm call <SID>SwitchDiffAlgorithm()
+" FZF Add --hidden to default :Rg
+command! -bang -nargs=* Rg                  call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden ".shellescape(<q-args>), 1, <bang>0)
 
 "
 " Completor Integration
