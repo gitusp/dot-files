@@ -3,8 +3,9 @@
 "
 call plug#begin()
 
-" Colorscheme
-Plug 'chriskempson/vim-tomorrow-theme'
+" Theme
+Plug 'rakr/vim-one'
+Plug 'itchyny/lightline.vim'
 " Javascript syntax highlight
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
@@ -98,7 +99,8 @@ call plug#end()
 "
 " General Settings
 "
-colorscheme Tomorrow-Night
+colorscheme one
+set background=dark
 " Search settings
 set ignorecase
 set smartcase
@@ -117,6 +119,8 @@ set lazyredraw
 set shortmess+=c
 set shortmess+=I
 set laststatus=2
+set termguicolors
+set noshowmode
 " Other settings
 set hidden
 set completeopt=noinsert,menuone,noselect
@@ -162,7 +166,7 @@ augroup vimrc
   autocmd BufEnter *              call ncm2#enable_for_buffer()
   autocmd BufEnter *              if &filetype ==# 'markdown' | call <SID>HandleMarkdownBufEnter() | endif
   autocmd FileType go             setlocal noexpandtab
-  autocmd FileType which_key      set laststatus=0 noshowmode | autocmd BufLeave <buffer> set laststatus=2 showmode
+  autocmd FileType which_key      set laststatus=0 | autocmd BufLeave <buffer> set laststatus=2
   " convenient shortcuts
   autocmd FileType help           nnoremap <silent><buffer> q     :q<CR>
   autocmd BufRead  COMMIT_EDITMSG nnoremap <silent><buffer> <Esc> :wq<CR>
@@ -275,6 +279,11 @@ let g:javascript_plugin_flow = 1
 " JSX settings
 "
 let g:jsx_ext_required = 1
+
+"
+" lightline settings
+"
+let g:lightline = { 'colorscheme': 'one' }
 
 "
 " Markdown settings
