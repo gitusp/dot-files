@@ -303,11 +303,6 @@ let test#strategy = "neovim"
 let $VISUAL = 'nvr -cc split --remote-wait --remote-send i'
 
 "
-" matchup settings
-"
-let g:matchup_transmute_enabled = 1
-
-"
 " which key
 "
 nnoremap <silent> <Space> :WhichKey '<Space>'<CR>
