@@ -168,7 +168,7 @@ augroup vimrc
   autocmd FileType go             setlocal noexpandtab
   autocmd FileType which_key      set laststatus=0 | autocmd BufLeave <buffer> set laststatus=2
   " convenient shortcuts
-  autocmd FileType help           nnoremap <silent><buffer> q     :q<CR>
+  autocmd FileType help,qf        nnoremap <silent><buffer> q     :q<CR>
   autocmd BufRead  COMMIT_EDITMSG nnoremap <silent><buffer> <Esc> :wq<CR>
   " auto-startinsert
   autocmd TermOpen *              startinsert
