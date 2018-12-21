@@ -20,6 +20,7 @@ Plug 'tpope/vim-repeat'
 " Git integration
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
+Plug 'jreybert/vimagit'
 " Text alignment - e.g. TableFormat
 Plug 'godlygeek/tabular'
 " Markdown support
@@ -65,9 +66,6 @@ Plug 'AndrewRadev/switch.vim'
 Plug 'cohama/lexima.vim'
 " Guide key
 Plug 'liuchengxu/vim-which-key'
-" Async task runner
-Plug 'tpope/vim-dispatch'
-Plug 'radenling/vim-dispatch-neovim'
 " Highlight trailing spaces
 Plug 'ntpeters/vim-better-whitespace'
 " Powerful matcher
@@ -90,6 +88,9 @@ Plug 'iloginow/vim-stylus'
 " Fuzzy helper
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+" Async task runner
+Plug 'tpope/vim-dispatch'
+Plug 'radenling/vim-dispatch-neovim'
 
 call plug#end()
 "
@@ -169,10 +170,8 @@ augroup vimrc
   autocmd FileType which_key      set laststatus=0 | autocmd BufLeave <buffer> set laststatus=2
   " convenient shortcuts
   autocmd FileType help,qf        nnoremap <silent><buffer> q     :q<CR>
-  autocmd BufRead  COMMIT_EDITMSG nnoremap <silent><buffer> <Esc> :wq<CR>
   " auto-startinsert
   autocmd TermOpen *              startinsert
-  autocmd BufRead  COMMIT_EDITMSG if getline('.') == '' | startinsert | endif
   " LSP
   autocmd FileType go,haskell,javascript,javascript.jsx nnoremap <silent><buffer> K  :call LanguageClient#textDocument_hover()<CR>
   autocmd FileType go,haskell,javascript,javascript.jsx nnoremap <silent><buffer> gd :call LanguageClient#textDocument_definition()<CR>
@@ -312,13 +311,11 @@ call which_key#register('<Space>', "g:which_key_map")
 let g:which_key_map =  {}
 let g:which_key_map.g = {
       \ 'name': '+git',
-      \ 'c': ['Gcommit',              'Commit'],
       \ 'd': ['Gdiff',                'Diff'],
-      \ 'f': ['Gfetch',               'Fetch'],
+      \ 'm': ['Magit',                'Magit'],
       \ 'p': ['Gpush origin HEAD',    'Push'],
       \ 'P': ['Gpush -f origin HEAD', 'Force Push'],
       \ 'r': ['Gread',                'Read'],
-      \ 's': ['Gstatus',              'Status'],
       \ 'v': ['GV',                   'Visual Log'],
       \ 'V': ['GV --all',             'Visual Log (all)'],
       \ 'w': ['Gwrite',               'Write'],
