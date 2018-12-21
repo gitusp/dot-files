@@ -311,14 +311,11 @@ call which_key#register('<Space>', "g:which_key_map")
 let g:which_key_map =  {}
 let g:which_key_map.g = {
       \ 'name': '+git',
-      \ 'd': ['Gdiff',                'Diff'],
       \ 'm': ['Magit',                'Magit'],
       \ 'p': ['Gpush origin HEAD',    'Push'],
       \ 'P': ['Gpush -f origin HEAD', 'Force Push'],
-      \ 'r': ['Gread',                'Read'],
       \ 'v': ['GV',                   'Visual Log'],
       \ 'V': ['GV --all',             'Visual Log (all)'],
-      \ 'w': ['Gwrite',               'Write'],
       \ }
 let g:which_key_map.n = {
       \ 'name': '+note',
