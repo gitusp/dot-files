@@ -4,3 +4,7 @@
 # alacritty new instance
 alias ani='open -na alacritty'
 
+# add cdpath
+setopt AUTO_CD
+cdpath=($HOME/Projects)
+
