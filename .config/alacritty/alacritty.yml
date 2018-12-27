@@ -367,6 +367,8 @@ live_config_reload: true
 #   - AppKeypad
 key_bindings:
   - { key: A,        mods: Control|Shift, chars: "\x1ba"                       }
+  - { key: B,        mods: Control|Shift, chars: "\x1bb"                       }
+  - { key: F,        mods: Control|Shift, chars: "\x1bf"                       }
   - { key: I,        mods: Control|Shift, chars: "\x1bi"                       }
   - { key: O,        mods: Control|Shift, chars: "\x1bo"                       }
   - { key: X,        mods: Control|Shift, chars: "\x1bx"                       }
