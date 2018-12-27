@@ -126,6 +126,7 @@ set noshowmode
 set hidden
 set completeopt=noinsert,menuone,noselect
 set completefunc=emoji#complete
+set clipboard=unnamedplus
 
 "
 " Custom mappings
