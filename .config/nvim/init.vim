@@ -91,6 +91,8 @@ Plug 'junegunn/fzf.vim'
 " Async task runner
 Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
+" Readline style bindings
+Plug 'tpope/vim-rsi'
 
 call plug#end()
 "
