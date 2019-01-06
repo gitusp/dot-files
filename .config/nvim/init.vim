@@ -303,7 +303,7 @@ let test#strategy = "neovim"
 "
 " nvr settings
 "
-let $VISUAL = 'nvr -cc split --remote-wait --remote-send i'
+let $VISUAL = 'nvr -cc split --remote-wait'
 
 "
 " which key
