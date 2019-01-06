@@ -172,8 +172,8 @@ augroup vimrc
   autocmd FileType go             setlocal noexpandtab
   autocmd FileType which_key      set laststatus=0 | autocmd BufLeave <buffer> set laststatus=2
   " convenient shortcuts
-  autocmd FileType help,qf        nnoremap <silent><buffer> q     :q<CR>
-  autocmd FileType dirvish        nnoremap <silent><buffer> t     :let $VIM_DIR=expand('%')<CR>:terminal<CR>icd $VIM_DIR<CR>
+  autocmd FileType help,qf        nnoremap <silent><buffer> q :q<CR>
+  autocmd FileType dirvish        nnoremap <silent><buffer> t :let $VIM_DIR=expand('%')<CR>:terminal<CR>icd $VIM_DIR<CR><C-\><C-N>
   " LSP
   autocmd FileType go,haskell,javascript,javascript.jsx nnoremap <silent><buffer> K  :call LanguageClient#textDocument_hover()<CR>
   autocmd FileType go,haskell,javascript,javascript.jsx nnoremap <silent><buffer> gd :call LanguageClient#textDocument_definition()<CR>
