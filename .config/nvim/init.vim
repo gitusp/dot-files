@@ -5,7 +5,7 @@ call plug#begin()
 
 " Theme
 Plug 'rakr/vim-one'
-Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
 " Javascript syntax highlight
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
@@ -282,11 +282,6 @@ let g:javascript_plugin_flow = 1
 " JSX settings
 "
 let g:jsx_ext_required = 1
-
-"
-" lightline settings
-"
-let g:lightline = { 'colorscheme': 'one' }
 
 "
 " Markdown settings
