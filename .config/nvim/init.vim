@@ -61,7 +61,7 @@ Plug 'junegunn/vim-peekaboo'
 " word switcher
 Plug 'AndrewRadev/switch.vim'
 " Auto pairing
-Plug 'cohama/lexima.vim'
+Plug 'tmsvg/pear-tree'
 " Guide key
 Plug 'liuchengxu/vim-which-key'
 " Highlight trailing spaces
@@ -246,6 +246,18 @@ endfunction
 " Sandwich settings
 "
 runtime macros/sandwich/keymap/surround.vim
+
+"
+" pear-tree settings
+"
+let g:pear_tree_pairs = {
+  \ '(':   {'closer': ')'},
+  \ '[':   {'closer': ']'},
+  \ '{':   {'closer': '}'},
+  \ "'":   {'closer': "'"},
+  \ '"':   {'closer': '"'},
+  \ '<*>': {'closer': '</*>'}
+  \ }
 
 "
 " LSP Settings
