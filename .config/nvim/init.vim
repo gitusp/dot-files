@@ -15,8 +15,6 @@ Plug 'digitaltoad/vim-pug'
 Plug 'editorconfig/editorconfig-vim'
 " Open required files by `gf`.
 Plug 'moll/vim-node'
-" Enable plugin command repeat
-Plug 'tpope/vim-repeat'
 " Git integration
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
@@ -32,7 +30,7 @@ Plug 'tpope/vim-commentary'
 Plug 'machakann/vim-sandwich'
 " Snippets
 Plug 'SirVer/ultisnips'
-" Better substitution(currently not supporting live preview)
+" Case preserving substitution(currently not supporting live preview)
 Plug 'tpope/vim-abolish'
 " Minimalist's better netrw
 Plug 'justinmk/vim-dirvish'
@@ -72,8 +70,6 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'andymass/vim-matchup'
 " Extended text objects
 Plug 'wellle/targets.vim'
-" Emoji completion
-Plug 'junegunn/vim-emoji'
 " Local vimrc
 Plug 'embear/vim-localvimrc'
 " Grep helper
@@ -85,9 +81,6 @@ Plug 'nixprime/cpsm', { 'do': 'bash install.sh' }
 Plug 'sbdchd/neoformat'
 " Stylus syntax highlight
 Plug 'iloginow/vim-stylus'
-" Fuzzy helper
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
 " Async task runner
 Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
@@ -127,7 +120,6 @@ set noshowmode
 " Other settings
 set hidden
 set completeopt=noinsert,menuone,noselect
-set completefunc=emoji#complete
 set clipboard=unnamedplus
 
 "
@@ -137,7 +129,6 @@ set clipboard=unnamedplus
 nnoremap          Y             y$
 nnoremap          Q             @q
 nnoremap          _             @:
-nnoremap          gl            :Lines<CR>
 nmap              gs            <plug>(GrepperOperator)
 nnoremap <silent> gss           :Grepper<CR>
 nnoremap <silent> [q            :cprevious<CR>
@@ -159,8 +150,6 @@ nnoremap <silent> <M-o>         :call <SID>SuperJump("\<C-O>")<CR>
 xmap              gs            <plug>(GrepperOperator)
 " Terminal mode
 tnoremap          <Esc>         <C-\><C-N>
-" Insert mode
-imap              <C-X><C-L>    <Plug>(fzf-complete-line)
 
 "
 " autocmd
@@ -232,8 +221,6 @@ endfunction
 command!       -nargs=? Note                call <SID>Note('<args>')
 command!       -nargs=0 ToggleIwhite        call <SID>ToggleIwhite()
 command!       -nargs=0 SwitchDiffAlgorithm call <SID>SwitchDiffAlgorithm()
-" FZF Add --hidden to default :Rg
-command! -bang -nargs=* Rg                  call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden ".shellescape(<q-args>), 1, <bang>0)
 
 "
 " Completor Integration
