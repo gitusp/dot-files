@@ -61,7 +61,7 @@ Plug 'junegunn/vim-peekaboo'
 " word switcher
 Plug 'AndrewRadev/switch.vim'
 " Auto pairing
-Plug 'tmsvg/pear-tree'
+Plug 'gitusp/pear-tree'
 " Guide key
 Plug 'liuchengxu/vim-which-key'
 " Highlight trailing spaces
@@ -250,13 +250,16 @@ runtime macros/sandwich/keymap/surround.vim
 "
 " pear-tree settings
 "
+let g:pear_tree_repeatable_expand = 0
 let g:pear_tree_pairs = {
   \ '(':   {'closer': ')'},
   \ '[':   {'closer': ']'},
   \ '{':   {'closer': '}'},
   \ "'":   {'closer': "'"},
   \ '"':   {'closer': '"'},
-  \ '<*>': {'closer': '</*>'}
+  \ '`':   {'closer': '`'},
+  \ '```': {'closer': '```'},
+  \ '<*>': {'closer': '</*>', 'ignore_pattern': '/\|=$'}
   \ }
 
 "
