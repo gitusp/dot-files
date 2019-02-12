@@ -61,7 +61,7 @@ Plug 'junegunn/vim-peekaboo'
 " word switcher
 Plug 'AndrewRadev/switch.vim'
 " Auto pairing
-Plug 'gitusp/pear-tree'
+Plug 'tmsvg/pear-tree'
 " Guide key
 Plug 'liuchengxu/vim-which-key'
 " Highlight trailing spaces
