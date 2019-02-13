@@ -6,9 +6,11 @@ call plug#begin()
 " Theme
 Plug 'rakr/vim-one'
 Plug 'vim-airline/vim-airline'
-" Javascript syntax highlight
+" JavaScript syntax highlight
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+" TypeScript syntax highlight
+Plug 'leafgarland/typescript-vim'
 " Pug syntax highlight
 Plug 'digitaltoad/vim-pug'
 " Load editorconfig.
@@ -166,12 +168,12 @@ augroup vimrc
   autocmd FileType help,qf        nnoremap <silent><buffer> q :q<CR>
   autocmd FileType dirvish        nnoremap <silent><buffer> t :let $VIM_DIR=expand('%')<CR>:terminal<CR>icd $VIM_DIR<CR><C-\><C-N>
   " LSP
-  autocmd FileType go,haskell,javascript,javascript.jsx nnoremap <silent><buffer> K  :call LanguageClient#textDocument_hover()<CR>
-  autocmd FileType go,haskell,javascript,javascript.jsx nnoremap <silent><buffer> gd :call LanguageClient#textDocument_definition()<CR>
-  autocmd FileType go,haskell,javascript,javascript.jsx setlocal signcolumn=yes
-  autocmd BufEnter * if index(['go', 'haskell', 'javascript', 'javascript.jsx'], &filetype) != -1 | call <SID>HandleLSPBufEnter() | endif
+  autocmd FileType go,haskell,javascript,javascript.jsx,typescript nnoremap <silent><buffer> K  :call LanguageClient#textDocument_hover()<CR>
+  autocmd FileType go,haskell,javascript,javascript.jsx,typescript nnoremap <silent><buffer> gd :call LanguageClient#textDocument_definition()<CR>
+  autocmd FileType go,haskell,javascript,javascript.jsx,typescript setlocal signcolumn=yes
+  autocmd BufEnter * if index(['go', 'haskell', 'javascript', 'javascript.jsx', 'typescript'], &filetype) != -1 | call <SID>HandleLSPBufEnter() | endif
   " Neoformat
-  autocmd BufWritePre *.js try | undojoin | catch | endtry | Neoformat
+  autocmd BufWritePre *.js,*.ts,*.tsx try | undojoin | catch | endtry | Neoformat
 augroup END
 
 function! s:HandleMarkdownBufEnter()
@@ -271,8 +273,9 @@ let g:pear_tree_pairs = {
 highlight ALEErrorSign ctermfg=9
 highlight ALEWarningSign ctermfg=11
 let g:LanguageClient_serverCommands = {
-  \ 'go':      ['go-langserver', '-gocodecompletion'],
-  \ 'haskell': ['hie-wrapper', '--lsp'],
+  \ 'go':         ['go-langserver', '-gocodecompletion'],
+  \ 'haskell':    ['hie-wrapper', '--lsp'],
+  \ 'typescript': ['javascript-typescript-stdio'],
   \ }
 let g:LanguageClient_autoStart = 1
 
