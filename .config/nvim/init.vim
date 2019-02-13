@@ -86,6 +86,8 @@ Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
 " Readline style bindings
 Plug 'tpope/vim-rsi'
+" Motion helper
+Plug 'unblevable/quick-scope'
 
 call plug#end()
 "
