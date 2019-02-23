@@ -91,6 +91,8 @@ Plug 'radenling/vim-dispatch-neovim'
 Plug 'tpope/vim-rsi'
 " Motion helper
 Plug 'unblevable/quick-scope'
+" Indent guide
+Plug 'Yggdroot/indentLine'
 
 call plug#end()
 "
