@@ -117,7 +117,6 @@ set shiftwidth=2
 set expandtab
 set smarttab
 " Display settings
-set nofoldenable
 set lazyredraw
 set shortmess+=c
 set shortmess+=I
