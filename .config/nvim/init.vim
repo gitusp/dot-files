@@ -275,6 +275,7 @@ highlight ALEWarningSign ctermfg=11
 let g:LanguageClient_serverCommands = {
   \ 'go':         ['go-langserver', '-gocodecompletion'],
   \ 'haskell':    ['hie-wrapper', '--lsp'],
+  \ 'javascript': ['javascript-typescript-stdio'],
   \ 'typescript': ['javascript-typescript-stdio'],
   \ }
 let g:LanguageClient_autoStart = 1
