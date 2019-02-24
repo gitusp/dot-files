@@ -93,6 +93,8 @@ Plug 'tpope/vim-rsi'
 Plug 'unblevable/quick-scope'
 " Indent guide
 Plug 'Yggdroot/indentLine'
+" REPL helper
+Plug 'jpalardy/vim-slime'
 
 call plug#end()
 "
@@ -252,6 +254,27 @@ endfunction
 " Sandwich settings
 "
 runtime macros/sandwich/keymap/surround.vim
+
+"
+" Slime settings
+"
+let g:slime_target = "neovim"
+
+"
+" airline settings
+"
+" REF: https://github.com/vim-airline/vim-airline/blob/master/autoload/airline/extensions/term.vim
+function! ApplyInactiveTerminalStatusLine(...)
+  if getbufvar(a:2.bufnr, '&buftype') == 'terminal'
+    let spc = g:airline_symbols.space
+    call a:1.add_section('airline_a', spc.'TERMINAL'.spc)
+    call a:1.add_section('airline_b', spc.'%f')
+    call a:1.split()
+    call a:1.add_section('airline_z', '#%{b:terminal_job_id}'.spc)
+    return 1
+  endif
+endfunction
+call airline#add_inactive_statusline_func('ApplyInactiveTerminalStatusLine')
 
 "
 " pear-tree settings
