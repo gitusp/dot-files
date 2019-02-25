@@ -293,15 +293,15 @@ let g:pear_tree_pairs = {
 
 "
 " LSP Settings
-" TODO: Javascript Language Server
 "
 highlight ALEErrorSign ctermfg=9
 highlight ALEWarningSign ctermfg=11
 let g:LanguageClient_serverCommands = {
-  \ 'go':         ['go-langserver', '-gocodecompletion'],
-  \ 'haskell':    ['hie-wrapper', '--lsp'],
-  \ 'javascript': ['javascript-typescript-stdio'],
-  \ 'typescript': ['javascript-typescript-stdio'],
+  \ 'go':             ['go-langserver', '-gocodecompletion'],
+  \ 'haskell':        ['hie-wrapper', '--lsp'],
+  \ 'javascript':     ['javascript-typescript-stdio'],
+  \ 'javascript.jsx': ['javascript-typescript-stdio'],
+  \ 'typescript':     ['javascript-typescript-stdio'],
   \ }
 let g:LanguageClient_autoStart = 1
 
