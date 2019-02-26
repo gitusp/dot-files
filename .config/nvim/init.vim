@@ -178,7 +178,7 @@ augroup vimrc
   autocmd BufEnter * if index(['go', 'haskell', 'javascript', 'javascript.jsx', 'typescript'], &filetype) != -1 | call <SID>HandleLSPBufEnter() | endif
   " code formatting
   autocmd BufWritePre *.json,*.js,*.ts,*.tsx try | undojoin | catch | endtry | Neoformat
-  autocmd BufWritePre *.hs                   try | undojoin | catch | endtry | :call LanguageClient#textDocument_formatting()
+  autocmd BufWritePre *.hs                   try | undojoin | catch | endtry | :call LanguageClient#textDocument_formatting_sync()
 augroup END
 
 function! s:HandleMarkdownBufEnter()
