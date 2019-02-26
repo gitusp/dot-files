@@ -176,8 +176,9 @@ augroup vimrc
   autocmd FileType go,haskell,javascript,javascript.jsx,typescript nnoremap <silent><buffer> gd :call LanguageClient#textDocument_definition()<CR>
   autocmd FileType go,haskell,javascript,javascript.jsx,typescript setlocal signcolumn=yes
   autocmd BufEnter * if index(['go', 'haskell', 'javascript', 'javascript.jsx', 'typescript'], &filetype) != -1 | call <SID>HandleLSPBufEnter() | endif
-  " Neoformat
+  " code formatting
   autocmd BufWritePre *.json,*.js,*.ts,*.tsx try | undojoin | catch | endtry | Neoformat
+  autocmd BufWritePre *.hs                   try | undojoin | catch | endtry | :call LanguageClient#textDocument_formatting()
 augroup END
 
 function! s:HandleMarkdownBufEnter()
