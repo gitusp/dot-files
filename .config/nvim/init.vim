@@ -21,7 +21,7 @@ Plug 'moll/vim-node'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 Plug 'jreybert/vimagit'
-Plug 'mhinz/vim-signify'
+Plug 'airblade/vim-gitgutter'
 " Text alignment - e.g. TableFormat
 Plug 'godlygeek/tabular'
 " Markdown support
