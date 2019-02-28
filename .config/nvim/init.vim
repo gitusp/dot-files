@@ -289,7 +289,7 @@ let g:pear_tree_pairs = {
   \ '"':   {'closer': '"'},
   \ '`':   {'closer': '`'},
   \ '```': {'closer': '```'},
-  \ '<*>': {'closer': '</*>', 'not_like': '/\|=$', 'until': '[[:space:]]'}
+  \ '<*>': {'closer': '</*>', 'not_like': '\(/\|=\|-\)$', 'until': '[[:space:]]'}
   \ }
 
 "
