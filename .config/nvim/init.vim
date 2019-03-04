@@ -126,7 +126,6 @@ nnoremap                Y         y$
 nnoremap                Q         @q
 nnoremap                _         @:
 nmap     <silent>       gd        <Plug>(coc-definition)
-nmap     <silent>       gr        <Plug>(coc-references)
 nmap                    gs        <plug>(GrepperOperator)
 nnoremap <silent>       gss       :Grepper<CR>
 nnoremap <silent>       K         :call <SID>ShowDocumentation()<CR>
@@ -310,6 +309,7 @@ let g:which_key_map.l = {
       \ 'f': ['<Plug>(coc-fix-current)',     'Fix Current'],
       \ 'i': ['<Plug>(coc-implementation)',  'Implementation'],
       \ 'r': ['<Plug>(coc-rename)',          'Rename'],
+      \ 'R': ['<Plug>(coc-references)',      'References'],
       \ 't': ['<Plug>(coc-type-definition)', 'Type Definition'],
       \ }
 let g:which_key_map.n = {
