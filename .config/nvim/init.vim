@@ -308,6 +308,7 @@ let g:which_key_map.l = {
       \ 'name': '+lsp',
       \ 'f': ['<Plug>(coc-fix-current)',     'Fix Current'],
       \ 'i': ['<Plug>(coc-implementation)',  'Implementation'],
+      \ 'l': ['CocList',                     'CocList'],
       \ 'r': ['<Plug>(coc-rename)',          'Rename'],
       \ 'R': ['<Plug>(coc-references)',      'References'],
       \ 't': ['<Plug>(coc-type-definition)', 'Type Definition'],
