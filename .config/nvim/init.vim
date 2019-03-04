@@ -10,7 +10,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 " TypeScript syntax highlight
-Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
 " Pug syntax highlight
 Plug 'digitaltoad/vim-pug'
 " Load editorconfig.
@@ -31,8 +31,6 @@ Plug 'junegunn/vim-xmark', { 'do': 'make' }
 Plug 'tpope/vim-commentary'
 " Text Surrounding
 Plug 'machakann/vim-sandwich'
-" Snippets
-Plug 'SirVer/ultisnips'
 " Case preserving substitution(currently not supporting live preview)
 Plug 'tpope/vim-abolish'
 " Minimalist's better netrw
@@ -49,16 +47,6 @@ Plug 'chr4/nginx.vim'
 Plug 'janko-m/vim-test'
 " Support terraform
 Plug 'hashivim/vim-terraform'
-" LSP Client
-Plug 'autozimu/LanguageClient-neovim', {
-  \ 'branch': 'next',
-  \ 'do': 'bash install.sh',
-  \ }
-" Completion Manager
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2-ultisnips'
-Plug 'ncm2/ncm2-path'
 " Register util
 Plug 'junegunn/vim-peekaboo'
 " word switcher
@@ -80,8 +68,6 @@ Plug 'mhinz/vim-grepper'
 " Fuzzy finder
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'nixprime/cpsm', { 'do': 'bash install.sh' }
-" Code formatter
-Plug 'sbdchd/neoformat'
 " Stylus syntax highlight
 Plug 'iloginow/vim-stylus'
 " Async task runner
@@ -95,6 +81,8 @@ Plug 'unblevable/quick-scope'
 Plug 'Yggdroot/indentLine'
 " REPL helper
 Plug 'jpalardy/vim-slime'
+" LSC
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
 call plug#end()
 "
@@ -106,6 +94,9 @@ call plug#end()
 "
 colorscheme one
 set background=dark
+set updatetime=300
+set hidden
+set clipboard=unnamedplus
 " Search settings
 set ignorecase
 set smartcase
@@ -125,61 +116,70 @@ set shortmess+=I
 set laststatus=2
 set termguicolors
 set noshowmode
-" Other settings
-set hidden
-set completeopt=noinsert,menuone,noselect
-set clipboard=unnamedplus
+set signcolumn=yes
 
 "
 " Custom mappings
 "
 " Normal mode - normal assignments
-nnoremap          Y             y$
-nnoremap          Q             @q
-nnoremap          _             @:
-nmap              gs            <plug>(GrepperOperator)
-nnoremap <silent> gss           :Grepper<CR>
-nnoremap <silent> [q            :cprevious<CR>
-nnoremap <silent> ]q            :cnext<CR>
-nnoremap <silent> [Q            :cfirst<CR>
-nnoremap <silent> ]Q            :clast<CR>
-nnoremap <silent> [l            :lprevious<CR>
-nnoremap <silent> ]l            :lnext<CR>
-nnoremap <silent> [L            :lfirst<CR>
-nnoremap <silent> ]L            :llast<CR>
-nnoremap <silent> <C-L>         :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-nnoremap <silent> <Esc>         :w<CR>
+nnoremap                Y         y$
+nnoremap                Q         @q
+nnoremap                _         @:
+nmap     <silent>       gd        <Plug>(coc-definition)
+nmap     <silent>       gr        <Plug>(coc-references)
+nmap                    gs        <plug>(GrepperOperator)
+nnoremap <silent>       gss       :Grepper<CR>
+nnoremap <silent>       K         :call <SID>ShowDocumentation()<CR>
+nmap     <silent>       [d        <Plug>(coc-diagnostic-prev)
+nmap     <silent>       ]d        <Plug>(coc-diagnostic-next)
+nnoremap <silent>       [q        :cprevious<CR>
+nnoremap <silent>       ]q        :cnext<CR>
+nnoremap <silent>       [Q        :cfirst<CR>
+nnoremap <silent>       ]Q        :clast<CR>
+nnoremap <silent>       [l        :lprevious<CR>
+nnoremap <silent>       ]l        :lnext<CR>
+nnoremap <silent>       [L        :lfirst<CR>
+nnoremap <silent>       ]L        :llast<CR>
+nnoremap <silent>       <C-L>     :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+nnoremap <silent>       <Esc>     :w<CR>
 " Normal mode - mappings with <Meta>
-nnoremap <silent> <M-a>         :Switch<CR>
-nnoremap <silent> <M-x>         :SwitchReverse<CR>
-nnoremap <silent> <M-i>         :call <SID>SuperJump("1\<C-I>")<CR>
-nnoremap <silent> <M-o>         :call <SID>SuperJump("\<C-O>")<CR>
+nnoremap <silent>       <M-a>     :Switch<CR>
+nnoremap <silent>       <M-x>     :SwitchReverse<CR>
+nnoremap <silent>       <M-i>     :call <SID>SuperJump("1\<C-I>")<CR>
+nnoremap <silent>       <M-o>     :call <SID>SuperJump("\<C-O>")<CR>
 " Visual mode
-xmap              gs            <plug>(GrepperOperator)
+xmap                    gs        <plug>(GrepperOperator)
 " Terminal mode
-tnoremap          <Esc>         <C-\><C-N>
+tnoremap                <Esc>     <C-\><C-N>
+" Insert mode
+inoremap <silent><expr> <c-space> coc#refresh()
+
+function! s:ShowDocumentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 "
 " autocmd
 "
 augroup vimrc
   autocmd!
-  autocmd BufEnter *              call ncm2#enable_for_buffer()
-  autocmd BufEnter *              if &filetype ==# 'markdown' | call <SID>HandleMarkdownBufEnter() | endif
-  autocmd FileType go             setlocal noexpandtab
-  autocmd FileType which_key      set laststatus=0 | autocmd BufLeave <buffer> set laststatus=2
+  autocmd BufEnter * if &filetype ==# 'markdown' | call <SID>HandleMarkdownBufEnter() | endif
+  autocmd FileType which_key set laststatus=0 | autocmd BufLeave <buffer> set laststatus=2
   " convenient shortcuts
-  autocmd FileType help,qf        nnoremap <silent><buffer> q :q<CR>
-  autocmd BufEnter *              if @% =~ "^fugitive://" | nnoremap <silent><buffer> q :q<CR> | endif
-  autocmd FileType dirvish        nnoremap <silent><buffer> t :let $VIM_DIR=@%<CR>:terminal<CR>icd $VIM_DIR<CR><C-\><C-N>
-  " LSP
-  autocmd FileType go,haskell,javascript,javascript.jsx,typescript nnoremap <silent><buffer> K  :call LanguageClient#textDocument_hover()<CR>
-  autocmd FileType go,haskell,javascript,javascript.jsx,typescript nnoremap <silent><buffer> gd :call LanguageClient#textDocument_definition()<CR>
-  autocmd FileType go,haskell,javascript,javascript.jsx,typescript setlocal signcolumn=yes
-  autocmd BufEnter * if index(['go', 'haskell', 'javascript', 'javascript.jsx', 'typescript'], &filetype) != -1 | call <SID>HandleLSPBufEnter() | endif
+  autocmd FileType help,qf nnoremap <silent><buffer> q :q<CR>
+  autocmd BufEnter * if @% =~ "^fugitive://" | nnoremap <silent><buffer> q :q<CR> | endif
+  autocmd FileType dirvish nnoremap <silent><buffer> t :let $VIM_DIR=@%<CR>:terminal<CR>icd $VIM_DIR<CR><C-\><C-N>
   " code formatting
-  autocmd BufWritePre *.json,*.js,*.ts,*.tsx try | undojoin | catch | endtry | Neoformat
-  autocmd BufWritePre *.hs                   try | undojoin | catch | endtry | :call LanguageClient#textDocument_formatting_sync()
+  autocmd FileType javascript,typescript,json setl formatexpr=CocAction('formatSelected')
+  autocmd BufWritePre *.js,*.jsx,*.json,*.ts,*.tsx try | undojoin | catch | endtry | Format
+  " code highlight
+  autocmd CursorHold * silent call CocActionAsync('highlight')
+  " custom events
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup END
 
 function! s:HandleMarkdownBufEnter()
@@ -208,49 +208,14 @@ function! s:ClearMarkdownWhichKey()
   if has_key(g:which_key_map, 'm') | unlet g:which_key_map.m | endif
 endfunction
 
-function! s:HandleLSPBufEnter()
-  call <SID>RegisterLSPWhichKey()
-  autocmd BufLeave <buffer> call <SID>ClearLSPWhichKey()
-endfunction
-
-function! s:RegisterLSPWhichKey()
-  " TODO: Expand context menu
-  let g:which_key_map.l = {
-        \ 'name': '+LSP',
-        \ 'c': ['call LanguageClient_contextMenu()', 'Context Menu'],
-        \ }
-endfunction
-
-function! s:ClearLSPWhichKey()
-  if has_key(g:which_key_map, 'l') | unlet g:which_key_map.l | endif
-endfunction
-
 "
 " Custom commands
 "
-command!       -nargs=? Note                call <SID>Note('<args>')
-command!       -nargs=0 ToggleIwhite        call <SID>ToggleIwhite()
-command!       -nargs=0 SwitchDiffAlgorithm call <SID>SwitchDiffAlgorithm()
-
-"
-" Completor Integration
-" See https://github.com/ncm2/ncm2-ultisnips/issues/6#issuecomment-410186456
-"
-inoremap <silent> <expr> <Tab> ncm2_ultisnips#expand_or("\<Plug>(ultisnips_expand_or_jump_or_tab)")
-inoremap <silent> <Plug>(ultisnips_expand_or_jump_or_tab) <C-R>=<SID>UltiSnipsExpandOrJumpOrTab()<CR>
-snoremap <silent> <Tab> <Esc>:call UltiSnips#ExpandSnippetOrJump()<cr>
-let g:UltiSnipsExpandTrigger       = "<Plug>(ultisnips_expand)"
-let g:UltiSnipsJumpForwardTrigger  = "<Plug>(ultisnips_jump_forward)"
-let g:UltiSnipsJumpBackwardTrigger = "<M-i>"
-
-function! s:UltiSnipsExpandOrJumpOrTab()
-  call UltiSnips#ExpandSnippetOrJump()
-  if g:ulti_expand_or_jump_res > 0
-    return ""
-  else
-    return "\<Tab>"
-  endif
-endfunction
+command! -nargs=? Note                call <SID>Note('<args>')
+command! -nargs=0 ToggleIwhite        call <SID>ToggleIwhite()
+command! -nargs=0 SwitchDiffAlgorithm call <SID>SwitchDiffAlgorithm()
+command! -nargs=0 Format              call CocAction('format')
+command! -nargs=? Fold                call CocAction('fold', <f-args>)
 
 "
 " Sandwich settings
@@ -277,6 +242,8 @@ function! ApplyInactiveTerminalStatusLine(...)
   endif
 endfunction
 call airline#add_inactive_statusline_func('ApplyInactiveTerminalStatusLine')
+let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
 "
 " pear-tree settings
@@ -292,20 +259,6 @@ let g:pear_tree_pairs = {
   \ '```': {'closer': '```'},
   \ '<*>': {'closer': '</*>', 'not_like': '\(/\|=\|-\)$', 'until': '[[:space:]]'}
   \ }
-
-"
-" LSP Settings
-"
-highlight ALEErrorSign ctermfg=9
-highlight ALEWarningSign ctermfg=11
-let g:LanguageClient_serverCommands = {
-  \ 'go':             ['go-langserver', '-gocodecompletion'],
-  \ 'haskell':        ['hie-wrapper', '--lsp'],
-  \ 'javascript':     ['javascript-typescript-stdio'],
-  \ 'javascript.jsx': ['javascript-typescript-stdio'],
-  \ 'typescript':     ['javascript-typescript-stdio'],
-  \ }
-let g:LanguageClient_autoStart = 1
 
 "
 " Javascript settings
@@ -351,6 +304,13 @@ let g:which_key_map.g = {
       \ 'v': ['GV',                    'Visual Log'],
       \ 'V': [':GV --all',             'Visual Log (all)'],
       \ 'w': ['Gwrite',                'Write'],
+      \ }
+let g:which_key_map.l = {
+      \ 'name': '+lsp',
+      \ 'f': ['<Plug>(coc-fix-current)',     'Fix Current'],
+      \ 'i': ['<Plug>(coc-implementation)',  'Implementation'],
+      \ 'r': ['<Plug>(coc-rename)',          'Rename'],
+      \ 't': ['<Plug>(coc-type-definition)', 'Type Definition'],
       \ }
 let g:which_key_map.n = {
       \ 'name': '+note',
