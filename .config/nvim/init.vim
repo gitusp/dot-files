@@ -119,6 +119,11 @@ set noshowmode
 set signcolumn=yes
 
 "
+" Color settings
+"
+highlight! link CocErrorSign ErrorMsg
+
+"
 " Custom mappings
 "
 " Normal mode - normal assignments
@@ -173,8 +178,8 @@ augroup vimrc
   autocmd BufEnter * if @% =~ "^fugitive://" | nnoremap <silent><buffer> q :q<CR> | endif
   autocmd FileType dirvish nnoremap <silent><buffer> t :let $VIM_DIR=@%<CR>:terminal<CR>icd $VIM_DIR<CR><C-\><C-N>
   " code formatting
-  autocmd FileType javascript,typescript,json setl formatexpr=CocAction('formatSelected')
-  autocmd BufWritePre *.js,*.jsx,*.json,*.ts,*.tsx try | undojoin | catch | endtry | Format
+  autocmd FileType haskell,javascript,typescript,json setl formatexpr=CocAction('formatSelected')
+  autocmd BufWritePre *.hs,*.js,*.jsx,*.json,*.ts,*.tsx try | undojoin | catch | endtry | Format
   " code highlight
   autocmd CursorHold * silent call CocActionAsync('highlight')
   " custom events
