@@ -121,7 +121,8 @@ set signcolumn=yes
 "
 " Color settings
 "
-highlight! link CocErrorSign ErrorMsg
+highlight! link CocErrorSign ALEErrorSign
+highlight! link CocInfoSign ALEWarningSign
 
 "
 " Custom mappings
