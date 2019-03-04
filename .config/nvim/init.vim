@@ -306,6 +306,7 @@ let g:which_key_map.g = {
       \ }
 let g:which_key_map.l = {
       \ 'name': '+lsp',
+      \ 'a': ['<Plug>(coc-codeaction)',      'Code Action'],
       \ 'f': ['<Plug>(coc-fix-current)',     'Fix Current'],
       \ 'i': ['<Plug>(coc-implementation)',  'Implementation'],
       \ 'l': ['CocList',                     'CocList'],
