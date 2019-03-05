@@ -19,7 +19,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'moll/vim-node'
 " Git integration
 Plug 'tpope/vim-fugitive'
-Plug 'junegunn/gv.vim'
+Plug 'rbong/vim-flog'
 Plug 'jreybert/vimagit'
 Plug 'airblade/vim-gitgutter'
 " Text alignment - e.g. TableFormat
@@ -302,12 +302,12 @@ let g:which_key_map =  {}
 let g:which_key_map.g = {
       \ 'name': '+git',
       \ 'd': ['Gdiff',                 'Diff'],
+      \ 'g': ['Flog',                  'Graph'],
+      \ 'G': [':Flog -all',            'Graph All'],
       \ 'm': ['Magit',                 'Magit'],
       \ 'p': [':Gpush origin HEAD',    'Push'],
       \ 'P': [':Gpush -f origin HEAD', 'Force Push'],
       \ 'r': ['Gread',                 'Read'],
-      \ 'v': ['GV',                    'Visual Log'],
-      \ 'V': [':GV --all',             'Visual Log (all)'],
       \ 'w': ['Gwrite',                'Write'],
       \ }
 let g:which_key_map.l = {
