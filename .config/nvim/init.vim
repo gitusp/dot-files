@@ -52,7 +52,7 @@ Plug 'junegunn/vim-peekaboo'
 " word switcher
 Plug 'AndrewRadev/switch.vim'
 " Auto pairing
-Plug 'tmsvg/pear-tree'
+Plug 'cohama/lexima.vim'
 " Guide key
 Plug 'liuchengxu/vim-which-key'
 " Highlight trailing spaces
@@ -251,19 +251,10 @@ let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_er
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
 "
-" pear-tree settings
+" lexima settings
 "
-let g:pear_tree_repeatable_expand = 0
-let g:pear_tree_pairs = {
-  \ '(':   {'closer': ')'},
-  \ '[':   {'closer': ']'},
-  \ '{':   {'closer': '}'},
-  \ "'":   {'closer': "'"},
-  \ '"':   {'closer': '"'},
-  \ '`':   {'closer': '`'},
-  \ '```': {'closer': '```'},
-  \ '<*>': {'closer': '</*>', 'not_like': '\(/\|=\|-\)$', 'until': '[[:space:]]'}
-  \ }
+let g:lexima_ctrlh_as_backspace	= 1
+call lexima#add_rule({'char': '<', 'input_after': '>'})
 
 "
 " Javascript settings
