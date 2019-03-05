@@ -310,6 +310,7 @@ let g:which_key_map.l = {
       \ 'r': ['<Plug>(coc-rename)',          'Rename'],
       \ 'R': ['<Plug>(coc-references)',      'References'],
       \ 't': ['<Plug>(coc-type-definition)', 'Type Definition'],
+      \ 'y': [':CocList -A --normal yank',   'Yank List'],
       \ }
 let g:which_key_map.n = {
       \ 'name': '+note',
