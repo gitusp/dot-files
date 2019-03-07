@@ -199,12 +199,12 @@ function! s:RegisterMarkdownWhichKey()
         \ }
   let g:which_key_map.m = {
         \ 'name': '+markdown-preview',
-        \ 'c': ['Xmark!', 'Close'],
-        \ 'o': ['Xmark',  'Open'],
-        \ 'h': ['Xmark<', 'Left'],
-        \ 'j': ['Xmark-', 'Bottom'],
-        \ 'k': ['Xmark+', 'Top'],
-        \ 'l': ['Xmark>', 'Right'],
+        \ 'c': [':Xmark!', 'Close'],
+        \ 'o': ['Xmark',   'Open'],
+        \ 'h': [':Xmark<', 'Left'],
+        \ 'j': [':Xmark-', 'Bottom'],
+        \ 'k': [':Xmark+', 'Top'],
+        \ 'l': [':Xmark>', 'Right'],
         \ }
 endfunction
 
