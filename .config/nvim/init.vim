@@ -293,13 +293,12 @@ call which_key#register('<Space>', "g:which_key_map")
 let g:which_key_map =  {}
 let g:which_key_map.g = {
       \ 'name': '+git',
-      \ 'd': ['Gdiff',                 'Diff'],
-      \ 'g': ['Flog',                  'Graph'],
-      \ 'm': ['Magit',                 'Magit'],
-      \ 'p': [':Gpush origin HEAD',    'Push'],
-      \ 'P': [':Gpush -f origin HEAD', 'Force Push'],
-      \ 'r': ['Gread',                 'Read'],
-      \ 'w': ['Gwrite',                'Write'],
+      \ 'd': ['Gdiff',  'Diff'],
+      \ 'g': ['Flog',   'Graph'],
+      \ 'm': ['Magit',  'Magit'],
+      \ 'r': ['Gread',  'Read'],
+      \ 't': ['Twiggy', 'Twiggy'],
+      \ 'w': ['Gwrite', 'Write'],
       \ }
 let g:which_key_map.l = {
       \ 'name': '+lsp',
