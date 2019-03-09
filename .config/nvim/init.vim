@@ -22,6 +22,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'rbong/vim-flog'
 Plug 'jreybert/vimagit'
 Plug 'airblade/vim-gitgutter'
+Plug 'sodapopcan/vim-twiggy'
 " Text alignment - e.g. TableFormat
 Plug 'godlygeek/tabular'
 " Markdown support
