@@ -66,6 +66,7 @@ Plug 'wellle/targets.vim'
 Plug 'embear/vim-localvimrc'
 " Grep helper
 Plug 'mhinz/vim-grepper'
+Plug 'wsdjeg/FlyGrep.vim'
 " Fuzzy finder
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'nixprime/cpsm', { 'do': 'bash install.sh' }
@@ -134,6 +135,7 @@ nnoremap                Q         @q
 nnoremap                _         @:
 nmap     <silent>       gd        <Plug>(coc-definition)
 nmap                    gs        <plug>(GrepperOperator)
+nnoremap <silent>       gsi       :FlyGrep<CR>
 nnoremap <silent>       gss       :Grepper<CR>
 nnoremap <silent>       K         :call <SID>ShowDocumentation()<CR>
 nmap     <silent>       [d        <Plug>(coc-diagnostic-prev)
