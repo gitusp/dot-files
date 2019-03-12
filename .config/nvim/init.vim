@@ -135,7 +135,7 @@ nnoremap                Q         @q
 nnoremap                _         @:
 nmap     <silent>       gd        <Plug>(coc-definition)
 nmap                    gs        <plug>(GrepperOperator)
-nnoremap <silent>       gsi       :FlyGrep<CR>
+nnoremap <silent>       gsp       :FlyGrep<CR>
 nnoremap <silent>       gss       :Grepper<CR>
 nnoremap <silent>       K         :call <SID>ShowDocumentation()<CR>
 nmap     <silent>       [d        <Plug>(coc-diagnostic-prev)
