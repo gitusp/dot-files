@@ -331,6 +331,10 @@ let g:which_key_map.t = {
       \ 'l': ['TestLast',    'Last'],
       \ 'n': ['TestNearest', 'Nearest'],
       \ }
+let g:which_key_map.w = {
+      \ 'name': '+window',
+      \ 't': [':VwmToggle term', 'Terminal'],
+      \ }
 
 "
 " word switcher settings
@@ -359,9 +363,16 @@ let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 
 "
 " Layout Manager
-" TODO: Define some default settings
 "
-let g:vwm#layouts = []
+let g:vwm#layouts = [
+      \  {
+      \    'name': 'term',
+      \    'left':
+      \    {
+      \      'init': ['terminal'],
+      \    }
+      \  }
+      \]
 
 "
 " Toggle diffopt
