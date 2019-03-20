@@ -85,6 +85,8 @@ Plug 'Yggdroot/indentLine'
 Plug 'jpalardy/vim-slime'
 " LSC
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+" Layout manager
+Plug 'paroxayte/vwm.vim'
 
 call plug#end()
 "
@@ -354,6 +356,12 @@ let g:grepper = {
 let g:ctrlp_user_command = 'rg %s --files --hidden --glob !.git'
 let g:ctrlp_use_caching = 0
 let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+
+"
+" Layout Manager
+" TODO: Define some default settings
+"
+let g:vwm#layouts = []
 
 "
 " Toggle diffopt
