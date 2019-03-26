@@ -2,6 +2,36 @@
   "title": "Convenient ctrl(^terminal)",
   "rules": [
     {
+      "description": "<C-I> to <Tab>",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "i",
+            "modifiers": {
+              "mandatory": ["left_control"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "tab"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^io\\.alacritty$",
+                "^net\\.kovidgoyal\\.kitty$"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "description": "down",
       "manipulators": [
         {
