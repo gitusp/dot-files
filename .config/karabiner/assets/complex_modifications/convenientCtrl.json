@@ -9,12 +9,8 @@
           "from": {
             "key_code": "i",
             "modifiers": {
-              "mandatory": [
-                "left_control"
-              ],
-              "optional": [
-                "any"
-              ]
+              "mandatory": ["left_control"],
+              "optional": ["any"]
             }
           },
           "to": [
@@ -27,7 +23,8 @@
               "type": "frontmost_application_unless",
               "bundle_identifiers": [
                 "^com\\.apple\\.Terminal$",
-                "^io\\.alacritty$"
+                "^io\\.alacritty$",
+                "^net\\.kovidgoyal\\.kitty$"
               ]
             }
           ]
@@ -42,21 +39,14 @@
           "from": {
             "key_code": "i",
             "modifiers": {
-              "mandatory": [
-                "left_control",
-                "left_command"
-              ],
-              "optional": [
-                "any"
-              ]
+              "mandatory": ["left_control", "left_command"],
+              "optional": ["any"]
             }
           },
           "to": [
             {
               "key_code": "tab",
-              "modifiers": [
-                "left_command"
-              ]
+              "modifiers": ["left_command"]
             }
           ],
           "conditions": [
@@ -64,7 +54,8 @@
               "type": "frontmost_application_if",
               "bundle_identifiers": [
                 "^com\\.apple\\.Terminal$",
-                "^io\\.alacritty$"
+                "^io\\.alacritty$",
+                "^net\\.kovidgoyal\\.kitty$"
               ]
             }
           ]
@@ -73,4 +64,3 @@
     }
   ]
 }
-

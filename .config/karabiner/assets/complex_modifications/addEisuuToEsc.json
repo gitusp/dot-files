@@ -22,7 +22,8 @@
               "type": "frontmost_application_if",
               "bundle_identifiers": [
                 "^com\\.apple\\.Terminal$",
-                "^io\\.alacritty$"
+                "^io\\.alacritty$",
+                "^net\\.kovidgoyal\\.kitty$"
               ]
             }
           ]
@@ -37,9 +38,7 @@
           "from": {
             "key_code": "o",
             "modifiers": {
-              "mandatory": [
-                "left_control"
-              ]
+              "mandatory": ["left_control"]
             }
           },
           "to": [
@@ -48,9 +47,7 @@
             },
             {
               "key_code": "o",
-              "modifiers": [
-                "left_control"
-              ]
+              "modifiers": ["left_control"]
             }
           ],
           "conditions": [
@@ -58,7 +55,8 @@
               "type": "frontmost_application_if",
               "bundle_identifiers": [
                 "^com\\.apple\\.Terminal$",
-                "^io\\.alacritty$"
+                "^io\\.alacritty$",
+                "^net\\.kovidgoyal\\.kitty$"
               ]
             }
           ]
@@ -67,4 +65,3 @@
     }
   ]
 }
-
