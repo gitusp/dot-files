@@ -2,3 +2,6 @@
 setopt AUTO_CD
 cdpath=($HOME/Projects)
 
+# Aliases
+alias icat="kitty +kitten icat"
+alias kdiff="kitty +kitten diff"
