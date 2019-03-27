@@ -87,6 +87,8 @@ Plug 'jpalardy/vim-slime'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 " Layout manager
 Plug 'paroxayte/vwm.vim'
+" Highlight yanked region
+Plug 'machakann/vim-highlightedyank'
 
 call plug#end()
 "
