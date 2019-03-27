@@ -48,8 +48,6 @@ Plug 'chr4/nginx.vim'
 Plug 'janko-m/vim-test'
 " Support terraform
 Plug 'hashivim/vim-terraform'
-" Register util
-Plug 'junegunn/vim-peekaboo'
 " word switcher
 Plug 'AndrewRadev/switch.vim'
 " Auto pairing
@@ -60,8 +58,6 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'ntpeters/vim-better-whitespace'
 " Powerful matcher
 Plug 'andymass/vim-matchup'
-" Extended text objects
-Plug 'wellle/targets.vim'
 " Local vimrc
 Plug 'embear/vim-localvimrc'
 " Grep helper
@@ -85,8 +81,6 @@ Plug 'Yggdroot/indentLine'
 Plug 'jpalardy/vim-slime'
 " LSC
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
-" Layout manager
-Plug 'paroxayte/vwm.vim'
 " Highlight yanked region
 Plug 'machakann/vim-highlightedyank'
 
@@ -267,7 +261,6 @@ call lexima#add_rule({'char': '<', 'input_after': '>'})
 " Javascript settings
 "
 let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_flow = 1
 
 "
 " JSX settings
@@ -333,10 +326,6 @@ let g:which_key_map.t = {
       \ 'l': ['TestLast',    'Last'],
       \ 'n': ['TestNearest', 'Nearest'],
       \ }
-let g:which_key_map.w = {
-      \ 'name': '+window',
-      \ 't': [':VwmToggle term', 'Terminal'],
-      \ }
 
 "
 " word switcher settings
@@ -362,19 +351,6 @@ let g:grepper = {
 let g:ctrlp_user_command = 'rg %s --files --hidden --glob !.git'
 let g:ctrlp_use_caching = 0
 let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
-
-"
-" Layout Manager
-"
-let g:vwm#layouts = [
-      \  {
-      \    'name': 'term',
-      \    'left':
-      \    {
-      \      'init': ['terminal'],
-      \    }
-      \  }
-      \]
 
 "
 " Toggle diffopt
