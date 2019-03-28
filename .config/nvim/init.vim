@@ -355,6 +355,16 @@ let g:ctrlp_use_caching = 0
 let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 
 "
+" Codi settings
+"
+let g:codi#interpreters = {
+  \ 'typescript': {
+    \ 'bin': ['npx', 'ts-node'],
+    \ 'prompt': '^\(>\|\.\.\.\+\) ',
+    \ },
+  \ }
+
+"
 " Toggle diffopt
 "
 function! s:ToggleIwhite()
