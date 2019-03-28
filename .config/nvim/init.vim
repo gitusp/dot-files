@@ -83,6 +83,8 @@ Plug 'jpalardy/vim-slime'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 " Highlight yanked region
 Plug 'machakann/vim-highlightedyank'
+" Interactive scratch pad
+Plug 'metakirby5/codi.vim'
 
 call plug#end()
 "
