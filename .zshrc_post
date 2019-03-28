@@ -5,3 +5,8 @@ cdpath=($HOME/Projects)
 # Aliases
 alias icat="kitty +kitten icat"
 alias kdiff="kitty +kitten diff"
+
+# functions
+function play () {
+	nvim --cmd 'autocmd VimEnter * Codi' ~/.playground.js
+}
