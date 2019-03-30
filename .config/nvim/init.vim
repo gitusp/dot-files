@@ -85,6 +85,10 @@ Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'machakann/vim-highlightedyank'
 " Interactive scratch pad
 Plug 'metakirby5/codi.vim'
+" Notational
+Plug 'Alok/notational-fzf-vim'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 "
@@ -219,7 +223,6 @@ endfunction
 "
 " Custom commands
 "
-command! -nargs=? Note                call <SID>Note('<args>')
 command! -nargs=0 ToggleIwhite        call <SID>ToggleIwhite()
 command! -nargs=0 SwitchDiffAlgorithm call <SID>SwitchDiffAlgorithm()
 command! -nargs=0 Format              call CocAction('format')
@@ -270,6 +273,11 @@ let g:javascript_plugin_jsdoc = 1
 let g:jsx_ext_required = 1
 
 "
+" Notational settings
+"
+let g:nv_search_paths = ['~/.notational']
+
+"
 " Markdown settings
 "
 " NOTE: To avoid conflicting
@@ -311,11 +319,6 @@ let g:which_key_map.l = {
       \ 'R': ['<Plug>(coc-references)',      'References'],
       \ 't': ['<Plug>(coc-type-definition)', 'Type Definition'],
       \ 'y': [':CocList -A --normal yank',   'Yank List'],
-      \ }
-let g:which_key_map.n = {
-      \ 'name': '+note',
-      \ 'g': ['Note',    'Open Global Note'],
-      \ 'l': [':Note .', 'Open Local Note'],
       \ }
 let g:which_key_map.s = {
       \ 'name': '+settings',
@@ -395,17 +398,6 @@ function! s:SwitchDiffAlgorithm()
     endif
     let i = i + 1
   endwhile
-endfunction
-
-"
-" Opens note file
-"
-function! s:Note(name)
-  if a:name == '.'
-    edit .note.md
-  else
-    execute 'e ' . system('notef ' . a:name)
-  endif
 endfunction
 
 "

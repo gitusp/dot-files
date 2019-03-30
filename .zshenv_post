@@ -1,7 +1,0 @@
-function note () {
-	nvim --cmd 'cd ~/Notes' `notef $1`
-}
-
-function notef () {
-	echo ~/Notes/`date +%F``echo $1 | sed 's/^\(.\)/-\1/'`.md
-}
