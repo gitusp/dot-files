@@ -25,7 +25,8 @@
               "bundle_identifiers": [
                 "^com\\.apple\\.Terminal$",
                 "^io\\.alacritty$",
-                "^net\\.kovidgoyal\\.kitty$"
+                "^net\\.kovidgoyal\\.kitty$",
+                "^com\\.googlecode\\.iterm2$"
               ]
             }
           ]
