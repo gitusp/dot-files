@@ -178,6 +178,9 @@ augroup vimrc
   autocmd!
   autocmd BufEnter * if &filetype ==# 'markdown' | call <SID>HandleMarkdownBufEnter() | endif
   autocmd FileType which_key set laststatus=0 | autocmd BufLeave <buffer> set laststatus=2
+  " Vimwiki
+  autocmd FileType vimwiki nmap <silent><buffer> ]a <Plug>VimwikiNextLink
+  autocmd FileType vimwiki nmap <silent><buffer> [a <Plug>VimwikiPrevLink
   " convenient shortcuts
   autocmd FileType help,qf nnoremap <silent><buffer> q :q<CR>
   autocmd BufEnter * if @% =~ "^fugitive://" | nnoremap <silent><buffer> q :q<CR> | endif
