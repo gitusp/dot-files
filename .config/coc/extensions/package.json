@@ -1,9 +1,9 @@
 {
   "dependencies": {
     "coc-emmet": "^1.0.9",
-    "coc-json": "^1.0.12",
+    "coc-json": "^1.0.13",
     "coc-prettier": "^1.1.0",
-    "coc-tsserver": "^1.1.30",
+    "coc-tsserver": "^1.1.33",
     "coc-word": "^1.2.2"
   }
 }
