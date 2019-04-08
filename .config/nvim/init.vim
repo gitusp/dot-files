@@ -85,6 +85,8 @@ Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'machakann/vim-highlightedyank'
 " Interactive scratch pad
 Plug 'metakirby5/codi.vim'
+" Very personal WiKi
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
 "
@@ -119,6 +121,7 @@ set laststatus=2
 set termguicolors
 set noshowmode
 set signcolumn=yes
+set concealcursor=n
 
 "
 " Color settings
@@ -322,6 +325,19 @@ let g:which_key_map.t = {
       \ 'l': ['TestLast',    'Last'],
       \ 'n': ['TestNearest', 'Nearest'],
       \ }
+let g:which_key_map.w = {
+      \ 'name': '+wiki',
+      \ 'w': ['VimwikiIndex', 'Index'],
+      \ 't': ['VimwikiTabIndex', 'Tab Index'],
+      \ 's': ['VimwikiUISelect', 'Select'],
+      \ 'i': ['VimwikiDiaryIndex', 'Diary Index'],
+      \ 'W': ['VimwikiMakeDiaryNote', 'Make Diary Note'],
+      \ 'T': ['VimwikiTabMakeDiaryNote', 'Tab Make Diary Note'],
+      \ 'Y': ['VimwikiMakeYesterdayDiaryNote', 'Make Yesterday Diary Note'],
+      \ 'M': ['VimwikiMakeTomorrowDiaryNote', 'Make Tomorrow Diary Note'],
+      \ }
+
+
 
 "
 " word switcher settings
@@ -347,6 +363,11 @@ let g:grepper = {
 let g:ctrlp_user_command = 'rg %s --files --hidden --glob !.git'
 let g:ctrlp_use_caching = 0
 let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+
+"
+" Vimwiki
+"
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 
 "
 " Codi settings
