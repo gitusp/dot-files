@@ -316,6 +316,8 @@ let g:which_key_map.l = {
       \ }
 let g:which_key_map.s = {
       \ 'name': '+settings',
+      \ 'c': [':lcd %:h',            'Local Change Directory'],
+      \ 'C': [':cd %:h',             'Change Directory'],
       \ 'a': ['SwitchDiffAlgorithm', 'Switch algorithm for diffopt'],
       \ 'i': ['ToggleIwhite',        'Toggle iwhite for diffopt'],
       \ 's': [':set spell!',         'Toggle Spell Check'],
