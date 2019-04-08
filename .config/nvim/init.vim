@@ -119,7 +119,6 @@ set laststatus=2
 set termguicolors
 set noshowmode
 set signcolumn=yes
-set concealcursor=n
 
 "
 " Color settings
@@ -337,8 +336,6 @@ let g:which_key_map.w = {
       \ 'Y': ['VimwikiMakeYesterdayDiaryNote', 'Make Yesterday Diary Note'],
       \ 'M': ['VimwikiMakeTomorrowDiaryNote', 'Make Tomorrow Diary Note'],
       \ }
-
-
 
 "
 " word switcher settings
