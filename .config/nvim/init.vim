@@ -155,8 +155,10 @@ nnoremap <silent>       <M-a>     :Switch<CR>
 nnoremap <silent>       <M-x>     :SwitchReverse<CR>
 nnoremap <silent>       <M-i>     :call <SID>SuperJump("1\<C-I>")<CR>
 nnoremap <silent>       <M-o>     :call <SID>SuperJump("\<C-O>")<CR>
+nmap                    <M-s>     <Plug>SlimeParagraphSend
 " Visual mode
 xmap                    gs        <plug>(GrepperOperator)
+xmap                    <M-s>     <Plug>SlimeRegionSend
 " Terminal mode
 tnoremap                <Esc>     <C-\><C-N>
 " Insert mode
@@ -236,6 +238,7 @@ runtime macros/sandwich/keymap/surround.vim
 " Slime settings
 "
 let g:slime_target = "neovim"
+let g:slime_no_mappings = 1
 
 "
 " airline settings
