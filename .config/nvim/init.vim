@@ -85,10 +85,6 @@ Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'machakann/vim-highlightedyank'
 " Interactive scratch pad
 Plug 'metakirby5/codi.vim'
-" Notational
-Plug 'Alok/notational-fzf-vim'
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
 
 call plug#end()
 "
@@ -271,11 +267,6 @@ let g:javascript_plugin_jsdoc = 1
 " JSX settings
 "
 let g:jsx_ext_required = 1
-
-"
-" Notational settings
-"
-let g:nv_search_paths = ['~/.notational']
 
 "
 " Markdown settings
