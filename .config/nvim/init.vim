@@ -75,8 +75,6 @@ Plug 'radenling/vim-dispatch-neovim'
 Plug 'tpope/vim-rsi'
 " Motion helper
 Plug 'unblevable/quick-scope'
-" Indent guide
-Plug 'Yggdroot/indentLine'
 " REPL helper
 Plug 'jpalardy/vim-slime'
 " LSC
