@@ -150,7 +150,6 @@ nnoremap <silent>       ]l        :lnext<CR>
 nnoremap <silent>       [L        :lfirst<CR>
 nnoremap <silent>       ]L        :llast<CR>
 nnoremap <silent>       <C-L>     :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-nnoremap <silent>       <Esc>     :w<CR>
 " Normal mode - mappings with <Meta>
 nnoremap <silent>       <M-a>     :Switch<CR>
 nnoremap <silent>       <M-x>     :SwitchReverse<CR>
