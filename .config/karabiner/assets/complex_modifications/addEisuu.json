@@ -16,17 +16,6 @@
             {
               "key_code": "escape"
             }
-          ],
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "^com\\.apple\\.Terminal$",
-                "^io\\.alacritty$",
-                "^net\\.kovidgoyal\\.kitty$",
-                "^com\\.googlecode\\.iterm2$"
-              ]
-            }
           ]
         }
       ]
