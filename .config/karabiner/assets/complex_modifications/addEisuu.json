@@ -1,8 +1,8 @@
 {
-  "title": "Add eisuu to esc",
+  "title": "Add eisuu to esc/c-[/c-o",
   "rules": [
     {
-      "description": "Add eisuu to esc",
+      "description": "Add eisuu to esc-likes",
       "manipulators": [
         {
           "type": "basic",
@@ -11,33 +11,68 @@
           },
           "to": [
             {
-              "key_code": "japanese_eisuu"
+              "key_code": "escape"
             },
             {
-              "key_code": "escape"
+              "key_code": "japanese_eisuu"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^io\\.alacritty$",
+                "^net\\.kovidgoyal\\.kitty$",
+                "^com\\.googlecode\\.iterm2$"
+              ]
             }
           ]
-        }
-      ]
-    },
-    {
-      "description": "Add eisuu to <C-O>",
-      "manipulators": [
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "open_bracket",
+            "modifiers": {
+              "mandatory": ["control"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "open_bracket",
+              "modifiers": ["control"]
+            },
+            {
+              "key_code": "japanese_eisuu"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^io\\.alacritty$",
+                "^net\\.kovidgoyal\\.kitty$",
+                "^com\\.googlecode\\.iterm2$"
+              ]
+            }
+          ]
+        },
         {
           "type": "basic",
           "from": {
             "key_code": "o",
             "modifiers": {
-              "mandatory": ["left_control"]
+              "mandatory": ["control"]
             }
           },
           "to": [
             {
-              "key_code": "japanese_eisuu"
+              "key_code": "o",
+              "modifiers": ["control"]
             },
             {
-              "key_code": "o",
-              "modifiers": ["left_control"]
+              "key_code": "japanese_eisuu"
             }
           ],
           "conditions": [
