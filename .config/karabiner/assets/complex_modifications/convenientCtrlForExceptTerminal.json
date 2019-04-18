@@ -9,7 +9,7 @@
           "from": {
             "key_code": "n",
             "modifiers": {
-              "mandatory": ["left_control"],
+              "mandatory": ["control"],
               "optional": ["any"]
             }
           },
@@ -40,7 +40,7 @@
           "from": {
             "key_code": "p",
             "modifiers": {
-              "mandatory": ["left_control"],
+              "mandatory": ["control"],
               "optional": ["any"]
             }
           },
@@ -71,7 +71,7 @@
           "from": {
             "key_code": "b",
             "modifiers": {
-              "mandatory": ["left_control"],
+              "mandatory": ["control"],
               "optional": ["any"]
             }
           },
@@ -102,7 +102,7 @@
           "from": {
             "key_code": "f",
             "modifiers": {
-              "mandatory": ["left_control"],
+              "mandatory": ["control"],
               "optional": ["any"]
             }
           },
@@ -133,7 +133,7 @@
           "from": {
             "key_code": "h",
             "modifiers": {
-              "mandatory": ["left_control"]
+              "mandatory": ["control"]
             }
           },
           "to": [
@@ -163,13 +163,13 @@
           "from": {
             "key_code": "m",
             "modifiers": {
-              "mandatory": ["left_control", "left_command", "left_option"]
+              "mandatory": ["control", "command", "option"]
             }
           },
           "to": [
             {
               "key_code": "m",
-              "modifiers": ["left_control", "left_command", "left_option"]
+              "modifiers": ["control", "command", "option"]
             }
           ],
           "conditions": [
@@ -194,13 +194,43 @@
           "from": {
             "key_code": "m",
             "modifiers": {
-              "mandatory": ["left_control"],
+              "mandatory": ["control"],
               "optional": ["any"]
             }
           },
           "to": [
             {
               "key_code": "return_or_enter"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^io\\.alacritty$",
+                "^net\\.kovidgoyal\\.kitty$",
+                "^com\\.googlecode\\.iterm2$"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "escape",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "open_bracket",
+            "modifiers": {
+              "mandatory": ["control"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "escape"
             }
           ],
           "conditions": [
