@@ -2,7 +2,7 @@
   "title": "Convenient ctrl(^terminal)",
   "rules": [
     {
-      "description": "down",
+      "description": "arrow",
       "manipulators": [
         {
           "type": "basic",
@@ -29,12 +29,7 @@
               ]
             }
           ]
-        }
-      ]
-    },
-    {
-      "description": "up",
-      "manipulators": [
+        },
         {
           "type": "basic",
           "from": {
@@ -60,12 +55,7 @@
               ]
             }
           ]
-        }
-      ]
-    },
-    {
-      "description": "left",
-      "manipulators": [
+        },
         {
           "type": "basic",
           "from": {
@@ -91,12 +81,7 @@
               ]
             }
           ]
-        }
-      ]
-    },
-    {
-      "description": "right",
-      "manipulators": [
+        },
         {
           "type": "basic",
           "from": {
@@ -156,7 +141,7 @@
       ]
     },
     {
-      "description": "return_or_enter - preserve shiftit",
+      "description": "return_or_enter",
       "manipulators": [
         {
           "type": "basic",
@@ -183,12 +168,7 @@
               ]
             }
           ]
-        }
-      ]
-    },
-    {
-      "description": "return_or_enter - main mapping",
-      "manipulators": [
+        },
         {
           "type": "basic",
           "from": {
