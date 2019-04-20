@@ -86,6 +86,8 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'metakirby5/codi.vim'
 " Very personal WiKi
 Plug 'vimwiki/vimwiki'
+" Additional text objects
+Plug 'wellle/targets.vim'
 
 call plug#end()
 "
