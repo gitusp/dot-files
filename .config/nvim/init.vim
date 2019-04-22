@@ -365,7 +365,6 @@ let g:grepper = {
       \ 'rg':         { 'grepprg': 'rg --vimgrep --no-heading --smart-case --hidden --glob !.git --word-regexp' },
       \ 'rg-in-word': { 'grepprg': 'rg --vimgrep --no-heading --smart-case --hidden --glob !.git' },
       \ 'tools':      ['rg', 'rg-in-word'],
-      \ 'quickfix':   0
       \ }
 
 "
