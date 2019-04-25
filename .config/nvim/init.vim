@@ -368,6 +368,11 @@ let g:grepper = {
       \ }
 
 "
+" FlyGrep
+"
+let g:spacevim_debug_level = 3
+
+"
 " Fuzzy finder
 "
 let g:ctrlp_user_command = 'rg %s --files --hidden --glob !.git'
