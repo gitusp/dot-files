@@ -24,7 +24,8 @@
                 "^com\\.apple\\.Terminal$",
                 "^io\\.alacritty$",
                 "^net\\.kovidgoyal\\.kitty$",
-                "^com\\.googlecode\\.iterm2$"
+                "^com\\.googlecode\\.iterm2$",
+                "^com\\.google\\.android\\.studio$"
               ]
             }
           ]
@@ -53,7 +54,8 @@
                 "^com\\.apple\\.Terminal$",
                 "^io\\.alacritty$",
                 "^net\\.kovidgoyal\\.kitty$",
-                "^com\\.googlecode\\.iterm2$"
+                "^com\\.googlecode\\.iterm2$",
+                "^com\\.google\\.android\\.studio$"
               ]
             }
           ]
@@ -82,7 +84,8 @@
                 "^com\\.apple\\.Terminal$",
                 "^io\\.alacritty$",
                 "^net\\.kovidgoyal\\.kitty$",
-                "^com\\.googlecode\\.iterm2$"
+                "^com\\.googlecode\\.iterm2$",
+                "^com\\.google\\.android\\.studio$"
               ]
             }
           ]
