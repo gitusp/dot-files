@@ -237,6 +237,11 @@ command! -nargs=? Fold                call CocAction('fold', <f-args>)
 runtime macros/sandwich/keymap/surround.vim
 
 "
+" Vimagit settings
+"
+let g:magit_discard_untracked_do_delete = 1
+
+"
 " Slime settings
 "
 let g:slime_target = "neovim"
