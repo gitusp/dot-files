@@ -291,7 +291,7 @@ let g:jsx_ext_required = 1
 " Markdown settings
 "
 " NOTE: To avoid conflicting
-map <Plug> <Plug>Markdown_MoveToCurHeader
+map <Plug>Markdown_MoveToCurHeader <Plug>Markdown_MoveToCurHeader
 
 "
 " Test settings
@@ -388,6 +388,9 @@ let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 " Vimwiki
 "
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+" Disable header level mappings
+nmap <Plug>VimwikiRemoveHeaderLevel <Plug>VimwikiRemoveHeaderLevel
+nmap <Plug>VimwikiAddHeaderLevel <Plug>VimwikiAddHeaderLevel
 
 "
 " Codi settings
