@@ -37,22 +37,14 @@ Plug 'tpope/vim-abolish'
 Plug 'justinmk/vim-dirvish'
 " History util
 Plug 'mbbill/undotree'
-" Dockerfile syntax
-Plug 'ekalinin/Dockerfile.vim'
 " CSV Support
 Plug 'mechatroner/rainbow_csv'
-" nginx conf file syntax
-Plug 'chr4/nginx.vim'
 " Unified interface test runner
 Plug 'janko-m/vim-test'
-" Support terraform
-Plug 'hashivim/vim-terraform'
 " word switcher
 Plug 'AndrewRadev/switch.vim'
 " Auto pairing
 Plug 'cohama/lexima.vim'
-" Guide key
-Plug 'liuchengxu/vim-which-key'
 " Highlight trailing spaces
 Plug 'ntpeters/vim-better-whitespace'
 " Powerful matcher
@@ -62,9 +54,6 @@ Plug 'embear/vim-localvimrc'
 " Grep helper
 Plug 'mhinz/vim-grepper'
 Plug 'wsdjeg/FlyGrep.vim'
-" Fuzzy finder
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'nixprime/cpsm', { 'do': 'bash install.sh' }
 " Stylus syntax highlight
 Plug 'iloginow/vim-stylus'
 " Async task runner
@@ -87,6 +76,9 @@ Plug 'metakirby5/codi.vim'
 Plug 'vimwiki/vimwiki'
 " Additional text objects
 Plug 'wellle/targets.vim'
+" FZF
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 "
@@ -135,16 +127,30 @@ highlight! link CocInfoSign ALEWarningSign
 nnoremap                Y         y$
 nnoremap                Q         @q
 nnoremap                _         @:
-nmap     <silent>       gd        <Plug>(coc-definition)
+nnoremap <silent>       g?        :Gstatus<CR>
+nmap                    gd        <Plug>(coc-definition)
 nmap                    ghp       <Plug>GitGutterPreviewHunk
 nmap                    ghs       <Plug>GitGutterStageHunk
 nmap                    ghu       <Plug>GitGutterUndoHunk
+nnoremap <silent>       gl        :BLines<CR>
+nnoremap <silent>       gL        :Lines<CR>
 nmap                    gs        <plug>(GrepperOperator)
-nnoremap <silent>       gsp       :FlyGrep<CR>
-nnoremap <silent>       gss       :Grepper<CR>
+nmap                    yca       <Plug>(coc-codeaction)
+nmap                    ycf       <Plug>(coc-fix-current)
+nmap                    yci       <Plug>(coc-implementation)
+nmap                    ycr       <Plug>(coc-rename)
+nmap                    ycR       <Plug>(coc-references)
+nmap                    yct       <Plug>(coc-type-definition)
+nnoremap <silent>       yob       :Buffers<CR>
+nnoremap <silent>       yof       :GFiles<CR>
+nnoremap <silent>       yoF       :Files<CR>
+nnoremap <silent>       yqi       :VimwikiIndex<CR>
+nnoremap <silent>       yqd       :VimwikiMakeDiaryNote<CR>
+nnoremap <silent>       yrl       :TestLast<CR>
+nnoremap <silent>       yrn       :TestNearest<CR>
 nnoremap <silent>       K         :call <SID>ShowDocumentation()<CR>
-nmap     <silent>       [d        <Plug>(coc-diagnostic-prev)
-nmap     <silent>       ]d        <Plug>(coc-diagnostic-next)
+nmap                    [d        <Plug>(coc-diagnostic-prev)
+nmap                    ]d        <Plug>(coc-diagnostic-next)
 nnoremap <silent>       [q        :cprevious<CR>
 nnoremap <silent>       ]q        :cnext<CR>
 nnoremap <silent>       [Q        :cfirst<CR>
@@ -154,6 +160,7 @@ nnoremap <silent>       ]l        :lnext<CR>
 nnoremap <silent>       [L        :lfirst<CR>
 nnoremap <silent>       ]L        :llast<CR>
 nnoremap <silent>       <C-L>     :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+nnoremap <silent>       <Space>   :Commands<CR>
 " Normal mode - mappings with <Meta>
 nnoremap <silent>       <M-a>     :Switch<CR>
 nnoremap <silent>       <M-x>     :SwitchReverse<CR>
@@ -181,15 +188,8 @@ endfunction
 "
 augroup vimrc
   autocmd!
-  autocmd BufEnter * if &filetype ==# 'markdown' | call <SID>HandleMarkdownBufEnter() | endif
-  autocmd FileType which_key set laststatus=0 | autocmd BufLeave <buffer> set laststatus=2
-  " Vimwiki
-  autocmd FileType vimwiki nmap <silent><buffer> ]a <Plug>VimwikiNextLink
-  autocmd FileType vimwiki nmap <silent><buffer> [a <Plug>VimwikiPrevLink
   " convenient shortcuts
   autocmd FileType help,qf nnoremap <silent><buffer> q :q<CR>
-  autocmd BufEnter * if @% =~ "^fugitive://" | nnoremap <silent><buffer> q :q<CR> | endif
-  autocmd FileType dirvish nnoremap <silent><buffer> t :let $VIM_DIR=@%<CR>:terminal<CR>icd $VIM_DIR<CR><C-\><C-N>
   " code formatting
   autocmd FileType haskell,javascript,typescript,json setl formatexpr=CocAction('formatSelected')
   autocmd BufWritePre *.hs,*.js,*.jsx,*.json,*.ts,*.tsx try | undojoin | catch | endtry | Format
@@ -199,39 +199,12 @@ augroup vimrc
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup END
 
-function! s:HandleMarkdownBufEnter()
-  call <SID>RegisterMarkdownWhichKey()
-  autocmd BufLeave <buffer> call <SID>ClearMarkdownWhichKey()
-endfunction
-
-function! s:RegisterMarkdownWhichKey()
-  let g:which_key_map.f = {
-        \ 'name': '+format',
-        \ 't': ['TableFormat', 'Table'],
-        \ }
-  let g:which_key_map.m = {
-        \ 'name': '+markdown-preview',
-        \ 'c': [':Xmark!', 'Close'],
-        \ 'o': ['Xmark',   'Open'],
-        \ 'h': [':Xmark<', 'Left'],
-        \ 'j': [':Xmark-', 'Bottom'],
-        \ 'k': [':Xmark+', 'Top'],
-        \ 'l': [':Xmark>', 'Right'],
-        \ }
-endfunction
-
-function! s:ClearMarkdownWhichKey()
-  if has_key(g:which_key_map, 'f') | unlet g:which_key_map.f | endif
-  if has_key(g:which_key_map, 'm') | unlet g:which_key_map.m | endif
-endfunction
-
 "
 " Custom commands
 "
-command! -nargs=0 ToggleIwhite        call <SID>ToggleIwhite()
-command! -nargs=0 SwitchDiffAlgorithm call <SID>SwitchDiffAlgorithm()
-command! -nargs=0 Format              call CocAction('format')
-command! -nargs=? Fold                call CocAction('fold', <f-args>)
+command! -nargs=0 ToggleIwhite call <SID>ToggleIwhite()
+command! -nargs=0 Format       call CocAction('format')
+command! -nargs=? Fold         call CocAction('fold', <f-args>)
 
 "
 " Sandwich settings
@@ -272,7 +245,6 @@ let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_
 " lexima settings
 "
 let g:lexima_ctrlh_as_backspace	= 1
-call lexima#add_rule({'char': '<', 'input_after': '>'})
 
 "
 " Javascript settings
@@ -302,58 +274,6 @@ let test#strategy = "neovim"
 let $VISUAL = 'nvr -cc split --remote-wait'
 
 "
-" which key
-"
-nnoremap <silent> <Space> :WhichKey '<Space>'<CR>
-call which_key#register('<Space>', "g:which_key_map")
-let g:which_key_map =  {}
-let g:which_key_map.g = {
-      \ 'name': '+git',
-      \ 'c': [':terminal git commit', 'Commit'],
-      \ 'd': ['Gdiff',                'Diff'],
-      \ 'g': ['Flog',                 'Graph'],
-      \ 'r': ['Gread',                'Read'],
-      \ 's': ['Gstatus',              'Status'],
-      \ 't': ['Twiggy',               'Twiggy'],
-      \ 'w': ['Gwrite',               'Write'],
-      \ }
-let g:which_key_map.l = {
-      \ 'name': '+lsp',
-      \ 'a': ['<Plug>(coc-codeaction)',      'Code Action'],
-      \ 'f': ['<Plug>(coc-fix-current)',     'Fix Current'],
-      \ 'i': ['<Plug>(coc-implementation)',  'Implementation'],
-      \ 'l': ['CocList',                     'CocList'],
-      \ 'r': ['<Plug>(coc-rename)',          'Rename'],
-      \ 'R': ['<Plug>(coc-references)',      'References'],
-      \ 't': ['<Plug>(coc-type-definition)', 'Type Definition'],
-      \ 'y': [':CocList -A --normal yank',   'Yank List'],
-      \ }
-let g:which_key_map.s = {
-      \ 'name': '+settings',
-      \ 'c': [':lcd %:h',            'Local Change Directory'],
-      \ 'C': [':cd %:h',             'Change Directory'],
-      \ 'a': ['SwitchDiffAlgorithm', 'Switch algorithm for diffopt'],
-      \ 'i': ['ToggleIwhite',        'Toggle iwhite for diffopt'],
-      \ 's': [':set spell!',         'Toggle Spell Check'],
-      \ }
-let g:which_key_map.t = {
-      \ 'name': '+test',
-      \ 'l': ['TestLast',    'Last'],
-      \ 'n': ['TestNearest', 'Nearest'],
-      \ }
-let g:which_key_map.w = {
-      \ 'name': '+wiki',
-      \ 'w': ['VimwikiIndex', 'Index'],
-      \ 't': ['VimwikiTabIndex', 'Tab Index'],
-      \ 's': ['VimwikiUISelect', 'Select'],
-      \ 'i': ['VimwikiDiaryIndex', 'Diary Index'],
-      \ 'W': ['VimwikiMakeDiaryNote', 'Make Diary Note'],
-      \ 'T': ['VimwikiTabMakeDiaryNote', 'Tab Make Diary Note'],
-      \ 'Y': ['VimwikiMakeYesterdayDiaryNote', 'Make Yesterday Diary Note'],
-      \ 'M': ['VimwikiMakeTomorrowDiaryNote', 'Make Tomorrow Diary Note'],
-      \ }
-
-"
 " word switcher settings
 "
 let g:switch_mapping = ""
@@ -374,13 +294,6 @@ let g:grepper = {
 " FlyGrep
 "
 let g:spacevim_debug_level = 3
-
-"
-" Fuzzy finder
-"
-let g:ctrlp_user_command = 'rg %s --files --hidden --glob !.git'
-let g:ctrlp_use_caching = 0
-let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 
 "
 " Vimwiki
@@ -409,28 +322,6 @@ function! s:ToggleIwhite()
  else
    set diffopt+=iwhite
  endif
-endfunction
-
-"
-" Switch diff algorithm
-"
-function! s:SwitchDiffAlgorithm()
-  let algorithms = ['myers', 'minimal', 'patience', 'histogram']
-  if &diffopt !~ 'algorithm'
-    " Set default algorithm
-    set diffopt+=algorithm:myers
-  endif
-  let i = 0
-  while i < len(algorithms)
-    if &diffopt =~ 'algorithm:' . algorithms[i]
-      let j = i == len(algorithms) - 1 ? 0 : i + 1
-      execute 'set diffopt-=algorithm:' . algorithms[i]
-      execute 'set diffopt+=algorithm:' . algorithms[j]
-      echo 'algorithm:' . algorithms[j]
-      break
-    endif
-    let i = i + 1
-  endwhile
 endfunction
 
 "
