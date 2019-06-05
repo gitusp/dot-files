@@ -20,7 +20,6 @@ Plug 'moll/vim-node'
 " Git integration
 Plug 'tpope/vim-fugitive'
 Plug 'rbong/vim-flog'
-Plug 'jreybert/vimagit'
 Plug 'airblade/vim-gitgutter'
 Plug 'sodapopcan/vim-twiggy'
 " Text alignment - e.g. TableFormat
@@ -137,6 +136,9 @@ nnoremap                Y         y$
 nnoremap                Q         @q
 nnoremap                _         @:
 nmap     <silent>       gd        <Plug>(coc-definition)
+nmap                    ghp       <Plug>GitGutterPreviewHunk
+nmap                    ghs       <Plug>GitGutterStageHunk
+nmap                    ghu       <Plug>GitGutterUndoHunk
 nmap                    gs        <plug>(GrepperOperator)
 nnoremap <silent>       gsp       :FlyGrep<CR>
 nnoremap <silent>       gss       :Grepper<CR>
@@ -237,11 +239,6 @@ command! -nargs=? Fold                call CocAction('fold', <f-args>)
 runtime macros/sandwich/keymap/surround.vim
 
 "
-" Vimagit settings
-"
-let g:magit_discard_untracked_do_delete = 1
-
-"
 " Slime settings
 "
 let g:slime_target = "neovim"
@@ -312,12 +309,13 @@ call which_key#register('<Space>', "g:which_key_map")
 let g:which_key_map =  {}
 let g:which_key_map.g = {
       \ 'name': '+git',
-      \ 'd': ['Gdiff',  'Diff'],
-      \ 'g': ['Flog',   'Graph'],
-      \ 'm': ['Magit',  'Magit'],
-      \ 'r': ['Gread',  'Read'],
-      \ 't': ['Twiggy', 'Twiggy'],
-      \ 'w': ['Gwrite', 'Write'],
+      \ 'c': [':terminal git commit', 'Commit'],
+      \ 'd': ['Gdiff',                'Diff'],
+      \ 'g': ['Flog',                 'Graph'],
+      \ 'r': ['Gread',                'Read'],
+      \ 's': ['Gstatus',              'Status'],
+      \ 't': ['Twiggy',               'Twiggy'],
+      \ 'w': ['Gwrite',               'Write'],
       \ }
 let g:which_key_map.l = {
       \ 'name': '+lsp',
