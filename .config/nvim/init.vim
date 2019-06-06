@@ -204,9 +204,9 @@ augroup END
 "
 " Custom commands
 "
-command! -nargs=0 ToggleIwhite call <SID>ToggleIwhite()
-command! -nargs=0 Format       call CocAction('format')
-command! -nargs=? Fold         call CocAction('fold', <f-args>)
+command! -nargs=0 ToggleDiffoptIwhite call <SID>ToggleDiffoptIwhite()
+command! -nargs=0 Format              call CocAction('format')
+command! -nargs=? Fold                call CocAction('fold', <f-args>)
 
 "
 " Sandwich settings
@@ -326,7 +326,7 @@ let g:codi#interpreters = {
 "
 " Toggle diffopt
 "
-function! s:ToggleIwhite()
+function! s:ToggleDiffoptIwhite()
  if &diffopt =~ 'iwhite'
    set diffopt-=iwhite
  else
