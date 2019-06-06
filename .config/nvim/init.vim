@@ -131,6 +131,9 @@ nnoremap                Q         @q
 nnoremap                _         @:
 nnoremap <silent>       g?        :Gstatus<CR>
 nmap                    gd        <Plug>(coc-definition)
+nmap                    gi        <Plug>(coc-implementation)
+nmap                    gr        <Plug>(coc-references)
+nmap                    gy        <Plug>(coc-type-definition)
 nmap                    ghp       <Plug>GitGutterPreviewHunk
 nmap                    ghs       <Plug>GitGutterStageHunk
 nmap                    ghu       <Plug>GitGutterUndoHunk
@@ -139,10 +142,7 @@ nnoremap <silent>       gL        :Lines<CR>
 nmap                    gs        <plug>(GrepperOperator)
 nmap                    yca       <Plug>(coc-codeaction)
 nmap                    ycf       <Plug>(coc-fix-current)
-nmap                    yci       <Plug>(coc-implementation)
 nmap                    ycr       <Plug>(coc-rename)
-nmap                    ycR       <Plug>(coc-references)
-nmap                    yct       <Plug>(coc-type-definition)
 nnoremap <silent>       yob       :Buffers<CR>
 nnoremap <silent>       yof       :GFiles<CR>
 nnoremap <silent>       yoF       :Files<CR>
@@ -207,6 +207,9 @@ augroup END
 command! -nargs=0 ToggleDiffoptIwhite call <SID>ToggleDiffoptIwhite()
 command! -nargs=0 Format              call CocAction('format')
 command! -nargs=? Fold                call CocAction('fold', <f-args>)
+command! -nargs=0 Commit              sp | terminal git commit
+command! -nargs=0 CommitAmend         sp | terminal git commit --amend
+command! -nargs=0 CommitAmendNoEdit   sp | terminal git commit --amend --no-edit
 
 "
 " Sandwich settings

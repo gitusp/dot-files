@@ -1,3 +1,3 @@
-nnoremap <buffer> cc :terminal git commit<CR>
-nnoremap <buffer> ca :terminal git commit --amend<CR>
-nnoremap <buffer> ce :terminal git commit --amend --no-edit<CR>
+nnoremap <buffer> cc :Commit<CR>
+nnoremap <buffer> ca :CommitAmend<CR>
+nnoremap <buffer> ce :CommitAmendNoEdit<CR>
