@@ -141,8 +141,8 @@ nnoremap <silent>       gL        :Lines<CR>
 nmap                    gs        <Plug>SlimeMotionSend
 nmap                    gss       <Plug>SlimeLineSend
 nmap     <silent>       ycc       <Plug>(coc-codeaction)
+nmap     <silent>       ycf       <Plug>(coc-fix-current)
 nmap     <silent>       ycr       <Plug>(coc-rename)
-nmap     <silent>       ycq       <Plug>(coc-fix-current)
 nnoremap <silent>       yob       :Buffers<CR>
 nnoremap <silent>       yod       :VimwikiMakeDiaryNote<CR>
 nnoremap <silent>       yof       :GFiles<CR>
@@ -201,8 +201,8 @@ command! -nargs=0 ToggleDiffoptIwhite call <SID>ToggleDiffoptIwhite()
 command! -nargs=0 OrganizeImport      call CocAction('runCommand', 'editor.action.organizeImport')
 command! -nargs=0 Format              call CocAction('format')
 command! -nargs=? Fold                call CocAction('fold', <f-args>)
-command! -nargs=0 Commit              sp | terminal git commit
-command! -nargs=0 CommitAmend         sp | terminal git commit --amend
+command! -nargs=0 Commit              sp | terminal git commit --verbose
+command! -nargs=0 CommitAmend         sp | terminal git commit --verbose --amend
 command! -nargs=0 CommitAmendNoEdit   sp | terminal git commit --amend --no-edit
 
 "
