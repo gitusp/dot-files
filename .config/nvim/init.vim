@@ -126,7 +126,9 @@ nnoremap                Y         y$
 nnoremap                Q         @q
 nnoremap                _         @:
 nnoremap <silent>       g?        :Gstatus<CR>
-nmap     <silent>       ga        <Plug>(coc-codeaction-selected)
+nmap                    g/        <plug>(GrepperOperator)
+nmap     <silent>       g=        <Plug>(coc-format-selected)
+nmap     <silent>       g==       V<Plug>(coc-format-selected)
 nmap     <silent>       gd        <Plug>(coc-definition)
 nmap     <silent>       gi        <Plug>(coc-implementation)
 nmap     <silent>       gr        <Plug>(coc-references)
@@ -136,14 +138,16 @@ nmap                    ghs       <Plug>GitGutterStageHunk
 nmap                    ghu       <Plug>GitGutterUndoHunk
 nnoremap <silent>       gl        :BLines<CR>
 nnoremap <silent>       gL        :Lines<CR>
-nmap                    gs        <plug>(GrepperOperator)
+nmap                    gs        <Plug>SlimeMotionSend
+nmap                    gss       <Plug>SlimeLineSend
+nmap     <silent>       ycc       <Plug>(coc-codeaction)
+nmap     <silent>       ycr       <Plug>(coc-rename)
+nmap     <silent>       ycq       <Plug>(coc-fix-current)
 nnoremap <silent>       yob       :Buffers<CR>
 nnoremap <silent>       yod       :VimwikiMakeDiaryNote<CR>
 nnoremap <silent>       yof       :GFiles<CR>
 nnoremap <silent>       yoF       :Files<CR>
 nnoremap <silent>       yow       :VimwikiIndex<CR>
-nnoremap <silent>       yq        :Quickfix<CR>
-nnoremap <silent>       yr        :Rename<CR>
 nnoremap <silent>       K         :call <SID>ShowDocumentation()<CR>
 nmap     <silent>       [d        <Plug>(coc-diagnostic-prev)
 nmap     <silent>       ]d        <Plug>(coc-diagnostic-next)
@@ -157,14 +161,10 @@ nnoremap <silent>       [L        :lfirst<CR>
 nnoremap <silent>       ]L        :llast<CR>
 nnoremap <silent>       <C-L>     :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 nnoremap <silent>       <Space>   :Commands<CR>
-" Normal mode - mappings with <Meta>
-nnoremap <silent>       <M-i>     :call <SID>SuperJump("1\<C-I>")<CR>
-nnoremap <silent>       <M-o>     :call <SID>SuperJump("\<C-O>")<CR>
-nmap                    <M-s>     <Plug>SlimeParagraphSend
 " Visual mode
-xmap     <silent>       ga        <Plug>(coc-codeaction-selected)
-xmap                    gs        <plug>(GrepperOperator)
-xmap                    <M-s>     <Plug>SlimeRegionSend
+xmap                    g/        <plug>(GrepperOperator)
+xmap     <silent>       g=        <Plug>(coc-format-selected)
+xmap                    gs        <Plug>SlimeRegionSend
 " Terminal mode
 tnoremap                <Esc>     <C-\><C-N>
 " Insert mode
@@ -199,8 +199,6 @@ augroup END
 "
 command! -nargs=0 ToggleDiffoptIwhite call <SID>ToggleDiffoptIwhite()
 command! -nargs=0 OrganizeImport      call CocAction('runCommand', 'editor.action.organizeImport')
-command! -nargs=0 Quickfix            call CocActionAsync('doQuickfix')
-command! -nargs=0 Rename              call CocActionAsync('rename')
 command! -nargs=0 Format              call CocAction('format')
 command! -nargs=? Fold                call CocAction('fold', <f-args>)
 command! -nargs=0 Commit              sp | terminal git commit
@@ -317,21 +315,5 @@ function! s:ToggleDiffoptIwhite()
  else
    set diffopt+=iwhite
  endif
-endfunction
-
-"
-" Jump to another file
-"
-function! s:SuperJump(key)
-  let lastBufnr = bufnr('%')
-  let i = 0
-  while i < 256
-    execute 'normal! ' . a:key
-    let currentBufnr = bufnr('%')
-    if currentBufnr != lastBufnr
-      break
-    endif
-    let i += 1
-  endwhile
 endfunction
 
