@@ -79,6 +79,8 @@ Plug 'wellle/targets.vim'
 " FZF
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+" Quickfix helper
+Plug 'itchyny/vim-qfedit'
 
 call plug#end()
 "
