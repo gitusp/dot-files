@@ -39,10 +39,6 @@ Plug 'justinmk/vim-dirvish'
 Plug 'mbbill/undotree'
 " CSV Support
 Plug 'mechatroner/rainbow_csv'
-" Unified interface test runner
-Plug 'janko-m/vim-test'
-" word switcher
-Plug 'AndrewRadev/switch.vim'
 " Auto pairing
 Plug 'cohama/lexima.vim'
 " Highlight trailing spaces
@@ -130,29 +126,27 @@ nnoremap                Y         y$
 nnoremap                Q         @q
 nnoremap                _         @:
 nnoremap <silent>       g?        :Gstatus<CR>
-nmap                    gd        <Plug>(coc-definition)
-nmap                    gi        <Plug>(coc-implementation)
-nmap                    gr        <Plug>(coc-references)
-nmap                    gy        <Plug>(coc-type-definition)
+nmap     <silent>       ga        <Plug>(coc-codeaction-selected)
+nmap     <silent>       gd        <Plug>(coc-definition)
+nmap     <silent>       gi        <Plug>(coc-implementation)
+nmap     <silent>       gr        <Plug>(coc-references)
+nmap     <silent>       gy        <Plug>(coc-type-definition)
 nmap                    ghp       <Plug>GitGutterPreviewHunk
 nmap                    ghs       <Plug>GitGutterStageHunk
 nmap                    ghu       <Plug>GitGutterUndoHunk
 nnoremap <silent>       gl        :BLines<CR>
 nnoremap <silent>       gL        :Lines<CR>
 nmap                    gs        <plug>(GrepperOperator)
-nmap                    yca       <Plug>(coc-codeaction)
-nmap                    ycf       <Plug>(coc-fix-current)
-nmap                    ycr       <Plug>(coc-rename)
 nnoremap <silent>       yob       :Buffers<CR>
+nnoremap <silent>       yod       :VimwikiMakeDiaryNote<CR>
 nnoremap <silent>       yof       :GFiles<CR>
 nnoremap <silent>       yoF       :Files<CR>
-nnoremap <silent>       yqi       :VimwikiIndex<CR>
-nnoremap <silent>       yqd       :VimwikiMakeDiaryNote<CR>
-nnoremap <silent>       yrl       :TestLast<CR>
-nnoremap <silent>       yrn       :TestNearest<CR>
+nnoremap <silent>       yow       :VimwikiIndex<CR>
+nnoremap <silent>       yq        :Quickfix<CR>
+nnoremap <silent>       yr        :Rename<CR>
 nnoremap <silent>       K         :call <SID>ShowDocumentation()<CR>
-nmap                    [d        <Plug>(coc-diagnostic-prev)
-nmap                    ]d        <Plug>(coc-diagnostic-next)
+nmap     <silent>       [d        <Plug>(coc-diagnostic-prev)
+nmap     <silent>       ]d        <Plug>(coc-diagnostic-next)
 nnoremap <silent>       [q        :cprevious<CR>
 nnoremap <silent>       ]q        :cnext<CR>
 nnoremap <silent>       [Q        :cfirst<CR>
@@ -164,12 +158,11 @@ nnoremap <silent>       ]L        :llast<CR>
 nnoremap <silent>       <C-L>     :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 nnoremap <silent>       <Space>   :Commands<CR>
 " Normal mode - mappings with <Meta>
-nnoremap <silent>       <M-a>     :Switch<CR>
-nnoremap <silent>       <M-x>     :SwitchReverse<CR>
 nnoremap <silent>       <M-i>     :call <SID>SuperJump("1\<C-I>")<CR>
 nnoremap <silent>       <M-o>     :call <SID>SuperJump("\<C-O>")<CR>
 nmap                    <M-s>     <Plug>SlimeParagraphSend
 " Visual mode
+xmap     <silent>       ga        <Plug>(coc-codeaction-selected)
 xmap                    gs        <plug>(GrepperOperator)
 xmap                    <M-s>     <Plug>SlimeRegionSend
 " Terminal mode
@@ -205,6 +198,9 @@ augroup END
 " Custom commands
 "
 command! -nargs=0 ToggleDiffoptIwhite call <SID>ToggleDiffoptIwhite()
+command! -nargs=0 OrganizeImport      call CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 Quickfix            call CocActionAsync('doQuickfix')
+command! -nargs=0 Rename              call CocActionAsync('rename')
 command! -nargs=0 Format              call CocAction('format')
 command! -nargs=? Fold                call CocAction('fold', <f-args>)
 command! -nargs=0 Commit              sp | terminal git commit
@@ -276,23 +272,9 @@ let g:jsx_ext_required = 1
 map <Plug>Markdown_MoveToCurHeader <Plug>Markdown_MoveToCurHeader
 
 "
-" Test settings
-"
-let test#go#gotest#options = '-v'
-let test#strategy = "neovim"
-
-"
 " nvr settings
 "
 let $VISUAL = 'nvr -cc split --remote-wait'
-
-"
-" word switcher settings
-"
-let g:switch_mapping = ""
-let g:switch_custom_definitions = [
-\   ['foo', 'bar', 'baz', 'qux', 'quux', 'corge', 'grault', 'garply', 'waldo', 'fred', 'plugh', 'xyzzy', 'thud']
-\ ]
 
 "
 " Grepper settings
