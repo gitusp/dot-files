@@ -197,13 +197,16 @@ augroup END
 "
 " Custom commands
 "
-command! -nargs=0 ToggleDiffoptIwhite call <SID>ToggleDiffoptIwhite()
-command! -nargs=0 OrganizeImport      call CocAction('runCommand', 'editor.action.organizeImport')
-command! -nargs=0 Format              call CocAction('format')
-command! -nargs=? Fold                call CocAction('fold', <f-args>)
-command! -nargs=0 Commit              sp | terminal git commit --verbose
-command! -nargs=0 CommitAmend         sp | terminal git commit --verbose --amend
-command! -nargs=0 CommitAmendNoEdit   sp | terminal git commit --amend --no-edit
+command! -nargs=0 ToggleDiffoptIwhite       call <SID>ToggleDiffoptIwhite()
+command! -nargs=0 OrganizeImport            call CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 Format                    call CocAction('format')
+command! -nargs=? Fold                      call CocAction('fold', <f-args>)
+command! -nargs=0 Commit                    sp | terminal git commit --verbose
+command! -nargs=0 CommitNoVerify            sp | terminal git commit --verbose --no-verify
+command! -nargs=0 CommitAmend               sp | terminal git commit --verbose --amend
+command! -nargs=0 CommitAmendNoVerify       sp | terminal git commit --verbose --amend --no-verify
+command! -nargs=0 CommitAmendNoEdit         sp | terminal git commit --amend --no-edit
+command! -nargs=0 CommitAmendNoEditNoVerify sp | terminal git commit --amend --no-edit --no-verify
 
 "
 " Sandwich settings
