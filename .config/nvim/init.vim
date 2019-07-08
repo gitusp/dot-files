@@ -122,53 +122,54 @@ highlight! link CocInfoSign ALEWarningSign
 " Custom mappings
 "
 " Normal mode - normal assignments
-nnoremap                Y         y$
-nnoremap                Q         @q
-nnoremap                _         @:
-nnoremap <silent>       g?        :Gstatus<CR>
-nmap                    g/        <plug>(GrepperOperator)
-nmap     <silent>       g=        <Plug>(coc-format-selected)
-nmap     <silent>       g==       V<Plug>(coc-format-selected)
-nmap     <silent>       gd        <Plug>(coc-definition)
-nmap     <silent>       gi        <Plug>(coc-implementation)
-nmap     <silent>       gr        <Plug>(coc-references)
-nmap     <silent>       gy        <Plug>(coc-type-definition)
-nmap                    ghp       <Plug>GitGutterPreviewHunk
-nmap                    ghs       <Plug>GitGutterStageHunk
-nmap                    ghu       <Plug>GitGutterUndoHunk
-nnoremap <silent>       gl        :BLines<CR>
-nnoremap <silent>       gL        :Lines<CR>
-nmap                    gs        <Plug>SlimeMotionSend
-nmap                    gss       <Plug>SlimeLineSend
-nmap     <silent>       ycc       <Plug>(coc-codeaction)
-nmap     <silent>       ycf       <Plug>(coc-fix-current)
-nmap     <silent>       ycr       <Plug>(coc-rename)
-nnoremap <silent>       yob       :Buffers<CR>
-nnoremap <silent>       yod       :VimwikiMakeDiaryNote<CR>
-nnoremap <silent>       yof       :GFiles<CR>
-nnoremap <silent>       yoF       :Files<CR>
-nnoremap <silent>       yow       :VimwikiIndex<CR>
-nnoremap <silent>       K         :call <SID>ShowDocumentation()<CR>
-nmap     <silent>       [d        <Plug>(coc-diagnostic-prev)
-nmap     <silent>       ]d        <Plug>(coc-diagnostic-next)
-nnoremap <silent>       [q        :cprevious<CR>
-nnoremap <silent>       ]q        :cnext<CR>
-nnoremap <silent>       [Q        :cfirst<CR>
-nnoremap <silent>       ]Q        :clast<CR>
-nnoremap <silent>       [l        :lprevious<CR>
-nnoremap <silent>       ]l        :lnext<CR>
-nnoremap <silent>       [L        :lfirst<CR>
-nnoremap <silent>       ]L        :llast<CR>
-nnoremap <silent>       <C-L>     :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-nnoremap <silent>       <Space>   :Commands<CR>
+nnoremap                Y          y$
+nnoremap                Q          @q
+nnoremap                _          @:
+nnoremap <silent>       g?         :Gstatus<CR>
+nmap                    g/         <plug>(GrepperOperator)
+nmap     <silent>       g=         <Plug>(coc-format-selected)
+nmap     <silent>       g==        V<Plug>(coc-format-selected)
+nmap     <silent>       gd         <Plug>(coc-definition)
+nmap     <silent>       gi         <Plug>(coc-implementation)
+nmap     <silent>       gr         <Plug>(coc-references)
+nmap     <silent>       gy         <Plug>(coc-type-definition)
+nmap                    ghp        <Plug>GitGutterPreviewHunk
+nmap                    ghs        <Plug>GitGutterStageHunk
+nmap                    ghu        <Plug>GitGutterUndoHunk
+nnoremap <silent>       gl         :BLines<CR>
+nnoremap <silent>       gL         :Lines<CR>
+nmap                    gs         <Plug>SlimeMotionSend
+nmap                    gss        <Plug>SlimeLineSend
+nmap     <silent>       ycc        <Plug>(coc-codeaction)
+nmap     <silent>       ycf        <Plug>(coc-fix-current)
+nmap     <silent>       ycr        <Plug>(coc-rename)
+nnoremap <silent>       yob        :Buffers<CR>
+nnoremap <silent>       yod        :VimwikiMakeDiaryNote<CR>
+nnoremap <silent>       yof        :GFiles<CR>
+nnoremap <silent>       yoF        :Files<CR>
+nnoremap <silent>       yow        :VimwikiIndex<CR>
+nnoremap <silent>       K          :call <SID>ShowDocumentation()<CR>
+nmap     <silent>       [d         <Plug>(coc-diagnostic-prev)
+nmap     <silent>       ]d         <Plug>(coc-diagnostic-next)
+nnoremap <silent>       [q         :cprevious<CR>
+nnoremap <silent>       ]q         :cnext<CR>
+nnoremap <silent>       [Q         :cfirst<CR>
+nnoremap <silent>       ]Q         :clast<CR>
+nnoremap <silent>       [l         :lprevious<CR>
+nnoremap <silent>       ]l         :lnext<CR>
+nnoremap <silent>       [L         :lfirst<CR>
+nnoremap <silent>       ]L         :llast<CR>
+nnoremap <silent>       <C-L>      :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+nnoremap <silent>       <Space>    :Commands<CR>
 " Visual mode
-xmap                    g/        <plug>(GrepperOperator)
-xmap     <silent>       g=        <Plug>(coc-format-selected)
-xmap                    gs        <Plug>SlimeRegionSend
+xmap                    g/         <plug>(GrepperOperator)
+xmap     <silent>       g=         <Plug>(coc-format-selected)
+xmap                    gs         <Plug>SlimeRegionSend
 " Terminal mode
-tnoremap                <Esc>     <C-\><C-N>
+tnoremap                <Esc>      <C-\><C-N>
 " Insert mode
-inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <c-space>  coc#refresh()
+imap                    <c-x><c-l> <plug>(fzf-complete-line)
 
 function! s:ShowDocumentation()
   if &filetype == 'vim'
