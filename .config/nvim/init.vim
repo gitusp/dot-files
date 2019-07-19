@@ -77,6 +77,8 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 " Quickfix helper
 Plug 'itchyny/vim-qfedit'
+" Haskell dev env
+Plug 'parsonsmatt/intero-neovim'
 
 call plug#end()
 "
@@ -187,8 +189,8 @@ augroup vimrc
   " convenient shortcuts
   autocmd FileType help,qf nnoremap <silent><buffer> q :q<CR>
   " code formatting
-  autocmd FileType haskell,javascript,typescript,json setl formatexpr=CocAction('formatSelected')
-  autocmd BufWritePre *.hs,*.js,*.jsx,*.json,*.ts,*.tsx try | undojoin | catch | endtry | Format
+  autocmd FileType javascript,typescript,json setl formatexpr=CocAction('formatSelected')
+  autocmd BufWritePre *.js,*.jsx,*.json,*.ts,*.tsx try | undojoin | catch | endtry | Format
   " code highlight
   autocmd CursorHold * silent call CocActionAsync('highlight')
   " custom events
