@@ -79,6 +79,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'itchyny/vim-qfedit'
 " Haskell dev env
 Plug 'parsonsmatt/intero-neovim'
+Plug 'neomake/neomake'
+Plug 'sbdchd/neoformat'
 
 call plug#end()
 "
