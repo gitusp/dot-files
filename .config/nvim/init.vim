@@ -49,7 +49,6 @@ Plug 'andymass/vim-matchup'
 Plug 'embear/vim-localvimrc'
 " Grep helper
 Plug 'mhinz/vim-grepper'
-Plug 'wsdjeg/FlyGrep.vim'
 " Stylus syntax highlight
 Plug 'iloginow/vim-stylus'
 " Async task runner
@@ -284,11 +283,6 @@ let g:grepper = {
       \ 'rg-in-word': { 'grepprg': 'rg --vimgrep --no-heading --smart-case --hidden --glob !.git' },
       \ 'tools':      ['rg', 'rg-in-word'],
       \ }
-
-"
-" FlyGrep
-"
-let g:spacevim_debug_level = 3
 
 "
 " Vimwiki
