@@ -63,6 +63,8 @@ Plug 'justinmk/vim-sneak'
 Plug 'jpalardy/vim-slime'
 " LSC
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+" Linter
+Plug 'w0rp/ale'
 " Highlight yanked region
 Plug 'machakann/vim-highlightedyank'
 " Interactive scratch pad
@@ -222,6 +224,13 @@ let g:slime_no_mappings = 1
 "
 let g:sneak#label = 1
 let g:sneak#use_ic_scs = 1
+
+"
+" ALE Settings
+"
+let g:ale_linters = {
+\   'typescript': ['eslint'],
+\}
 
 "
 " airline settings
