@@ -150,6 +150,7 @@ nnoremap <silent>       yob        :Buffers<CR>
 nnoremap <silent>       yod        :VimwikiMakeDiaryNote<CR>
 nnoremap <silent>       yof        :GFiles<CR>
 nnoremap <silent>       yoF        :Files<CR>
+nnoremap <silent>       yoh        :History<CR>
 nnoremap <silent>       yow        :VimwikiIndex<CR>
 nnoremap <silent>       K          :call <SID>ShowDocumentation()<CR>
 nmap     <silent>       [d         <Plug>(coc-diagnostic-prev)
