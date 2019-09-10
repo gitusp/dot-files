@@ -80,6 +80,8 @@ Plug 'itchyny/vim-qfedit'
 Plug 'parsonsmatt/intero-neovim'
 Plug 'neomake/neomake'
 Plug 'sbdchd/neoformat'
+" Distraction-free writing in Vim
+Plug 'junegunn/goyo.vim'
 
 call plug#end()
 "
