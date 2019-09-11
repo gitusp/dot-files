@@ -130,7 +130,6 @@ highlight! link CocInfoSign ALEWarningSign
 nnoremap                Y          y$
 nnoremap                Q          @q
 nnoremap                _          @:
-nnoremap <silent>       g?         :Gstatus<CR>
 nmap                    g/         <plug>(GrepperOperator)
 nmap     <silent>       g=         <Plug>(coc-format-selected)
 nmap     <silent>       g==        V<Plug>(coc-format-selected)
