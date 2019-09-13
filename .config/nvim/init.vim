@@ -137,9 +137,9 @@ nmap     <silent>       gd         <Plug>(coc-definition)
 nmap     <silent>       gi         <Plug>(coc-implementation)
 nmap     <silent>       gr         <Plug>(coc-references)
 nmap     <silent>       gy         <Plug>(coc-type-definition)
-nmap                    ghp        <Plug>GitGutterPreviewHunk
-nmap                    ghs        <Plug>GitGutterStageHunk
-nmap                    ghu        <Plug>GitGutterUndoHunk
+nmap                    ghp        <Plug>(GitGutterPreviewHunk)
+nmap                    ghs        <Plug>(GitGutterStageHunk)
+nmap                    ghu        <Plug>(GitGutterUndoHunk)
 nnoremap <silent>       gl         :BLines<CR>
 nnoremap <silent>       gL         :Lines<CR>
 nmap                    gs         <Plug>SlimeMotionSend
