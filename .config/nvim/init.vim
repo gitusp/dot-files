@@ -8,10 +8,9 @@ Plug 'rakr/vim-one'
 Plug 'vim-airline/vim-airline'
 " JavaScript syntax highlight
 Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 " TypeScript syntax highlight
 Plug 'HerringtonDarkholme/yats.vim'
-"JSX
-Plug 'maxmellon/vim-jsx-pretty'
 " Pug syntax highlight
 Plug 'digitaltoad/vim-pug'
 " Load editorconfig.
@@ -261,6 +260,11 @@ let g:lexima_ctrlh_as_backspace	= 1
 " Javascript settings
 "
 let g:javascript_plugin_jsdoc = 1
+
+"
+" JSX settings
+"
+let g:jsx_ext_required = 1
 
 "
 " Markdown settings
