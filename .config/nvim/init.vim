@@ -11,6 +11,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 " TypeScript syntax highlight
 Plug 'HerringtonDarkholme/yats.vim'
+" CSS in JS syntax highlight
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 " Pug syntax highlight
 Plug 'digitaltoad/vim-pug'
 " Load editorconfig.
@@ -198,6 +200,9 @@ augroup vimrc
   autocmd CursorHold * silent call CocActionAsync('highlight')
   " custom events
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+  " CSS in JS Syntax Highlight
+  autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+  autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 augroup END
 
 "
