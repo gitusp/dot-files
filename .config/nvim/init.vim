@@ -84,8 +84,6 @@ Plug 'neomake/neomake'
 Plug 'sbdchd/neoformat'
 " Distraction-free writing in Vim
 Plug 'junegunn/goyo.vim'
-" Rainbow Parentheses
-Plug 'luochen1990/rainbow'
 
 call plug#end()
 "
