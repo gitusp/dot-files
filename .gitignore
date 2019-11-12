@@ -1,6 +1,4 @@
-.gitconfig.local
 .config/nvim/plugged
 .config/nvim/.netrwhist
-.config/nvim/local.vim
 .config/nvim/undodir/
 
