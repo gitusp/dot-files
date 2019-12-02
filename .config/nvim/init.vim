@@ -84,6 +84,10 @@ Plug 'neomake/neomake'
 Plug 'sbdchd/neoformat'
 " Distraction-free writing in Vim
 Plug 'junegunn/goyo.vim'
+" peek register
+Plug 'junegunn/vim-peekaboo'
+" Improved search
+Plug 'junegunn/vim-slash'
 
 call plug#end()
 "
