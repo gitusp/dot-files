@@ -81,8 +81,6 @@ Plug 'itchyny/vim-qfedit'
 Plug 'parsonsmatt/intero-neovim'
 Plug 'neomake/neomake'
 Plug 'sbdchd/neoformat'
-" Distraction-free writing in Vim
-Plug 'junegunn/goyo.vim'
 " peek register
 Plug 'junegunn/vim-peekaboo'
 " Improved search
@@ -273,11 +271,6 @@ let g:jsx_ext_required = 1
 "
 " NOTE: To avoid conflicting
 map <Plug>Markdown_MoveToCurHeader <Plug>Markdown_MoveToCurHeader
-
-"
-" nvr settings
-"
-let $VISUAL = 'nvr -cc split --remote-wait'
 
 "
 " Grepper settings
