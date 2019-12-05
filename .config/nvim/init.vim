@@ -60,7 +60,6 @@ Plug 'radenling/vim-dispatch-neovim'
 Plug 'tpope/vim-rsi'
 " Motion helper
 Plug 'unblevable/quick-scope'
-Plug 'justinmk/vim-sneak'
 " REPL helper
 Plug 'jpalardy/vim-slime'
 " LSC
@@ -227,12 +226,6 @@ runtime macros/sandwich/keymap/surround.vim
 "
 let g:slime_target = "neovim"
 let g:slime_no_mappings = 1
-
-"
-" sneak settings
-"
-let g:sneak#label = 1
-let g:sneak#use_ic_scs = 1
 
 "
 " airline settings
