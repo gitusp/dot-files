@@ -4,6 +4,7 @@
     "coc-json": ">=1.2.4",
     "coc-prettier": ">=1.1.11",
     "coc-tsserver": ">=1.4.9",
-    "coc-word": "^1.2.2"
+    "coc-word": "^1.2.2",
+    "coc-pairs": ">=1.2.20"
   }
 }

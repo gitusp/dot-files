@@ -41,8 +41,6 @@ Plug 'justinmk/vim-dirvish'
 Plug 'mbbill/undotree'
 " CSV Support
 Plug 'mechatroner/rainbow_csv'
-" Auto pairing
-Plug 'cohama/lexima.vim'
 " Highlight trailing spaces
 Plug 'ntpeters/vim-better-whitespace'
 " Powerful matcher
@@ -252,11 +250,6 @@ command! -bang -nargs=* Rg  call fzf#vim#grep("rg --column --line-number --no-he
 command! -bang -nargs=* Rgw call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden --word-regexp ".shellescape(<q-args>), 1, <bang>0)
 " floating window
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.4 } }
-
-"
-" lexima settings
-"
-let g:lexima_ctrlh_as_backspace	= 1
 
 "
 " Javascript settings
