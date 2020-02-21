@@ -73,7 +73,7 @@ Plug 'vimwiki/vimwiki'
 " Additional text objects
 Plug 'wellle/targets.vim'
 " FZF
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " Quickfix helper
 Plug 'itchyny/vim-qfedit'
@@ -250,6 +250,8 @@ let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_
 command! -bang -nargs=* Rg  call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden ".shellescape(<q-args>), 1, <bang>0)
 " Add --word-regexp to the customized version.
 command! -bang -nargs=* Rgw call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden --word-regexp ".shellescape(<q-args>), 1, <bang>0)
+" floating window
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.4 } }
 
 "
 " lexima settings
