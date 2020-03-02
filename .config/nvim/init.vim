@@ -166,7 +166,7 @@ nnoremap <silent>       ]L         :llast<CR>
 nnoremap <silent>       <C-L>      :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 nnoremap <silent>       <Space>    :Commands<CR>
 " selections ranges.
-nmap     <silent>       <TAB>      <Plug>(coc-range-select)
+nmap     <silent>       +          <Plug>(coc-range-select)
 " Visual mode
 xmap                    g/         <plug>(GrepperOperator)
 xmap     <silent>       g=         <Plug>(coc-format-selected)
@@ -175,7 +175,7 @@ xmap                    gs         <Plug>SlimeRegionSend
 xmap                    if         <Plug>(coc-funcobj-i)
 xmap                    af         <Plug>(coc-funcobj-a)
 " selections ranges.
-xmap     <silent>       <TAB>      <Plug>(coc-range-select)
+xmap     <silent>       +          <Plug>(coc-range-select)
 " Operator pending mappings
 omap                    if         <Plug>(coc-funcobj-i)
 omap                    af         <Plug>(coc-funcobj-a)
