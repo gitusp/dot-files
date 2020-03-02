@@ -81,8 +81,6 @@ Plug 'neomake/neomake'
 Plug 'sbdchd/neoformat'
 " peek register
 Plug 'junegunn/vim-peekaboo'
-" Improved search
-Plug 'junegunn/vim-slash'
 
 call plug#end()
 "
