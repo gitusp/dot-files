@@ -153,6 +153,8 @@ nnoremap <silent>       yoF        :Files<CR>
 nnoremap <silent>       yoh        :History<CR>
 nnoremap <silent>       yow        :VimwikiIndex<CR>
 nnoremap <silent>       K          :call <SID>ShowDocumentation()<CR>
+nmap     <silent>       [d         <Plug>(coc-diagnostic-prev)
+nmap     <silent>       ]d         <Plug>(coc-diagnostic-next)
 nnoremap <silent>       [q         :cprevious<CR>
 nnoremap <silent>       ]q         :cnext<CR>
 nnoremap <silent>       [Q         :cfirst<CR>
