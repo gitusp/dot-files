@@ -115,6 +115,7 @@ set laststatus=2
 set termguicolors
 set noshowmode
 set signcolumn=yes
+set dictionary+=/usr/share/dict/words
 
 "
 " Color settings
