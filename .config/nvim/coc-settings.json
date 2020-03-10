@@ -1,5 +1,5 @@
 {
   "codeLens.enable": true,
   "diagnostic.virtualText": true,
-  "languageserver": {}
+  "coc.source.emoji.filetypes": ["markdown", "gitcommit"]
 }
