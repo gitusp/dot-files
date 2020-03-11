@@ -311,6 +311,12 @@ let g:codi#interpreters = {
   \ }
 
 "
+" Sneak settings
+"
+let g:sneak#label = 1
+let g:sneak#use_ic_scs = 1
+
+"
 " Toggle diffopt
 "
 function! s:ToggleDiffoptIwhite()
