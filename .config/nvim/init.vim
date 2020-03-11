@@ -160,10 +160,14 @@ nnoremap <silent>       [q         :cprevious<CR>
 nnoremap <silent>       ]q         :cnext<CR>
 nnoremap <silent>       [Q         :cfirst<CR>
 nnoremap <silent>       ]Q         :clast<CR>
+nnoremap <silent>       [<C-Q>     :colder<CR>
+nnoremap <silent>       ]<C-Q>     :cnewer<CR>
 nnoremap <silent>       [l         :lprevious<CR>
 nnoremap <silent>       ]l         :lnext<CR>
 nnoremap <silent>       [L         :lfirst<CR>
 nnoremap <silent>       ]L         :llast<CR>
+nnoremap <silent>       [<C-L>     :lolder<CR>
+nnoremap <silent>       ]<C-L>     :lnewer<CR>
 nnoremap <silent>       <C-L>      :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 nnoremap <silent>       <Space>    :Commands<CR>
 " selections ranges.
