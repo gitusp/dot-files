@@ -81,6 +81,8 @@ Plug 'neomake/neomake'
 Plug 'sbdchd/neoformat'
 " peek register
 Plug 'junegunn/vim-peekaboo'
+" Movement helper
+Plug 'justinmk/vim-sneak'
 
 call plug#end()
 "
@@ -168,7 +170,7 @@ nnoremap <silent>       [L         :lfirst<CR>
 nnoremap <silent>       ]L         :llast<CR>
 nnoremap <silent>       [<C-L>     :lolder<CR>
 nnoremap <silent>       ]<C-L>     :lnewer<CR>
-nnoremap <silent>       <C-L>      :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+nnoremap <silent>       <C-L>      :nohlsearch<Bar>call sneak#util#removehl()<CR><C-L>
 nnoremap <silent>       <Space>    :Commands<CR>
 " selections ranges.
 nmap     <silent>       +          <Plug>(coc-range-select)
