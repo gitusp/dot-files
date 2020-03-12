@@ -125,6 +125,8 @@ set dictionary+=/usr/share/dict/words
 "
 highlight! link CocErrorSign ALEErrorSign
 highlight! link CocInfoSign ALEWarningSign
+highlight! Sneak guifg=#fdf6e3 guibg=#d33682
+highlight! SneakScope guifg=#fdf6e3 guibg=#cb4b16
 
 "
 " Custom mappings
