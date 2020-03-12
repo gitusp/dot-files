@@ -4,8 +4,9 @@
 call plug#begin()
 
 " Theme
-Plug 'rakr/vim-one'
+Plug 'romainl/flattened'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " JavaScript syntax highlight
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
@@ -92,8 +93,8 @@ call plug#end()
 "
 " General Settings
 "
-colorscheme one
-set background=dark
+colorscheme flattened_light
+let g:airline_theme='solarized'
 set updatetime=300
 set hidden
 set clipboard=unnamedplus
@@ -266,6 +267,20 @@ command! -bang -nargs=* Rg  call fzf#vim#grep("rg --column --line-number --no-he
 command! -bang -nargs=* Rgw call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden --word-regexp ".shellescape(<q-args>), 1, <bang>0)
 " floating window
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.4 } }
+" Color settings
+let g:fzf_colors =
+  \ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
 "
 " Javascript settings
