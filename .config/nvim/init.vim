@@ -125,8 +125,7 @@ set dictionary+=/usr/share/dict/words
 "
 highlight! link CocErrorSign ALEErrorSign
 highlight! link CocInfoSign ALEWarningSign
-highlight! Sneak guifg=#fdf6e3 guibg=#cb4b16
-highlight! link SneakScope Cursor
+highlight! Sneak guifg=#fdf6e3 guibg=#d33682
 
 "
 " Custom mappings
@@ -326,12 +325,6 @@ let g:codi#interpreters = {
     \ 'prompt': '^\(>\|\.\.\.\+\) ',
     \ },
   \ }
-
-"
-" Sneak settings
-"
-let g:sneak#label = 1
-let g:sneak#use_ic_scs = 1
 
 "
 " Toggle diffopt
