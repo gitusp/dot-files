@@ -8,10 +8,11 @@ Plug 'romainl/flattened'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " JavaScript syntax highlight
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
+Plug 'yuezk/vim-js'
 " TypeScript syntax highlight
 Plug 'HerringtonDarkholme/yats.vim'
+" JSX/TSX syntax highlight
+Plug 'maxmellon/vim-jsx-pretty'
 " CSS in JS syntax highlight
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 " Pug syntax highlight
@@ -282,16 +283,6 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-
-"
-" Javascript settings
-"
-let g:javascript_plugin_jsdoc = 1
-
-"
-" JSX settings
-"
-let g:jsx_ext_required = 1
 
 "
 " Markdown settings
