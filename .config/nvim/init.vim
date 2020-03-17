@@ -68,8 +68,6 @@ Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'machakann/vim-highlightedyank'
 " Interactive scratch pad
 Plug 'metakirby5/codi.vim'
-" Very personal WiKi
-Plug 'vimwiki/vimwiki'
 " Additional text objects
 Plug 'wellle/targets.vim'
 " FZF
@@ -153,11 +151,9 @@ nmap     <silent>       ycc        <Plug>(coc-codeaction)
 nmap     <silent>       ycf        <Plug>(coc-fix-current)
 nmap     <silent>       ycr        <Plug>(coc-rename)
 nnoremap <silent>       yob        :Buffers<CR>
-nnoremap <silent>       yod        :VimwikiMakeDiaryNote<CR>
 nnoremap <silent>       yof        :GFiles<CR>
 nnoremap <silent>       yoF        :Files<CR>
 nnoremap <silent>       yoh        :History<CR>
-nnoremap <silent>       yow        :VimwikiIndex<CR>
 nnoremap <silent>       K          :call <SID>ShowDocumentation()<CR>
 nmap     <silent>       [d         <Plug>(coc-diagnostic-prev)
 nmap     <silent>       ]d         <Plug>(coc-diagnostic-next)
@@ -208,8 +204,6 @@ endfunction
 "
 augroup vimrc
   autocmd!
-  " convenient shortcuts
-  autocmd FileType help,qf nnoremap <silent><buffer> q :q<CR>
   " code formatting
   autocmd FileType javascript,typescript,json setl formatexpr=CocAction('formatSelected')
   autocmd BufWritePre *.js,*.jsx,*.json,*.ts,*.tsx try | undojoin | catch | endtry | Format
@@ -285,12 +279,6 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 "
-" Markdown settings
-"
-" NOTE: To avoid conflicting
-map <Plug>Markdown_MoveToCurHeader <Plug>Markdown_MoveToCurHeader
-
-"
 " Grepper settings
 "
 let g:grepper = {
@@ -298,14 +286,6 @@ let g:grepper = {
       \ 'rg-in-word': { 'grepprg': 'rg --vimgrep --no-heading --smart-case --hidden --glob !.git' },
       \ 'tools':      ['rg', 'rg-in-word'],
       \ }
-
-"
-" Vimwiki
-"
-let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
-" Disable header level mappings
-nmap <Plug>VimwikiRemoveHeaderLevel <Plug>VimwikiRemoveHeaderLevel
-nmap <Plug>VimwikiAddHeaderLevel <Plug>VimwikiAddHeaderLevel
 
 "
 " Codi settings
