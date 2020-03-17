@@ -257,6 +257,12 @@ let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_er
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
 "
+" Markdown settings
+"
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_no_extensions_in_markdown = 1
+
+"
 " FZF settings
 "
 " Add --hidden to the default `Rg` command.
