@@ -151,9 +151,11 @@ nmap     <silent>       ycc        <Plug>(coc-codeaction)
 nmap     <silent>       ycf        <Plug>(coc-fix-current)
 nmap     <silent>       ycr        <Plug>(coc-rename)
 nnoremap <silent>       yob        :Buffers<CR>
+nnoremap <silent>       yod        :e ~/wiki/diary/<C-R>=strftime("%Y-%m-%d")<CR>.md<CR>
 nnoremap <silent>       yof        :GFiles<CR>
 nnoremap <silent>       yoF        :Files<CR>
 nnoremap <silent>       yoh        :History<CR>
+nnoremap <silent>       yow        :e ~/wiki/index.md<CR>
 nnoremap <silent>       K          :call <SID>ShowDocumentation()<CR>
 nmap     <silent>       [d         <Plug>(coc-diagnostic-prev)
 nmap     <silent>       ]d         <Plug>(coc-diagnostic-next)
