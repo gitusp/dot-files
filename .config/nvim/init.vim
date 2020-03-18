@@ -83,6 +83,8 @@ Plug 'sbdchd/neoformat'
 Plug 'junegunn/vim-peekaboo'
 " Movement helper
 Plug 'justinmk/vim-sneak'
+" Display colors in code
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
 call plug#end()
 "
