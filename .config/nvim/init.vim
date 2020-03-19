@@ -14,7 +14,8 @@ Plug 'HerringtonDarkholme/yats.vim'
 " JSX/TSX syntax highlight
 Plug 'maxmellon/vim-jsx-pretty'
 " CSS in JS syntax highlight
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+" NOTE: Disabled since this plugin conflicts with other plugin.
+" Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 " Pug syntax highlight
 Plug 'digitaltoad/vim-pug'
 " Load editorconfig.
