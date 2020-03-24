@@ -148,7 +148,7 @@ nmap                    ghp        <Plug>(GitGutterPreviewHunk)
 nmap                    ghs        <Plug>(GitGutterStageHunk)
 nmap                    ghu        <Plug>(GitGutterUndoHunk)
 nnoremap <silent>       gl         :BLines<CR>
-nnoremap <silent>       gL         :Lines<CR>
+nnoremap <silent>       gL         :Rg<CR>
 nmap                    gs         <Plug>SlimeMotionSend
 nmap                    gss        <Plug>SlimeLineSend
 nmap     <silent>       ycc        <Plug>(coc-codeaction)
