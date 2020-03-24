@@ -24,6 +24,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'moll/vim-node'
 " Git integration
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'rbong/vim-flog'
 Plug 'airblade/vim-gitgutter'
 Plug 'sodapopcan/vim-twiggy'
