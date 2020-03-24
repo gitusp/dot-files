@@ -1,5 +1,6 @@
 {
   "codeLens.enable": true,
   "diagnostic.virtualText": true,
-  "coc.source.emoji.filetypes": ["markdown", "gitcommit"]
+  "coc.source.emoji.filetypes": ["markdown", "gitcommit"],
+  "eslint.autoFixOnSave": true
 }
