@@ -1,4 +1,5 @@
 {
+  "coc.preferences.colorSupport": false,
   "codeLens.enable": true,
   "diagnostic.virtualText": true,
   "coc.source.emoji.filetypes": ["markdown", "gitcommit"],
