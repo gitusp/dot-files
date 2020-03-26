@@ -87,6 +87,8 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'justinmk/vim-sneak'
 " Display colors in code
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+" Snippets definitions
+Plug 'honza/vim-snippets'
 
 call plug#end()
 "
