@@ -3,5 +3,9 @@
   "diagnostic.virtualText": true,
   "coc.source.emoji.filetypes": ["markdown", "gitcommit"],
   "eslint.autoFixOnSave": true,
-  "stylelintplus.autoFixOnSave": true
+  "stylelintplus.autoFixOnSave": true,
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "wxss.validate": false
 }
