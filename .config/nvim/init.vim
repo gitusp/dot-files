@@ -7,6 +7,8 @@ call plug#begin()
 Plug 'romainl/flattened'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" Python syntax highlight
+Plug 'vim-python/python-syntax'
 " JavaScript syntax highlight
 Plug 'yuezk/vim-js'
 " TypeScript syntax highlight
@@ -58,8 +60,6 @@ Plug 'iloginow/vim-stylus'
 " Async task runner
 Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
-" Readline style bindings
-Plug 'tpope/vim-rsi'
 " Motion helper
 Plug 'unblevable/quick-scope'
 " REPL helper
@@ -252,7 +252,6 @@ let g:vrc_curl_opts = {
       \ '-sS': '',
       \ '-i': '',
     \}
-let g:vrc_trigger = '<C-M>'
 
 "
 " airline settings
