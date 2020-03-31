@@ -89,6 +89,8 @@ Plug 'justinmk/vim-sneak'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 " Snippets definitions
 Plug 'honza/vim-snippets'
+" Rest client
+Plug 'diepm/vim-rest-console'
 
 call plug#end()
 "
@@ -232,6 +234,7 @@ command! -nargs=0 OrganizeImport            call CocAction('runCommand', 'editor
 command! -nargs=0 Format                    call CocAction('format')
 command! -nargs=? Fold                      call CocAction('fold', <f-args>)
 command! -nargs=0 Tsc                       call CocAction('runCommand', 'tsserver.watchBuild')
+command! -nargs=0 OpenCurlWindow            new | set ft=rest
 
 "
 " Sandwich settings
@@ -243,6 +246,12 @@ runtime macros/sandwich/keymap/surround.vim
 "
 let g:slime_target = "neovim"
 let g:slime_no_mappings = 1
+
+" Rest Console Settings
+let g:vrc_curl_opts = {
+      \ '-sS': '',
+      \ '-i': '',
+    \}
 
 "
 " airline settings
