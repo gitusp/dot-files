@@ -9,7 +9,8 @@
     "coc-json": ">=1.2.5",
     "coc-pairs": ">=1.2.21",
     "coc-prettier": ">=1.1.12",
-    "coc-snippets": ">=2.1.22",
+    "coc-python": ">=1.2.9",
+    "coc-snippets": ">=2.1.23",
     "coc-stylelintplus": ">=1.0.3",
     "coc-tsserver": ">=1.4.12",
     "coc-word": ">=1.2.2"
