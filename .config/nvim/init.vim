@@ -252,6 +252,7 @@ let g:vrc_curl_opts = {
       \ '-sS': '',
       \ '-i': '',
     \}
+let g:vrc_trigger = '<C-M>'
 
 "
 " airline settings
