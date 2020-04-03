@@ -91,6 +91,8 @@ Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'honza/vim-snippets'
 " Rest client
 Plug 'diepm/vim-rest-console'
+" Table mode
+Plug 'dhruvasagar/vim-table-mode'
 
 call plug#end()
 "
@@ -252,6 +254,11 @@ let g:vrc_curl_opts = {
       \ '-sS': '',
       \ '-i': '',
     \}
+
+"
+" Table mode settings
+"
+let g:table_mode_corner='|'
 
 "
 " airline settings
