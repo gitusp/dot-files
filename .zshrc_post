@@ -10,3 +10,8 @@ alias kdiff="kitty +kitten diff"
 function play () {
 	nvim --cmd 'autocmd VimEnter * Codi' ~/.playground.js
 }
+
+# functions
+function rest () {
+	nvim --cmd 'autocmd VimEnter * set ft=rest' ~/.rest
+}

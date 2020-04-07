@@ -53,8 +53,6 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'andymass/vim-matchup'
 " Local vimrc
 Plug 'embear/vim-localvimrc'
-" Grep helper
-Plug 'mhinz/vim-grepper'
 " Stylus syntax highlight
 Plug 'iloginow/vim-stylus'
 " Async task runner
@@ -143,7 +141,6 @@ highlight! Sneak guifg=#fdf6e3 guibg=#d33682
 nnoremap                Y          y$
 nnoremap                Q          @q
 nnoremap                _          @:
-nmap                    g/         <plug>(GrepperOperator)
 nmap     <silent>       g=         <Plug>(coc-format-selected)
 nmap     <silent>       g==        V<Plug>(coc-format-selected)
 nmap     <silent>       gd         <Plug>(coc-definition)
@@ -186,7 +183,6 @@ nnoremap <silent>       <Space>    :Commands<CR>
 " selections ranges.
 nmap     <silent>       +          <Plug>(coc-range-select)
 " Visual mode
-xmap                    g/         <plug>(GrepperOperator)
 xmap     <silent>       g=         <Plug>(coc-format-selected)
 xmap                    gs         <Plug>SlimeRegionSend
 " Introduce function text object
@@ -307,15 +303,6 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-
-"
-" Grepper settings
-"
-let g:grepper = {
-      \ 'rg':         { 'grepprg': 'rg --vimgrep --no-heading --smart-case --hidden --glob !.git --word-regexp' },
-      \ 'rg-in-word': { 'grepprg': 'rg --vimgrep --no-heading --smart-case --hidden --glob !.git' },
-      \ 'tools':      ['rg', 'rg-in-word'],
-      \ }
 
 "
 " Codi settings
