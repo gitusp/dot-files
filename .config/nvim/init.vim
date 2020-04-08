@@ -151,7 +151,7 @@ nmap                    ghp        <Plug>(GitGutterPreviewHunk)
 nmap                    ghs        <Plug>(GitGutterStageHunk)
 nmap                    ghu        <Plug>(GitGutterUndoHunk)
 nnoremap <silent>       gl         :BLines<CR>
-nnoremap <silent>       gL         :Rg<CR>
+nnoremap <silent>       gL         :R<CR>
 nmap                    gs         <Plug>SlimeMotionSend
 nmap                    gss        <Plug>SlimeLineSend
 nmap     <silent>       ycc        <Plug>(coc-codeaction)
@@ -284,9 +284,9 @@ let g:vim_markdown_no_extensions_in_markdown = 1
 " FZF settings
 "
 " Add --hidden to the default `Rg` command.
-command! -bang -nargs=* Rg  call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden ".shellescape(<q-args>), 1, <bang>0)
+command! -bang -nargs=* R  call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden ".shellescape(<q-args>), 1, <bang>0)
 " Add --word-regexp to the customized version.
-command! -bang -nargs=* Rgw call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden --word-regexp ".shellescape(<q-args>), 1, <bang>0)
+command! -bang -nargs=* Rw call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden --word-regexp ".shellescape(<q-args>), 1, <bang>0)
 " floating window
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.4 } }
 " Color settings
