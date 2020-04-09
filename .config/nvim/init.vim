@@ -213,8 +213,9 @@ endfunction
 augroup vimrc
   autocmd!
   " code formatting
-  autocmd FileType javascript,typescript,json,scss setl formatexpr=CocAction('formatSelected')
-  autocmd BufWritePre *.js,*.jsx,*.json,*.ts,*.tsx,*.scss try | undojoin | catch | endtry | Format
+  autocmd FileType javascript,javascriptreact,typescript,typescriptreact,json,scss setl formatexpr=CocAction('formatSelected')
+  " HACK: for that coc.preferences.formatOnSaveFiletypes does not work on json
+  autocmd BufWritePre *.json try | undojoin | catch | endtry | Format
   " code highlight
   autocmd CursorHold * silent call CocActionAsync('highlight')
   " custom events
