@@ -15,9 +15,6 @@ Plug 'yuezk/vim-js'
 Plug 'HerringtonDarkholme/yats.vim'
 " JSX/TSX syntax highlight
 Plug 'maxmellon/vim-jsx-pretty'
-" CSS in JS syntax highlight
-" NOTE: Disabled since this plugin conflicts with other plugin.
-" Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 " Pug syntax highlight
 Plug 'digitaltoad/vim-pug'
 " Load editorconfig.
@@ -220,9 +217,6 @@ augroup vimrc
   autocmd CursorHold * silent call CocActionAsync('highlight')
   " custom events
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-  " CSS in JS Syntax Highlight
-  autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
-  autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 augroup END
 
 "
@@ -251,6 +245,11 @@ let g:vrc_curl_opts = {
       \ '-sS': '',
       \ '-i': '',
     \}
+
+"
+" matchup settings
+"
+let g:matchup_matchparen_offscreen = {}
 
 "
 " Table mode settings
