@@ -138,6 +138,8 @@ highlight! Sneak guifg=#fdf6e3 guibg=#d33682
 nnoremap                Y          y$
 nnoremap                Q          @q
 nnoremap                _          @:
+nnoremap                *          *``
+nnoremap                #          #``
 nmap     <silent>       g=         <Plug>(coc-format-selected)
 nmap     <silent>       g==        V<Plug>(coc-format-selected)
 nmap     <silent>       gd         <Plug>(coc-definition)
@@ -155,8 +157,6 @@ nmap                    gss        <Plug>SlimeLineSend
 nnoremap <silent>       yod        :e ~/wiki/diary/<C-R>=strftime("%Y-%m-%d")<CR>.md<CR>
 nnoremap <silent>       yow        :e ~/wiki/index.md<CR>
 nnoremap <silent>       K          :call <SID>ShowDocumentation()<CR>
-nmap     <silent>       [d         <Plug>(coc-diagnostic-prev)
-nmap     <silent>       ]d         <Plug>(coc-diagnostic-next)
 nnoremap <silent>       [q         :cprevious<CR>
 nnoremap <silent>       ]q         :cnext<CR>
 nnoremap <silent>       [Q         :cfirst<CR>
@@ -169,10 +169,15 @@ nnoremap <silent>       [L         :lfirst<CR>
 nnoremap <silent>       ]L         :llast<CR>
 nnoremap <silent>       [<C-L>     :lolder<CR>
 nnoremap <silent>       ]<C-L>     :lnewer<CR>
+nmap     <silent>       <C-K>      <Plug>(coc-diagnostic-prev)
+nmap     <silent>       <C-J>      <Plug>(coc-diagnostic-next)
 nnoremap <silent>       <C-H>      :History<CR>
-nmap     <silent>       <C-J>      <Plug>(coc-codeaction)
 nnoremap <silent>       <C-L>      :nohlsearch<Bar>call sneak#util#removehl()<CR><C-L>
+nmap     <silent>       <C-M>      <Plug>(coc-codeaction)
+nmap     <silent>       <C-N>      <Plug>(coc-rename)
 nnoremap <silent>       <C-P>      :GFiles<CR>
+" NOTE: <BS> = <C-8>
+nnoremap <silent>       <BS>       :Rgw <C-R><C-W><CR>
 nnoremap <silent>       <Space>    :w<CR>
 nnoremap <silent>       <C-Space>  :Commands<CR>
 " selections ranges.
@@ -221,7 +226,6 @@ augroup END
 " Custom commands
 "
 command! -nargs=0 ToggleDiffoptIwhite       call <SID>ToggleDiffoptIwhite()
-command! -nargs=0 Rename                    call CocAction('rename')
 command! -nargs=0 OrganizeImport            call CocAction('runCommand', 'editor.action.organizeImport')
 command! -nargs=0 Format                    call CocAction('format')
 command! -nargs=? Fold                      call CocAction('fold', <f-args>)
@@ -283,9 +287,9 @@ let g:vim_markdown_no_extensions_in_markdown = 1
 " FZF settings
 "
 " Add --hidden to the default `Rg` command.
-command! -bang -nargs=* R  call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden ".shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
+command! -bang -nargs=* Rg  call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden ".shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
 " Add --word-regexp to the customized version.
-command! -bang -nargs=* Rw call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden --word-regexp ".shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
+command! -bang -nargs=* Rgw call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden --word-regexp ".shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
 " floating window
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.4 } }
 " Color settings
