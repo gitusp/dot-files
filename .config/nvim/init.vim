@@ -147,18 +147,12 @@ nmap     <silent>       gy         <Plug>(coc-type-definition)
 nmap                    ghp        <Plug>(GitGutterPreviewHunk)
 nmap                    ghs        <Plug>(GitGutterStageHunk)
 nmap                    ghu        <Plug>(GitGutterUndoHunk)
+nnoremap <silent>       gG         :Gstatus<CR>
 nnoremap <silent>       gl         :BLines<CR>
 nnoremap <silent>       gL         :R<CR>
 nmap                    gs         <Plug>SlimeMotionSend
 nmap                    gss        <Plug>SlimeLineSend
-nmap     <silent>       ycc        <Plug>(coc-codeaction)
-nmap     <silent>       ycf        <Plug>(coc-fix-current)
-nmap     <silent>       ycr        <Plug>(coc-rename)
-nnoremap <silent>       yob        :Buffers<CR>
 nnoremap <silent>       yod        :e ~/wiki/diary/<C-R>=strftime("%Y-%m-%d")<CR>.md<CR>
-nnoremap <silent>       yof        :GFiles<CR>
-nnoremap <silent>       yoF        :Files<CR>
-nnoremap <silent>       yoh        :History<CR>
 nnoremap <silent>       yow        :e ~/wiki/index.md<CR>
 nnoremap <silent>       K          :call <SID>ShowDocumentation()<CR>
 nmap     <silent>       [d         <Plug>(coc-diagnostic-prev)
@@ -175,8 +169,12 @@ nnoremap <silent>       [L         :lfirst<CR>
 nnoremap <silent>       ]L         :llast<CR>
 nnoremap <silent>       [<C-L>     :lolder<CR>
 nnoremap <silent>       ]<C-L>     :lnewer<CR>
+nnoremap <silent>       <C-H>      :History<CR>
+nmap     <silent>       <C-J>      <Plug>(coc-codeaction)
 nnoremap <silent>       <C-L>      :nohlsearch<Bar>call sneak#util#removehl()<CR><C-L>
-nnoremap <silent>       <Space>    :Commands<CR>
+nnoremap <silent>       <C-P>      :GFiles<CR>
+nnoremap <silent>       <Space>    :w<CR>
+nnoremap <silent>       <C-Space>  :Commands<CR>
 " selections ranges.
 nmap     <silent>       +          <Plug>(coc-range-select)
 " Visual mode
@@ -223,6 +221,7 @@ augroup END
 " Custom commands
 "
 command! -nargs=0 ToggleDiffoptIwhite       call <SID>ToggleDiffoptIwhite()
+command! -nargs=0 Rename                    call CocAction('rename')
 command! -nargs=0 OrganizeImport            call CocAction('runCommand', 'editor.action.organizeImport')
 command! -nargs=0 Format                    call CocAction('format')
 command! -nargs=? Fold                      call CocAction('fold', <f-args>)
