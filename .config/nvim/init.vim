@@ -138,8 +138,6 @@ highlight! Sneak guifg=#fdf6e3 guibg=#d33682
 nnoremap                Y          y$
 nnoremap                Q          @q
 nnoremap                _          @:
-nnoremap                *          *``
-nnoremap                #          #``
 nmap     <silent>       g=         <Plug>(coc-format-selected)
 nmap     <silent>       g==        V<Plug>(coc-format-selected)
 nmap     <silent>       gd         <Plug>(coc-definition)
