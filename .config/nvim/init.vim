@@ -151,7 +151,7 @@ nmap                    ghs        <Plug>(GitGutterStageHunk)
 nmap                    ghu        <Plug>(GitGutterUndoHunk)
 nnoremap <silent>       gG         :Gstatus<CR>
 nnoremap <silent>       gl         :BLines<CR>
-nnoremap <silent>       gL         :R<CR>
+nnoremap <silent>       gL         :Rg<CR>
 nmap                    gs         <Plug>SlimeMotionSend
 nmap                    gss        <Plug>SlimeLineSend
 nnoremap <silent>       yod        :e ~/wiki/diary/<C-R>=strftime("%Y-%m-%d")<CR>.md<CR>
@@ -173,13 +173,13 @@ nmap     <silent>       <C-K>      <Plug>(coc-diagnostic-prev)
 nmap     <silent>       <C-J>      <Plug>(coc-diagnostic-next)
 nnoremap <silent>       <C-H>      :History<CR>
 nnoremap <silent>       <C-L>      :nohlsearch<Bar>call sneak#util#removehl()<CR><C-L>
-nmap     <silent>       <C-M>      <Plug>(coc-codeaction)
 nmap     <silent>       <C-N>      <Plug>(coc-rename)
 nnoremap <silent>       <C-P>      :GFiles<CR>
 " NOTE: <BS> = <C-8>
 nnoremap <silent>       <BS>       :Rgw <C-R><C-W><CR>
 nnoremap <silent>       <Space>    :w<CR>
 nnoremap <silent>       <C-Space>  :Commands<CR>
+nmap     <silent><expr> <CR>       <SID>ShouldThroughCR() ? "\<CR>" : "\<Plug>(coc-codeaction)"
 " selections ranges.
 nmap     <silent>       +          <Plug>(coc-range-select)
 " Visual mode
@@ -198,6 +198,18 @@ tnoremap                <Esc>      <C-\><C-N>
 " Insert mode
 inoremap <silent><expr> <c-space>  coc#refresh()
 imap                    <c-x><c-l> <plug>(fzf-complete-line)
+
+function! s:ShouldThroughCR()
+  if &buftype ==# 'quickfix'
+    return 1
+  endif
+
+  if bufname('%') ==# '[Command Line]'
+    return 1
+  endif
+
+  return 0
+endfunction
 
 function! s:ShowDocumentation()
   if &filetype == 'vim'
