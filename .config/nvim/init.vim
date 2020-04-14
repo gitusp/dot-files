@@ -148,7 +148,7 @@ nmap     <silent>       gy         <Plug>(coc-type-definition)
 nmap                    ghp        <Plug>(GitGutterPreviewHunk)
 nmap                    ghs        <Plug>(GitGutterStageHunk)
 nmap                    ghu        <Plug>(GitGutterUndoHunk)
-nnoremap <silent>       gG         :Gstatus<CR><C-W>T
+nnoremap <silent>       gG         :tab Gstatus<CR>
 nnoremap <silent>       gl         :BLines<CR>
 nnoremap <silent>       gL         :Rg<CR>
 nmap                    gs         <Plug>SlimeMotionSend
