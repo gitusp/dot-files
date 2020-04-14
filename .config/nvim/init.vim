@@ -148,7 +148,7 @@ nmap     <silent>       gy         <Plug>(coc-type-definition)
 nmap                    ghp        <Plug>(GitGutterPreviewHunk)
 nmap                    ghs        <Plug>(GitGutterStageHunk)
 nmap                    ghu        <Plug>(GitGutterUndoHunk)
-nnoremap <silent>       gG         :Gstatus<CR>
+nnoremap <silent>       gG         :Gstatus<CR><C-W>T
 nnoremap <silent>       gl         :BLines<CR>
 nnoremap <silent>       gL         :Rg<CR>
 nmap                    gs         <Plug>SlimeMotionSend
@@ -177,7 +177,6 @@ nnoremap <silent>       <C-P>      :GFiles<CR>
 " NOTE: <BS> = <C-8>
 nnoremap <silent>       <BS>       :Rgw <C-R><C-W><CR>
 nnoremap <silent>       <Space>    :w<CR>
-nnoremap <silent>       <C-Space>  :Commands<CR>
 nnoremap <silent><expr> <CR>       <SID>ShouldThroughCR() ? '<CR>' : 'mm:tabe %<CR>`m'
 " selections ranges.
 nmap     <silent>       +          <Plug>(coc-range-select)
