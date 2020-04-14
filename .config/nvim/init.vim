@@ -123,6 +123,7 @@ set termguicolors
 set noshowmode
 set signcolumn=yes
 set dictionary+=/usr/share/dict/words
+set showtabline=0
 
 "
 " Color settings
@@ -169,7 +170,7 @@ nnoremap <silent>       [<C-L>     :lolder<CR>
 nnoremap <silent>       ]<C-L>     :lnewer<CR>
 nmap     <silent>       <C-K>      <Plug>(coc-diagnostic-prev)
 nmap     <silent>       <C-J>      <Plug>(coc-diagnostic-next)
-nnoremap <silent>       <C-H>      :History<CR>
+nmap     <silent>       <C-H>      <Plug>(coc-codeaction)
 nnoremap <silent>       <C-L>      :nohlsearch<Bar>call sneak#util#removehl()<CR><C-L>
 nmap     <silent>       <C-N>      <Plug>(coc-rename)
 nnoremap <silent>       <C-P>      :GFiles<CR>
@@ -177,7 +178,7 @@ nnoremap <silent>       <C-P>      :GFiles<CR>
 nnoremap <silent>       <BS>       :Rgw <C-R><C-W><CR>
 nnoremap <silent>       <Space>    :w<CR>
 nnoremap <silent>       <C-Space>  :Commands<CR>
-nmap     <silent><expr> <CR>       <SID>ShouldThroughCR() ? "\<CR>" : "\<Plug>(coc-codeaction)"
+nnoremap <silent><expr> <CR>       <SID>ShouldThroughCR() ? '<CR>' : 'mm:tabe %<CR>`m'
 " selections ranges.
 nmap     <silent>       +          <Plug>(coc-range-select)
 " Visual mode
