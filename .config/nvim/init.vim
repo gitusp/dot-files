@@ -170,14 +170,14 @@ nnoremap <silent>       [<C-L>     :lolder<CR>
 nnoremap <silent>       ]<C-L>     :lnewer<CR>
 nmap     <silent>       <C-K>      <Plug>(coc-diagnostic-prev)
 nmap     <silent>       <C-J>      <Plug>(coc-diagnostic-next)
-nmap     <silent>       <C-H>      <Plug>(coc-codeaction)
+nnoremap <silent>       <C-H>      mh:tabe %<CR>`h
 nnoremap <silent>       <C-L>      :nohlsearch<Bar>call sneak#util#removehl()<CR><C-L>
 nmap     <silent>       <C-N>      <Plug>(coc-rename)
 nnoremap <silent>       <C-P>      :GFiles<CR>
 " NOTE: <BS> = <C-8>
 nnoremap <silent>       <BS>       :Rgw <C-R><C-W><CR>
 nnoremap <silent>       <Space>    :w<CR>
-nnoremap <silent><expr> <CR>       <SID>ShouldThroughCR() ? '<CR>' : 'mm:tabe %<CR>`m'
+nmap     <silent><expr> <CR>       <SID>ShouldThroughCR() ? '<CR>' : '<Plug>(coc-codeaction)'
 " selections ranges.
 nmap     <silent>       +          <Plug>(coc-range-select)
 " Visual mode
