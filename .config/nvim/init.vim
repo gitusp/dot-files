@@ -170,7 +170,6 @@ nnoremap <silent>       [<C-L>     :lolder<CR>
 nnoremap <silent>       ]<C-L>     :lnewer<CR>
 nmap     <silent>       <C-K>      <Plug>(coc-diagnostic-prev)
 nmap     <silent>       <C-J>      <Plug>(coc-diagnostic-next)
-nnoremap <silent>       <C-H>      mh:tabe %<CR>`h
 nnoremap <silent>       <C-L>      :nohlsearch<Bar>call sneak#util#removehl()<CR><C-L>
 nmap     <silent>       <C-N>      <Plug>(coc-rename)
 nnoremap <silent>       <C-P>      :GFiles<CR>
