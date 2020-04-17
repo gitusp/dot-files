@@ -106,6 +106,7 @@ set clipboard=unnamedplus
 set ignorecase
 set smartcase
 set inccommand=split
+set wildignorecase
 " Undo settings
 set undodir=~/.config/nvim/undodir/
 set undofile
