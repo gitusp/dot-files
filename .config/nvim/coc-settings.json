@@ -7,6 +7,10 @@
     "typescriptreact",
     "scss"
   ],
+  "list.normalMappings": {
+    "v": "action:vsplit",
+    "x": "action:split"
+  },
   "codeLens.enable": true,
   "diagnostic.virtualText": true,
   "coc.source.emoji.filetypes": ["markdown", "gitcommit"],
