@@ -249,6 +249,12 @@ command! -nargs=0 OpenCurlWindow            new | set ft=rest
 runtime macros/sandwich/keymap/surround.vim
 
 "
+" Sneak settings
+"
+let g:sneak#label = 1
+let g:sneak#use_ic_scs = 1
+
+"
 " Slime settings
 "
 let g:slime_target = "neovim"
