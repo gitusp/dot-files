@@ -24,7 +24,7 @@
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
 
-snippet react component "React Component" b
+snippet import React "React Component" b
 import React, { FC } from 'react';
 
 type Props = {};
@@ -34,4 +34,15 @@ const `!v expand('%:t:r')`: FC<Props> = () => {
 };
 
 export default `!v expand('%:t:r')`;
+endsnippet
+
+snippet import css "Touch and import SCSS" b
+import css from './`!p
+from pathlib import Path
+from re import sub
+
+scss = sub(r'\.tsx$', '.module.scss', path)
+Path(scss).touch()
+snip.rv = snip.basename
+`.module.scss';
 endsnippet
