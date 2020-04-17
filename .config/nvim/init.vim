@@ -132,6 +132,7 @@ set showtabline=0
 highlight! link CocErrorSign ALEErrorSign
 highlight! link CocInfoSign ALEWarningSign
 highlight! Sneak guifg=#fdf6e3 guibg=#d33682
+highlight ExtraWhitespace guibg=#dc322f
 
 "
 " Custom mappings
