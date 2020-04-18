@@ -67,9 +67,6 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'metakirby5/codi.vim'
 " Additional text objects
 Plug 'wellle/targets.vim'
-" FZF
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 " Quickfix helper
 Plug 'itchyny/vim-qfedit'
 " Haskell dev env
@@ -151,8 +148,8 @@ nmap                    ghp        <Plug>(GitGutterPreviewHunk)
 nmap                    ghs        <Plug>(GitGutterStageHunk)
 nmap                    ghu        <Plug>(GitGutterUndoHunk)
 nnoremap <silent>       gG         :tab Gstatus<CR>
-nnoremap <silent>       gl         :BLines<CR>
-nnoremap <silent>       gL         :Rg<CR>
+nnoremap <silent>       gl         :CocList -I --ignore-case --auto-preview lines<CR>
+nnoremap <silent>       gL         :CocList -I --auto-preview grep --hidden -g !.git -smartcase<CR>
 nmap                    gs         <Plug>SlimeMotionSend
 nmap                    gss        <Plug>SlimeLineSend
 nnoremap <silent>       yod        :e ~/wiki/diary/<C-R>=strftime("%Y-%m-%d")<CR>.md<CR>
@@ -170,14 +167,14 @@ nnoremap <silent>       [L         :lfirst<CR>
 nnoremap <silent>       ]L         :llast<CR>
 nnoremap <silent>       [<C-L>     :lolder<CR>
 nnoremap <silent>       ]<C-L>     :lnewer<CR>
-nnoremap <silent>       <C-H>      :History<CR>
+nnoremap <silent>       <C-H>      :CocList --auto-preview mru<CR>
 nmap     <silent>       <C-K>      <Plug>(coc-diagnostic-prev)
 nmap     <silent>       <C-J>      <Plug>(coc-diagnostic-next)
 nnoremap <silent>       <C-L>      :nohlsearch<Bar>call sneak#util#removehl()<CR><C-L>
 nmap     <silent>       <C-N>      <Plug>(coc-rename)
-nnoremap <silent>       <C-P>      :GFiles<CR>
+nnoremap <silent>       <C-P>      :CocList --auto-preview files --hidden -g !.git --files<CR>
 " NOTE: <BS> = <C-8>
-nnoremap <silent>       <BS>       :Rgw <C-R><C-W><CR>
+nnoremap <silent>       <BS>       :Rg --hidden -g !.git -smartcase -word <C-R><C-W><CR>
 nnoremap <silent>       <Space>    :w<CR>
 nmap     <silent><expr> <CR>       <SID>ShouldThroughCR() ? '<CR>' : '<Plug>(coc-codeaction)'
 " selections ranges.
@@ -197,7 +194,6 @@ omap                    af         <Plug>(coc-funcobj-a)
 tnoremap                <Esc>      <C-\><C-N>
 " Insert mode
 inoremap <silent><expr> <c-space>  coc#refresh()
-imap                    <c-x><c-l> <plug>(fzf-complete-line)
 
 function! s:ShouldThroughCR()
   if &buftype ==# 'quickfix'
@@ -242,7 +238,6 @@ command! -nargs=0 OrganizeImport            call CocAction('runCommand', 'editor
 command! -nargs=0 Format                    call CocAction('format')
 command! -nargs=? Fold                      call CocAction('fold', <f-args>)
 command! -nargs=0 Tsc                       call CocAction('runCommand', 'tsserver.watchBuild')
-command! -nargs=0 OpenCurlWindow            new | set ft=rest
 
 "
 " Sandwich settings
@@ -302,28 +297,16 @@ let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_no_extensions_in_markdown = 1
 
 "
-" FZF settings
+" coc-lists settings
 "
-" Add --hidden to the default `Rg` command.
-command! -bang -nargs=* Rg  call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden ".shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
-" Add --word-regexp to the customized version.
-command! -bang -nargs=* Rgw call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden --word-regexp ".shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
-" floating window
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.4 } }
-" Color settings
-let g:fzf_colors =
-  \ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList --auto-preview grep '.<q-args>
+cabbrev R <C-R>=(getcmdtype() == ':' && getcmdpos() == 1 ? 'Rg --hidden -g !.git -smartcase' : 'R')<CR>
+
+function! s:GrepArgs(...)
+  let list = ['-smartcase', '-ignorecase', '-literal', '-word', '-regex',
+        \ '-skip-vcs-ignores', '-extension', '--hidden']
+  return join(list, "\n")
+endfunction
 
 "
 " Codi settings
