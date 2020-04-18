@@ -8,8 +8,7 @@
     "scss"
   ],
   "list.normalMappings": {
-    "v": "action:vsplit",
-    "x": "action:split"
+    "v": "action:vsplit"
   },
   "codeLens.enable": true,
   "diagnostic.virtualText": true,
