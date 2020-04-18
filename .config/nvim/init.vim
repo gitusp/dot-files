@@ -147,7 +147,6 @@ nmap     <silent>       gy         <Plug>(coc-type-definition)
 nmap                    ghp        <Plug>(GitGutterPreviewHunk)
 nmap                    ghs        <Plug>(GitGutterStageHunk)
 nmap                    ghu        <Plug>(GitGutterUndoHunk)
-nnoremap <silent>       gG         :tab Gstatus<CR>
 nnoremap <silent>       gl         :CocList -I --ignore-case --auto-preview lines<CR>
 nnoremap <silent>       gL         :CocList -I --auto-preview grep --hidden -g !.git -smartcase<CR>
 nmap                    gs         <Plug>SlimeMotionSend
