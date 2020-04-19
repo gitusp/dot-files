@@ -174,7 +174,7 @@ nmap     <silent>       <C-N>      <Plug>(coc-rename)
 nnoremap <silent>       <C-P>      :CocList --auto-preview files --hidden -g !.git --files<CR>
 " NOTE: <BS> = <C-8>
 nnoremap <silent>       <BS>       :Rg --hidden -g !.git -smartcase -word <C-R><C-W><CR>
-nnoremap <silent>       <Space>    :w<CR>
+nnoremap <silent>       <Space>    :silent exec "!mkdir -p %:h"<Bar>w<CR>
 nmap     <silent><expr> <CR>       <SID>ShouldThroughCR() ? '<CR>' : '<Plug>(coc-codeaction)'
 " selections ranges.
 nmap     <silent>       +          <Plug>(coc-range-select)
