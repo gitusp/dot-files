@@ -36,7 +36,7 @@ const `!v expand('%:t:r')`: FC<Props> = () => {
 export default `!v expand('%:t:r')`;
 endsnippet
 
-snippet import css "Touch and import SCSS" b
+snippet import css "Touch and import CSS module" b
 import css from './`!p
 from pathlib import Path
 from re import sub
@@ -45,4 +45,8 @@ scss = sub(r'\.tsx$', '.module.scss', path)
 Path(scss).touch()
 snip.rv = snip.basename
 `.module.scss';
+endsnippet
+
+snippet className "className with CSS module" w
+className={css.${1:container}}
 endsnippet
