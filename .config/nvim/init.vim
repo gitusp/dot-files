@@ -157,6 +157,8 @@ nnoremap <silent>       yow        :e ~/wiki/index.md<CR>
 nnoremap <silent>       K          :call <SID>ShowDocumentation()<CR>
 nmap     <silent>       [d         <Plug>(coc-diagnostic-prev)
 nmap     <silent>       ]d         <Plug>(coc-diagnostic-next)
+nmap     <silent>       [f         -k<CR>
+nmap     <silent>       ]f         -j<CR>
 nnoremap <silent>       [q         :cprevious<CR>
 nnoremap <silent>       ]q         :cnext<CR>
 nnoremap <silent>       [Q         :cfirst<CR>
