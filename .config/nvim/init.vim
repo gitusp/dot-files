@@ -77,6 +77,7 @@ Plug 'sbdchd/neoformat'
 Plug 'junegunn/vim-peekaboo'
 " Movement helper
 Plug 'justinmk/vim-sneak'
+Plug 'haya14busa/vim-edgemotion'
 " Display colors in code
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 " Snippets definitions
@@ -154,6 +155,8 @@ nmap                    gss        <Plug>SlimeLineSend
 nnoremap <silent>       yod        :e ~/wiki/diary/<C-R>=strftime("%Y-%m-%d")<CR>.md<CR>
 nnoremap <silent>       yow        :e ~/wiki/index.md<CR>
 nnoremap <silent>       K          :call <SID>ShowDocumentation()<CR>
+nmap     <silent>       [d         <Plug>(coc-diagnostic-prev)
+nmap     <silent>       ]d         <Plug>(coc-diagnostic-next)
 nnoremap <silent>       [q         :cprevious<CR>
 nnoremap <silent>       ]q         :cnext<CR>
 nnoremap <silent>       [Q         :cfirst<CR>
@@ -167,8 +170,8 @@ nnoremap <silent>       ]L         :llast<CR>
 nnoremap <silent>       [<C-L>     :lolder<CR>
 nnoremap <silent>       ]<C-L>     :lnewer<CR>
 nnoremap <silent>       <C-H>      :CocList --auto-preview mru<CR>
-nmap     <silent>       <C-K>      <Plug>(coc-diagnostic-prev)
-nmap     <silent>       <C-J>      <Plug>(coc-diagnostic-next)
+map                     <C-J>      <Plug>(edgemotion-j)
+map                     <C-K>      <Plug>(edgemotion-k)
 nnoremap <silent>       <C-L>      :nohlsearch<Bar>call sneak#util#removehl()<CR><C-L>
 nmap     <silent>       <C-N>      <Plug>(coc-rename)
 nnoremap <silent>       <C-P>      :CocList --auto-preview files --hidden -g !.git --files<CR>
