@@ -33,7 +33,7 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'junegunn/vim-xmark', { 'do': 'make' }
 " Comment out/in
-Plug 'tpope/vim-commentary'
+Plug 'tomtom/tcomment_vim'
 " Text Surrounding
 Plug 'machakann/vim-sandwich'
 " Case preserving substitution(currently not supporting live preview)
