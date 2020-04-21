@@ -86,6 +86,8 @@ Plug 'honza/vim-snippets'
 Plug 'diepm/vim-rest-console'
 " Table mode
 Plug 'dhruvasagar/vim-table-mode'
+" exchange operator
+Plug 'tommcdo/vim-exchange'
 
 call plug#end()
 "
