@@ -272,7 +272,6 @@ let g:vrc_curl_opts = {
 " matchup settings
 "
 let g:matchup_matchparen_offscreen = {}
-let g:matchup_transmute_enabled = 1
 
 "
 " Table mode settings
