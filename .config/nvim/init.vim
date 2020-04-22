@@ -154,8 +154,8 @@ nnoremap <silent>       gl         :CocList -I --ignore-case --auto-preview line
 nnoremap <silent>       gL         :CocList -I --auto-preview grep --hidden -g !.git -smartcase<CR>
 nmap                    gs         <Plug>SlimeMotionSend
 nmap                    gss        <Plug>SlimeLineSend
-nnoremap <silent>       yod        :e ~/wiki/diary/<C-R>=strftime("%Y-%m-%d")<CR>.md<CR>
-nnoremap <silent>       yow        :e ~/wiki/index.md<CR>
+nnoremap <silent>       yos        :<C-R>=&spell ? 'setlocal nospell' : 'setlocal spell spelllang=en_us'<CR><CR>
+nnoremap <silent>       yow        :<C-R>=&wrap ? 'setlocal nowrap' : 'setlocal wrap'<CR><CR>
 nnoremap <silent>       K          :call <SID>ShowDocumentation()<CR>
 nmap     <silent>       [d         <Plug>(coc-diagnostic-prev)
 nmap     <silent>       ]d         <Plug>(coc-diagnostic-next)
@@ -244,6 +244,8 @@ command! -nargs=0 OrganizeImport            call CocAction('runCommand', 'editor
 command! -nargs=0 Format                    call CocAction('format')
 command! -nargs=? Fold                      call CocAction('fold', <f-args>)
 command! -nargs=0 Tsc                       call CocAction('runCommand', 'tsserver.watchBuild')
+command! -nargs=0 Wiki                      e ~/wiki/index.md
+command! -nargs=0 Diary                     exe 'e ~/wiki/diary/' . strftime('%Y-%m-%d') . '.md'
 
 "
 " Sandwich settings
