@@ -239,13 +239,70 @@ augroup END
 "
 " Custom commands
 "
-command! -nargs=0 ToggleDiffoptIwhite       call <SID>ToggleDiffoptIwhite()
-command! -nargs=0 OrganizeImport            call CocAction('runCommand', 'editor.action.organizeImport')
-command! -nargs=0 Format                    call CocAction('format')
-command! -nargs=? Fold                      call CocAction('fold', <f-args>)
-command! -nargs=0 Tsc                       call CocAction('runCommand', 'tsserver.watchBuild')
-command! -nargs=0 Wiki                      e ~/wiki/index.md
-command! -nargs=0 Diary                     exe 'e ~/wiki/diary/' . strftime('%Y-%m-%d') . '.md'
+command! -nargs=0                             ToggleDiffoptIwhite call <SID>ToggleDiffoptIwhite()
+command! -nargs=0                             OrganizeImport      call CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0                             Format              call CocAction('format')
+command! -nargs=?                             Fold                call CocAction('fold', <f-args>)
+command! -nargs=0                             Tsc                 call CocAction('runCommand', 'tsserver.watchBuild')
+command! -nargs=0                             Wiki                e ~/wiki/index.md
+command! -nargs=0                             Diary               exe 'e ~/wiki/diary/' . strftime('%Y-%m-%d') . '.md'
+command! -nargs=1 -complete=custom,s:EditArgs Edit                call <SID>Edit(<f-args>)
+command! -nargs=+ -complete=custom,s:GrepArgs Rg                  exe 'CocList --auto-preview grep '.<q-args>
+
+function! s:EditArgs(...)
+  let list = ['component', 'container', 'scss']
+  return join(list, "\n")
+endfunction
+
+function! s:GrepArgs(...)
+  let list = ['-smartcase', '-ignorecase', '-literal', '-word', '-regex',
+        \ '-skip-vcs-ignores', '-extension', '--hidden']
+  return join(list, "\n")
+endfunction
+
+"
+" cabbrev
+"
+cabbrev D <C-R>=(getcmdtype() == ':' && getcmdpos() == 1 ? 'Diary'                           : 'D')<CR>
+cabbrev E <C-R>=(getcmdtype() == ':' && getcmdpos() == 1 ? 'Edit'                            : 'E')<CR>
+cabbrev R <C-R>=(getcmdtype() == ':' && getcmdpos() == 1 ? 'Rg --hidden -g !.git -smartcase' : 'R')<CR>
+cabbrev W <C-R>=(getcmdtype() == ':' && getcmdpos() == 1 ? 'Wiki'                            : 'W')<CR>
+
+"
+" Functions
+"
+function! s:ToggleDiffoptIwhite()
+ if &diffopt =~ 'iwhite'
+   set diffopt-=iwhite
+ else
+   set diffopt+=iwhite
+ endif
+endfunction
+
+function! s:Edit(type)
+  let l:path = expand('%:p')
+  if a:type ==# 'component'
+    if match(path, 'container')
+      exe 'e ' . substitute(path, 'container', 'component', '')
+    else
+      echoerr 'invalid path'
+    endif
+  elseif a:type ==# 'container'
+    if match(path, 'component')
+      exe 'e ' . substitute(path, 'component', 'container', '')
+    else
+      echoerr 'invalid path'
+    endif
+  elseif a:type ==# 'scss'
+    if match(path, '.tsx$')
+      exe 'e ' . substitute(path, '.tsx$', '.module.scss', '')
+    else
+      echoerr 'invalid path'
+    endif
+  else
+    echoerr 'invalid argument'
+  endif
+endfunction
 
 "
 " Sandwich settings
@@ -305,18 +362,6 @@ let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_no_extensions_in_markdown = 1
 
 "
-" coc-lists settings
-"
-command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList --auto-preview grep '.<q-args>
-cabbrev R <C-R>=(getcmdtype() == ':' && getcmdpos() == 1 ? 'Rg --hidden -g !.git -smartcase' : 'R')<CR>
-
-function! s:GrepArgs(...)
-  let list = ['-smartcase', '-ignorecase', '-literal', '-word', '-regex',
-        \ '-skip-vcs-ignores', '-extension', '--hidden']
-  return join(list, "\n")
-endfunction
-
-"
 " Codi settings
 "
 let g:codi#interpreters = {
@@ -325,15 +370,4 @@ let g:codi#interpreters = {
     \ 'prompt': '^\(>\|\.\.\.\+\) ',
     \ },
   \ }
-
-"
-" Toggle diffopt
-"
-function! s:ToggleDiffoptIwhite()
- if &diffopt =~ 'iwhite'
-   set diffopt-=iwhite
- else
-   set diffopt+=iwhite
- endif
-endfunction
 
