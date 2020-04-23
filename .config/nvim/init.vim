@@ -251,7 +251,7 @@ command! -nargs=1 -complete=custom,s:EditArgs Edit                call <SID>Edit
 command! -nargs=+ -complete=custom,s:GrepArgs Rg                  exe 'CocList --auto-preview grep '.<q-args>
 
 function! s:EditArgs(...)
-  let list = ['component', 'container', 'scss']
+  let list = ['component', 'container', 'styles']
   return join(list, "\n")
 endfunction
 
@@ -283,7 +283,7 @@ function! s:Edit(type)
     else
       echoerr 'invalid path'
     endif
-  elseif a:type ==# 'scss'
+  elseif a:type ==# 'styles'
     if match(path, '.tsx$')
       exe 'e ' . substitute(path, '.tsx$', '.module.scss', '')
     else
