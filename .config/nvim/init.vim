@@ -125,6 +125,7 @@ set noshowmode
 set signcolumn=yes
 set dictionary+=/usr/share/dict/words
 set showtabline=0
+set diffopt+=iwhite
 
 "
 " Color settings
@@ -154,6 +155,7 @@ nnoremap <silent>       gl         :CocList -I --ignore-case --auto-preview line
 nnoremap <silent>       gL         :CocList -I --auto-preview grep --hidden -g !.git -smartcase<CR>
 nmap                    gs         <Plug>SlimeMotionSend
 nmap                    gss        <Plug>SlimeLineSend
+nnoremap <silent>       yod        :set diffopt<C-R>=&diffopt =~ 'iwhite' ? '-' : '+'<CR>=iwhite<CR>
 nnoremap <silent>       yos        :<C-R>=&spell ? 'setlocal nospell' : 'setlocal spell spelllang=en_us'<CR><CR>
 nnoremap <silent>       yow        :<C-R>=&wrap ? 'setlocal nowrap' : 'setlocal wrap'<CR><CR>
 nnoremap <silent>       K          :call <SID>ShowDocumentation()<CR>
@@ -239,7 +241,6 @@ augroup END
 "
 " Custom commands
 "
-command! -nargs=0                             ToggleDiffoptIwhite call <SID>ToggleDiffoptIwhite()
 command! -nargs=0                             OrganizeImport      call CocAction('runCommand', 'editor.action.organizeImport')
 command! -nargs=0                             Format              call CocAction('format')
 command! -nargs=?                             Fold                call CocAction('fold', <f-args>)
@@ -267,17 +268,6 @@ cabbrev D <C-R>=(getcmdtype() == ':' && getcmdpos() == 1 ? 'Diary'              
 cabbrev E <C-R>=(getcmdtype() == ':' && getcmdpos() == 1 ? 'Edit'                            : 'E')<CR>
 cabbrev R <C-R>=(getcmdtype() == ':' && getcmdpos() == 1 ? 'Rg --hidden -g !.git -smartcase' : 'R')<CR>
 cabbrev W <C-R>=(getcmdtype() == ':' && getcmdpos() == 1 ? 'Wiki'                            : 'W')<CR>
-
-"
-" Functions
-"
-function! s:ToggleDiffoptIwhite()
- if &diffopt =~ 'iwhite'
-   set diffopt-=iwhite
- else
-   set diffopt+=iwhite
- endif
-endfunction
 
 function! s:Edit(type)
   let l:path = expand('%:p')
