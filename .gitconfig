@@ -17,3 +17,5 @@
 
 [difftool "kdiff"]
   cmd = kitty +kitten diff $LOCAL $REMOTE
+[commit]
+	verbose = true
