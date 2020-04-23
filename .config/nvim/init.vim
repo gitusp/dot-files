@@ -151,8 +151,8 @@ nmap     <silent>       gy         <Plug>(coc-type-definition)
 nmap                    ghp        <Plug>(GitGutterPreviewHunk)
 nmap                    ghs        <Plug>(GitGutterStageHunk)
 nmap                    ghu        <Plug>(GitGutterUndoHunk)
-nnoremap <silent>       gl         :CocList -I --ignore-case --auto-preview lines<CR>
-nnoremap <silent>       gL         :CocList -I --auto-preview grep --hidden -g !.git -smartcase<CR>
+nnoremap <silent>       gl         :CocList -I --ignore-case lines<CR>
+nnoremap <silent>       gL         :CocList -I grep --hidden -g !.git -smartcase<CR>
 nmap                    gs         <Plug>SlimeMotionSend
 nmap                    gss        <Plug>SlimeLineSend
 nnoremap <silent>       yod        :set diffopt<C-R>=&diffopt =~ 'iwhite' ? '-' : '+'<CR>=iwhite<CR>
@@ -175,12 +175,12 @@ nnoremap <silent>       [L         :lfirst<CR>
 nnoremap <silent>       ]L         :llast<CR>
 nnoremap <silent>       [<C-L>     :lolder<CR>
 nnoremap <silent>       ]<C-L>     :lnewer<CR>
-nnoremap <silent>       <C-H>      :CocList --auto-preview mru<CR>
+nnoremap <silent>       <C-H>      :CocList mru<CR>
 map                     <C-J>      <Plug>(edgemotion-j)
 map                     <C-K>      <Plug>(edgemotion-k)
 nnoremap <silent>       <C-L>      :nohlsearch<Bar>call sneak#util#removehl()<CR><C-L>
 nmap     <silent>       <C-N>      <Plug>(coc-rename)
-nnoremap <silent>       <C-P>      :CocList --auto-preview files --hidden -g !.git --files<CR>
+nnoremap <silent>       <C-P>      :CocList files --hidden -g !.git --files<CR>
 " NOTE: <BS> = <C-8>
 nnoremap <silent>       <BS>       :Rg --hidden -g !.git -smartcase -word <C-R><C-W><CR>
 nnoremap <silent>       <Space>    :silent exec '!mkdir -p %:h'<Bar>w<CR>
@@ -248,7 +248,7 @@ command! -nargs=0                             Tsc                 call CocAction
 command! -nargs=0                             Wiki                e ~/wiki/index.md
 command! -nargs=0                             Diary               exe 'e ~/wiki/diary/' . strftime('%Y-%m-%d') . '.md'
 command! -nargs=1 -complete=custom,s:EditArgs Edit                call <SID>Edit(<f-args>)
-command! -nargs=+ -complete=custom,s:GrepArgs Rg                  exe 'CocList --auto-preview grep '.<q-args>
+command! -nargs=+ -complete=custom,s:GrepArgs Rg                  exe 'CocList grep '.<q-args>
 
 function! s:EditArgs(...)
   let list = ['component', 'container', 'styles']
