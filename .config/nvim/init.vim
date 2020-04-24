@@ -347,7 +347,6 @@ let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_
 "
 " Markdown settings
 "
-let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_no_extensions_in_markdown = 1
 
 "
