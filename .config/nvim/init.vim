@@ -129,9 +129,11 @@ set diffopt+=iwhite
 "
 " Color settings
 "
-highlight! link CocErrorSign ALEErrorSign
-highlight! link CocInfoSign ALEWarningSign
-highlight! Sneak guifg=#fdf6e3 guibg=#d33682
+highlight CocErrorSign    guifg=#dc322f
+highlight CocWarningSign  guifg=#b58900
+highlight CocInfoSign     guifg=#268bd2
+highlight CocHintSign     guifg=#859900
+highlight Sneak           guifg=#fdf6e3 guibg=#d33682
 highlight ExtraWhitespace guibg=#dc322f
 
 "
