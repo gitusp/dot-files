@@ -54,8 +54,6 @@ Plug 'iloginow/vim-stylus'
 " Async task runner
 Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
-" Motion helper
-Plug 'unblevable/quick-scope'
 " REPL helper
 Plug 'jpalardy/vim-slime'
 " LSC
