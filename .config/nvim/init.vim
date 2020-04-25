@@ -263,10 +263,15 @@ endfunction
 "
 " cabbrev
 "
-cabbrev D <C-R>=(getcmdtype() == ':' && getcmdpos() == 1 ? 'Diary'                           : 'D')<CR>
-cabbrev E <C-R>=(getcmdtype() == ':' && getcmdpos() == 1 ? 'Edit'                            : 'E')<CR>
-cabbrev R <C-R>=(getcmdtype() == ':' && getcmdpos() == 1 ? 'Rg --hidden -g !.git -smartcase' : 'R')<CR>
-cabbrev W <C-R>=(getcmdtype() == ':' && getcmdpos() == 1 ? 'Wiki'                            : 'W')<CR>
+cabbrev D <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Diary'                           : 'D'<CR>
+cabbrev E <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Edit'                            : 'E'<CR>
+cabbrev F <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Flog'                            : 'F'<CR>
+cabbrev R <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Rg --hidden -g !.git -smartcase' : 'R'<CR>
+cabbrev W <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Wiki'                            : 'W'<CR>
+
+function! s:IsFirstCharOfColonCmd()
+ return getcmdtype() == ':' && getcmdpos() == 1
+endfunction
 
 function! s:Edit(type)
   let l:path = expand('%:p')
