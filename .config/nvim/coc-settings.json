@@ -12,7 +12,6 @@
   },
   "codeLens.enable": true,
   "diagnostic.virtualText": true,
-  "coc.source.emoji.filetypes": ["markdown", "gitcommit"],
   "stylelintplus.autoFixOnSave": true,
   "css.validate": false,
   "less.validate": false,
