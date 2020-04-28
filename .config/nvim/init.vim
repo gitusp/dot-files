@@ -275,26 +275,19 @@ endfunction
 
 function! s:Edit(type)
   let l:path = expand('%:p')
-  if a:type ==# 'component'
-    if match(path, 'container')
-      exe 'e ' . substitute(path, 'container', 'component', '')
+  if (l:path =~ 'component' || l:path =~ 'container') && (l:path =~ '.module.scss$' || l:path =~ '.tsx$')
+    let l:pathWithPlaceholder = substitute(substitute(l:path, 'container\|component', '{dir}', ''), '.module.scss$\|.tsx$', '{ext}', '')
+    if a:type ==# 'component'
+      exe 'e ' . substitute(substitute(l:pathWithPlaceholder, '{dir}', 'component', ''), '{ext}$', '.tsx', '')
+    elseif a:type ==# 'container'
+      exe 'e ' . substitute(substitute(l:pathWithPlaceholder, '{dir}', 'container', ''), '{ext}$', '.tsx', '')
+    elseif a:type ==# 'styles'
+      exe 'e ' . substitute(substitute(l:pathWithPlaceholder, '{dir}', 'component', ''), '{ext}$', '.module.scss', '')
     else
-      echoerr 'invalid path'
-    endif
-  elseif a:type ==# 'container'
-    if match(path, 'component')
-      exe 'e ' . substitute(path, 'component', 'container', '')
-    else
-      echoerr 'invalid path'
-    endif
-  elseif a:type ==# 'styles'
-    if match(path, '.tsx$')
-      exe 'e ' . substitute(path, '.tsx$', '.module.scss', '')
-    else
-      echoerr 'invalid path'
+      echoerr 'invalid argument'
     endif
   else
-    echoerr 'invalid argument'
+    echoerr 'invalid path'
   endif
 endfunction
 
