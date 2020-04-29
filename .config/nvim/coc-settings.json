@@ -10,8 +10,6 @@
   "list.normalMappings": {
     "v": "action:vsplit"
   },
-  "codeLens.enable": true,
-  "diagnostic.virtualText": true,
   "stylelintplus.autoFixOnSave": true,
   "css.validate": false,
   "less.validate": false,
