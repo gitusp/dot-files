@@ -87,6 +87,8 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'tommcdo/vim-exchange'
 " repeat helper
 Plug 'tpope/vim-repeat'
+" startup screen
+Plug 'mhinz/vim-startify'
 
 call plug#end()
 "
