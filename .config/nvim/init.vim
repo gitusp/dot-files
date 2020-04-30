@@ -178,7 +178,6 @@ nnoremap <silent>       [<C-L>     :lolder<CR>
 nnoremap <silent>       ]<C-L>     :lnewer<CR>
 nmap     <silent>       [<Space>   <Plug>unimpairedBlankUp
 nmap     <silent>       ]<Space>   <Plug>unimpairedBlankDown
-nnoremap <silent>       <C-H>      :CocList mru<CR>
 map                     <C-J>      <Plug>(edgemotion-j)
 map                     <C-K>      <Plug>(edgemotion-k)
 nnoremap <silent>       <C-L>      :nohlsearch<Bar>call sneak#util#removehl()<CR><C-L>
