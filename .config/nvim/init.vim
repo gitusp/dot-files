@@ -85,6 +85,8 @@ Plug 'diepm/vim-rest-console'
 Plug 'dhruvasagar/vim-table-mode'
 " exchange operator
 Plug 'tommcdo/vim-exchange'
+" repeat helper
+Plug 'tpope/vim-repeat'
 
 call plug#end()
 "
@@ -174,6 +176,8 @@ nnoremap <silent>       [L         :lfirst<CR>
 nnoremap <silent>       ]L         :llast<CR>
 nnoremap <silent>       [<C-L>     :lolder<CR>
 nnoremap <silent>       ]<C-L>     :lnewer<CR>
+nmap     <silent>       [<Space>   <Plug>unimpairedBlankUp
+nmap     <silent>       ]<Space>   <Plug>unimpairedBlankDown
 nnoremap <silent>       <C-H>      :CocList mru<CR>
 map                     <C-J>      <Plug>(edgemotion-j)
 map                     <C-K>      <Plug>(edgemotion-k)
@@ -182,7 +186,6 @@ nmap     <silent>       <C-N>      <Plug>(coc-rename)
 nnoremap <silent>       <C-P>      :CocList files --hidden -g !.git --files<CR>
 " NOTE: <BS> = <C-8>
 nnoremap <silent>       <BS>       :Rg --hidden -g !.git -smartcase -word <C-R><C-W><CR>
-nnoremap <silent>       <Space>    :silent exec '!mkdir -p %:h'<Bar>w<CR>
 nmap     <silent><expr> <CR>       <SID>ShouldThroughCR() ? '<CR>' : '<Plug>(coc-codeaction)'
 " selections ranges.
 nmap     <silent>       +          <Plug>(coc-range-select)
@@ -221,6 +224,24 @@ function! s:ShowDocumentation()
     call CocAction('doHover')
   endif
 endfunction
+
+"
+" Thanks for https://github.com/tpope/vim-unimpaired
+"
+function! s:BlankUp(count) abort
+  put!=repeat(nr2char(10), a:count)
+  ']+1
+  silent! call repeat#set("\<Plug>unimpairedBlankUp", a:count)
+endfunction
+
+function! s:BlankDown(count) abort
+  put =repeat(nr2char(10), a:count)
+  '[-1
+  silent! call repeat#set("\<Plug>unimpairedBlankDown", a:count)
+endfunction
+
+nnoremap <silent> <Plug>unimpairedBlankUp   :<C-U>call <SID>BlankUp(v:count1)<CR>
+nnoremap <silent> <Plug>unimpairedBlankDown :<C-U>call <SID>BlankDown(v:count1)<CR>
 
 "
 " autocmd
