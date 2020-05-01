@@ -87,8 +87,6 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'tommcdo/vim-exchange'
 " repeat helper
 Plug 'tpope/vim-repeat'
-" startup screen
-Plug 'mhinz/vim-startify'
 
 call plug#end()
 "
@@ -154,6 +152,7 @@ nmap     <silent>       gy         <Plug>(coc-type-definition)
 nmap                    ghp        <Plug>(GitGutterPreviewHunk)
 nmap                    ghs        <Plug>(GitGutterStageHunk)
 nmap                    ghu        <Plug>(GitGutterUndoHunk)
+nnoremap <silent>       gG         :tab Gstatus<CR>
 nnoremap <silent>       gl         :CocList -I --ignore-case lines<CR>
 nnoremap <silent>       gL         :CocList -I grep --hidden -g !.git -smartcase<CR>
 nmap                    gs         <Plug>SlimeMotionSend
@@ -180,6 +179,7 @@ nnoremap <silent>       [<C-L>     :lolder<CR>
 nnoremap <silent>       ]<C-L>     :lnewer<CR>
 nmap     <silent>       [<Space>   <Plug>unimpairedBlankUp
 nmap     <silent>       ]<Space>   <Plug>unimpairedBlankDown
+nnoremap <silent>       <C-H>      :CocList mru<CR>
 map                     <C-J>      <Plug>(edgemotion-j)
 map                     <C-K>      <Plug>(edgemotion-k)
 nnoremap <silent>       <C-L>      :nohlsearch<Bar>call sneak#util#removehl()<CR><C-L>
@@ -380,8 +380,3 @@ let g:codi#interpreters = {
     \ 'prompt': '^\(>\|\.\.\.\+\) ',
     \ },
   \ }
-
-"
-" Startify settings
-"
-let g:startify_change_to_vcs_root = 1
