@@ -101,6 +101,7 @@ let g:airline_theme='solarized'
 set updatetime=300
 set hidden
 set clipboard=unnamedplus
+set mouse=a
 " Search settings
 set ignorecase
 set smartcase

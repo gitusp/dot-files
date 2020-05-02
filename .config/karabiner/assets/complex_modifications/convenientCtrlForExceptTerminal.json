@@ -254,36 +254,6 @@
           ]
         }
       ]
-    },
-    {
-      "description": "escape",
-      "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "open_bracket",
-            "modifiers": {
-              "mandatory": ["control"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "escape"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "frontmost_application_unless",
-              "bundle_identifiers": [
-                "^com\\.apple\\.Terminal$",
-                "^io\\.alacritty$",
-                "^net\\.kovidgoyal\\.kitty$",
-                "^com\\.googlecode\\.iterm2$"
-              ]
-            }
-          ]
-        }
-      ]
     }
   ]
 }
