@@ -382,3 +382,8 @@ let g:codi#interpreters = {
     \ 'prompt': '^\(>\|\.\.\.\+\) ',
     \ },
   \ }
+
+"
+" Dirvish settings
+"
+let g:dirvish_relative_paths = 1
