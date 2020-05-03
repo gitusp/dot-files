@@ -185,6 +185,7 @@ map                     <C-K>      <Plug>(edgemotion-k)
 nnoremap <silent>       <C-L>      :nohlsearch<Bar>call sneak#util#removehl()<CR><C-L>
 nmap     <silent>       <C-N>      <Plug>(coc-rename)
 nnoremap <silent>       <C-P>      :CocList files --hidden -g !.git --files<CR>
+nnoremap <silent>       <C-Q>      <C-W><C-Q>
 nnoremap <silent>       <Space>    :w<CR>
 " NOTE: <BS> = <C-8>
 nnoremap <silent>       <BS>       :Rg --hidden -g !.git -smartcase -word <C-R><C-W><CR>
