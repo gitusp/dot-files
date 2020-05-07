@@ -207,6 +207,7 @@ omap                    af         <Plug>(coc-funcobj-a)
 tnoremap                <Esc>      <C-\><C-N>
 " Insert mode
 inoremap <silent><expr> <c-space>  coc#refresh()
+inoremap <silent><expr> <c-y>      pumvisible() ? coc#_select_confirm() : '<c-y>'
 
 function! s:ShouldThroughCR()
   if &buftype ==# 'quickfix'
