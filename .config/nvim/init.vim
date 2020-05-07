@@ -87,6 +87,8 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'tommcdo/vim-exchange'
 " repeat helper
 Plug 'tpope/vim-repeat'
+" Dictionary
+Plug 'johngrib/vim-mac-dictionary'
 
 call plug#end()
 "
@@ -149,6 +151,7 @@ nmap     <silent>       gd         <Plug>(coc-definition)
 nmap     <silent>       gi         <Plug>(coc-implementation)
 nmap     <silent>       gr         <Plug>(coc-references)
 nmap     <silent>       gy         <Plug>(coc-type-definition)
+nnoremap <silent>       g<C-D>     :MacDictWord<CR>
 nmap                    ghp        <Plug>(GitGutterPreviewHunk)
 nmap                    ghs        <Plug>(GitGutterStageHunk)
 nmap                    ghu        <Plug>(GitGutterUndoHunk)
@@ -159,6 +162,7 @@ nmap                    gs         <Plug>SlimeMotionSend
 nmap                    gss        <Plug>SlimeLineSend
 nnoremap <silent>       yod        :set diffopt<C-R>=&diffopt =~ 'iwhite' ? '-' : '+'<CR>=iwhite<CR>
 nnoremap <silent>       yos        :<C-R>=&spell ? 'setlocal nospell' : 'setlocal spell spelllang=en_us'<CR><CR>
+nnoremap <silent>       you        :UndotreeToggle<CR>
 nnoremap <silent>       yow        :<C-R>=&wrap ? 'setlocal nowrap' : 'setlocal wrap'<CR><CR>
 nnoremap <silent>       K          :call <SID>ShowDocumentation()<CR>
 nmap     <silent>       [d         <Plug>(coc-diagnostic-prev)
