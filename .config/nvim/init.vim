@@ -162,6 +162,7 @@ nmap                    gs         <Plug>SlimeMotionSend
 nmap                    gss        <Plug>SlimeLineSend
 nnoremap <silent>       yod        :set diffopt<C-R>=&diffopt =~ 'iwhite' ? '-' : '+'<CR>=iwhite<CR>
 nnoremap <silent>       yos        :<C-R>=&spell ? 'setlocal nospell' : 'setlocal spell spelllang=en_us'<CR><CR>
+nnoremap <silent>       yot        :TableModeToggle<CR>
 nnoremap <silent>       you        :UndotreeToggle<CR>
 nnoremap <silent>       yow        :<C-R>=&wrap ? 'setlocal nowrap' : 'setlocal wrap'<CR><CR>
 nnoremap <silent>       K          :call <SID>ShowDocumentation()<CR>
