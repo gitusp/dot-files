@@ -89,6 +89,8 @@ Plug 'tpope/vim-repeat'
 Plug 'johngrib/vim-mac-dictionary'
 " DB client
 Plug 'tpope/vim-dadbod'
+" Dotenv support
+Plug 'tpope/vim-dotenv'
 
 call plug#end()
 "
@@ -269,6 +271,8 @@ augroup vimrc
   autocmd CursorHold * silent call CocActionAsync('highlight')
   " custom events
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+  " try to load local dotenv
+  autocmd VimEnter * try | Dotenv .env.local | catch | endtry
 augroup END
 
 "
