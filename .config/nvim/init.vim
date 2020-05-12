@@ -47,8 +47,6 @@ Plug 'mechatroner/rainbow_csv'
 Plug 'ntpeters/vim-better-whitespace'
 " Powerful matcher
 Plug 'andymass/vim-matchup'
-" Local vimrc
-Plug 'embear/vim-localvimrc'
 " Stylus syntax highlight
 Plug 'iloginow/vim-stylus'
 " Async task runner
@@ -89,6 +87,8 @@ Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-repeat'
 " Dictionary
 Plug 'johngrib/vim-mac-dictionary'
+" DB client
+Plug 'tpope/vim-dadbod'
 
 call plug#end()
 "
