@@ -158,6 +158,7 @@ nmap                    ghu        <Plug>(GitGutterUndoHunk)
 nnoremap <silent>       gG         :tab Gstatus<CR>
 nnoremap <silent>       gl         :CocList -I --ignore-case lines<CR>
 nnoremap <silent>       gL         :CocList -I grep --hidden -g !.git -smartcase<CR>
+nnoremap <silent>       g<C-L>     :CocList -I grep --hidden -g !.git -smartcase -word<CR>
 nmap                    gs         <Plug>SlimeMotionSend
 nmap                    gss        <Plug>SlimeLineSend
 nnoremap <silent>       yod        :set diffopt<C-R>=&diffopt =~ 'iwhite' ? '-' : '+'<CR>=iwhite<CR>
