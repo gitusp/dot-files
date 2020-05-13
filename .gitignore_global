@@ -3,4 +3,5 @@
 .playground.*
 .xmark.*
 .vim/
+.env.local
 
