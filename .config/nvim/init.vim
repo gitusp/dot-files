@@ -167,6 +167,7 @@ nnoremap <silent>       yod        :set diffopt<C-R>=&diffopt =~ 'iwhite' ? '-' 
 nnoremap <silent>       yos        :<C-R>=&spell ? 'setlocal nospell' : 'setlocal spell spelllang=en_us'<CR><CR>
 nnoremap <silent>       yot        :TableModeToggle<CR>
 nnoremap <silent>       you        :UndotreeToggle<CR>
+nnoremap <silent>       yov        :set virtualedit=<C-R>=&virtualedit ==# '' ? 'all' : ''<CR><CR>
 nnoremap <silent>       yow        :<C-R>=&wrap ? 'setlocal nowrap' : 'setlocal wrap'<CR><CR>
 nnoremap <silent>       K          :call <SID>ShowDocumentation()<CR>
 nmap     <silent>       [d         <Plug>(coc-diagnostic-prev)
