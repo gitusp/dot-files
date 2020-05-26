@@ -91,6 +91,8 @@ Plug 'johngrib/vim-mac-dictionary'
 Plug 'tpope/vim-dadbod'
 " Dotenv support
 Plug 'tpope/vim-dotenv'
+" emmet
+Plug 'mattn/emmet-vim'
 
 call plug#end()
 "
@@ -402,3 +404,9 @@ let g:codi#interpreters = {
 " Dirvish settings
 "
 let g:dirvish_relative_paths = 1
+
+"
+" Emmet settings
+"
+let g:user_emmet_leader_key = '<Plug>'
+let g:user_emmet_expandabbr_key = '<C-x><C-m>'
