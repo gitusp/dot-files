@@ -222,6 +222,7 @@ tnoremap                <Esc>      <C-\><C-N>
 " Insert mode
 inoremap <silent><expr> <c-space>  coc#refresh()
 inoremap <silent><expr> <c-y>      pumvisible() ? coc#_select_confirm() : '<c-y>'
+imap     <silent>       <C-x><CR>  <plug>(emmet-expand-abbr)
 
 function! s:ShouldThroughCR()
   if &buftype ==# 'quickfix'
@@ -409,4 +410,3 @@ let g:dirvish_relative_paths = 1
 " Emmet settings
 "
 let g:user_emmet_leader_key = '<Plug>'
-let g:user_emmet_expandabbr_key = '<C-x><C-m>'
