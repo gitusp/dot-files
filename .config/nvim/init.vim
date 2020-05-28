@@ -93,6 +93,8 @@ Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-dotenv'
 " emmet
 Plug 'mattn/emmet-vim'
+" various helpers
+Plug 'tpope/vim-unimpaired'
 
 call plug#end()
 "
@@ -165,31 +167,9 @@ nnoremap <silent>       gL         :CocList -I grep --hidden -g !.git -smartcase
 nnoremap <silent>       g<C-L>     :CocList -I grep --hidden -g !.git -smartcase -word<CR>
 nmap                    gs         <Plug>SlimeMotionSend
 nmap                    gss        <Plug>SlimeLineSend
-nnoremap <silent>       yod        :set diffopt<C-R>=&diffopt =~ 'iwhite' ? '-' : '+'<CR>=iwhite<CR>
-nnoremap <silent>       yos        :<C-R>=&spell ? 'setlocal nospell' : 'setlocal spell spelllang=en_us'<CR><CR>
-nnoremap <silent>       yot        :TableModeToggle<CR>
-nnoremap <silent>       you        :UndotreeToggle<CR>
-nnoremap <silent>       yov        :set virtualedit=<C-R>=&virtualedit ==# '' ? 'all' : ''<CR><CR>
-nnoremap <silent>       yow        :<C-R>=&wrap ? 'setlocal nowrap' : 'setlocal wrap'<CR><CR>
 nnoremap <silent>       K          :call <SID>ShowDocumentation()<CR>
 nmap     <silent>       [d         <Plug>(coc-diagnostic-prev)
 nmap     <silent>       ]d         <Plug>(coc-diagnostic-next)
-nmap     <silent>       [f         -k<CR>
-nmap     <silent>       ]f         -j<CR>
-nnoremap <silent>       [q         :cprevious<CR>
-nnoremap <silent>       ]q         :cnext<CR>
-nnoremap <silent>       [Q         :cfirst<CR>
-nnoremap <silent>       ]Q         :clast<CR>
-nnoremap <silent>       [<C-Q>     :colder<CR>
-nnoremap <silent>       ]<C-Q>     :cnewer<CR>
-nnoremap <silent>       [l         :lprevious<CR>
-nnoremap <silent>       ]l         :lnext<CR>
-nnoremap <silent>       [L         :lfirst<CR>
-nnoremap <silent>       ]L         :llast<CR>
-nnoremap <silent>       [<C-L>     :lolder<CR>
-nnoremap <silent>       ]<C-L>     :lnewer<CR>
-nmap     <silent>       [<Space>   <Plug>unimpairedBlankUp
-nmap     <silent>       ]<Space>   <Plug>unimpairedBlankDown
 nnoremap <silent>       <C-H>      :CocList mru<CR>
 map                     <C-J>      <Plug>(edgemotion-j)
 map                     <C-K>      <Plug>(edgemotion-k)
@@ -243,24 +223,6 @@ function! s:ShowDocumentation()
     call CocAction('doHover')
   endif
 endfunction
-
-"
-" Thanks for https://github.com/tpope/vim-unimpaired
-"
-function! s:BlankUp(count) abort
-  put!=repeat(nr2char(10), a:count)
-  ']+1
-  silent! call repeat#set("\<Plug>unimpairedBlankUp", a:count)
-endfunction
-
-function! s:BlankDown(count) abort
-  put =repeat(nr2char(10), a:count)
-  '[-1
-  silent! call repeat#set("\<Plug>unimpairedBlankDown", a:count)
-endfunction
-
-nnoremap <silent> <Plug>unimpairedBlankUp   :<C-U>call <SID>BlankUp(v:count1)<CR>
-nnoremap <silent> <Plug>unimpairedBlankDown :<C-U>call <SID>BlankDown(v:count1)<CR>
 
 "
 " autocmd
