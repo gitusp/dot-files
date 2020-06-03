@@ -95,6 +95,8 @@ Plug 'tpope/vim-dotenv'
 Plug 'mattn/emmet-vim'
 " various helpers
 Plug 'tpope/vim-unimpaired'
+" yanked buffer
+Plug 'gitusp/yanked-buffer'
 
 call plug#end()
 "
@@ -176,10 +178,10 @@ map                     <C-K>      <Plug>(edgemotion-k)
 nnoremap <silent>       <C-L>      :nohlsearch<Bar>call sneak#util#removehl()<CR><C-L>
 nmap     <silent>       <C-N>      <Plug>(coc-rename)
 nnoremap <silent>       <C-P>      :CocList files --hidden -g !.git --files<CR>
-nmap     <silent>       <C-Q>      <C-W><C-Q>
-nmap     <silent>       <C-W>q     <C-W><C-Q>
-nnoremap <silent>       <C-W><C-Q> :let g:last_hidden_bufnr = bufnr()<Bar>q<CR>
-nnoremap <silent>       <C-W>Q     :exe 'b ' . g:last_hidden_bufnr<CR>
+nmap                    <C-Q>      <C-W><C-Q>
+nmap                    <C-W>q     <C-W><C-Q>
+nmap                    <C-W><C-Q> <Plug>(yanked-buffer-q)
+nmap                    <C-W>Q     <Plug>(yanked-buffer-p)
 nnoremap <silent>       <Space>    :w<CR>
 " NOTE: <BS> = <C-8>
 nnoremap <silent>       <BS>       :Rg --hidden -g !.git -smartcase -word <C-R><C-W><CR>
