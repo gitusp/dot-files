@@ -110,7 +110,6 @@ colorscheme flattened_light
 let g:airline_theme='solarized'
 set updatetime=300
 set hidden
-set clipboard=unnamedplus
 " Search settings
 set ignorecase
 set smartcase
