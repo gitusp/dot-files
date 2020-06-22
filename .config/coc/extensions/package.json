@@ -12,7 +12,7 @@
     "coc-snippets": ">=2.1.28",
     "coc-stylelintplus": ">=1.0.4",
     "coc-svg": ">=0.0.13",
-    "coc-tsserver": ">=1.5.1",
+    "coc-tsserver": ">=1.5.2",
     "coc-word": ">=1.2.2"
   }
 }
