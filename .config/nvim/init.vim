@@ -26,6 +26,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'rbong/vim-flog'
 Plug 'airblade/vim-gitgutter'
+Plug 'christoomey/vim-conflicted'
 " Text alignment - e.g. TableFormat
 Plug 'godlygeek/tabular'
 " Markdown support
@@ -373,3 +374,9 @@ let g:dirvish_relative_paths = 1
 " Emmet settings
 "
 let g:user_emmet_leader_key = '<Plug>'
+
+"
+" Conflicted settings
+"
+let g:diffget_local_map = 'gl'
+let g:diffget_upstream_map = 'gu'
