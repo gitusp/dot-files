@@ -69,8 +69,6 @@ Plug 'itchyny/vim-qfedit'
 Plug 'parsonsmatt/intero-neovim'
 Plug 'neomake/neomake'
 Plug 'sbdchd/neoformat'
-" peek register
-Plug 'junegunn/vim-peekaboo'
 " Movement helper
 Plug 'justinmk/vim-sneak'
 Plug 'haya14busa/vim-edgemotion'
