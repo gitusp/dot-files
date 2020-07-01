@@ -72,8 +72,6 @@ Plug 'sbdchd/neoformat'
 " Movement helper
 Plug 'justinmk/vim-sneak'
 Plug 'haya14busa/vim-edgemotion'
-" Display colors in code
-Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 " Snippets definitions
 Plug 'honza/vim-snippets'
 " Rest client
