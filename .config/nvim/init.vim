@@ -94,6 +94,8 @@ Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-unimpaired'
 " yanked buffer
 Plug 'gitusp/yanked-buffer'
+" elm syntax
+Plug 'andys8/vim-elm-syntax'
 
 call plug#end()
 "
