@@ -95,6 +95,8 @@ Plug 'tpope/vim-unimpaired'
 Plug 'gitusp/yanked-buffer'
 " elm syntax
 Plug 'andys8/vim-elm-syntax'
+" multiple cursor
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 call plug#end()
 "
@@ -377,3 +379,10 @@ let g:user_emmet_leader_key = '<Plug>'
 "
 let g:diffget_local_map = 'gl'
 let g:diffget_upstream_map = 'gu'
+
+"
+" multiple cursor
+"
+let g:VM_maps = {}
+let g:VM_maps['Find Under']         = '<C-s>'
+let g:VM_maps['Find Subword Under'] = '<C-s>'
