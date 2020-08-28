@@ -97,6 +97,8 @@ Plug 'gitusp/yanked-buffer'
 Plug 'andys8/vim-elm-syntax'
 " multiple cursor
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+" test runner
+Plug 'vim-test/vim-test'
 
 call plug#end()
 "
@@ -386,3 +388,8 @@ let g:diffget_upstream_map = 'gu'
 let g:VM_maps = {}
 let g:VM_maps['Find Under']         = '<C-s>'
 let g:VM_maps['Find Subword Under'] = '<C-s>'
+
+"
+" test runner
+"
+let test#strategy = "neovim"
