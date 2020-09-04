@@ -269,7 +269,6 @@ endfunction
 "
 cabbrev D  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Diary'                           : 'D'<CR>
 cabbrev E  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'EditCounterpart'                 : 'E'<CR>
-cabbrev F  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Flog'                            : 'F'<CR>
 cabbrev R  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Rg --hidden -g !.git -smartcase' : 'R'<CR>
 cabbrev Rg <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Rg --hidden -g !.git -smartcase' : 'Rg'<CR>
 
