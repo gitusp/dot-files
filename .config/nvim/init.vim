@@ -173,9 +173,6 @@ map                     <C-K>      <Plug>(edgemotion-k)
 nnoremap <silent>       <C-L>      :nohlsearch<Bar>call sneak#util#removehl()<CR><C-L>
 nmap     <silent>       <C-N>      <Plug>(coc-rename)
 nnoremap <silent>       <C-P>      :CocList files --hidden -g !.git --files<CR>
-nmap                    <C-Q>      <C-W><C-Q>
-nmap                    <C-W>q     <C-W><C-Q>
-nmap                    <C-W><C-Q> <Plug>(yanked-buffer-q)
 nmap                    <C-W>Q     <Plug>(yanked-buffer-p)
 nnoremap <silent>       <Space>    :w<CR>
 " NOTE: <BS> = <C-8>
