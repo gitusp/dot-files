@@ -269,12 +269,13 @@ endfunction
 "
 " cabbrev
 "
-cabbrev D <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Diary'                           : 'D'<CR>
-cabbrev E <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Edit'                            : 'E'<CR>
-cabbrev F <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Flog'                            : 'F'<CR>
-cabbrev R <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Rg --hidden -g !.git -smartcase' : 'R'<CR>
-cabbrev T <C-R>=<SID>IsFirstCharOfColonCmd() ? 'TestNearest'                     : 'T'<CR>
-cabbrev W <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Wiki'                            : 'W'<CR>
+cabbrev D  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Diary'                           : 'D'<CR>
+cabbrev E  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Edit'                            : 'E'<CR>
+cabbrev F  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Flog'                            : 'F'<CR>
+cabbrev R  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Rg --hidden -g !.git -smartcase' : 'R'<CR>
+cabbrev Rg <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Rg --hidden -g !.git -smartcase' : 'Rg'<CR>
+cabbrev T  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'TestNearest'                     : 'T'<CR>
+cabbrev W  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Wiki'                            : 'W'<CR>
 
 function! s:IsFirstCharOfColonCmd()
  return getcmdtype() == ':' && getcmdpos() == 1
