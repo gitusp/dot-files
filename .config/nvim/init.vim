@@ -165,9 +165,8 @@ nmap                    ghp        <Plug>(GitGutterPreviewHunk)
 nmap                    ghs        <Plug>(GitGutterStageHunk)
 nmap                    ghu        <Plug>(GitGutterUndoHunk)
 nnoremap <silent>       gG         :tab Gstatus<CR>
-nnoremap <silent>       gl         :CocList -I --ignore-case lines<CR>
-nnoremap <silent>       gL         :CocList -I grep --hidden -g !.git -smartcase<CR>
-nnoremap <silent>       g<C-L>     :CocList -I grep --hidden -g !.git -smartcase -word<CR>
+nnoremap <silent>       gl         :CocList -I grep --hidden -g !.git -smartcase<CR>
+nnoremap <silent>       gL         :CocList -I grep --hidden -g !.git -smartcase -word<CR>
 nmap                    gs         <Plug>SlimeMotionSend
 nmap                    gss        <Plug>SlimeLineSend
 nnoremap <silent>       K          :call <SID>ShowDocumentation()<CR>
@@ -376,12 +375,6 @@ let g:dirvish_relative_paths = 1
 " Emmet settings
 "
 let g:user_emmet_leader_key = '<Plug>'
-
-"
-" Conflicted settings
-"
-let g:diffget_local_map = 'gl'
-let g:diffget_upstream_map = 'gu'
 
 "
 " multiple cursor
