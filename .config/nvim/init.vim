@@ -95,8 +95,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'gitusp/yanked-buffer'
 " elm syntax
 Plug 'andys8/vim-elm-syntax'
-" multiple cursor
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 " test runner
 Plug 'vim-test/vim-test'
 
@@ -383,13 +381,6 @@ let g:dirvish_relative_paths = 1
 " Emmet settings
 "
 let g:user_emmet_leader_key = '<Plug>'
-
-"
-" multiple cursor
-"
-let g:VM_maps = {}
-let g:VM_maps['Find Under']         = '<C-s>'
-let g:VM_maps['Find Subword Under'] = '<C-s>'
 
 "
 " test runner
