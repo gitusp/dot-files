@@ -256,7 +256,7 @@ command! -nargs=1 -complete=custom,s:EditArgs Edit                call <SID>Edit
 command! -nargs=+ -complete=custom,s:GrepArgs Rg                  exe 'CocList grep '.<q-args>
 
 function! s:EditArgs(...)
-  let list = ['component', 'container', 'styles']
+  let list = ['component', 'container', 'styles', 'test', 'target']
   return join(list, "\n")
 endfunction
 
@@ -283,21 +283,28 @@ endfunction
 
 function! s:Edit(type)
   let l:path = expand('%:p')
-  let l:dir = 'component\|container'
-  let l:ext = '.module.scss$\|.tsx$'
 
-  if l:path =~ l:dir && l:path =~ l:ext
-    if a:type ==# 'component'
-      exe 'e ' . substitute(substitute(l:path, l:dir, 'component', ''), l:ext, '.tsx', '')
-    elseif a:type ==# 'container'
-      exe 'e ' . substitute(substitute(l:path, l:dir, 'container', ''), l:ext, '.tsx', '')
-    elseif a:type ==# 'styles'
-      exe 'e ' . substitute(substitute(l:path, l:dir, 'component', ''), l:ext, '.module.scss', '')
-    else
-      echoerr 'invalid argument'
-    endif
+  if a:type ==# 'test'
+    exe 'e ' . substitute(l:path, 'packages/.\{-}/', '&__tests__/unit/', '')
+  elseif a:type ==# 'target'
+    exe 'e ' . substitute(l:path, '__tests__/.\{-}/', '', '')
   else
-    echoerr 'invalid path'
+    let l:dir = 'component\|container'
+    let l:ext = '.module.scss$\|.tsx$'
+
+    if l:path =~ l:dir && l:path =~ l:ext
+      if a:type ==# 'component'
+        exe 'e ' . substitute(substitute(l:path, l:dir, 'component', ''), l:ext, '.tsx', '')
+      elseif a:type ==# 'container'
+        exe 'e ' . substitute(substitute(l:path, l:dir, 'container', ''), l:ext, '.tsx', '')
+      elseif a:type ==# 'styles'
+        exe 'e ' . substitute(substitute(l:path, l:dir, 'component', ''), l:ext, '.module.scss', '')
+      else
+        echoerr 'invalid argument'
+      endif
+    else
+      echoerr 'invalid path'
+    endif
   endif
 endfunction
 
