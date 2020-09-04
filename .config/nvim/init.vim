@@ -244,16 +244,16 @@ augroup END
 "
 " Custom commands
 "
-command! -nargs=0                             OrganizeImport      call CocAction('runCommand', 'editor.action.organizeImport')
-command! -nargs=0                             Format              call CocAction('format')
-command! -nargs=?                             Fold                call CocAction('fold', <f-args>)
-command! -nargs=0                             Tsc                 call CocAction('runCommand', 'tsserver.watchBuild')
-command! -nargs=0                             Wiki                e ~/wiki/index.md
-command! -nargs=0                             Diary               exe 'e ~/wiki/diary/' . strftime('%Y-%m-%d') . '.md'
-command! -nargs=1 -complete=custom,s:EditArgs Edit                call <SID>Edit(<f-args>)
-command! -nargs=+ -complete=custom,s:GrepArgs Rg                  exe 'CocList grep '.<q-args>
+command! -nargs=0                                        OrganizeImport  call CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0                                        Format          call CocAction('format')
+command! -nargs=?                                        Fold            call CocAction('fold', <f-args>)
+command! -nargs=0                                        Tsc             call CocAction('runCommand', 'tsserver.watchBuild') | copen
+command! -nargs=0                                        Wiki            e ~/wiki/index.md
+command! -nargs=0                                        Diary           exe 'e ~/wiki/diary/' . strftime('%Y-%m-%d') . '.md'
+command! -nargs=1 -complete=custom,s:EditCounterpartArgs EditCounterpart call <SID>EditCounterpart(<f-args>)
+command! -nargs=+ -complete=custom,s:GrepArgs            Rg              exe 'CocList grep '.<q-args>
 
-function! s:EditArgs(...)
+function! s:EditCounterpartArgs(...)
   let list = ['component', 'container', 'styles', 'test', 'target']
   return join(list, "\n")
 endfunction
@@ -268,18 +268,16 @@ endfunction
 " cabbrev
 "
 cabbrev D  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Diary'                           : 'D'<CR>
-cabbrev E  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Edit'                            : 'E'<CR>
+cabbrev E  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'EditCounterpart'                 : 'E'<CR>
 cabbrev F  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Flog'                            : 'F'<CR>
 cabbrev R  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Rg --hidden -g !.git -smartcase' : 'R'<CR>
 cabbrev Rg <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Rg --hidden -g !.git -smartcase' : 'Rg'<CR>
-cabbrev T  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'TestNearest'                     : 'T'<CR>
-cabbrev W  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Wiki'                            : 'W'<CR>
 
 function! s:IsFirstCharOfColonCmd()
  return getcmdtype() == ':' && getcmdpos() == 1
 endfunction
 
-function! s:Edit(type)
+function! s:EditCounterpart(type)
   let l:path = expand('%:p')
 
   if a:type ==# 'test'
