@@ -81,8 +81,6 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'tommcdo/vim-exchange'
 " repeat helper
 Plug 'tpope/vim-repeat'
-" Dictionary
-Plug 'johngrib/vim-mac-dictionary'
 " DB client
 Plug 'tpope/vim-dadbod'
 " Dotenv support
@@ -158,7 +156,6 @@ nmap     <silent>       gd         <Plug>(coc-definition)
 nmap     <silent>       gi         <Plug>(coc-implementation)
 nmap     <silent>       gr         <Plug>(coc-references)
 nmap     <silent>       gy         <Plug>(coc-type-definition)
-nnoremap <silent>       g<C-D>     :MacDictWord<CR>
 nmap                    ghp        <Plug>(GitGutterPreviewHunk)
 nmap                    ghs        <Plug>(GitGutterStageHunk)
 nmap                    ghu        <Plug>(GitGutterUndoHunk)
