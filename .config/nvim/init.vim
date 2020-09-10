@@ -95,6 +95,8 @@ Plug 'gitusp/yanked-buffer'
 Plug 'andys8/vim-elm-syntax'
 " test runner
 Plug 'vim-test/vim-test'
+" Project settings
+Plug 'tpope/vim-projectionist'
 
 call plug#end()
 "
@@ -244,13 +246,7 @@ command! -nargs=?                                    Fold            call CocAct
 command! -nargs=0                                    Tsc             call CocAction('runCommand', 'tsserver.watchBuild') | copen
 command! -nargs=0                                    Wiki            e ~/wiki/index.md
 command! -nargs=0                                    Diary           exe 'e ~/wiki/diary/' . strftime('%Y-%m-%d') . '.md'
-command! -nargs=1 -complete=custom,s:CounterpartArgs Counterpart     call <SID>Counterpart(<f-args>)
 command! -nargs=+ -complete=custom,s:GrepArgs        Rg              exe 'CocList grep '.<q-args>
-
-function! s:CounterpartArgs(...)
-  let list = ['component', 'container', 'styles', 'test', 'target']
-  return join(list, "\n")
-endfunction
 
 function! s:GrepArgs(...)
   let list = ['-smartcase', '-ignorecase', '-literal', '-word', '-regex',
@@ -261,40 +257,12 @@ endfunction
 "
 " cabbrev
 "
-cabbrev C  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Counterpart'                     : 'C'<CR>
 cabbrev D  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Diary'                           : 'D'<CR>
 cabbrev R  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Rg --hidden -g !.git -smartcase' : 'R'<CR>
 cabbrev Rg <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Rg --hidden -g !.git -smartcase' : 'Rg'<CR>
 
 function! s:IsFirstCharOfColonCmd()
  return getcmdtype() == ':' && getcmdpos() == 1
-endfunction
-
-function! s:Counterpart(type)
-  let l:path = expand('%:p')
-
-  if a:type ==# 'test'
-    exe 'e ' . substitute(l:path, 'packages/.\{-}/', '&__tests__/unit/', '')
-  elseif a:type ==# 'target'
-    exe 'e ' . substitute(l:path, '__tests__/.\{-}/', '', '')
-  else
-    let l:dir = 'component\|container'
-    let l:ext = '.module.scss$\|.tsx$'
-
-    if l:path =~ l:dir && l:path =~ l:ext
-      if a:type ==# 'component'
-        exe 'e ' . substitute(substitute(l:path, l:dir, 'component', ''), l:ext, '.tsx', '')
-      elseif a:type ==# 'container'
-        exe 'e ' . substitute(substitute(l:path, l:dir, 'container', ''), l:ext, '.tsx', '')
-      elseif a:type ==# 'styles'
-        exe 'e ' . substitute(substitute(l:path, l:dir, 'component', ''), l:ext, '.module.scss', '')
-      else
-        echoerr 'invalid argument'
-      endif
-    else
-      echoerr 'invalid path'
-    endif
-  endif
 endfunction
 
 "
