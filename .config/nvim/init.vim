@@ -24,7 +24,7 @@ Plug 'moll/vim-node'
 " Git integration
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-Plug 'rbong/vim-flog'
+Plug 'junegunn/gv.vim'
 Plug 'airblade/vim-gitgutter'
 " Text alignment - e.g. TableFormat
 Plug 'godlygeek/tabular'
@@ -239,13 +239,13 @@ augroup END
 "
 " Custom commands
 "
-command! -nargs=0                                    OrganizeImport  call CocAction('runCommand', 'editor.action.organizeImport')
-command! -nargs=0                                    Format          call CocAction('format')
-command! -nargs=?                                    Fold            call CocAction('fold', <f-args>)
-command! -nargs=0                                    Tsc             call CocAction('runCommand', 'tsserver.watchBuild') | copen
-command! -nargs=0                                    Wiki            e ~/wiki/index.md
-command! -nargs=0                                    Diary           exe 'e ~/wiki/diary/' . strftime('%Y-%m-%d') . '.md'
-command! -nargs=+ -complete=custom,s:GrepArgs        Rg              exe 'CocList grep '.<q-args>
+command! -nargs=0                             OrganizeImport call CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0                             Format         call CocAction('format')
+command! -nargs=?                             Fold           call CocAction('fold', <f-args>)
+command! -nargs=0                             Tsc            call CocAction('runCommand', 'tsserver.watchBuild') | copen
+command! -nargs=0                             Wiki           e ~/wiki/index.md
+command! -nargs=0                             Diary          exe 'e ~/wiki/diary/' . strftime('%Y-%m-%d') . '.md'
+command! -nargs=+ -complete=custom,s:GrepArgs Rg             exe 'CocList grep '.<q-args>
 
 function! s:GrepArgs(...)
   let list = ['-smartcase', '-ignorecase', '-literal', '-word', '-regex',
