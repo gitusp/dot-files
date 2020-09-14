@@ -55,7 +55,7 @@ Plug 'radenling/vim-dispatch-neovim'
 " REPL helper
 Plug 'jpalardy/vim-slime'
 " LSC
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Highlight yanked region
 Plug 'machakann/vim-highlightedyank'
 " Interactive scratch pad
@@ -166,8 +166,8 @@ nnoremap <silent>       gL         :CocList -I grep --hidden -g !.git -smartcase
 nmap                    gs         <Plug>SlimeMotionSend
 nmap                    gss        <Plug>SlimeLineSend
 nnoremap <silent>       K          :call <SID>ShowDocumentation()<CR>
-nmap     <silent>       [d         <Plug>(coc-diagnostic-prev)
-nmap     <silent>       ]d         <Plug>(coc-diagnostic-next)
+nmap     <silent>       [g         <Plug>(coc-diagnostic-prev)
+nmap     <silent>       ]g         <Plug>(coc-diagnostic-next)
 nnoremap <silent>       <C-H>      :CocList mru<CR>
 map                     <C-J>      <Plug>(edgemotion-j)
 map                     <C-K>      <Plug>(edgemotion-k)
