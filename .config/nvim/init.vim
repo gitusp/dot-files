@@ -150,6 +150,9 @@ highlight ExtraWhitespace guibg=#dc322f
 "
 " Custom mappings
 "
+" edgemotion
+map                     <C-J>      <Plug>(edgemotion-j)
+map                     <C-K>      <Plug>(edgemotion-k)
 " Normal mode - normal assignments
 nnoremap                Y          y$
 nnoremap                Q          @q
@@ -170,16 +173,16 @@ nmap                    gss        <Plug>SlimeLineSend
 nnoremap <silent>       K          :call <SID>ShowDocumentation()<CR>
 nmap     <silent>       [g         <Plug>(coc-diagnostic-prev)
 nmap     <silent>       ]g         <Plug>(coc-diagnostic-next)
-nnoremap <silent>       <C-H>      :CocList mru<CR>
-map                     <C-J>      <Plug>(edgemotion-j)
-map                     <C-K>      <Plug>(edgemotion-k)
-nnoremap <silent>       <C-L>      :nohlsearch<Bar>call sneak#util#removehl()<CR><C-L>
+nnoremap                <C-H>      ^
+nnoremap                <C-L>      $
 nmap     <silent>       <C-N>      <Plug>(coc-rename)
 nnoremap <silent>       <C-P>      :CocList files --hidden -g !.git --files<CR>
 nmap                    <C-W>Q     <Plug>(yanked-buffer-p)
+nmap     <silent>       <Space>    <Plug>(coc-codeaction)
+nnoremap <silent>       <Esc>      :nohlsearch<Bar>call sneak#util#removehl()<CR><C-L>
 " NOTE: <BS> = <C-8>
 nnoremap <silent>       <BS>       :Rg --hidden -g !.git -smartcase -word <C-R><C-W><CR>
-nmap     <silent><expr> <CR>       <SID>ShouldThroughCR() ? '<CR>' : '<Plug>(coc-codeaction)'
+nmap     <silent><expr> <CR>       <SID>ShouldThroughCR() ? '<CR>' : ':CocList mru<CR>'
 " selections ranges.
 nmap     <silent>       +          <Plug>(coc-range-select)
 " Visual mode
