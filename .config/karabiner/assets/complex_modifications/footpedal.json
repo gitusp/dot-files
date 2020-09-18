@@ -2,12 +2,12 @@
   "title": "Settings for Footpedal",
   "rules": [
     {
-      "description": "Change control down/up to :/<cr>",
+      "description": "Change command down/up to :/<cr>",
       "manipulators": [
         {
           "type": "basic",
           "from": {
-            "key_code": "left_control"
+            "key_code": "left_command"
           },
           "to": [
             {
@@ -33,6 +33,16 @@
                   "product_id": 8455,
                   "description": "footpedal"
                 }
+              ]
+            },
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^io\\.alacritty$",
+                "^net\\.kovidgoyal\\.kitty$",
+                "^com\\.googlecode\\.iterm2$",
+                "^com\\.google\\.android\\.studio$"
               ]
             }
           ]
