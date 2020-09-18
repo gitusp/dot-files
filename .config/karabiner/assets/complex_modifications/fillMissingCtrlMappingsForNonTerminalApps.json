@@ -1,36 +1,9 @@
 {
-  "title": "Convenient ctrl(^terminal)",
+  "title": "Fill missing ctrl mappings for non-terminal-like apps",
   "rules": [
     {
-      "description": "tab",
+      "description": "Change control + i to tab",
       "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "i",
-            "modifiers": {
-              "mandatory": ["control", "command"],
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "tab",
-              "modifiers": ["command"]
-            }
-          ],
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "^com\\.apple\\.Terminal$",
-                "^io\\.alacritty$",
-                "^net\\.kovidgoyal\\.kitty$",
-                "^com\\.googlecode\\.iterm2$"
-              ]
-            }
-          ]
-        },
         {
           "type": "basic",
           "from": {
@@ -60,7 +33,39 @@
       ]
     },
     {
-      "description": "arrow",
+      "description": "Allow ctrl + cmd + i work as cmd + tab on terminal like apps",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "i",
+            "modifiers": {
+              "mandatory": ["control", "command"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "tab",
+              "modifiers": ["command"]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^io\\.alacritty$",
+                "^net\\.kovidgoyal\\.kitty$",
+                "^com\\.googlecode\\.iterm2$"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Change ctrl + [pfnb] to arrow",
       "manipulators": [
         {
           "type": "basic",
@@ -169,7 +174,7 @@
       ]
     },
     {
-      "description": "delete_or_backspace",
+      "description": "Change c-h to delete_or_backspace",
       "manipulators": [
         {
           "type": "basic",
@@ -199,7 +204,7 @@
       ]
     },
     {
-      "description": "return_or_enter",
+      "description": "Change c-m to return_or_enter except ctrl + cmd + opt + m(preservation for ShiftIt)",
       "manipulators": [
         {
           "type": "basic",
@@ -239,6 +244,41 @@
           "to": [
             {
               "key_code": "return_or_enter"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^io\\.alacritty$",
+                "^net\\.kovidgoyal\\.kitty$",
+                "^com\\.googlecode\\.iterm2$"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Change alone left_control to escape",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "left_control",
+            "modifiers": {
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_control"
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "escape"
             }
           ],
           "conditions": [

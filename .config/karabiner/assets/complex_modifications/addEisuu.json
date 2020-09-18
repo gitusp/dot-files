@@ -1,8 +1,8 @@
 {
-  "title": "Add eisuu to esc/c-[/c-o",
+  "title": "Add eisuu to esc-likes(for terminal like apps)",
   "rules": [
     {
-      "description": "Add eisuu to esc-likes",
+      "description": "Add eisuu to escape",
       "manipulators": [
         {
           "type": "basic",
@@ -29,7 +29,12 @@
               ]
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "description": "Add eisuu to c-[",
+      "manipulators": [
         {
           "type": "basic",
           "from": {
@@ -59,7 +64,12 @@
               ]
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "description": "Add eisuu to c-o",
+      "manipulators": [
         {
           "type": "basic",
           "from": {
@@ -72,6 +82,45 @@
             {
               "key_code": "o",
               "modifiers": ["control"]
+            },
+            {
+              "key_code": "japanese_eisuu"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^io\\.alacritty$",
+                "^net\\.kovidgoyal\\.kitty$",
+                "^com\\.googlecode\\.iterm2$",
+                "^com\\.google\\.android\\.studio$"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Change alone left_control to escape + eisuu",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "left_control",
+            "modifiers": {
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_control"
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "escape"
             },
             {
               "key_code": "japanese_eisuu"
