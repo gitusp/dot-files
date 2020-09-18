@@ -140,6 +140,44 @@
           ]
         }
       ]
+    },
+    {
+      "description": "Change return_or_enter to cmd runner",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "return_or_enter"
+          },
+          "to": [
+            {
+              "key_code": "japanese_eisuu"
+            },
+            {
+              "key_code": "semicolon",
+              "modifiers": ["shift"],
+              "repeat": false
+            }
+          ],
+          "to_after_key_up": [
+            {
+              "key_code": "return_or_enter"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^io\\.alacritty$",
+                "^net\\.kovidgoyal\\.kitty$",
+                "^com\\.googlecode\\.iterm2$",
+                "^com\\.google\\.android\\.studio$"
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -177,7 +177,6 @@ nnoremap <silent>       <C-L>      :nohlsearch<Bar>call sneak#util#removehl()<CR
 nmap     <silent>       <C-N>      <Plug>(coc-rename)
 nnoremap <silent>       <C-P>      :CocList files --hidden -g !.git --files<CR>
 nmap                    <C-W>Q     <Plug>(yanked-buffer-p)
-nnoremap <silent>       <Space>    :w<CR>
 " NOTE: <BS> = <C-8>
 nnoremap <silent>       <BS>       :Rg --hidden -g !.git -smartcase -word <C-R><C-W><CR>
 nmap     <silent><expr> <CR>       <SID>ShouldThroughCR() ? '<CR>' : '<Plug>(coc-codeaction)'
