@@ -1,0 +1,40 @@
+{
+  "title": "Settings for Footpedal",
+  "rules": [
+    {
+      "description": "Change control down/up to :/<cr>",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "left_control"
+          },
+          "to": [
+            {
+              "key_code": "semicolon",
+              "modifiers": ["shift"],
+              "repeat": false
+            }
+          ],
+          "to_after_key_up": [
+            {
+              "key_code": "return_or_enter"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "device_if",
+              "identifiers": [
+                {
+                  "vendor_id": 16701,
+                  "product_id": 8455,
+                  "description": "footpedal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
