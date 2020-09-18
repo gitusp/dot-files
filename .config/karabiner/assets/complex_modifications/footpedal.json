@@ -11,6 +11,9 @@
           },
           "to": [
             {
+              "key_code": "japanese_eisuu"
+            },
+            {
               "key_code": "semicolon",
               "modifiers": ["shift"],
               "repeat": false
