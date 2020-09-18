@@ -134,6 +134,8 @@ set signcolumn=yes
 set dictionary+=/usr/share/dict/words
 set showtabline=0
 set diffopt+=iwhite
+set cursorline
+set cursorcolumn
 
 "
 " Color settings
