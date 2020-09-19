@@ -234,7 +234,7 @@ command! -nargs=?                             Fold           call CocAction('fol
 command! -nargs=0                             Tsc            call CocAction('runCommand', 'tsserver.watchBuild') | copen
 command! -nargs=0                             Wiki           e ~/wiki/index.md
 command! -nargs=0                             Diary          exe 'e ~/wiki/diary/' . strftime('%Y-%m-%d') . '.md'
-command! -nargs=0                             Mru            exe 'CocList mru'
+command! -nargs=0                             Mru            CocList mru
 command! -nargs=+ -complete=custom,s:GrepArgs Rg             exe 'CocList grep '.<q-args>
 
 function! s:GrepArgs(...)
