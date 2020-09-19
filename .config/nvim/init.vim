@@ -173,16 +173,13 @@ nmap                    gss        <Plug>SlimeLineSend
 nnoremap <silent>       K          :call <SID>ShowDocumentation()<CR>
 nmap     <silent>       [g         <Plug>(coc-diagnostic-prev)
 nmap     <silent>       ]g         <Plug>(coc-diagnostic-next)
-nnoremap                <C-H>      ^
-nnoremap                <C-L>      $
+nnoremap <silent>       <C-L>      :nohlsearch<Bar>call sneak#util#removehl()<CR><C-L>
 nmap     <silent>       <C-N>      <Plug>(coc-rename)
 nnoremap <silent>       <C-P>      :CocList files --hidden -g !.git --files<CR>
 nmap                    <C-W>Q     <Plug>(yanked-buffer-p)
 nmap     <silent>       <Space>    <Plug>(coc-codeaction)
-nnoremap <silent>       <Esc>      :nohlsearch<Bar>call sneak#util#removehl()<CR><C-L>
 " NOTE: <BS> = <C-8>
 nnoremap <silent>       <BS>       :Rg --hidden -g !.git -smartcase -word <C-R><C-W><CR>
-nmap     <silent><expr> <CR>       <SID>ShouldThroughCR() ? '<CR>' : ':CocList mru<CR>'
 " selections ranges.
 nmap     <silent>       +          <Plug>(coc-range-select)
 " Visual mode
@@ -202,18 +199,6 @@ tnoremap                <Esc>      <C-\><C-N>
 inoremap <silent><expr> <c-space>  coc#refresh()
 inoremap <silent><expr> <c-y>      pumvisible() ? coc#_select_confirm() : '<c-y>'
 imap     <silent>       <C-x><CR>  <plug>(emmet-expand-abbr)
-
-function! s:ShouldThroughCR()
-  if &buftype ==# 'quickfix'
-    return 1
-  endif
-
-  if bufname('%') ==# '[Command Line]'
-    return 1
-  endif
-
-  return 0
-endfunction
 
 function! s:ShowDocumentation()
   if &filetype == 'vim'
@@ -249,6 +234,7 @@ command! -nargs=?                             Fold           call CocAction('fol
 command! -nargs=0                             Tsc            call CocAction('runCommand', 'tsserver.watchBuild') | copen
 command! -nargs=0                             Wiki           e ~/wiki/index.md
 command! -nargs=0                             Diary          exe 'e ~/wiki/diary/' . strftime('%Y-%m-%d') . '.md'
+command! -nargs=0                             Mru            exe 'CocList mru'
 command! -nargs=+ -complete=custom,s:GrepArgs Rg             exe 'CocList grep '.<q-args>
 
 function! s:GrepArgs(...)
@@ -261,6 +247,7 @@ endfunction
 " cabbrev
 "
 cabbrev D  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Diary'                           : 'D'<CR>
+cabbrev M  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Mru'                             : 'M'<CR>
 cabbrev R  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Rg --hidden -g !.git -smartcase' : 'R'<CR>
 cabbrev Rg <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Rg --hidden -g !.git -smartcase' : 'Rg'<CR>
 
