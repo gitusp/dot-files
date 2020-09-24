@@ -232,8 +232,8 @@ command! -nargs=0                             OrganizeImport call CocAction('run
 command! -nargs=0                             Format         call CocAction('format')
 command! -nargs=?                             Fold           call CocAction('fold', <f-args>)
 command! -nargs=0                             Tsc            call CocAction('runCommand', 'tsserver.watchBuild') | copen
-command! -nargs=0                             Wiki           e ~/wiki/index.md
-command! -nargs=0                             Diary          exe 'e ~/wiki/diary/' . strftime('%Y-%m-%d') . '.md'
+command! -nargs=0                             Wiki           sp ~/wiki/index.md | call <SID>MapQuit()
+command! -nargs=0                             Diary          exe 'sp ~/wiki/diary/' . strftime('%Y-%m-%d') . '.md' | call <SID>MapQuit()
 command! -nargs=0                             Mru            CocList mru
 command! -nargs=+ -complete=custom,s:GrepArgs Rg             exe 'CocList grep '.<q-args>
 
@@ -241,6 +241,10 @@ function! s:GrepArgs(...)
   let list = ['-smartcase', '-ignorecase', '-literal', '-word', '-regex',
         \ '-skip-vcs-ignores', '-extension', '--hidden']
   return join(list, "\n")
+endfunction
+
+function! s:MapQuit()
+  nnoremap <buffer><silent> gq :q<CR>
 endfunction
 
 "
