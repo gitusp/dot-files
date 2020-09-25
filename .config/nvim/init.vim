@@ -223,8 +223,11 @@ augroup vimrc
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
   " try to load local dotenv
   autocmd VimEnter * try | Dotenv .env.local | catch | endtry
-  " wiki mappings
-  autocmd BufRead,BufNewFile ~/wiki/** nnoremap <buffer><silent> gq :q<CR>
+  " wiki settings - gq to quit / auto save
+  autocmd BufRead,BufNewFile ~/wiki/*.md
+        \ nnoremap <buffer><silent> gq :q<CR> |
+        \ autocmd InsertLeave,TextChanged <buffer> silent write |
+        \ setlocal noswapfile
 augroup END
 
 "
