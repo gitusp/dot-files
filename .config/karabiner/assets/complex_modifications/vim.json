@@ -16,18 +16,6 @@
             {
               "key_code": "japanese_eisuu"
             }
-          ],
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "^com\\.apple\\.Terminal$",
-                "^io\\.alacritty$",
-                "^net\\.kovidgoyal\\.kitty$",
-                "^com\\.googlecode\\.iterm2$",
-                "^com\\.google\\.android\\.studio$"
-              ]
-            }
           ]
         }
       ]
@@ -82,45 +70,6 @@
             {
               "key_code": "o",
               "modifiers": ["control"]
-            },
-            {
-              "key_code": "japanese_eisuu"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "^com\\.apple\\.Terminal$",
-                "^io\\.alacritty$",
-                "^net\\.kovidgoyal\\.kitty$",
-                "^com\\.googlecode\\.iterm2$",
-                "^com\\.google\\.android\\.studio$"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "description": "Change alone left_control to escape + eisuu",
-      "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "left_control",
-            "modifiers": {
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "left_control"
-            }
-          ],
-          "to_if_alone": [
-            {
-              "key_code": "escape"
             },
             {
               "key_code": "japanese_eisuu"
