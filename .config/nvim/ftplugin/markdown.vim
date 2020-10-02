@@ -14,3 +14,6 @@ function! s:ToggleCheckbox()
     exe 's/^\s*- \[\zs.\ze]/' . dest . '/'
   endif
 endfunction
+
+command! -buffer CreateSpreadsheet silent !open https://docs.google.com/spreadsheets/create
+
