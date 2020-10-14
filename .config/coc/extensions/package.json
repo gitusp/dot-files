@@ -12,7 +12,6 @@
     "coc-python": ">=1.2.12",
     "coc-stylelintplus": ">=1.2.0",
     "coc-svg": ">=0.0.13",
-    "coc-tsserver": ">=1.5.6",
-    "coc-word": ">=1.2.2"
+    "coc-tsserver": ">=1.5.6"
   }
 }
