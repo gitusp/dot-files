@@ -71,8 +71,6 @@ Plug 'sbdchd/neoformat'
 " Movement helper
 Plug 'justinmk/vim-sneak'
 Plug 'haya14busa/vim-edgemotion'
-" Snippets definitions
-Plug 'honza/vim-snippets'
 " Rest client
 Plug 'diepm/vim-rest-console'
 " Table mode
