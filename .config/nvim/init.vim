@@ -95,8 +95,6 @@ Plug 'andys8/vim-elm-syntax'
 Plug 'vim-test/vim-test'
 " Project settings
 Plug 'tpope/vim-projectionist'
-" Marker helper
-Plug 'Yilin-Yang/vim-markbar'
 
 call plug#end()
 "
