@@ -54,8 +54,6 @@ Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
 " REPL helper
 Plug 'jpalardy/vim-slime'
-" LSC
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Highlight yanked region
 Plug 'machakann/vim-highlightedyank'
 " Interactive scratch pad
@@ -70,7 +68,6 @@ Plug 'neomake/neomake'
 Plug 'sbdchd/neoformat'
 " Movement helper
 Plug 'justinmk/vim-sneak'
-Plug 'haya14busa/vim-edgemotion'
 " Rest client
 Plug 'diepm/vim-rest-console'
 " Table mode
@@ -95,6 +92,14 @@ Plug 'andys8/vim-elm-syntax'
 Plug 'vim-test/vim-test'
 " Project settings
 Plug 'tpope/vim-projectionist'
+" LSC
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/diagnostic-nvim'
+Plug 'nvim-lua/completion-nvim'
+" Fuzzy finder
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/telescope.nvim'
 
 call plug#end()
 "
@@ -106,7 +111,7 @@ call plug#end()
 "
 colorscheme flattened_light
 let g:airline_theme='solarized'
-set updatetime=300
+set updatetime=100
 set hidden
 " Search settings
 set ignorecase
@@ -134,77 +139,68 @@ set showtabline=0
 set diffopt+=iwhite
 set cursorline
 set cursorcolumn
+" https://github.com/nvim-lua/completion-nvim
+set completeopt=menuone,noinsert,noselect
 
 "
 " Color settings
 "
-highlight CocErrorSign    guifg=#dc322f
-highlight CocWarningSign  guifg=#b58900
-highlight CocInfoSign     guifg=#268bd2
-highlight CocHintSign     guifg=#859900
-highlight Sneak           guifg=#fdf6e3 guibg=#d33682
-highlight ExtraWhitespace guibg=#dc322f
+highlight LspDiagnosticsError               guifg=#dc322f
+highlight LspDiagnosticsErrorSign           guifg=#dc322f
+highlight LspDiagnosticsErrorFloating       guifg=#dc322f
+
+highlight LspDiagnosticsWarning             guifg=#b58900
+highlight LspDiagnosticsWarningSign         guifg=#b58900
+highlight LspDiagnosticsWarningFloating     guifg=#b58900
+
+highlight LspDiagnosticsInformation         guifg=#268bd2
+highlight LspDiagnosticsInformationSign     guifg=#268bd2
+highlight LspDiagnosticsInformationFloating guifg=#268bd2
+
+highlight LspDiagnosticsHint                guifg=#859900
+highlight LspDiagnosticsHintSign            guifg=#859900
+highlight LspDiagnosticsHintFloating        guifg=#859900
+
+highlight Sneak                             guifg=#fdf6e3 guibg=#d33682
+highlight ExtraWhitespace                   guibg=#dc322f
 
 "
 " Custom mappings
 "
-" edgemotion
-map                     <C-J>      <Plug>(edgemotion-j)
-map                     <C-K>      <Plug>(edgemotion-k)
 " Normal mode - normal assignments
 nnoremap                Y          y$
 nnoremap                Q          @q
 nnoremap                _          @:
-nmap     <silent>       g=         <Plug>(coc-format-selected)
-nmap     <silent>       g==        V<Plug>(coc-format-selected)
-nmap     <silent>       gd         <Plug>(coc-definition)
-nmap     <silent>       gi         <Plug>(coc-implementation)
-nmap     <silent>       gr         <Plug>(coc-references)
-nmap     <silent>       gy         <Plug>(coc-type-definition)
 nmap                    ghp        <Plug>(GitGutterPreviewHunk)
 nmap                    ghs        <Plug>(GitGutterStageHunk)
 nmap                    ghu        <Plug>(GitGutterUndoHunk)
-nnoremap <silent>       gl         :CocList -I grep --hidden -g !.git -smartcase<CR>
-nnoremap <silent>       gL         :CocList -I grep --hidden -g !.git -smartcase -word<CR>
+nnoremap <silent>       gl         <cmd>lua require('telescope.builtin').live_grep()<CR>
 nmap                    gs         <Plug>SlimeMotionSend
 nmap                    gss        <Plug>SlimeLineSend
-nnoremap <silent>       K          :call <SID>ShowDocumentation()<CR>
-nmap     <silent>       [g         <Plug>(coc-diagnostic-prev)
-nmap     <silent>       ]g         <Plug>(coc-diagnostic-next)
+nmap     <silent>       [g         :PrevDiagnosticCycle<CR>
+nmap     <silent>       ]g         :NextDiagnosticCycle<CR>
 nnoremap <silent>       <C-L>      :nohlsearch<Bar>call sneak#util#removehl()<CR><C-L>
-nmap     <silent>       <C-N>      <Plug>(coc-rename)
-nnoremap <silent>       <C-P>      :CocList files --hidden -g !.git --files<CR>
+nmap     <silent>       <C-N>      <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent>       <C-P>      <cmd>lua require'telescope.builtin'.find_files{find_command = { "fd", "--type", "f", "--hidden", "--exclude", ".git" }}<CR>
 nmap                    <C-W>Q     <Plug>(yanked-buffer-p)
-nmap     <silent>       <Space>    <Plug>(coc-codeaction)
+nmap     <silent>       <Space>    <cmd>lua vim.lsp.buf.code_action()<CR>
 " NOTE: <BS> = <C-8>
 nnoremap <silent>       <BS>       :Rg --hidden -g !.git -smartcase -word <C-R><C-W><CR>
-" selections ranges.
-nmap     <silent>       +          <Plug>(coc-range-select)
+" LSC mappings
+nnoremap <silent>       <c-]>      <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent>       K          <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent>       gD         <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent>       <c-k>      <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent>       1gD        <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent>       gr         <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent>       g0         <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent>       gW         <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent>       gd         <cmd>lua vim.lsp.buf.declaration()<CR>
 " Visual mode
-xmap     <silent>       g=         <Plug>(coc-format-selected)
 xmap                    gs         <Plug>SlimeRegionSend
-" Introduce function text object
-xmap                    if         <Plug>(coc-funcobj-i)
-xmap                    af         <Plug>(coc-funcobj-a)
-" selections ranges.
-xmap     <silent>       +          <Plug>(coc-range-select)
-" Operator pending mappings
-omap                    if         <Plug>(coc-funcobj-i)
-omap                    af         <Plug>(coc-funcobj-a)
 " Terminal mode
 tnoremap                <Esc>      <C-\><C-N>
-" Insert mode
-inoremap <silent><expr> <c-space>  coc#refresh()
-inoremap <silent><expr> <c-y>      pumvisible() ? coc#_select_confirm() : '<c-y>'
 imap     <silent>       <C-x><CR>  <plug>(emmet-expand-abbr)
-
-function! s:ShowDocumentation()
-  if &filetype == 'vim'
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
 
 "
 " autocmd
@@ -231,9 +227,6 @@ augroup END
 "
 " Custom commands
 "
-command! -nargs=0                             OrganizeImport call CocAction('runCommand', 'editor.action.organizeImport')
-command! -nargs=0                             Format         call CocAction('format')
-command! -nargs=?                             Fold           call CocAction('fold', <f-args>)
 command! -nargs=0                             Tsc            call CocAction('runCommand', 'tsserver.watchBuild') | copen
 command! -nargs=0                             Wiki           sp ~/wiki/index.md
 command! -nargs=0                             Diary          exe 'sp ~/wiki/diary/' . strftime('%Y-%m-%d') . '.md'
@@ -306,8 +299,6 @@ function! ApplyInactiveTerminalStatusLine(...)
   endif
 endfunction
 call airline#add_inactive_statusline_func('ApplyInactiveTerminalStatusLine')
-let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
 "
 " Markdown settings
@@ -338,3 +329,29 @@ let g:user_emmet_leader_key = '<Plug>'
 " test runner
 "
 let test#strategy = "neovim"
+
+"
+" LSC settings
+"
+lua <<EOF
+local on_attach = function(client)
+  require'diagnostic'.on_attach(client)
+  require'completion'.on_attach(client)
+end
+
+require'nvim_lsp'.tsserver.setup{ on_attach=on_attach }
+require'nvim_lsp'.pyls_ms.setup{ on_attach=on_attach }
+EOF
+
+"
+" Neoformat
+"
+let g:neoformat_enabled_typescript = ['eslint_d', 'prettier']
+let g:neoformat_enabled_typescriptreact = ['eslint_d', 'prettier']
+let g:neoformat_enabled_scss = ['stylelint']
+let g:neoformat_enabled_json = ['prettier']
+
+"
+" Completion plugin
+"
+let g:completion_confirm_key = "\<C-y>"
