@@ -9,7 +9,6 @@
     "coc-pairs": ">=1.2.21",
     "coc-prettier": ">=1.1.17",
     "coc-python": ">=1.2.12",
-    "coc-spell-checker": ">=1.2.0",
     "coc-stylelintplus": ">=1.2.0",
     "coc-svg": ">=0.0.13",
     "coc-tsserver": ">=1.5.6"
