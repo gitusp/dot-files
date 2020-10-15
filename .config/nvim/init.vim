@@ -100,6 +100,8 @@ Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/telescope.nvim'
+" Startup window
+Plug 'mhinz/vim-startify'
 
 call plug#end()
 "
@@ -185,7 +187,7 @@ nnoremap <silent>       <C-P>      <cmd>lua require'telescope.builtin'.find_file
 nmap                    <C-W>Q     <Plug>(yanked-buffer-p)
 nmap     <silent>       <Space>    <cmd>lua vim.lsp.buf.code_action()<CR>
 " NOTE: <BS> = <C-8>
-nnoremap <silent>       <BS>       :Rg --hidden -g !.git -smartcase -word <C-R><C-W><CR>
+nnoremap <silent>       <BS>       <cmd>lua require'telescope.builtin'.grep_string{}<CR>
 " LSC mappings
 nnoremap <silent>       <c-]>      <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent>       K          <cmd>lua vim.lsp.buf.hover()<CR>
@@ -207,14 +209,7 @@ imap     <silent>       <C-x><CR>  <plug>(emmet-expand-abbr)
 "
 augroup vimrc
   autocmd!
-  " code formatting
-  autocmd FileType javascript,javascriptreact,typescript,typescriptreact,json,scss setl formatexpr=CocAction('formatSelected')
-  " HACK: for that coc.preferences.formatOnSaveFiletypes does not work on json
-  autocmd BufWritePre *.json try | undojoin | catch | endtry | Format
-  " code highlight
-  autocmd CursorHold * silent call CocActionAsync('highlight')
-  " custom events
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+  autocmd BufWritePre *.ts,*.tsx,*.scss,*.json Neoformat
   " try to load local dotenv
   autocmd VimEnter * try | Dotenv .env.local | catch | endtry
   " wiki settings - gq to quit / auto save
@@ -227,11 +222,9 @@ augroup END
 "
 " Custom commands
 "
-command! -nargs=0                             Tsc            call CocAction('runCommand', 'tsserver.watchBuild') | copen
+" command! -nargs=0                             Tsc            call CocAction('runCommand', 'tsserver.watchBuild') | copen
 command! -nargs=0                             Wiki           sp ~/wiki/index.md
 command! -nargs=0                             Diary          exe 'sp ~/wiki/diary/' . strftime('%Y-%m-%d') . '.md'
-command! -nargs=0                             Mru            CocList mru
-command! -nargs=+ -complete=custom,s:GrepArgs Rg             exe 'CocList grep '.<q-args>
 
 function! s:GrepArgs(...)
   let list = ['-smartcase', '-ignorecase', '-literal', '-word', '-regex',
@@ -244,8 +237,6 @@ endfunction
 "
 cabbrev D  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Diary'                           : 'D'<CR>
 cabbrev M  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Mru'                             : 'M'<CR>
-cabbrev R  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Rg --hidden -g !.git -smartcase' : 'R'<CR>
-cabbrev Rg <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Rg --hidden -g !.git -smartcase' : 'Rg'<CR>
 
 function! s:IsFirstCharOfColonCmd()
  return getcmdtype() == ':' && getcmdpos() == 1
@@ -346,6 +337,7 @@ EOF
 "
 " Neoformat
 "
+let g:neoformat_run_all_formatters = 1
 let g:neoformat_enabled_typescript = ['eslint_d', 'prettier']
 let g:neoformat_enabled_typescriptreact = ['eslint_d', 'prettier']
 let g:neoformat_enabled_scss = ['stylelint']
