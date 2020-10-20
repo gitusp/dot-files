@@ -96,7 +96,7 @@ Plug 'vim-test/vim-test'
 " Project settings
 Plug 'tpope/vim-projectionist'
 " CSS in JS
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'styled-components/vim-styled-components', { 'branch': 'develop' }
 
 call plug#end()
 "
