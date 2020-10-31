@@ -97,6 +97,8 @@ Plug 'vim-test/vim-test'
 Plug 'tpope/vim-projectionist'
 " CSS in JS
 Plug 'styled-components/vim-styled-components', { 'branch': 'develop' }
+" Confliction resolving helper
+Plug 'rhysd/conflict-marker.vim'
 
 call plug#end()
 "
