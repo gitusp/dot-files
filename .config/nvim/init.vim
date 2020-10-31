@@ -341,3 +341,8 @@ let g:user_emmet_leader_key = '<Plug>'
 " test runner
 "
 let test#strategy = "neovim"
+
+"
+" tcomment
+"
+let g:tcomment#filetype#guess_typescriptreact = 1
