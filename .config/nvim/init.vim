@@ -230,6 +230,9 @@ augroup vimrc
         \ nnoremap <buffer><silent> gq :q<CR> |
         \ autocmd InsertLeave,TextChanged <buffer> silent write |
         \ setlocal noswapfile
+  " styled-components
+  autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+  autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 augroup END
 
 "
