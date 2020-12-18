@@ -99,6 +99,8 @@ Plug 'tpope/vim-projectionist'
 Plug 'styled-components/vim-styled-components', { 'branch': 'develop' }
 " Confliction resolving helper
 Plug 'rhysd/conflict-marker.vim'
+" Esc
+Plug 'jdhao/better-escape.vim'
 
 call plug#end()
 "
