@@ -25,7 +25,6 @@ Plug 'moll/vim-node'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/gv.vim'
-Plug 'airblade/vim-gitgutter'
 " Text alignment - e.g. TableFormat
 Plug 'godlygeek/tabular'
 " Markdown support
@@ -97,8 +96,6 @@ Plug 'vim-test/vim-test'
 Plug 'tpope/vim-projectionist'
 " CSS in JS
 Plug 'styled-components/vim-styled-components', { 'branch': 'develop' }
-" Confliction resolving helper
-Plug 'rhysd/conflict-marker.vim'
 
 call plug#end()
 "
@@ -165,16 +162,20 @@ nmap     <silent>       gd         <Plug>(coc-definition)
 nmap     <silent>       gi         <Plug>(coc-implementation)
 nmap     <silent>       gr         <Plug>(coc-references)
 nmap     <silent>       gy         <Plug>(coc-type-definition)
-nmap                    ghp        <Plug>(GitGutterPreviewHunk)
-nmap                    ghs        <Plug>(GitGutterStageHunk)
-nmap                    ghu        <Plug>(GitGutterUndoHunk)
+nmap                    ghp        <Plug>(coc-git-chunkinfo)
+nmap     <silent>       ghu        :CocCommand git.chunkUndo<CR>
+nmap     <silent>       ghs        :CocCommand git.chunkStage<CR>
 nnoremap <silent>       gl         :CocList -I grep --hidden -g !.git -smartcase<CR>
 nnoremap <silent>       gL         :CocList -I grep --hidden -g !.git -smartcase -word<CR>
 nmap                    gs         <Plug>SlimeMotionSend
 nmap                    gss        <Plug>SlimeLineSend
 nnoremap <silent>       K          :call <SID>ShowDocumentation()<CR>
+nmap     <silent>       [c         <Plug>(coc-git-prevchunk)
+nmap     <silent>       ]c         <Plug>(coc-git-nextchunk)
 nmap     <silent>       [g         <Plug>(coc-diagnostic-prev)
 nmap     <silent>       ]g         <Plug>(coc-diagnostic-next)
+nmap     <silent>       [x         <Plug>(coc-git-prevconflict)
+nmap     <silent>       ]x         <Plug>(coc-git-nextconflict)
 nnoremap <silent>       <C-L>      :nohlsearch<Bar>call sneak#util#removehl()<CR><C-L>
 nmap     <silent>       <C-N>      <Plug>(coc-rename)
 nnoremap <silent>       <C-P>      :CocList files --hidden -g !.git --files<CR>
@@ -187,20 +188,24 @@ nmap     <silent>       +          <Plug>(coc-range-select)
 " Visual mode
 xmap     <silent>       g=         <Plug>(coc-format-selected)
 xmap                    gs         <Plug>SlimeRegionSend
-" Introduce function text object
-xmap                    if         <Plug>(coc-funcobj-i)
-xmap                    af         <Plug>(coc-funcobj-a)
 " selections ranges.
 xmap     <silent>       +          <Plug>(coc-range-select)
-" Operator pending mappings
-omap                    if         <Plug>(coc-funcobj-i)
-omap                    af         <Plug>(coc-funcobj-a)
 " Terminal mode
 tnoremap                <Esc>      <C-\><C-N>
 " Insert mode
 inoremap <silent><expr> <c-space>  coc#refresh()
 inoremap <silent><expr> <c-y>      pumvisible() ? coc#_select_confirm() : '<c-y>'
 imap     <silent>       <C-x><CR>  <plug>(emmet-expand-abbr)
+" Introduce git chunk text object
+omap                    ig         <Plug>(coc-git-chunk-inner)
+xmap                    ig         <Plug>(coc-git-chunk-inner)
+omap                    ag         <Plug>(coc-git-chunk-outer)
+xmap                    ag         <Plug>(coc-git-chunk-outer)
+" Introduce function text object
+omap                    if         <Plug>(coc-funcobj-i)
+xmap                    if         <Plug>(coc-funcobj-i)
+omap                    af         <Plug>(coc-funcobj-a)
+xmap                    af         <Plug>(coc-funcobj-a)
 
 function! s:ShowDocumentation()
   if &filetype == 'vim'
