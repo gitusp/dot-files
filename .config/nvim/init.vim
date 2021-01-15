@@ -247,8 +247,8 @@ command! -nargs=0                             OrganizeImport call CocAction('run
 command! -nargs=0                             Format         call CocAction('format')
 command! -nargs=?                             Fold           call CocAction('fold', <f-args>)
 command! -nargs=0                             Tsc            call CocAction('runCommand', 'tsserver.watchBuild') | copen
-command! -nargs=0                             Wiki           sp ~/wiki/index.md
-command! -nargs=0                             Diary          exe 'sp ~/wiki/diary/' . strftime('%Y-%m-%d') . '.md'
+command! -nargs=0                             Wiki           e ~/wiki/index.md
+command! -nargs=0                             Diary          exe 'e ~/wiki/diary/' . strftime('%Y-%m-%d') . '.md'
 command! -nargs=+ -complete=custom,s:GrepArgs Rg             exe 'CocList grep '.<q-args>
 
 function! s:GrepArgs(...)
