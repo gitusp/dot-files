@@ -291,6 +291,7 @@ let g:vrc_curl_opts = {
       \ '-sS': '',
       \ '-i': '',
     \}
+let g:vrc_trigger = '<CR>'
 
 "
 " matchup settings
