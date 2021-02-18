@@ -181,6 +181,11 @@ nmap     <silent>       <C-N>      <Plug>(coc-rename)
 nnoremap <silent>       <C-P>      :CocList files --hidden -g !.git --files<CR>
 nmap                    <C-W>Q     <Plug>(yanked-buffer-p)
 nmap     <silent>       <Space>    <Plug>(coc-codeaction)
+" Alt yank/paste(system clipboard)
+nnoremap                ¥          "+y
+nnoremap                Á          "+y$
+nnoremap                π          "+p
+nnoremap                ∏          "+P
 " NOTE: <BS> = <C-8>
 nnoremap <silent>       <BS>       :Rg --hidden -g !.git -smartcase -word <C-R><C-W><CR>
 " selections ranges.
@@ -190,6 +195,11 @@ xmap     <silent>       g=         <Plug>(coc-format-selected)
 xmap                    gs         <Plug>SlimeRegionSend
 " selections ranges.
 xmap     <silent>       +          <Plug>(coc-range-select)
+" Alt yank/paste(system clipboard)
+xnoremap                ¥          "+y
+xnoremap                Á          "+Y
+xnoremap                π          "+p
+xnoremap                ∏          "+P
 " Terminal mode
 tnoremap                <Esc>      <C-\><C-N>
 " Insert mode
