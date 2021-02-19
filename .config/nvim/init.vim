@@ -186,6 +186,7 @@ nmap                    <C-W>Q     <Plug>(yanked-buffer-p)
 nmap     <silent>       <Space>    <Plug>(coc-codeaction)
 " Alt yank/paste(system clipboard)
 nnoremap                ¥          "+y
+nnoremap                ¥¥         "+yy
 nnoremap                Á          "+y$
 nnoremap                π          "+p
 nnoremap                ∏          "+P
