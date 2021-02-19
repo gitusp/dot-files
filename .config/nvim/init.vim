@@ -220,7 +220,7 @@ xmap                    if         <Plug>(coc-funcobj-i)
 omap                    af         <Plug>(coc-funcobj-a)
 xmap                    af         <Plug>(coc-funcobj-a)
 " FZF
-inoremap <expr>         <c-x>L     fzf#vim#complete(fzf#wrap({
+inoremap <expr>         <c-x><c-x> fzf#vim#complete(fzf#wrap({
   \ 'prefix': '^.*$',
   \ 'source': 'rg -n ^ --color always --hidden -g !.git',
   \ 'options': '--ansi --delimiter : --nth 3..',
