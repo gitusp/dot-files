@@ -96,6 +96,9 @@ Plug 'vim-test/vim-test'
 Plug 'tpope/vim-projectionist'
 " CSS in JS
 Plug 'styled-components/vim-styled-components', { 'branch': 'develop' }
+" FZF
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 "
@@ -216,6 +219,12 @@ omap                    if         <Plug>(coc-funcobj-i)
 xmap                    if         <Plug>(coc-funcobj-i)
 omap                    af         <Plug>(coc-funcobj-a)
 xmap                    af         <Plug>(coc-funcobj-a)
+" FZF
+inoremap <expr>         <c-x>L     fzf#vim#complete(fzf#wrap({
+  \ 'prefix': '^.*$',
+  \ 'source': 'rg -n ^ --color always --hidden -g !.git',
+  \ 'options': '--ansi --delimiter : --nth 3..',
+  \ 'reducer': { lines -> join(split(lines[0], ':\zs')[2:], '') }}))
 
 function! s:ShowDocumentation()
   if &filetype == 'vim'
