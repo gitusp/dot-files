@@ -4,15 +4,15 @@
     "coc-cssmodules": ">=1.1.1",
     "coc-emoji": ">=1.2.3",
     "coc-eslint": ">=1.4.5",
-    "coc-git": ">=2.2.1",
+    "coc-git": ">=2.2.2",
     "coc-json": ">=1.3.4",
     "coc-lists": ">=1.4.0",
-    "coc-pairs": ">=1.2.22",
-    "coc-prettier": ">=1.1.20",
+    "coc-pairs": ">=1.2.23",
+    "coc-prettier": ">=1.1.21",
     "coc-python": ">=1.2.13",
     "coc-stylelintplus": ">=1.4.0",
     "coc-svg": ">=0.0.13",
     "coc-tabnine": ">=1.3.3",
-    "coc-tsserver": ">=1.6.7"
+    "coc-tsserver": ">=1.6.8"
   }
 }
