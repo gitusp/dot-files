@@ -4,7 +4,7 @@
 call plug#begin()
 
 " Theme
-Plug 'romainl/flattened'
+Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Python syntax highlight
@@ -108,8 +108,8 @@ call plug#end()
 "
 " General Settings
 "
-colorscheme flattened_light
-let g:airline_theme='solarized'
+colorscheme base16-tomorrow-night
+let g:airline_theme='tomorrow'
 set updatetime=300
 set hidden
 " Search settings
@@ -142,12 +142,12 @@ set cursorcolumn
 "
 " Color settings
 "
-highlight CocErrorSign    guifg=#dc322f
-highlight CocWarningSign  guifg=#b58900
-highlight CocInfoSign     guifg=#268bd2
-highlight CocHintSign     guifg=#859900
-highlight Sneak           guifg=#fdf6e3 guibg=#d33682
-highlight ExtraWhitespace guibg=#dc322f
+highlight link CocErrorSign    Error
+highlight link CocWarningSign  WarningMsg
+highlight link CocInfoSign     Directory
+highlight link CocHintSign     Comment
+highlight link Sneak           Search
+highlight link ExtraWhitespace Error
 
 "
 " Custom mappings
