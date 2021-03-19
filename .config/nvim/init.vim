@@ -183,8 +183,8 @@ nnoremap <silent>       <C-L>      :nohlsearch<Bar>call sneak#util#removehl()<CR
 nmap     <silent>       <C-N>      <Plug>(coc-rename)
 nnoremap <silent>       <C-P>      :CocList files --hidden -g !.git --files<CR>
 nmap                    <C-W>Q     <Plug>(yanked-buffer-p)
-nmap     <silent>       <Space>    <Plug>(coc-codeaction)
-nmap     <silent>       <Esc><Esc> :Diary<CR>
+nnoremap <silent>       <Space>    :w<CR>
+nmap     <silent>       <C-Space>  <Plug>(coc-codeaction)
 " Alt yank/paste(system clipboard)
 nnoremap                ¥          "+y
 nnoremap                ¥¥         "+yy
