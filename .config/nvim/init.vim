@@ -184,6 +184,7 @@ nmap     <silent>       <C-N>      <Plug>(coc-rename)
 nnoremap <silent>       <C-P>      :CocList files --hidden -g !.git --files<CR>
 nmap                    <C-W>Q     <Plug>(yanked-buffer-p)
 nmap     <silent>       <Space>    <Plug>(coc-codeaction)
+nmap     <silent>       <Esc><Esc> :Diary<CR>
 " Alt yank/paste(system clipboard)
 nnoremap                ¥          "+y
 nnoremap                ¥¥         "+yy
@@ -282,7 +283,6 @@ endfunction
 " cabbrev
 "
 cabbrev C  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'CocList'                         : 'C'<CR>
-cabbrev D  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Diary'                           : 'D'<CR>
 cabbrev R  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Rg --hidden -g !.git -smartcase' : 'R'<CR>
 cabbrev Rg <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Rg --hidden -g !.git -smartcase' : 'Rg'<CR>
 
