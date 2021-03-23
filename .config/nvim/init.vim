@@ -253,10 +253,7 @@ augroup vimrc
   " try to load local dotenv
   autocmd VimEnter * try | Dotenv .env.local | catch | endtry
   " wiki settings - gq to quit / auto save
-  autocmd BufRead,BufNewFile */wiki/*.md
-        \ nnoremap <buffer><silent> gq :q<CR> |
-        \ autocmd InsertLeave,TextChanged <buffer> silent write |
-        \ setlocal noswapfile
+  autocmd BufRead,BufNewFile */wiki/*.md nnoremap <buffer><silent> gq :q<CR>
   " styled-components
   autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
   autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
