@@ -285,8 +285,6 @@ endfunction
 "
 " cabbrev
 "
-cabbrev C  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'CocList'                         : 'C'<CR>
-cabbrev R  <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Rg --hidden -g !.git -smartcase' : 'R'<CR>
 cabbrev Rg <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Rg --hidden -g !.git -smartcase' : 'Rg'<CR>
 
 function! s:IsFirstCharOfColonCmd()
