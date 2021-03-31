@@ -99,8 +99,6 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'develop' }
 " FZF
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-" enhanced wild menu
-Plug 'gelguy/wilder.nvim'
 
 call plug#end()
 "
@@ -114,7 +112,6 @@ colorscheme base16-tomorrow-night
 let g:airline_theme='tomorrow'
 set updatetime=300
 set hidden
-set wildcharm=<Tab>
 " Search settings
 set ignorecase
 set smartcase
@@ -231,9 +228,6 @@ inoremap <expr>         <c-x><c-l> fzf#vim#complete(fzf#wrap({
   \ 'source': 'rg -n ^ --color always --hidden -g !.git',
   \ 'options': '--ansi --delimiter : --nth 3..',
   \ 'reducer': { lines -> join(split(lines[0], ':\zs')[2:], '') }}))
-" cmap
-cmap     <expr>         <Tab>      wilder#in_context() ? wilder#next() : "\<Tab>"
-cmap     <expr>         <S-Tab>    wilder#in_context() ? wilder#previous() : "\<S-Tab>"
 
 function! s:ShowDocumentation()
   if &filetype == 'vim'
@@ -377,25 +371,3 @@ let test#strategy = "neovim"
 " tcomment
 "
 let g:tcomment#filetype#guess_typescriptreact = 1
-
-"
-" wilder
-"
-call wilder#enable_cmdline_enter()
-
-" TODO: Add / and ? after the following issue resolved:
-" https://github.com/gelguy/wilder.nvim/issues/30
-call wilder#set_option('modes', [':'])
-call wilder#set_option('pipeline', [
-      \   wilder#branch(
-      \     wilder#cmdline_pipeline({
-      \       'language': 'python',
-      \       'fuzzy': 1,
-      \     }),
-      \     wilder#python_search_pipeline({
-      \       'pattern': wilder#python_fuzzy_delimiter_pattern(),
-      \       'sorter': wilder#python_difflib_sorter(),
-      \       'engine': 're2',
-      \     }),
-      \   ),
-      \ ])
