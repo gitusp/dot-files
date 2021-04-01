@@ -208,6 +208,7 @@ xnoremap                ∏          "+P
 " Terminal mode
 tnoremap                <Esc>      <C-\><C-N>
 " Insert mode
+inoremap                <C-L>      <Esc>
 inoremap <silent><expr> <c-space>  coc#refresh()
 inoremap <silent><expr> <c-y>      pumvisible() ? coc#_select_confirm() : '<c-y>'
 imap     <silent>       <C-x><CR>  <plug>(emmet-expand-abbr)
