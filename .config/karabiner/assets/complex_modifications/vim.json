@@ -21,6 +21,41 @@
       ]
     },
     {
+      "description": "Add eisuu to c-l",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": ["control"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "l",
+              "modifiers": ["control"]
+            },
+            {
+              "key_code": "japanese_eisuu"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^io\\.alacritty$",
+                "^net\\.kovidgoyal\\.kitty$",
+                "^com\\.googlecode\\.iterm2$",
+                "^com\\.google\\.android\\.studio$"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "description": "Add eisuu to c-[",
       "manipulators": [
         {
