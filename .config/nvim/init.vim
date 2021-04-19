@@ -262,18 +262,26 @@ augroup END
 "
 " Custom commands
 "
-command! -nargs=0                             OrganizeImport call CocAction('runCommand', 'editor.action.organizeImport')
-command! -nargs=0                             Format         call CocAction('format')
-command! -nargs=?                             Fold           call CocAction('fold', <f-args>)
-command! -nargs=0                             Tsc            call CocAction('runCommand', 'tsserver.watchBuild') | copen
-command! -nargs=0                             Wiki           e ~/wiki/index.md
-command! -nargs=0                             Diary          exe 'e ~/wiki/diary/' . strftime('%Y-%m-%d') . '.md'
-command! -nargs=+ -complete=custom,s:GrepArgs Rg             exe 'CocList grep '.<q-args>
+command! -nargs=0                              OrganizeImport call CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0                              Format         call CocAction('format')
+command! -nargs=?                              Fold           call CocAction('fold', <f-args>)
+command! -nargs=0                              Tsc            call CocAction('runCommand', 'tsserver.watchBuild') | copen
+command! -nargs=0                              Wiki           e ~/wiki/index.md
+command! -nargs=? -complete=custom,s:DiaryArgs Diary          exe 'e ' . s:DiaryPath(<f-args>)
+command! -nargs=+ -complete=custom,s:GrepArgs  Rg             exe 'CocList grep '.<q-args>
 
 function! s:GrepArgs(...)
   let list = ['-smartcase', '-ignorecase', '-literal', '-word', '-regex',
         \ '-skip-vcs-ignores', '-extension', '--hidden']
   return join(list, "\n")
+endfunction
+
+function! s:DiaryPath(...)
+  return '~/wiki/diary/' . (a:0 > 0 ? a:1 . '/' : '') . strftime('%Y-%m-%d') . '.md'
+endfunction
+
+function! s:DiaryArgs(...)
+  return system("ls -d ~/wiki/diary/*/ | awk -F/ '{print $(NF-1)}'")
 endfunction
 
 "
