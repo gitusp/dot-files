@@ -134,7 +134,6 @@ set dictionary+=/usr/share/dict/words
 set showtabline=0
 set diffopt+=iwhite
 set cursorline
-set cursorcolumn
 set relativenumber
 set number
 set number relativenumber
