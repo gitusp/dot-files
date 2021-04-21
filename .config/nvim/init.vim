@@ -96,6 +96,9 @@ Plug 'styled-components/vim-styled-components'
 " FZF
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+" Motion helpers
+Plug 'justinmk/vim-sneak'
+Plug 'haya14busa/vim-edgemotion'
 
 call plug#end()
 "
@@ -134,6 +137,7 @@ set dictionary+=/usr/share/dict/words
 set showtabline=0
 set diffopt+=iwhite
 set cursorline
+set cursorcolumn
 set relativenumber
 set number
 set number relativenumber
@@ -145,11 +149,15 @@ highlight link CocErrorSign    Error
 highlight link CocWarningSign  WarningMsg
 highlight link CocInfoSign     Directory
 highlight link CocHintSign     Comment
+highlight link Sneak           Search
 highlight link ExtraWhitespace Error
 
 "
 " Custom mappings
 "
+" edgemotion
+map                     <C-J>      <Plug>(edgemotion-j)
+map                     <C-K>      <Plug>(edgemotion-k)
 " Normal mode - normal assignments
 nnoremap                Y          y$
 nnoremap                Q          @q
@@ -174,7 +182,7 @@ nmap     <silent>       [g         <Plug>(coc-diagnostic-prev)
 nmap     <silent>       ]g         <Plug>(coc-diagnostic-next)
 nmap     <silent>       [x         <Plug>(coc-git-prevconflict)
 nmap     <silent>       ]x         <Plug>(coc-git-nextconflict)
-nnoremap <silent>       <C-L>      :nohlsearch<CR><C-L>
+nnoremap <silent>       <C-L>      :nohlsearch<Bar>call sneak#util#removehl()<CR><C-L>
 nmap     <silent>       <C-N>      <Plug>(coc-rename)
 nnoremap <silent>       <C-P>      :CocList files --hidden -g !.git --files<CR>
 nmap                    <C-W>Q     <Plug>(yanked-buffer-p)
@@ -292,6 +300,12 @@ endfunction
 " Sandwich settings
 "
 runtime macros/sandwich/keymap/surround.vim
+
+"
+" Sneak settings
+"
+let g:sneak#label = 1
+let g:sneak#use_ic_scs = 1
 
 "
 " Slime settings
