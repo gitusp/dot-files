@@ -92,7 +92,7 @@ Plug 'vim-test/vim-test'
 " Project settings
 Plug 'tpope/vim-projectionist'
 " CSS in JS
-Plug 'styled-components/vim-styled-components', { 'branch': 'develop' }
+Plug 'styled-components/vim-styled-components'
 " FZF
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
