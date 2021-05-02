@@ -99,6 +99,7 @@ Plug 'junegunn/fzf.vim'
 " Motion helpers
 Plug 'justinmk/vim-sneak'
 Plug 'haya14busa/vim-edgemotion'
+Plug 'unblevable/quick-scope'
 
 call plug#end()
 "
