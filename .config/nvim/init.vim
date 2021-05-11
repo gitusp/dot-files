@@ -165,6 +165,7 @@ nnoremap                Q          @q
 nnoremap                _          @:
 nmap     <silent>       g=         <Plug>(coc-format-selected)
 nmap     <silent>       g==        V<Plug>(coc-format-selected)
+nnoremap <silent>       gb         :CocList symbols<CR>
 nmap     <silent>       gd         <Plug>(coc-definition)
 nmap     <silent>       gi         <Plug>(coc-implementation)
 nmap     <silent>       gr         <Plug>(coc-references)
