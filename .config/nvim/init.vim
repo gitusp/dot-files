@@ -165,7 +165,6 @@ nnoremap                Q          @q
 nnoremap                _          @:
 nmap     <silent>       g=         <Plug>(coc-format-selected)
 nmap     <silent>       g==        V<Plug>(coc-format-selected)
-nnoremap <silent>       gb         :CocList symbols<CR>
 nmap     <silent>       gd         <Plug>(coc-definition)
 nmap     <silent>       gi         <Plug>(coc-implementation)
 nmap     <silent>       gr         <Plug>(coc-references)
@@ -274,6 +273,8 @@ command! -nargs=0                              Tsc            call CocAction('ru
 command! -nargs=0                              Wiki           e ~/wiki/index.md
 command! -nargs=? -complete=custom,s:DiaryArgs Diary          exe 'e ' . s:DiaryPath(<f-args>)
 command! -nargs=+ -complete=custom,s:GrepArgs  Rg             exe 'CocList grep '.<q-args>
+command! -nargs=0                              Symbols        CocList symbols
+command! -nargs=0                              Mru            CocList mru
 
 function! s:GrepArgs(...)
   let list = ['-smartcase', '-ignorecase', '-literal', '-word', '-regex',
