@@ -113,6 +113,7 @@ colorscheme base16-tomorrow-night
 let g:airline_theme='tomorrow'
 set updatetime=300
 set hidden
+set mouse=a
 " Search settings
 set ignorecase
 set smartcase
