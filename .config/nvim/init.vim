@@ -284,7 +284,7 @@ function! s:GrepArgs(...)
 endfunction
 
 function! s:DiaryPath(...)
-  return '~/wiki/diary/' . (a:0 > 0 ? a:1 . '/' : '') . strftime('%Y-%m-%d') . '.md'
+  return '~/wiki/diary/' . (a:0 > 0 ? a:1 . '/' : 'default/') . strftime('%Y-%m-%d') . '.md'
 endfunction
 
 function! s:DiaryArgs(...)
