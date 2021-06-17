@@ -5,7 +5,8 @@
     "javascriptreact",
     "typescript",
     "typescriptreact",
-    "scss"
+    "scss",
+    "prisma"
   ],
   "list.normalMappings": {
     "v": "action:vsplit"

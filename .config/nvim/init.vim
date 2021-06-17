@@ -100,6 +100,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'haya14busa/vim-edgemotion'
 Plug 'unblevable/quick-scope'
+" Prisma
+Plug 'pantharshit00/vim-prisma'
 
 call plug#end()
 "
