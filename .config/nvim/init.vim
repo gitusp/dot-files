@@ -258,7 +258,7 @@ augroup vimrc
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
   " try to load local dotenv
   autocmd VimEnter * try | Dotenv .env.local | catch | endtry
-  " wiki settings - gq to quit / auto save
+  " wiki settings - gq to quit
   autocmd BufRead,BufNewFile */wiki/*.md nnoremap <buffer><silent> gq :q<CR>
   " styled-components
   autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
@@ -272,7 +272,8 @@ command! -nargs=0                              OrganizeImport call CocAction('ru
 command! -nargs=0                              Format         call CocAction('format')
 command! -nargs=?                              Fold           call CocAction('fold', <f-args>)
 command! -nargs=0                              Tsc            call CocAction('runCommand', 'tsserver.watchBuild') | copen
-command! -nargs=0                              Wiki           e ~/wiki/index.md
+command! -nargs=0                              Wiki           e ~/wiki/wiki/index.md
+command! -nargs=0                              Anger          exe 'e ~/wiki/anger/' . strftime('%Y-%m-%d %H:%M:%S') . '.md'
 command! -nargs=? -complete=custom,s:DiaryArgs Diary          exe 'e ' . s:DiaryPath(<f-args>)
 command! -nargs=+ -complete=custom,s:GrepArgs  Rg             exe 'CocList grep '.<q-args>
 command! -nargs=0                              Symbols        CocList symbols
