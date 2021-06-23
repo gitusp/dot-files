@@ -273,8 +273,8 @@ command! -nargs=0                              Format         call CocAction('fo
 command! -nargs=?                              Fold           call CocAction('fold', <f-args>)
 command! -nargs=0                              Tsc            call CocAction('runCommand', 'tsserver.watchBuild') | copen
 command! -nargs=0                              Wiki           e ~/wiki/wiki/index.md
-command! -nargs=0                              Anger          exe 'e ~/wiki/anger/' . strftime('%Y-%m-%d %H:%M:%S') . '.md'
 command! -nargs=? -complete=custom,s:DiaryArgs Diary          exe 'e ' . s:DiaryPath(<f-args>)
+command! -nargs=? -complete=custom,s:JotArgs   Jot            exe 'e ' . s:JotPath(<f-args>)
 command! -nargs=+ -complete=custom,s:GrepArgs  Rg             exe 'CocList grep '.<q-args>
 command! -nargs=0                              Symbols        CocList symbols
 command! -nargs=0                              Mru            CocList mru
@@ -289,8 +289,16 @@ function! s:DiaryPath(...)
   return '~/wiki/diary/' . (a:0 > 0 ? a:1 . '/' : 'default/') . strftime('%Y-%m-%d') . '.md'
 endfunction
 
+function! s:JotPath(...)
+  return '~/wiki/jot/' . (a:0 > 0 ? a:1 . '/' : 'default/') . strftime('%Y-%m-%d %H:%M:%S') . '.md'
+endfunction
+
 function! s:DiaryArgs(...)
   return system("ls -d ~/wiki/diary/*/ | awk -F/ '{print $(NF-1)}'")
+endfunction
+
+function! s:JotArgs(...)
+  return system("ls -d ~/wiki/jot/*/ | awk -F/ '{print $(NF-1)}'")
 endfunction
 
 "
