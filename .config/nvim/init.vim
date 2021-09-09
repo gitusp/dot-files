@@ -42,8 +42,6 @@ Plug 'justinmk/vim-dirvish'
 Plug 'mbbill/undotree'
 " CSV Support
 Plug 'mechatroner/rainbow_csv'
-" Highlight trailing spaces
-Plug 'ntpeters/vim-better-whitespace'
 " Powerful matcher
 Plug 'andymass/vim-matchup'
 " Stylus syntax highlight
@@ -99,7 +97,6 @@ Plug 'junegunn/fzf.vim'
 " Motion helpers
 Plug 'justinmk/vim-sneak'
 Plug 'haya14busa/vim-edgemotion'
-Plug 'unblevable/quick-scope'
 " Prisma
 Plug 'pantharshit00/vim-prisma'
 " Diff
@@ -155,7 +152,6 @@ highlight link CocWarningSign  WarningMsg
 highlight link CocInfoSign     Directory
 highlight link CocHintSign     Comment
 highlight link Sneak           Search
-highlight link ExtraWhitespace Error
 
 "
 " Custom mappings
