@@ -146,6 +146,7 @@ highlight link CocErrorSign    Error
 highlight link CocWarningSign  WarningMsg
 highlight link CocInfoSign     Directory
 highlight link CocHintSign     Comment
+highlight link CocErrorFloat   ErrorMsg
 highlight link Sneak           Search
 
 "
