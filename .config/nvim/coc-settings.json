@@ -17,5 +17,6 @@
   "scss.validate": false,
   "wxss.validate": false,
   "prettier.disableSuccessMessage": true,
-  "prettier.eslintIntegration": true
+  "prettier.eslintIntegration": true,
+  "prisma.prismaFmtBinPath": ""
 }
