@@ -101,6 +101,8 @@ Plug 'haya14busa/vim-edgemotion'
 Plug 'pantharshit00/vim-prisma'
 " Diff
 Plug 'AndrewRadev/linediff.vim'
+" Code assistant
+Plug 'github/copilot.vim'
 
 call plug#end()
 "

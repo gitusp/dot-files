@@ -10,10 +10,9 @@
     "coc-pairs": ">=1.3.0",
     "coc-prettier": ">=1.1.24",
     "coc-prisma": ">=0.10.0",
-    "coc-pyright": ">=1.1.172",
+    "coc-pyright": ">=1.1.180",
     "coc-stylelintplus": ">=1.4.1",
     "coc-svg": ">=0.0.13",
-    "coc-tabnine": ">=1.3.4",
     "coc-tsserver": ">=1.8.6"
   }
 }
