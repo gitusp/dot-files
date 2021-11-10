@@ -148,8 +148,8 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
     keymaps = {
       init_selection = "vii",
-      node_incremental = "k",
-      node_decremental = "j",
+      node_incremental = "<C-I>",
+      node_decremental = "<C-D>",
     },
   },
   indent = {
