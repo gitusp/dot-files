@@ -7,20 +7,8 @@ call plug#begin()
 Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" Python syntax highlight
-Plug 'vim-python/python-syntax'
-" JavaScript syntax highlight
-Plug 'yuezk/vim-js'
-" TypeScript syntax highlight
-Plug 'HerringtonDarkholme/yats.vim'
-" JSX/TSX syntax highlight
-Plug 'maxmellon/vim-jsx-pretty'
-" Pug syntax highlight
-Plug 'digitaltoad/vim-pug'
 " Load editorconfig.
 Plug 'editorconfig/editorconfig-vim'
-" Open required files by `gf`.
-Plug 'moll/vim-node'
 " Git integration
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
@@ -44,8 +32,6 @@ Plug 'mbbill/undotree'
 Plug 'mechatroner/rainbow_csv'
 " Powerful matcher
 Plug 'andymass/vim-matchup'
-" Stylus syntax highlight
-Plug 'iloginow/vim-stylus'
 " Async task runner
 Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
@@ -55,8 +41,6 @@ Plug 'jpalardy/vim-slime'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Highlight yanked region
 Plug 'machakann/vim-highlightedyank'
-" Interactive scratch pad
-Plug 'metakirby5/codi.vim'
 " Additional text objects
 Plug 'wellle/targets.vim'
 " Quickfix helper
@@ -83,14 +67,10 @@ Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-unimpaired'
 " yanked buffer
 Plug 'gitusp/yanked-buffer'
-" elm syntax
-Plug 'andys8/vim-elm-syntax'
 " test runner
 Plug 'vim-test/vim-test'
 " Project settings
 Plug 'tpope/vim-projectionist'
-" CSS in JS
-Plug 'styled-components/vim-styled-components'
 " FZF
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -103,6 +83,8 @@ Plug 'pantharshit00/vim-prisma'
 Plug 'AndrewRadev/linediff.vim'
 " Code assistant
 Plug 'github/copilot.vim'
+" Tree sitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 call plug#end()
 "
@@ -140,6 +122,9 @@ set signcolumn=yes
 set dictionary+=/usr/share/dict/words
 set showtabline=0
 set diffopt+=iwhite
+" folding
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 
 "
 " Color settings
@@ -150,6 +135,28 @@ highlight link CocInfoSign     Directory
 highlight link CocHintSign     Comment
 highlight link CocErrorFloat   ErrorMsg
 highlight link Sneak           Search
+
+"
+" Tree sitter
+"
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "vii",
+      node_incremental = "k",
+      node_decremental = "j",
+    },
+  },
+  indent = {
+    enable = true
+  }
+}
+EOF
 
 "
 " Custom mappings
@@ -195,13 +202,9 @@ nnoremap                π          "+p
 nnoremap                ∏          "+P
 " NOTE: <BS> = <C-8>
 nnoremap <silent>       <BS>       :Rg --hidden -g !.git -smartcase -word <C-R><C-W><CR>
-" selections ranges.
-nmap     <silent>       +          <Plug>(coc-range-select)
 " Visual mode
 xmap     <silent>       g=         <Plug>(coc-format-selected)
 xmap                    gs         <Plug>SlimeRegionSend
-" selections ranges.
-xmap     <silent>       +          <Plug>(coc-range-select)
 " Alt yank/paste(system clipboard)
 xnoremap                ¥          "+y
 xnoremap                Á          "+Y
@@ -261,11 +264,6 @@ augroup vimrc
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
   " try to load local dotenv
   autocmd VimEnter * try | Dotenv .env.local | catch | endtry
-  " wiki settings - gq to quit
-  autocmd BufRead,BufNewFile */wiki/*.md nnoremap <buffer><silent> gq :q<CR>
-  " styled-components
-  autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
-  autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 augroup END
 
 "
@@ -305,15 +303,6 @@ function! s:JotArgs(...)
 endfunction
 
 "
-" cabbrev
-"
-cabbrev Rg <C-R>=<SID>IsFirstCharOfColonCmd() ? 'Rg --hidden -g !.git -smartcase' : 'Rg'<CR>
-
-function! s:IsFirstCharOfColonCmd()
- return getcmdtype() == ':' && getcmdpos() == 1
-endfunction
-
-"
 " Sandwich settings
 "
 runtime macros/sandwich/keymap/surround.vim
@@ -338,47 +327,14 @@ let g:vrc_curl_opts = {
 let g:vrc_trigger = '<Plug>'
 
 "
-" matchup settings
-"
-let g:matchup_matchparen_offscreen = {}
-
-"
 " Table mode settings
 "
 let g:table_mode_corner='|'
 
 "
-" airline settings
-"
-" REF: https://github.com/vim-airline/vim-airline/blob/master/autoload/airline/extensions/term.vim
-function! ApplyInactiveTerminalStatusLine(...)
-  if getbufvar(a:2.bufnr, '&buftype') == 'terminal'
-    let spc = g:airline_symbols.space
-    call a:1.add_section('airline_a', spc.'TERMINAL'.spc)
-    call a:1.add_section('airline_b', spc.'%f')
-    call a:1.split()
-    call a:1.add_section('airline_z', '#%{b:terminal_job_id}'.spc)
-    return 1
-  endif
-endfunction
-call airline#add_inactive_statusline_func('ApplyInactiveTerminalStatusLine')
-let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
-
-"
 " Markdown settings
 "
 let g:vim_markdown_no_extensions_in_markdown = 1
-
-"
-" Codi settings
-"
-let g:codi#interpreters = {
-  \ 'typescript': {
-    \ 'bin': ['npx', 'ts-node'],
-    \ 'prompt': '^\(>\|\.\.\.\+\) ',
-    \ },
-  \ }
 
 "
 " Dirvish settings
