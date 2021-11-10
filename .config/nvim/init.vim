@@ -45,10 +45,6 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'wellle/targets.vim'
 " Quickfix helper
 Plug 'itchyny/vim-qfedit'
-" Haskell dev env
-Plug 'parsonsmatt/intero-neovim'
-Plug 'neomake/neomake'
-Plug 'sbdchd/neoformat'
 " Rest client
 Plug 'diepm/vim-rest-console'
 " Table mode
