@@ -140,17 +140,10 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true
   },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "vii",
-      node_incremental = "<C-I>",
-      node_decremental = "<C-D>",
-    },
-  },
   indent = {
     enable = true
   }
+  -- vimの選択機能強すぎてincremental_selection一旦設定してない
 }
 EOF
 
