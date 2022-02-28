@@ -12,7 +12,7 @@ Plug 'editorconfig/editorconfig-vim'
 " Git integration
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-Plug 'junegunn/gv.vim'
+Plug 'rbong/vim-flog'
 " Text alignment - e.g. TableFormat
 Plug 'godlygeek/tabular'
 " Markdown support
