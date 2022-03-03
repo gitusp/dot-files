@@ -17,7 +17,6 @@ Plug 'skanehira/gh.vim'
 " Text alignment - e.g. TableFormat
 Plug 'godlygeek/tabular'
 " Markdown support
-Plug 'plasticboy/vim-markdown'
 Plug 'junegunn/vim-xmark', { 'do': 'make' }
 " Comment out/in
 Plug 'tomtom/tcomment_vim'
@@ -321,11 +320,6 @@ let g:vrc_trigger = '<Plug>'
 " Table mode settings
 "
 let g:table_mode_corner='|'
-
-"
-" Markdown settings
-"
-let g:vim_markdown_no_extensions_in_markdown = 1
 
 "
 " Dirvish settings

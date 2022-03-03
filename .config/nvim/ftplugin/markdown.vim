@@ -1,4 +1,5 @@
 nmap <buffer><silent> <CR> :call <SID>ToggleCheckbox()<CR>
+nmap <buffer><silent> ge yi(:e <C-R>"<CR>
 
 function! s:ToggleCheckbox()
   let line = getline('.')
