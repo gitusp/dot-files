@@ -171,6 +171,7 @@ nnoremap <silent>       gl         :CocList -I grep --hidden -g !.git -smartcase
 nnoremap <silent>       gL         :CocList -I grep --hidden -g !.git -smartcase -word<CR>
 nmap                    gs         <Plug>SlimeMotionSend
 nmap                    gss        <Plug>SlimeLineSend
+nnoremap                yoy        :set clipboard=<C-R>=&clipboard == '' ? 'unnamedplus' : ''<CR><CR>
 nnoremap <silent>       K          :call <SID>ShowDocumentation()<CR>
 nmap     <silent>       [c         <Plug>(coc-git-prevchunk)
 nmap     <silent>       ]c         <Plug>(coc-git-nextchunk)
@@ -184,22 +185,11 @@ nnoremap <silent>       <C-P>      :CocList files --hidden -g !.git --files<CR>
 nmap                    <C-W>Q     <Plug>(yanked-buffer-p)
 nnoremap <silent>       <Space>    :w<CR>
 nmap     <silent>       <C-Space>  <Plug>(coc-codeaction)
-" Alt yank/paste(system clipboard)
-nnoremap                ¥          "+y
-nnoremap                ¥¥         "+yy
-nnoremap                Á          "+y$
-nnoremap                π          "+p
-nnoremap                ∏          "+P
 " NOTE: <BS> = <C-8>
 nnoremap <silent>       <BS>       :Rg --hidden -g !.git -smartcase -word <C-R><C-W><CR>
 " Visual mode
 xmap     <silent>       g=         <Plug>(coc-format-selected)
 xmap                    gs         <Plug>SlimeRegionSend
-" Alt yank/paste(system clipboard)
-xnoremap                ¥          "+y
-xnoremap                Á          "+Y
-xnoremap                π          "+p
-xnoremap                ∏          "+P
 " Terminal mode
 tnoremap                <Esc>      <C-\><C-N>
 " Insert mode
