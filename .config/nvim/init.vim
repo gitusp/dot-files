@@ -181,7 +181,7 @@ nmap     <silent>       [g         <Plug>(coc-diagnostic-prev)
 nmap     <silent>       ]g         <Plug>(coc-diagnostic-next)
 nmap     <silent>       [x         <Plug>(coc-git-prevconflict)
 nmap     <silent>       ]x         <Plug>(coc-git-nextconflict)
-nnoremap <silent>       <C-L>      :nohlsearch<Bar>call sneak#util#removehl()<CR><C-L>
+nnoremap <silent>       <C-L>      :nohlsearch<Bar>call sneak#util#removehl()<Bar>CocCommand git.refresh<CR><C-L>
 nmap     <silent>       <C-N>      <Plug>(coc-rename)
 nnoremap <silent>       <C-P>      :CocList files --hidden -g !.git --files<CR>
 nmap                    <C-W>Q     <Plug>(yanked-buffer-p)
