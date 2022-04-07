@@ -92,7 +92,7 @@ call plug#end()
 "
 " General Settings
 "
-colorscheme base16-tomorrow-night
+colorscheme base16-tomorrow
 let g:airline_theme='tomorrow'
 set updatetime=300
 set hidden
