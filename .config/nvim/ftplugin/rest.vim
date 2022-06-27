@@ -1,2 +1,2 @@
-nnoremap <buffer> <CR> :call VrcQuery()<CR>
+nnoremap <buffer> <C-m> :call VrcQuery()<CR>
 
