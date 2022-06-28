@@ -194,7 +194,7 @@ tnoremap                <Esc>      <C-\><C-N>
 " Insert mode
 inoremap <silent><expr> <c-space>  coc#refresh()
 inoremap <silent><expr> <c-y>      pumvisible() ? coc#_select_confirm() : '<c-y>'
-imap     <silent>       <C-x><C-m> <plug>(emmet-expand-abbr)
+imap     <silent>       <C-x><CR>  <plug>(emmet-expand-abbr)
 " Introduce git chunk text object
 omap                    ig         <Plug>(coc-git-chunk-inner)
 xmap                    ig         <Plug>(coc-git-chunk-inner)
