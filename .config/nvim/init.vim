@@ -185,8 +185,7 @@ nnoremap <silent>       <C-P>      :CocList files --hidden -g !.git --files<CR>
 nmap                    <C-W>Q     <Plug>(yanked-buffer-p)
 nnoremap <silent>       <Space>    :w<CR>
 nmap     <silent>       <C-Space>  <Plug>(coc-codeaction)
-" NOTE: <BS> = <C-8>
-nnoremap <silent>       <BS>       :Rg --hidden -g !.git -smartcase -word <C-R><C-W><CR>
+nnoremap <silent>       <C-8>      :Rg --hidden -g !.git -smartcase -word <C-R><C-W><CR>
 " Visual mode
 xmap     <silent>       g=         <Plug>(coc-format-selected)
 xmap                    gs         <Plug>SlimeRegionSend
