@@ -81,6 +81,8 @@ Plug 'pantharshit00/vim-prisma'
 Plug 'AndrewRadev/linediff.vim'
 " Tree sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Word motion
+Plug 'chaoren/vim-wordmotion'
 
 call plug#end()
 "
