@@ -45,6 +45,7 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'wellle/targets.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
+Plug 'kana/vim-textobj-line'
 " Quickfix helper
 Plug 'itchyny/vim-qfedit'
 " Rest client
@@ -81,8 +82,6 @@ Plug 'pantharshit00/vim-prisma'
 Plug 'AndrewRadev/linediff.vim'
 " Tree sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" Word motion
-Plug 'chaoren/vim-wordmotion'
 
 call plug#end()
 "
