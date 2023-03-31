@@ -331,3 +331,23 @@ let test#strategy = "neovim"
 " tcomment
 "
 let g:tcomment#filetype#guess_typescriptreact = 1
+
+"
+" coc packages
+"
+let g:coc_global_extensions = [
+  \'coc-css',
+  \'coc-cssmodules',
+  \'coc-emoji',
+  \'coc-eslint',
+  \'coc-git',
+  \'coc-json',
+  \'coc-lists',
+  \'coc-pairs',
+  \'coc-prettier',
+  \'coc-prisma',
+  \'coc-pyright',
+  \'coc-stylelintplus',
+  \'coc-svg',
+  \'coc-tsserver',
+  \]
