@@ -82,6 +82,8 @@ Plug 'pantharshit00/vim-prisma'
 Plug 'AndrewRadev/linediff.vim'
 " Tree sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Codeium
+Plug 'Exafunction/codeium.vim'
 
 call plug#end()
 "
