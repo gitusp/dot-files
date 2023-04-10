@@ -7,8 +7,6 @@ call plug#begin()
 Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" Load editorconfig.
-Plug 'editorconfig/editorconfig-vim'
 " Git integration
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
