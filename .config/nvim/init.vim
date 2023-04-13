@@ -81,7 +81,7 @@ Plug 'AndrewRadev/linediff.vim'
 " Tree sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Codeium
-Plug 'Exafunction/codeium.vim'
+Plug 'github/copilot.vim'
 
 call plug#end()
 "
