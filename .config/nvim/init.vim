@@ -80,8 +80,9 @@ Plug 'pantharshit00/vim-prisma'
 Plug 'AndrewRadev/linediff.vim'
 " Tree sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" Codeium
+" AI code assistant
 Plug 'github/copilot.vim'
+Plug 'CoderCookE/vim-chatgpt'
 
 call plug#end()
 "
