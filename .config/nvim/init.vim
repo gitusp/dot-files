@@ -82,7 +82,7 @@ Plug 'AndrewRadev/linediff.vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " AI code assistant
 Plug 'github/copilot.vim'
-Plug 'CoderCookE/vim-chatgpt'
+Plug 'madox2/vim-ai'
 
 call plug#end()
 "
