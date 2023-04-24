@@ -1,6 +1,5 @@
 nmap     <buffer><silent> <CR>     :call <SID>ToggleCheckbox()<CR>
 nmap     <buffer><silent> ge       yi(:e <C-R>=@"=~'^\(/\\|\~/\)'?'':expand('%:p:h').'/'<CR><C-R>"<CR>
-nnoremap <buffer><silent> g<Space> :silent exec "Gw<Bar>G commit -q -m Snapshot<Bar>CocCommand git.refresh"<CR>
 
 function! s:ToggleCheckbox()
   let line = getline('.')
