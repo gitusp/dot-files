@@ -85,6 +85,13 @@ Plug 'github/copilot.vim'
 Plug 'madox2/vim-ai'
 Plug 'CoderCookE/vim-chatgpt'
 
+" Wilder
+function! UpdateRemotePlugins(...)
+  let &rtp=&rtp
+  UpdateRemotePlugins
+endfunction
+Plug 'gelguy/wilder.nvim', { 'do': function('UpdateRemotePlugins') }
+
 call plug#end()
 "
 " End plugin section.
@@ -333,6 +340,29 @@ let test#strategy = "neovim"
 " tcomment
 "
 let g:tcomment#filetype#guess_typescriptreact = 1
+
+"
+" Wilder settings
+"
+call wilder#setup({'modes': [':', '/', '?']})
+
+call wilder#set_option('pipeline', [
+      \   wilder#branch(
+      \     wilder#cmdline_pipeline({
+      \       'fuzzy': 1,
+      \       'set_pcre2_pattern': 1,
+      \     }),
+      \     wilder#python_search_pipeline({
+      \       'pattern': 'fuzzy',
+      \     }),
+      \   ),
+      \ ])
+
+call wilder#set_option('renderer', wilder#wildmenu_renderer(
+      \ wilder#wildmenu_airline_theme({
+      \   'highlighter': [wilder#pcre2_highlighter(), wilder#basic_highlighter()],
+      \   'separator': ' · ',
+      \ })))
 
 "
 " coc packages
