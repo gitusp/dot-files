@@ -383,3 +383,10 @@ let g:coc_global_extensions = [
   \'coc-svg',
   \'coc-tsserver',
   \]
+
+"
+" Copilot settings
+"
+let g:copilot_filetypes = {
+                        \ 'markdown': v:false,
+                        \ }
