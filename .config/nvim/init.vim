@@ -180,8 +180,7 @@ nmap     <silent>       ghu        :CocCommand git.chunkUndo<CR>
 nmap     <silent>       ghs        :CocCommand git.chunkStage<CR>
 nnoremap <silent>       gl         :CocList -I grep --hidden -g !.git -smartcase<CR>
 nnoremap <silent>       gL         :CocList -I grep --hidden -g !.git -smartcase -word<CR>
-nmap                    gs         <Plug>SlimeMotionSend
-nmap                    gss        <Plug>SlimeLineSend
+nmap                    gs         :Symbols<CR>
 nnoremap                yoy        :set clipboard=<C-R>=&clipboard == '' ? 'unnamedplus' : ''<CR><CR>
 nnoremap <silent>       K          :call <SID>ShowDocumentation()<CR>
 nmap     <silent>       [c         <Plug>(coc-git-prevchunk)
