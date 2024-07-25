@@ -56,6 +56,8 @@ Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-repeat'
 " DB client
 Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
+Plug 'kristijanhusak/vim-dadbod-completion'
 " Dotenv support
 Plug 'tpope/vim-dotenv'
 " emmet
