@@ -85,7 +85,10 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " AI code assistant
 Plug 'github/copilot.vim'
 Plug 'madox2/vim-ai'
-Plug 'CoderCookE/vim-chatgpt'
+" CopilotChat
+Plug 'zbirenbaum/copilot.lua'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'CopilotC-Nvim/CopilotChat.nvim', { 'branch': 'canary' }
 
 " Wilder
 function! UpdateRemotePlugins(...)
@@ -391,3 +394,10 @@ let g:coc_global_extensions = [
 let g:copilot_filetypes = {
                         \ 'markdown': v:false,
                         \ }
+
+lua << EOF
+require("CopilotChat").setup {
+  debug = true, -- Enable debugging
+  -- See Configuration section for rest
+}
+EOF
