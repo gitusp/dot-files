@@ -199,7 +199,7 @@ nmap     <silent>       <C-N>      <Plug>(coc-rename)
 nnoremap <silent>       <C-P>      :CocList files --hidden -g !.git --files<CR>
 nmap                    <C-W>Q     <Plug>(yanked-buffer-p)
 nnoremap <silent>       <Space>    :w<CR>
-nmap     <silent>       <C-Space>  <Plug>(coc-codeaction)
+nmap     <silent>       <Tab>      <Plug>(coc-codeaction)
 nnoremap <silent>       <C-8>      :Rg --hidden -g !.git -smartcase -word <C-R><C-W><CR>
 " Visual mode
 xmap     <silent>       g=         <Plug>(coc-format-selected)
@@ -207,7 +207,11 @@ xmap                    gs         <Plug>SlimeRegionSend
 " Terminal mode
 tnoremap                <Esc>      <C-\><C-N>
 " Insert mode
-inoremap <silent><expr> <c-space>  coc#refresh()
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 inoremap <silent><expr> <c-y>      pumvisible() ? coc#_select_confirm() : '<c-y>'
 imap     <silent>       <C-x><CR>  <plug>(emmet-expand-abbr)
 " Introduce git chunk text object
@@ -241,6 +245,11 @@ function! s:ShowDocumentation()
   else
     call CocAction('doHover')
   endif
+endfunction
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 "
