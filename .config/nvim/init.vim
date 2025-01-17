@@ -199,7 +199,7 @@ nmap     <silent>       <C-N>      <Plug>(coc-rename)
 nnoremap <silent>       <C-P>      :CocList files --hidden -g !.git --files<CR>
 nmap                    <C-W>Q     <Plug>(yanked-buffer-p)
 nnoremap <silent>       <Space>    :w<CR>
-nmap     <silent>       <Tab>      <Plug>(coc-codeaction)
+nmap     <silent>       <CR>       <Plug>(coc-codeaction)
 nnoremap <silent>       <C-8>      :Rg --hidden -g !.git -smartcase -word <C-R><C-W><CR>
 " Visual mode
 xmap     <silent>       g=         <Plug>(coc-format-selected)
@@ -211,6 +211,7 @@ inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
       \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
+inoremap <silent><expr> <C-l>      coc#refresh()
 inoremap <expr>         <S-TAB>    coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 inoremap <silent><expr> <c-y>      coc#pum#visible() ? coc#pum#confirm() : '<c-y>'
 imap     <silent>       <C-x><CR>  <plug>(emmet-expand-abbr)
