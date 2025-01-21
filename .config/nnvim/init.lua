@@ -19,3 +19,5 @@ vim.o.signcolumn = "yes"
 vim.o.diffopt = vim.o.diffopt .. ',iwhite'
 
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
+vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<CR><C-L>")
+
