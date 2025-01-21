@@ -22,8 +22,6 @@ return {
       vim.keymap.set("n", "<leader>ca", function()
         require("tiny-code-action").code_action()
       end, { desc = "Code Actions", noremap = true, silent = true })
-
-      vim.keymap.set("n", "<c-l>", "<leader>ca", { remap = true })
     end
   }
 }
