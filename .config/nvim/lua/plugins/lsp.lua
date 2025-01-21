@@ -70,6 +70,9 @@ return {
       lspconfig.jsonls.setup({
         capabilities = capabilities
       })
+      lspconfig.prismals.setup({
+        capabilities = capabilities
+      })
       lspconfig.eslint.setup({
         on_attach = function(client, bufnr)
           vim.api.nvim_create_autocmd("BufWritePre", {
