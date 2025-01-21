@@ -1,5 +1,8 @@
 require("config.lazy")
 
+--
+-- Base Configuration
+--
 vim.o.mouse = ""
 
 vim.o.ignorecase = true
@@ -21,9 +24,9 @@ vim.o.diffopt = vim.o.diffopt .. ',iwhite'
 vim.o.undofile = true
 
 -- Highlight on yank
-vim.api.nvim_create_augroup( 'lua', {} )
+vim.api.nvim_create_augroup( 'base', {} )
 vim.api.nvim_create_autocmd( 'TextYankPost', {
-  group = 'lua',
+  group = 'base',
   callback = function()
     vim.highlight.on_yank({ higroup='Visual', timeout=500 })
   end
@@ -34,7 +37,7 @@ vim.api.nvim_create_autocmd( 'TextYankPost', {
 --
 vim.api.nvim_create_user_command('Wiki', function()
   vim.cmd('e ~/wiki/wiki/index.md')
-end, { desc = 'Open default Wiki' })
+end, { desc = 'Open Wiki' })
 
 --
 -- Keymaps

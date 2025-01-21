@@ -1,4 +1,5 @@
 return {
+  { "tpope/vim-repeat" },
   { "tpope/vim-unimpaired" },
   { "tpope/vim-projectionist" },
   { 'tpope/vim-abolish' },

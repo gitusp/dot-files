@@ -1,5 +1,4 @@
-nmap     <buffer><silent> <CR>     :call <SID>ToggleCheckbox()<CR>
-nmap     <buffer><silent> ge       yi(:e <C-R>=@"=~'^\(/\\|\~/\)'?'':expand('%:p:h').'/'<CR><C-R>"<CR>
+nmap <buffer><silent> <CR> :call <SID>ToggleCheckbox()<CR>
 
 function! s:ToggleCheckbox()
   let line = getline('.')
@@ -15,6 +14,4 @@ function! s:ToggleCheckbox()
     exe 's/^\s*- \[\zs.\ze]/' . dest . '/'
   endif
 endfunction
-
-command! -buffer CreateSpreadsheet silent !open https://docs.google.com/spreadsheets/create
 
