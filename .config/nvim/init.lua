@@ -47,10 +47,11 @@ vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<CR><C-L>")
 vim.keymap.set("n", "Y", "y$")
 vim.keymap.set("n", "Q", "@q")
 vim.keymap.set("n", "_", "@:")
+vim.keymap.set("n", "s", "<cmd>w<cr>", { desc = "Save" })
+vim.keymap.set("n", "S", "<cmd>wa<cr>", { desc = "Save All" })
 vim.keymap.set("x", "Y", '"+y')
 
 -- Single key mappings with leader
-vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
 vim.keymap.set("n", "<leader>k", "<cmd>Wiki<cr>", { desc = "Open Wiki" })
 
 -- telescope shortcuts
