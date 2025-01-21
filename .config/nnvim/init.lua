@@ -63,8 +63,9 @@ vim.keymap.set('n', 'gx', '<leader>fx', { remap = true, desc = 'Telescope LSP di
 
 -- LSP features
 vim.keymap.set("n", "<c-l>", "<leader>ca", { remap = true })
-vim.keymap.set("n", "<leader>cn", vim.lsp.buf.rename, { desc = "Rename" })
-vim.keymap.set("n", "<c-n>", "<leader>cn", { remap = true })
+vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
+vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "Format" })
+vim.keymap.set("n", "<c-n>", "<leader>cr", { remap = true })
 
 -- emmet
 vim.keymap.set("i", "<c-x><cr>", "<plug>(emmet-expand-abbr)", { silent = true, desc = "emmet expand abbr" })

@@ -9,4 +9,5 @@ return {
         vim.cmd("try | Dotenv .env.local | catch | endtry")
       end
   },
+  { "cohama/lexima.vim" }
 }
