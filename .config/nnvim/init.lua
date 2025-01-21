@@ -20,6 +20,7 @@ vim.o.diffopt = vim.o.diffopt .. ',iwhite'
 
 vim.o.undofile = true
 
+-- Highlight on yank
 vim.api.nvim_create_augroup( 'lua', {} )
 vim.api.nvim_create_autocmd( 'TextYankPost', {
   group = 'lua',
@@ -28,21 +29,46 @@ vim.api.nvim_create_autocmd( 'TextYankPost', {
   end
 })
 
--- keymaps
+--
+-- Custom Commands
+--
+vim.api.nvim_create_user_command('Wiki', function()
+  vim.cmd('e ~/wiki/wiki/index.md')
+end, { desc = 'Open default Wiki' })
 
-vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
+--
+-- Keymaps
+--
+-- Single key mappings
 vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<CR><C-L>")
 vim.keymap.set("n", "Y", "y$")
 vim.keymap.set("n", "Q", "@q")
 vim.keymap.set("n", "_", "@:")
+vim.keymap.set("x", "Y", '"+y')
 
+-- Single key mappings with leader
+vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
+vim.keymap.set("n", "<leader>k", "<cmd>Wiki<cr>", { desc = "Open Wiki" })
+
+-- telescope shortcuts
 vim.keymap.set('n', '<c-p>', '<leader>ff', { remap = true })
 vim.keymap.set('n', '<c-8>', '<leader>fc', { remap = true })
-vim.keymap.set('n', 'gd', '<leader>fd', { remap = true })
-vim.keymap.set('n', 'gl', '<leader>fg', { remap = true })
-vim.keymap.set('n', 'gr', '<leader>fr', { remap = true })
-vim.keymap.set('n', 'gs', '<leader>fs', { remap = true })
-vim.keymap.set('n', 'gi', '<leader>fi', { remap = true })
-vim.keymap.set('n', 'gy', '<leader>fy', { remap = true })
+vim.keymap.set('n', 'gd', '<leader>fd', { remap = true, desc = 'Telescope LSP definitions' })
+vim.keymap.set('n', 'gl', '<leader>fl', { remap = true, desc = 'Telescope live grep' })
+vim.keymap.set('n', 'gr', '<leader>fr', { remap = true, desc = 'Telescope LSP references' })
+vim.keymap.set('n', 'gs', '<leader>fs', { remap = true, desc = 'Telescope LSP workspace symbols' })
+vim.keymap.set('n', 'gi', '<leader>fi', { remap = true, desc = 'Telescope LSP implementations' })
+vim.keymap.set('n', 'gy', '<leader>fy', { remap = true, desc = 'Telescope LSP type definitions' })
+vim.keymap.set('n', 'gx', '<leader>fx', { remap = true, desc = 'Telescope LSP diagnostics' })
 
+-- LSP features
 vim.keymap.set("n", "<c-l>", "<leader>ca", { remap = true })
+vim.keymap.set("n", "<leader>cn", vim.lsp.buf.rename, { desc = "Rename" })
+vim.keymap.set("n", "<c-n>", "<leader>cn", { remap = true })
+
+-- emmet
+vim.keymap.set("i", "<c-x><cr>", "<plug>(emmet-expand-abbr)", { silent = true, desc = "emmet expand abbr" })
+
+-- motions
+vim.keymap.set("n", "]g", vim.diagnostic.goto_next)
+vim.keymap.set("n", "[g", vim.diagnostic.goto_prev)
