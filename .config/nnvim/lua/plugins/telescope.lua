@@ -10,6 +10,8 @@ return {
         vim.keymap.set('n', '<leader>fc', builtin.grep_string, { desc = 'Telescope search current word' })
         vim.keymap.set('n', '<leader>fr', builtin.lsp_references, { desc = 'Telescope LSP references' })
         vim.keymap.set('n', '<leader>fd', builtin.lsp_definitions, { desc = 'Telescope LSP definitions' })
+        vim.keymap.set('n', '<leader>fi', builtin.lsp_implementations, { desc = 'Telescope LSP implementations' })
+        vim.keymap.set('n', '<leader>fy', builtin.lsp_type_definitions, { desc = 'Telescope LSP type definitions' })
         vim.keymap.set('n', '<leader>fs', builtin.lsp_workspace_symbols, { desc = 'Telescope LSP workspace symbols' })
       end
     }
