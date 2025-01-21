@@ -65,6 +65,11 @@ vim.keymap.set('n', 'gi', '<leader>fi', { remap = true, desc = 'Telescope LSP im
 vim.keymap.set('n', 'gy', '<leader>fy', { remap = true, desc = 'Telescope LSP type definitions' })
 vim.keymap.set('n', 'gx', '<leader>fx', { remap = true, desc = 'Telescope LSP diagnostics' })
 
+-- Git shortcuts
+vim.keymap.set('n', '<leader>gs', '<cmd>G<cr>', { desc = 'Git status' })
+vim.keymap.set('n', '<leader>gp', '<cmd>G push -u origin head<cr>', { desc = 'Git push' })
+vim.keymap.set('n', '<leader>gt', '<cmd>Flog<cr>', { desc = 'Git tree' })
+
 -- AI features
 vim.keymap.set('n', '<leader>ai', '<cmd>CopilotChat<cr>', { desc = 'AI Interactive Chat' })
 vim.keymap.set('n', '<leader>ac', '<cmd>CopilotChatCommit<cr>', { remap = true, desc = 'AI Commit Message' })
