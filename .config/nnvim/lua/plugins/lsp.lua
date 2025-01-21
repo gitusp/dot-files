@@ -6,7 +6,17 @@ return {
     },
     config = function()
       require("lspconfig.configs").vtsls = require("vtsls").lspconfig
-      require("lspconfig").vtsls.setup({})
+
+      local lspconfig = require("lspconfig")
+      lspconfig.vtsls.setup({})
+      lspconfig.eslint.setup({
+        on_attach = function(client, bufnr)
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            command = "EslintFixAll",
+          })
+        end,
+      })
     end
   },
   {
