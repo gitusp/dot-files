@@ -14,5 +14,9 @@ return {
         vim.keymap.set('n', '<leader>fi', builtin.lsp_implementations, { desc = 'Telescope LSP implementations' })
         vim.keymap.set('n', '<leader>fy', builtin.lsp_type_definitions, { desc = 'Telescope LSP type definitions' })
         vim.keymap.set('n', '<leader>fs', builtin.lsp_workspace_symbols, { desc = 'Telescope LSP workspace symbols' })
+        vim.keymap.set('n', '<leader>fo', builtin.oldfiles, { desc = 'Telescope Old Files' })
+        vim.keymap.set('n', '<leader>fz', builtin.current_buffer_fuzzy_find, { desc = 'Telescope current buffer fuzzy find' })
+        vim.keymap.set('n', '<leader>fe', builtin.resume, { desc = 'Telescope resume' })
+        vim.keymap.set('n', '<leader>fp', builtin.pickers, { desc = 'Telescope pickers' })
       end
     }
