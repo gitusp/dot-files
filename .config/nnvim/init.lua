@@ -18,6 +18,16 @@ vim.o.showtabline = 0
 vim.o.signcolumn = "yes"
 vim.o.diffopt = vim.o.diffopt .. ',iwhite'
 
+vim.o.undofile = true
+
+vim.api.nvim_create_augroup( 'lua', {} )
+vim.api.nvim_create_autocmd( 'TextYankPost', {
+  group = 'lua',
+  callback = function()
+    vim.highlight.on_yank({ higroup='Visual', timeout=500 })
+  end
+})
+
 -- keymaps
 
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
