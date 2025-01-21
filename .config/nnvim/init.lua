@@ -18,6 +18,15 @@ vim.o.showtabline = 0
 vim.o.signcolumn = "yes"
 vim.o.diffopt = vim.o.diffopt .. ',iwhite'
 
+-- keymaps
+
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
 vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<CR><C-L>")
 
+vim.keymap.set('n', '<c-p>', '<leader>ff', { remap = true })
+vim.keymap.set('n', '<c-8>', '<leader>fs', { remap = true })
+vim.keymap.set('n', 'gd', '<leader>fd', { remap = true })
+vim.keymap.set('n', 'gl', '<leader>fg', { remap = true })
+vim.keymap.set('n', 'gr', '<leader>fr', { remap = true })
+
+vim.keymap.set("n", "<c-l>", "<leader>ca", { remap = true })
