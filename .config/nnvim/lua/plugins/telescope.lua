@@ -8,11 +8,15 @@ return {
         vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
         vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
         vim.keymap.set('n', '<leader>fs', builtin.grep_string, { desc = 'Telescope selection search' })
-
-        -- TODO: LSP Settings
+        vim.keymap.set('n', '<leader>fr', builtin.lsp_references, { desc = 'Telescope LSP references' })
+        vim.keymap.set('n', '<leader>fd', builtin.lsp_definitions, { desc = 'Telescope LSP definitions' })
+        vim.keymap.set('n', '<leader>fs', builtin.lsp_workspace_symbols, { desc = 'Telescope LSP workspace symbols' })
 
         vim.keymap.set('n', '<c-p>', '<leader>ff', { remap = true })
-        vim.keymap.set('n', 'gl', '<leader>fg', { remap = true })
         vim.keymap.set('n', '<c-8>', '<leader>fs', { remap = true })
+        vim.keymap.set('n', 'gd', '<leader>fd', { remap = true })
+        vim.keymap.set('n', 'gl', '<leader>fg', { remap = true })
+        vim.keymap.set('n', 'gr', '<leader>fr', { remap = true })
+        vim.keymap.set('n', 'gs', '<leader>fs', { remap = true })
       end
     }
