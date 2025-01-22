@@ -67,10 +67,6 @@ vim.keymap.set('n', '<c-8>', '<leader>fc', { remap = true })
 vim.keymap.set('n', 'gd', '<leader>fd', { remap = true, desc = 'Telescope LSP definitions' })
 vim.keymap.set('n', 'gl', '<leader>fl', { remap = true, desc = 'Telescope live grep' })
 vim.keymap.set('n', 'gr', '<leader>fr', { remap = true, desc = 'Telescope LSP references' })
-vim.keymap.set('n', 'gs', '<leader>fs', { remap = true, desc = 'Telescope LSP workspace symbols' })
-vim.keymap.set('n', 'gi', '<leader>fi', { remap = true, desc = 'Telescope LSP implementations' })
-vim.keymap.set('n', 'gy', '<leader>fy', { remap = true, desc = 'Telescope LSP type definitions' })
-vim.keymap.set('n', 'gx', '<leader>fx', { remap = true, desc = 'Telescope LSP diagnostics' })
 vim.keymap.set("n", "<leader>?", function() require('telescope.builtin').keymaps({ default_text = "<Space>" }) end, { desc = "Telescope leader keymaps" })
 
 -- Git shortcuts
