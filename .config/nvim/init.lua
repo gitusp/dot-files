@@ -10,6 +10,9 @@ vim.o.smartcase = true
 vim.o.inccommand = "nosplit"
 vim.o.wildignorecase = true
 
+vim.o.splitbelow = true
+vim.o.splitright = true
+
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.expandtab = true
@@ -67,7 +70,7 @@ vim.keymap.set('n', 'gx', '<leader>fx', { remap = true, desc = 'Telescope LSP di
 vim.keymap.set("n", "<leader>?", function() require('telescope.builtin').keymaps({ default_text = "<Space>" }) end, { desc = "Telescope Leader Keymaps" })
 
 -- Git shortcuts
-vim.keymap.set('n', '<leader>gs', '<cmd>G<cr>', { desc = 'Git status' })
+vim.keymap.set('n', '<leader>gs', '<cmd>vert G<cr>', { desc = 'Git status' })
 vim.keymap.set('n', '<leader>gp', '<cmd>G push -u origin head<cr>', { desc = 'Git push' })
 vim.keymap.set('n', '<leader>gt', '<cmd>Flog<cr>', { desc = 'Git tree' })
 
