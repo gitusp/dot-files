@@ -10,5 +10,10 @@ return {
         vim.cmd("try | Dotenv .env.local | catch | endtry")
       end
   },
-  { "cohama/lexima.vim" }
+  { "cohama/lexima.vim" },
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {}
+  }
 }
