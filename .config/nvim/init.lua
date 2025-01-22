@@ -55,7 +55,7 @@ vim.keymap.set("n", "S", "<cmd>wa<cr>", { desc = "Save All" })
 vim.keymap.set("x", "Y", '"+y')
 
 -- Single key mappings with leader
-vim.keymap.set("n", "<leader>w", "<cmd>Wiki<cr>", { desc = "Open Wiki" })
+vim.keymap.set("n", "<leader>w", "<cmd>Wiki<cr>", { desc = "Util open wiki" })
 
 -- telescope shortcuts
 vim.keymap.set('n', '<c-p>', '<leader>ff', { remap = true })
@@ -67,7 +67,7 @@ vim.keymap.set('n', 'gs', '<leader>fs', { remap = true, desc = 'Telescope LSP wo
 vim.keymap.set('n', 'gi', '<leader>fi', { remap = true, desc = 'Telescope LSP implementations' })
 vim.keymap.set('n', 'gy', '<leader>fy', { remap = true, desc = 'Telescope LSP type definitions' })
 vim.keymap.set('n', 'gx', '<leader>fx', { remap = true, desc = 'Telescope LSP diagnostics' })
-vim.keymap.set("n", "<leader>?", function() require('telescope.builtin').keymaps({ default_text = "<Space>" }) end, { desc = "Telescope Leader Keymaps" })
+vim.keymap.set("n", "<leader>?", function() require('telescope.builtin').keymaps({ default_text = "<Space>" }) end, { desc = "Telescope leader keymaps" })
 
 -- Git shortcuts
 vim.keymap.set('n', '<leader>gs', '<cmd>vert G<cr>', { desc = 'Git status' })
@@ -81,12 +81,12 @@ vim.keymap.set('n', '<leader>af', '<cmd>CopilotChatFix<cr>', { remap = true, des
 
 -- LSP features
 vim.keymap.set("n", "<c-l>", "<leader>ca", { remap = true })
-vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
-vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "Format" })
+vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "LSP Rename" })
+vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "LSP Format" })
 vim.keymap.set("n", "<c-n>", "<leader>cr", { remap = true })
 
 -- emmet
-vim.keymap.set("i", "<c-x><cr>", "<plug>(emmet-expand-abbr)", { silent = true, desc = "emmet expand abbr" })
+vim.keymap.set("i", "<c-x><cr>", "<plug>(emmet-expand-abbr)", { silent = true, desc = "Emmet expand abbr" })
 
 -- motions
 vim.keymap.set("n", "]g", vim.diagnostic.goto_next)
