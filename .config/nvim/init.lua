@@ -74,6 +74,7 @@ vim.keymap.set('n', '<leader>gt', '<cmd>Flog<cr>', { desc = 'Git tree' })
 -- AI features
 vim.keymap.set('n', '<leader>ai', '<cmd>CopilotChat<cr>', { desc = 'AI Interactive Chat' })
 vim.keymap.set('n', '<leader>ac', '<cmd>CopilotChatCommit<cr>', { remap = true, desc = 'AI Commit Message' })
+vim.keymap.set('n', '<leader>af', '<cmd>CopilotChatFix<cr>', { remap = true, desc = 'AI Fix' })
 
 -- LSP features
 vim.keymap.set("n", "<c-l>", "<leader>ca", { remap = true })
