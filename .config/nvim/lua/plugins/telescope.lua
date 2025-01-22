@@ -18,5 +18,6 @@ return {
         vim.keymap.set('n', '<leader>fz', builtin.current_buffer_fuzzy_find, { desc = 'Telescope current buffer fuzzy find' })
         vim.keymap.set('n', '<leader>fe', builtin.resume, { desc = 'Telescope resume' })
         vim.keymap.set('n', '<leader>fp', builtin.pickers, { desc = 'Telescope pickers' })
+        vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = 'Telescope keymaps' })
       end
     }

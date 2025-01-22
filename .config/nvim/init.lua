@@ -52,7 +52,7 @@ vim.keymap.set("n", "S", "<cmd>wa<cr>", { desc = "Save All" })
 vim.keymap.set("x", "Y", '"+y')
 
 -- Single key mappings with leader
-vim.keymap.set("n", "<leader>k", "<cmd>Wiki<cr>", { desc = "Open Wiki" })
+vim.keymap.set("n", "<leader>w", "<cmd>Wiki<cr>", { desc = "Open Wiki" })
 
 -- telescope shortcuts
 vim.keymap.set('n', '<c-p>', '<leader>ff', { remap = true })
@@ -64,6 +64,7 @@ vim.keymap.set('n', 'gs', '<leader>fs', { remap = true, desc = 'Telescope LSP wo
 vim.keymap.set('n', 'gi', '<leader>fi', { remap = true, desc = 'Telescope LSP implementations' })
 vim.keymap.set('n', 'gy', '<leader>fy', { remap = true, desc = 'Telescope LSP type definitions' })
 vim.keymap.set('n', 'gx', '<leader>fx', { remap = true, desc = 'Telescope LSP diagnostics' })
+vim.keymap.set("n", "<leader>?", function() require('telescope.builtin').keymaps({ default_text = "<Space>" }) end, { desc = "Telescope Leader Keymaps" })
 
 -- Git shortcuts
 vim.keymap.set('n', '<leader>gs', '<cmd>G<cr>', { desc = 'Git status' })
