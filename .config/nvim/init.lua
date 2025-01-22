@@ -46,7 +46,7 @@ end, { desc = 'Open Wiki' })
 -- Keymaps
 --
 -- Single key mappings
-vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<CR><C-L>")
+vim.keymap.set("n", "<c-l>", "<cmd>nohlsearch<CR><C-L>")
 vim.keymap.set("n", "Y", "y$")
 vim.keymap.set("n", "Q", "@q")
 vim.keymap.set("n", "_", "@:")
@@ -84,7 +84,7 @@ vim.keymap.set('n', '<leader>ac', '<cmd>CopilotChatCommit<cr>', { remap = true, 
 vim.keymap.set('n', '<leader>af', '<cmd>CopilotChatFix<cr>', { remap = true, desc = 'AI Fix' })
 
 -- LSP features
-vim.keymap.set("n", "<c-l>", "<leader>ca", { remap = true })
+vim.keymap.set("n", "<c-q>", "<leader>ca", { remap = true })
 vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "LSP Rename" })
 vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "LSP Format" })
 vim.keymap.set("n", "<c-n>", "<leader>cr", { remap = true })
