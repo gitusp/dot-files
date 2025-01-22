@@ -85,9 +85,10 @@ vim.keymap.set('n', '<leader>af', '<cmd>CopilotChatFix<cr>', { remap = true, des
 
 -- LSP features
 vim.keymap.set("n", "<c-q>", "<leader>ca", { remap = true })
-vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "LSP Rename" })
+vim.keymap.set("n", "<leader>cr", "<cmd>LspRestart<cr>", { desc = "LSP Restart" })
+vim.keymap.set("n", "<leader>cn", vim.lsp.buf.rename, { desc = "LSP Rename" })
 vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "LSP Format" })
-vim.keymap.set("n", "<c-n>", "<leader>cr", { remap = true })
+vim.keymap.set("n", "<c-n>", "<leader>cn", { remap = true })
 
 -- emmet
 vim.keymap.set("i", "<c-x><cr>", "<plug>(emmet-expand-abbr)", { silent = true, desc = "Emmet expand abbr" })
