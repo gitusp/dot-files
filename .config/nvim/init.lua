@@ -56,6 +56,7 @@ vim.keymap.set("x", "Y", '"+y')
 
 -- Single key mappings with leader
 vim.keymap.set("n", "<leader>w", "<cmd>Wiki<cr>", { desc = "Util open wiki" })
+vim.keymap.set("n", "<leader>r", "<cmd>HelpRandom<cr>", { desc = "Util ramdom help" })
 
 -- TODO shortcuts
 vim.keymap.set("n", "]t", function() require("todo-comments").jump_next() end, { desc = "Next todo comment" })
