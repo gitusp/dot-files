@@ -64,9 +64,11 @@ vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end, {
 -- telescope shortcuts
 vim.keymap.set('n', '<c-p>', '<leader>ff', { remap = true })
 vim.keymap.set('n', '<c-8>', '<leader>fc', { remap = true })
+vim.keymap.set('n', 'gs', '<leader>fl', { remap = true, desc = 'Telescope live grep' })
 vim.keymap.set('n', 'gd', '<leader>fd', { remap = true, desc = 'Telescope LSP definitions' })
-vim.keymap.set('n', 'gl', '<leader>fl', { remap = true, desc = 'Telescope live grep' })
 vim.keymap.set('n', 'gr', '<leader>fr', { remap = true, desc = 'Telescope LSP references' })
+vim.keymap.set('n', 'gy', '<leader>ft', { remap = true, desc = 'Telescope LSP type definitions' })
+vim.keymap.set('n', 'gl', '<leader>fi', { remap = true, desc = 'Telescope LSP implementations' })
 vim.keymap.set("n", "<leader>?", function() require('telescope.builtin').keymaps({ default_text = "<Space>" }) end, { desc = "Telescope leader keymaps" })
 
 -- Git shortcuts
@@ -85,10 +87,7 @@ vim.keymap.set("n", "<leader>cr", "<cmd>LspRestart<cr>", { desc = "LSP Restart" 
 vim.keymap.set("n", "<leader>cn", vim.lsp.buf.rename, { desc = "LSP Rename" })
 vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "LSP Format" })
 vim.keymap.set("n", "<c-n>", "<leader>cn", { remap = true })
+vim.keymap.set("n", "<leader>d", vim.diagnostic.setqflist, { desc = "LSP Diagnostics" })
 
 -- emmet
 vim.keymap.set("i", "<c-x><cr>", "<plug>(emmet-expand-abbr)", { silent = true, desc = "Emmet expand abbr" })
-
--- motions
-vim.keymap.set("n", "]g", vim.diagnostic.goto_next)
-vim.keymap.set("n", "[g", vim.diagnostic.goto_prev)
