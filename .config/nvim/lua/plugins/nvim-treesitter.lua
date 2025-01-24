@@ -1,6 +1,9 @@
 return {
   'nvim-treesitter/nvim-treesitter',
     build = ":TSUpdate",
+    dependencies = {
+      { "andymass/vim-matchup" }
+    },
     config = function()
       require('nvim-treesitter.configs').setup({
         ensure_installed = {
@@ -26,6 +29,9 @@ return {
         highlight = {
           enable = true,
           additional_vim_regex_highlighting = false,
+        },
+        matchup = {
+          enable = true,
         },
       })
     end
