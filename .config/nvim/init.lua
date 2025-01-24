@@ -75,6 +75,7 @@ vim.keymap.set("n", "<leader>?", function() require('telescope.builtin').keymaps
 -- Git shortcuts
 vim.keymap.set('n', '<leader>gs', '<cmd>vert G<cr>', { desc = 'Git status' })
 vim.keymap.set('n', '<leader>gp', '<cmd>G push -u origin head<cr>', { desc = 'Git push' })
+vim.keymap.set('n', '<leader>gl', '<cmd>G pull<cr>', { desc = 'Git pull' })
 vim.keymap.set('n', '<leader>gt', '<cmd>Flog<cr>', { desc = 'Git tree' })
 
 -- AI features
