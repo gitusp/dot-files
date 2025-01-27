@@ -57,6 +57,7 @@ vim.keymap.set("x", "Y", '"+y')
 -- Single key mappings with leader
 vim.keymap.set("n", "<leader>w", "<cmd>Wiki<cr>", { desc = "Util open wiki" })
 vim.keymap.set("n", "<leader>r", "<cmd>HelpRandom<cr>", { desc = "Util ramdom help" })
+vim.keymap.set('n', '<leader>g', '<cmd>vert G<cr>', { desc = 'Git status' })
 
 -- TODO shortcuts
 vim.keymap.set("n", "]t", function() require("todo-comments").jump_next() end, { desc = "Next todo comment" })
@@ -71,12 +72,6 @@ vim.keymap.set('n', 'gr', '<leader>fr', { remap = true, desc = 'Telescope LSP re
 vim.keymap.set('n', 'gy', '<leader>ft', { remap = true, desc = 'Telescope LSP type definitions' })
 vim.keymap.set('n', 'gl', '<leader>fi', { remap = true, desc = 'Telescope LSP implementations' })
 vim.keymap.set("n", "<leader>?", function() require('telescope.builtin').keymaps({ default_text = "<Space>" }) end, { desc = "Telescope leader keymaps" })
-
--- Git shortcuts
-vim.keymap.set('n', '<leader>gs', '<cmd>vert G<cr>', { desc = 'Git status' })
-vim.keymap.set('n', '<leader>gp', '<cmd>G push -u origin head<cr>', { desc = 'Git push' })
-vim.keymap.set('n', '<leader>gl', '<cmd>G pull<cr>', { desc = 'Git pull' })
-vim.keymap.set('n', '<leader>gt', '<cmd>Flog<cr>', { desc = 'Git tree' })
 
 -- AI features
 vim.keymap.set('n', '<leader>ai', '<cmd>CopilotChat<cr>', { desc = 'AI Interactive Chat' })
