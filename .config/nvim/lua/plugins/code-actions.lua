@@ -9,9 +9,13 @@ return {
     config = function()
       require('tiny-code-action').setup()
 
-      vim.keymap.set("n", "<leader>ca", function()
-        require("tiny-code-action").code_action()
-      end, { desc = "LSP Code Actions", noremap = true, silent = true })
+      vim.api.nvim_create_user_command(
+        'CodeAction',
+        function()
+          require("tiny-code-action").code_action()
+        end,
+        { desc = 'LSP code actions' }
+      )
     end
   }
 }

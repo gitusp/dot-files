@@ -41,6 +41,8 @@ vim.api.nvim_create_autocmd( 'TextYankPost', {
 vim.api.nvim_create_user_command('Wiki', function()
   vim.cmd('e ~/wiki/wiki/index.md')
 end, { desc = 'Open Wiki' })
+vim.api.nvim_create_user_command('Rename', vim.lsp.buf.rename, { desc = 'LSP rename' })
+vim.api.nvim_create_user_command('Format', vim.lsp.buf.format, { desc = 'LSP format' })
 
 --
 -- Keymaps
@@ -53,11 +55,14 @@ vim.keymap.set("n", "_", "@:")
 vim.keymap.set("n", "s", "<cmd>w<cr>", { desc = "Save" })
 vim.keymap.set("n", "S", "<cmd>wa<cr>", { desc = "Save All" })
 vim.keymap.set("x", "Y", '"+y')
+vim.keymap.set("n", "<c-q>", "<cmd>CodeAction<cr>")
+vim.keymap.set("n", "<c-n>", vim.lsp.buf.rename)
 
 -- Single key mappings with leader
 vim.keymap.set("n", "<leader>w", "<cmd>Wiki<cr>", { desc = "Util open wiki" })
-vim.keymap.set("n", "<leader>r", "<cmd>HelpRandom<cr>", { desc = "Util ramdom help" })
 vim.keymap.set('n', '<leader>g', '<cmd>vert G<cr>', { desc = 'Git status' })
+vim.keymap.set("n", "<leader>d", vim.diagnostic.setqflist, { desc = "LSP Diagnostics" })
+vim.keymap.set("n", "<leader>m", "<cmd>TSC<cr>", { desc = "Compile TypeScript" })
 
 -- TODO shortcuts
 vim.keymap.set("n", "]t", function() require("todo-comments").jump_next() end, { desc = "Next todo comment" })
@@ -65,26 +70,14 @@ vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end, {
 
 -- telescope shortcuts
 vim.keymap.set('n', '<c-p>', '<leader>ff', { remap = true })
-vim.keymap.set('n', '<c-8>', '<leader>fc', { remap = true })
+vim.keymap.set('n', '<c-8>', '<leader>fg', { remap = true })
 vim.keymap.set('n', 'gs', '<leader>fl', { remap = true, desc = 'Telescope live grep' })
 vim.keymap.set('n', 'gd', '<leader>fd', { remap = true, desc = 'Telescope LSP definitions' })
 vim.keymap.set('n', 'gr', '<leader>fr', { remap = true, desc = 'Telescope LSP references' })
 vim.keymap.set('n', 'gy', '<leader>ft', { remap = true, desc = 'Telescope LSP type definitions' })
 vim.keymap.set('n', 'gl', '<leader>fi', { remap = true, desc = 'Telescope LSP implementations' })
+vim.keymap.set("n", "<leader>:", '<leader>fc', { remap = true, desc = 'Telescope commands' })
 vim.keymap.set("n", "<leader>?", function() require('telescope.builtin').keymaps({ default_text = "<Space>" }) end, { desc = "Telescope leader keymaps" })
-
--- AI features
-vim.keymap.set('n', '<leader>ai', '<cmd>CopilotChat<cr>', { desc = 'AI Interactive Chat' })
-vim.keymap.set('n', '<leader>ac', '<cmd>CopilotChatCommit<cr>', { remap = true, desc = 'AI Commit Message' })
-vim.keymap.set('n', '<leader>af', '<cmd>CopilotChatFix<cr>', { remap = true, desc = 'AI Fix' })
-
--- LSP features
-vim.keymap.set("n", "<c-q>", "<leader>ca", { remap = true })
-vim.keymap.set("n", "<leader>cr", "<cmd>LspRestart<cr>", { desc = "LSP Restart" })
-vim.keymap.set("n", "<leader>cn", vim.lsp.buf.rename, { desc = "LSP Rename" })
-vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "LSP Format" })
-vim.keymap.set("n", "<c-n>", "<leader>cn", { remap = true })
-vim.keymap.set("n", "<leader>d", vim.diagnostic.setqflist, { desc = "LSP Diagnostics" })
 
 -- emmet
 vim.keymap.set("i", "<c-x><cr>", "<plug>(emmet-expand-abbr)", { silent = true, desc = "Emmet expand abbr" })
