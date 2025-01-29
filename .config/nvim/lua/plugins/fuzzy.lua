@@ -7,7 +7,7 @@ return {
 
       vim.api.nvim_create_user_command('FzfFiles', fzf.files, { desc = 'FZF files' })
       vim.api.nvim_create_user_command('FzfOldfiles', fzf.oldfiles, { desc = 'FZF oldfiles' })
-      vim.api.nvim_create_user_command('FzfBlines', fzf.blines, { desc = 'FZF current buffer lines' })
+      vim.api.nvim_create_user_command('FzfLgrepCurbuf', fzf.lgrep_curbuf, { desc = 'FZF live grep current buffer' })
       vim.api.nvim_create_user_command('FzfGrepCword', fzf.grep_cword, { desc = 'FZF search word under cursor' })
       vim.api.nvim_create_user_command('FzfLiveGrepNative', fzf.live_grep_native, { desc = 'FZF live grep current project' })
       vim.api.nvim_create_user_command('FzfLspReferences', fzf.lsp_references, { desc = 'FZF LSP references' })

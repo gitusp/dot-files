@@ -57,7 +57,7 @@ vim.keymap.set("n", "S", "<cmd>wa<cr>", { desc = "Save All" })
 vim.keymap.set("x", "Y", '"+y')
 vim.keymap.set("n", "<c-q>", "<cmd>CodeAction<cr>")
 vim.keymap.set("n", "<c-n>", vim.lsp.buf.rename)
-vim.keymap.set("n", "<c-/>", "<cmd>FzfBlines<cr>")
+vim.keymap.set("n", "<c-/>", "<cmd>FzfLgrepCurbuf<cr>")
 
 -- Single key mappings with leader
 vim.keymap.set("n", "<leader>w", "<cmd>Wiki<cr>", { desc = "Util open wiki" })
