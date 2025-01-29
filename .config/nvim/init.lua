@@ -57,27 +57,29 @@ vim.keymap.set("n", "S", "<cmd>wa<cr>", { desc = "Save All" })
 vim.keymap.set("x", "Y", '"+y')
 vim.keymap.set("n", "<c-q>", "<cmd>CodeAction<cr>")
 vim.keymap.set("n", "<c-n>", vim.lsp.buf.rename)
+vim.keymap.set("n", "<c-/>", "<cmd>FzfBlines<cr>")
 
 -- Single key mappings with leader
 vim.keymap.set("n", "<leader>w", "<cmd>Wiki<cr>", { desc = "Util open wiki" })
 vim.keymap.set('n', '<leader>g', '<cmd>vert G<cr>', { desc = 'Git status' })
 vim.keymap.set("n", "<leader>d", vim.diagnostic.setqflist, { desc = "LSP Diagnostics" })
 vim.keymap.set("n", "<leader>m", "<cmd>TSC<cr>", { desc = "Compile TypeScript" })
+vim.keymap.set("n", "<leader>f", "<cmd>FzfLua<cr>", { desc = "FZF builtin" })
+vim.keymap.set("n", "<leader>:", function() require('telescope.builtin').commands() end, { desc = 'Telescope commands' })
+vim.keymap.set("n", "<leader>?", function() require('telescope.builtin').keymaps({ default_text = "<Space>" }) end, { desc = "Telescope leader key mappings" })
 
 -- TODO shortcuts
 vim.keymap.set("n", "]t", function() require("todo-comments").jump_next() end, { desc = "Next todo comment" })
 vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end, { desc = "Previous todo comment" })
 
--- telescope shortcuts
-vim.keymap.set('n', '<c-p>', '<leader>ff', { remap = true })
-vim.keymap.set('n', '<c-8>', '<leader>fg', { remap = true })
-vim.keymap.set('n', 'gs', '<leader>fl', { remap = true, desc = 'Telescope live grep' })
-vim.keymap.set('n', 'gd', '<leader>fd', { remap = true, desc = 'Telescope LSP definitions' })
-vim.keymap.set('n', 'gr', '<leader>fr', { remap = true, desc = 'Telescope LSP references' })
-vim.keymap.set('n', 'gy', '<leader>ft', { remap = true, desc = 'Telescope LSP type definitions' })
-vim.keymap.set('n', 'gl', '<leader>fi', { remap = true, desc = 'Telescope LSP implementations' })
-vim.keymap.set("n", "<leader>:", '<leader>fc', { remap = true, desc = 'Telescope commands' })
-vim.keymap.set("n", "<leader>?", function() require('telescope.builtin').keymaps({ default_text = "<Space>" }) end, { desc = "Telescope leader keymaps" })
+-- Fzf shortcuts
+vim.keymap.set('n', '<c-p>', '<cmd>FzfFiles<cr>', { desc = 'FZF files' })
+vim.keymap.set('n', '<c-8>', '<cmd>FzfGrepCword<cr>', { desc = 'FZF search word under cursor' })
+vim.keymap.set('n', 'gs', '<cmd>FzfLiveGrepNative<cr>', { desc = 'FZF live grep' })
+vim.keymap.set('n', 'gd', '<cmd>FzfLspDefinitions<cr>', { desc = 'FZF LSP definitions' })
+vim.keymap.set('n', 'gr', '<cmd>FzfLspReferences<cr>', { desc = 'FZF LSP references' })
+vim.keymap.set('n', 'gy', '<cmd>FzfLspTypedefs<cr>', { desc = 'FZF LSP type definitions' })
+vim.keymap.set('n', 'gl', '<cmd>FzfLspImplementations<cr>', { desc = 'FZF LSP implementations' })
 
 -- emmet
 vim.keymap.set("i", "<c-x><cr>", "<plug>(emmet-expand-abbr)", { silent = true, desc = "Emmet expand abbr" })
