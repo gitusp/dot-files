@@ -43,6 +43,10 @@ vim.api.nvim_create_user_command('Wiki', function()
 end, { desc = 'Open Wiki' })
 vim.api.nvim_create_user_command('Rename', vim.lsp.buf.rename, { desc = 'LSP rename' })
 vim.api.nvim_create_user_command('Format', vim.lsp.buf.format, { desc = 'LSP format' })
+vim.api.nvim_create_user_command('SQL', function()
+  vim.cmd('new')
+  vim.cmd('setlocal filetype=sql')
+end, { desc = 'Open SQL Scratch' })
 
 --
 -- Keymaps
