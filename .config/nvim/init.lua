@@ -26,6 +26,20 @@ vim.o.diffopt = vim.o.diffopt .. ',iwhite'
 
 vim.o.undofile = true
 
+--
+-- Appearance
+--
+vim.diagnostic.config({
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.INFO] = "",
+      [vim.diagnostic.severity.HINT] = "",
+    },
+  },
+})
+
 -- Highlight on yank
 vim.api.nvim_create_augroup( 'base', {} )
 vim.api.nvim_create_autocmd( 'TextYankPost', {
