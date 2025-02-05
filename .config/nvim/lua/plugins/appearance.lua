@@ -5,7 +5,24 @@ return {
       lazy = false,
       priority = 1000,
       config = function()
-        require('github-theme').setup({})
+        local spec = require('github-theme.spec').load('github_light')
+
+        require('github-theme').setup({
+          groups = {
+            github_light = {
+              DiffAdd = {
+                bg = spec.diff.add,
+              },
+              DiffChange = {
+                bg = spec.diff.change,
+              },
+              DiffDelete = {
+                bg = spec.diff.delete,
+              },
+            },
+          },
+        })
+
         vim.cmd('colorscheme github_light')
       end,
   },
