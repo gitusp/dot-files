@@ -80,7 +80,15 @@ return {
       'nvim-tree/nvim-web-devicons',
     },
     config = function ()
-      require"octo".setup()
+      require("octo").setup({
+        mappings = {
+          submit_win = {
+            approve_review = { lhs = "<localleader>a", desc = "approve review" },
+            comment_review = { lhs = "<localleader>c", desc = "comment review" },
+            request_changes = { lhs = "<localleader>r", desc = "request changes review" },
+          },
+        }
+      })
     end
   }
 }
