@@ -53,7 +53,9 @@ vim.api.nvim_create_autocmd( 'TextYankPost', {
 -- Custom Commands
 --
 vim.api.nvim_create_user_command('Wiki', function()
-  vim.cmd('e ~/wiki/wiki/index.md')
+  vim.cmd('vnew')
+  vim.cmd('lcd ~/wiki/wiki')
+  vim.cmd('e index.md')
 end, { desc = 'Open Wiki' })
 vim.api.nvim_create_user_command('Rename', vim.lsp.buf.rename, { desc = 'LSP rename' })
 vim.api.nvim_create_user_command('Format', vim.lsp.buf.format, { desc = 'LSP format' })
