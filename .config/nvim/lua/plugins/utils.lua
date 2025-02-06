@@ -10,7 +10,19 @@ return {
         vim.cmd("try | Dotenv .env.local | catch | endtry")
       end
   },
-  { "cohama/lexima.vim" },
+  {
+    "cohama/lexima.vim",
+    config = function()
+      vim.api.nvim_call_function("lexima#add_rule", {
+        {
+          char = '[',
+          input = '[ ] ',
+          at = '^\\s*- \\%#',
+          filetype = 'markdown'
+        },
+      })
+    end,
+  },
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
