@@ -23,6 +23,7 @@ vim.o.shortmess = vim.o.shortmess .. 'I'
 vim.o.showtabline = 0
 vim.o.signcolumn = "yes"
 vim.o.diffopt = vim.o.diffopt .. ',iwhite'
+vim.o.diffopt = vim.o.diffopt .. ',algorithm:histogram'
 
 vim.o.undofile = true
 
