@@ -21,6 +21,14 @@ return {
           filetype = 'markdown'
         },
       })
+      vim.api.nvim_call_function("lexima#add_rule", {
+        {
+          char = '<cr>',
+          input = '<cr>- ',
+          at = '^\\s*- .*\\%#',
+          filetype = 'markdown'
+        },
+      })
     end,
   },
   {
