@@ -88,6 +88,7 @@ return {
     },
     config = function ()
       require("octo").setup({
+        use_local_fs = true,
         mappings = {
           submit_win = {
             approve_review = { lhs = "<localleader>a", desc = "approve review" },
