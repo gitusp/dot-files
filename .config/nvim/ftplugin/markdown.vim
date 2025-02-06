@@ -1,4 +1,4 @@
-nmap <buffer><silent> <CR> :call <SID>ToggleCheckbox()<CR>
+nmap <buffer><silent> <localleader>t :call <SID>ToggleCheckbox()<CR>
 
 function! s:ToggleCheckbox()
   let line = getline('.')
@@ -11,7 +11,9 @@ function! s:ToggleCheckbox()
   endif
 
   if dest != ''
+    let l:pos = winsaveview()
     exe 's/^\s*- \[\zs.\ze]/' . dest . '/'
+    call winrestview(l:pos)
   endif
 endfunction
 
