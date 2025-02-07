@@ -9,7 +9,10 @@ return {
 
       local capabilities = require('blink.cmp').get_lsp_capabilities()
       local lspconfig = require("lspconfig")
-      lspconfig.clangd.setup({})
+
+      lspconfig.clangd.setup({
+        capabilities = capabilities
+      })
       lspconfig.vtsls.setup({
         capabilities = capabilities
       })
