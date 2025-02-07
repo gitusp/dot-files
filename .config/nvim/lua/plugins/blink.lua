@@ -20,7 +20,15 @@ return {
     keymap = {
       preset = 'default',
 
-      ['<C-q>'] = { function(cmp) cmp.show({}) end },
+      ['<C-q>'] = { 'show' },
+
+      cmdline = {
+        preset = 'default',
+
+        ['<C-q>'] = { 'show' },
+        ['<Tab>'] = { 'select_next', 'fallback' },
+        ['<S-Tab>'] = { 'select_prev', 'fallback' },
+      },
     },
 
     appearance = {
