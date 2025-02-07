@@ -1,7 +1,5 @@
 return {
   'saghen/blink.cmp',
-  -- optional: provides snippets for the snippet source
-  dependencies = 'rafamadriz/friendly-snippets',
 
   -- use a release tag to download pre-built binaries
   version = '*',
@@ -21,6 +19,8 @@ return {
       preset = 'default',
 
       ['<C-q>'] = { 'show' },
+      ['<Tab>'] = {},
+      ['<S-Tab>'] = {},
 
       cmdline = {
         preset = 'default',
@@ -44,7 +44,7 @@ return {
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer' },
+      default = { 'lsp', 'path', 'buffer' },
     },
 
     completion = {
