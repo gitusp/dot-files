@@ -10,6 +10,9 @@ return {
       local capabilities = require('blink.cmp').get_lsp_capabilities()
       local lspconfig = require("lspconfig")
 
+      lspconfig.cssmodules_ls.setup({
+        capabilities = capabilities
+      })
       lspconfig.clangd.setup({
         capabilities = capabilities
       })
