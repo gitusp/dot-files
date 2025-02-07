@@ -50,7 +50,14 @@ return {
     completion = {
       documentation = {
         auto_show = true,
-      }
+      },
+      list = {
+        selection = {
+          preselect = function(ctx)
+            return ctx.mode ~= 'cmdline'
+          end,
+        },
+      },
     }
   },
   opts_extend = { "sources.default" }
