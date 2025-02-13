@@ -22,7 +22,9 @@ return {
       local function mrx(mode)
         fzf.fzf_exec(
           function(cb)
-            for _, path in ipairs(vim.fn[("mr#%s#list"):format(mode)]()) do
+            local list = vim.fn[("mr#%s#list"):format(mode)]()
+            local filtered = vim.fn["mr#filter"](list, vim.fn.getcwd())
+            for _, path in ipairs(filtered) do
               cb(fzf.make_entry.file(path, { file_icons = true, color_icons = true }))
             end
             cb()
