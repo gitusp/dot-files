@@ -87,6 +87,11 @@ vim.keymap.set("n", "<leader>:", function() require('telescope.builtin').command
 vim.keymap.set("n", "<leader>?", function() require('telescope.builtin').keymaps({ default_text = "<Space>" }) end, { desc = "Telescope leader key mappings" })
 vim.keymap.set("n", "<localleader>?", function() require('telescope.builtin').keymaps({ default_text = "\\" }) end, { desc = "Telescope localleader key mappings" })
 
+-- mrx
+vim.keymap.set("n", "mru", "<cmd>FzfMru<cr>", { desc = "FZF MRU" })
+vim.keymap.set("n", "mrr", "<cmd>FzfMrr<cr>", { desc = "FZF MRR" })
+vim.keymap.set("n", "mrw", "<cmd>FzfMrw<cr>", { desc = "FZF MRW" })
+
 -- TODO shortcuts
 vim.keymap.set("n", "]t", function() require("todo-comments").jump_next() end, { desc = "Next todo comment" })
 vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end, { desc = "Previous todo comment" })
