@@ -93,6 +93,7 @@ vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end, {
 
 -- Fzf shortcuts
 vim.keymap.set('n', '<c-p>', '<cmd>FzfFiles<cr>', { desc = 'FZF files' })
+vim.keymap.set('n', '<c-m>', '<cmd>FzfMru<cr>', { desc = 'FZF MRU' })
 vim.keymap.set('n', '<c-8>', '<cmd>FzfGrepCword<cr>', { desc = 'FZF search word under cursor' })
 vim.keymap.set('n', 'gs', '<cmd>FzfLiveGrepNative<cr>', { desc = 'FZF live grep' })
 vim.keymap.set('n', 'gd', '<cmd>FzfLspDefinitions<cr>', { desc = 'FZF LSP definitions' })
