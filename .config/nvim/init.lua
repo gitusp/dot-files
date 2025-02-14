@@ -74,7 +74,6 @@ vim.keymap.set("n", "s", "<cmd>w<cr>", { desc = "Save" })
 vim.keymap.set("n", "S", "<cmd>wa<cr>", { desc = "Save All" })
 vim.keymap.set("x", "Y", '"+y')
 vim.keymap.set("n", "<c-q>", "<cmd>CodeAction<cr>")
-vim.keymap.set("n", "<c-n>", vim.lsp.buf.rename)
 vim.keymap.set("n", "<c-/>", "<cmd>FzfLgrepCurbuf<cr>")
 
 -- Single key mappings with leader
@@ -83,6 +82,7 @@ vim.keymap.set('n', '<leader>g', '<cmd>vert G<cr>', { desc = 'Git status' })
 vim.keymap.set("n", "<leader>d", vim.diagnostic.setqflist, { desc = "LSP Diagnostics" })
 vim.keymap.set("n", "<leader>m", "<cmd>TSC<cr>", { desc = "Compile TypeScript" })
 vim.keymap.set("n", "<leader>f", "<cmd>FzfLua<cr>", { desc = "FZF builtin" })
+vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename)
 vim.keymap.set("n", "<leader>:", function() require('telescope.builtin').commands() end, { desc = 'Telescope commands' })
 vim.keymap.set("n", "<leader>?", function() require('telescope.builtin').keymaps({ default_text = "<Space>" }) end, { desc = "Telescope leader key mappings" })
 vim.keymap.set("n", "<localleader>?", function() require('telescope.builtin').keymaps({ default_text = "\\" }) end, { desc = "Telescope localleader key mappings" })
@@ -93,7 +93,7 @@ vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end, {
 
 -- Fzf shortcuts
 vim.keymap.set('n', '<c-p>', '<cmd>FzfFiles<cr>', { desc = 'FZF files' })
-vim.keymap.set('n', '<c-m>', '<cmd>FzfMru<cr>', { desc = 'FZF MRU' })
+vim.keymap.set('n', '<c-n>', '<cmd>FzfMru<cr>', { desc = 'FZF MRU' })
 vim.keymap.set('n', '<c-8>', '<cmd>FzfGrepCword<cr>', { desc = 'FZF search word under cursor' })
 vim.keymap.set('n', 'gs', '<cmd>FzfLiveGrepNative<cr>', { desc = 'FZF live grep' })
 vim.keymap.set('n', 'gd', '<cmd>FzfLspDefinitions<cr>', { desc = 'FZF LSP definitions' })
