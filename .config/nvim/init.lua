@@ -54,11 +54,11 @@ vim.api.nvim_create_autocmd( 'TextYankPost', {
 --
 -- Custom Commands
 --
-vim.api.nvim_create_user_command('Wiki', function()
+vim.api.nvim_create_user_command('Scratch', function()
   vim.cmd('vnew')
-  vim.cmd('lcd ~/wiki/wiki')
+  vim.cmd('lcd ~/wiki/scratch')
   vim.cmd('e index.md')
-end, { desc = 'Open Wiki' })
+end, { desc = 'Scratch' })
 vim.api.nvim_create_user_command('Rename', vim.lsp.buf.rename, { desc = 'LSP rename' })
 vim.api.nvim_create_user_command('Format', vim.lsp.buf.format, { desc = 'LSP format' })
 
@@ -77,7 +77,7 @@ vim.keymap.set("n", "<c-q>", "<cmd>CodeAction<cr>")
 vim.keymap.set("n", "<c-/>", "<cmd>FzfLgrepCurbuf<cr>")
 
 -- Single key mappings with leader
-vim.keymap.set("n", "<leader>w", "<cmd>Wiki<cr>", { desc = "Util open wiki" })
+vim.keymap.set("n", "<leader>s", "<cmd>Scratch<cr>", { desc = "Util scratch" })
 vim.keymap.set('n', '<leader>g', '<cmd>vert G<cr>', { desc = 'Git status' })
 vim.keymap.set("n", "<leader>d", vim.diagnostic.setqflist, { desc = "LSP Diagnostics" })
 vim.keymap.set("n", "<leader>m", "<cmd>TSC<cr>", { desc = "Compile TypeScript" })
