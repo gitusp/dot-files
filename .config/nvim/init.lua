@@ -56,8 +56,7 @@ vim.api.nvim_create_autocmd( 'TextYankPost', {
 --
 vim.api.nvim_create_user_command('Scratch', function()
   vim.cmd('vnew')
-  vim.cmd('lcd ~/wiki/scratch')
-  vim.cmd('e index.md')
+  vim.cmd('e ~/vaults/scratch/index.md')
 end, { desc = 'Scratch' })
 vim.api.nvim_create_user_command('Rename', vim.lsp.buf.rename, { desc = 'LSP rename' })
 vim.api.nvim_create_user_command('Format', vim.lsp.buf.format, { desc = 'LSP format' })
