@@ -21,8 +21,10 @@ return {
       ['<C-q>'] = { 'show' },
       ['<Tab>'] = {},
       ['<S-Tab>'] = {},
+    },
 
-      cmdline = {
+    cmdline = {
+      keymap = {
         preset = 'default',
 
         ['<C-q>'] = { 'show' },
