@@ -30,6 +30,14 @@ return {
           filetype = 'markdown'
         },
       })
+      vim.api.nvim_call_function("lexima#add_rule", {
+        {
+          char = '>',
+          input_after = '</>',
+          at = '<\\%#',
+          filetype = {'typescriptreact', 'javascriptreact'}
+        },
+      })
     end,
   },
   {
