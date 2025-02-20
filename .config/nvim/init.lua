@@ -58,7 +58,9 @@ vim.api.nvim_create_user_command('Scratch', function()
   vim.cmd('vnew')
   vim.cmd('e ~/vaults/scratch/index.md')
 end, { desc = 'Scratch' })
-vim.cmd("function! Journal() abort\n" .. "return strftime('%Y-%m-%d.md')\n" .. "endfunction")
+vim.api.nvim_create_user_command('Journal', function()
+  vim.cmd('e ' .. vim.fn.expand("%"):gsub("[^/]*$", "") .. vim.fn.strftime("%Y-%m-%d") .. '.md')
+end, { desc = 'Journal' })
 vim.api.nvim_create_user_command('Rename', vim.lsp.buf.rename, { desc = 'LSP rename' })
 vim.api.nvim_create_user_command('Format', vim.lsp.buf.format, { desc = 'LSP format' })
 
@@ -78,6 +80,7 @@ vim.keymap.set("n", "<c-/>", "<cmd>FzfLgrepCurbuf<cr>")
 
 -- Single key mappings with leader
 vim.keymap.set("n", "<leader>s", "<cmd>Scratch<cr>", { desc = "Util scratch" })
+vim.keymap.set("n", "<leader>j", "<cmd>Journal<cr>", { desc = "Util journal" })
 vim.keymap.set('n', '<leader>g', '<cmd>vert G<cr>', { desc = 'Git status' })
 vim.keymap.set("n", "<leader>d", vim.diagnostic.setqflist, { desc = "LSP Diagnostics" })
 vim.keymap.set("n", "<leader>m", "<cmd>TSC<cr>", { desc = "Compile TypeScript" })
