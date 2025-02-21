@@ -8,6 +8,16 @@ return {
     config = function()
       local fzf = require('fzf-lua')
 
+      fzf.setup({
+        zoxide = {
+          actions = {
+            ["enter"] = function(selected)
+              vim.cmd(("e %s"):format(selected[1]:gsub(".-%s", "")))
+            end,
+          },
+        },
+      })
+
       vim.api.nvim_create_user_command('FzfFiles', fzf.files, { desc = 'FZF files' })
       vim.api.nvim_create_user_command('FzfLgrepCurbuf', fzf.lgrep_curbuf, { desc = 'FZF live grep current buffer' })
       vim.api.nvim_create_user_command('FzfGrepCword', fzf.grep_cword, { desc = 'FZF search word under cursor' })
@@ -17,6 +27,7 @@ return {
       vim.api.nvim_create_user_command('FzfLspDeclarations', fzf.lsp_declarations, { desc = 'FZF LSP declarations' })
       vim.api.nvim_create_user_command('FzfLspTypedefs', fzf.lsp_typedefs, { desc = 'FZF LSP type definitions' })
       vim.api.nvim_create_user_command('FzfLspImplementations', fzf.lsp_implementations, { desc = 'FZF LSP implementations' })
+      vim.api.nvim_create_user_command('FzfZoxide', fzf.zoxide, { desc = 'FZF zoxide' })
 
       --- Thanks: https://zenn.dev/uga_rosa/articles/318bba82c53a1d
       local function mrx(mode)
@@ -56,6 +67,6 @@ return {
   {
     'nvim-telescope/telescope.nvim', tag = '0.1.8',
     dependencies = { 'nvim-lua/plenary.nvim' },
-  }
+  },
 }
 
