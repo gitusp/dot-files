@@ -8,12 +8,20 @@ return {
     config = function()
       local fzf = require('fzf-lua')
 
+      local function wrap_zoxide_action(action)
+        return function(selected, opts)
+          selected[1] = selected[1]:match("[^\t]+$")
+          action(selected, opts)
+        end
+      end
+
       fzf.setup({
         zoxide = {
           actions = {
-            ["enter"] = function(selected)
-              vim.cmd(("e %s"):format(selected[1]:gsub(".-%s", "")))
-            end,
+            ["enter"] = wrap_zoxide_action(fzf.actions.file_edit),
+            ["ctrl-s"] = wrap_zoxide_action(fzf.actions.file_split),
+            ["ctrl-v"] = wrap_zoxide_action(fzf.actions.file_vsplit),
+            ["ctrl-t"] = wrap_zoxide_action(fzf.actions.file_tabedit),
           },
         },
       })
