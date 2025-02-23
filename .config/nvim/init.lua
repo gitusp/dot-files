@@ -71,7 +71,6 @@ vim.api.nvim_create_user_command('Format', vim.lsp.buf.format, { desc = 'LSP for
 vim.keymap.set("n", "<c-l>", "<cmd>nohlsearch<CR><C-L>")
 vim.keymap.set("n", "Q", "@q")
 vim.keymap.set("n", "_", "@:")
-vim.keymap.set("n", "s", "<cmd>w<cr>", { desc = "Save" })
 vim.keymap.set({"n", "x"}, "Y", '"+y')
 vim.keymap.set("n", "<c-q>", "<cmd>CodeAction<cr>")
 vim.keymap.set("n", "<c-/>", "<cmd>FzfLgrepCurbuf<cr>")
