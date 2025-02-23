@@ -69,16 +69,15 @@ vim.api.nvim_create_user_command('Format', vim.lsp.buf.format, { desc = 'LSP for
 --
 -- Single key mappings
 vim.keymap.set("n", "<c-l>", "<cmd>nohlsearch<CR><C-L>")
-vim.keymap.set("n", "Y", "y$")
 vim.keymap.set("n", "Q", "@q")
 vim.keymap.set("n", "_", "@:")
 vim.keymap.set("n", "s", "<cmd>w<cr>", { desc = "Save" })
-vim.keymap.set("n", "S", "<cmd>wa<cr>", { desc = "Save All" })
-vim.keymap.set("x", "Y", '"+y')
+vim.keymap.set({"n", "x"}, "Y", '"+y')
 vim.keymap.set("n", "<c-q>", "<cmd>CodeAction<cr>")
 vim.keymap.set("n", "<c-/>", "<cmd>FzfLgrepCurbuf<cr>")
 
 -- Single key mappings with leader
+vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { desc = "Write" })
 vim.keymap.set("n", "<leader>s", "<cmd>Scratch<cr>", { desc = "Util scratch" })
 vim.keymap.set("n", "<leader>j", "<cmd>Journal<cr>", { desc = "Util journal" })
 vim.keymap.set('n', '<leader>g', '<cmd>vert G<cr>', { desc = 'Git status' })
