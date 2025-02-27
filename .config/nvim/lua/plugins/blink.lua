@@ -23,16 +23,6 @@ return {
       ['<S-Tab>'] = {},
     },
 
-    cmdline = {
-      keymap = {
-        preset = 'default',
-
-        ['<C-q>'] = { 'show' },
-        ['<Tab>'] = { 'select_next', 'fallback' },
-        ['<S-Tab>'] = { 'select_prev', 'fallback' },
-      },
-    },
-
     appearance = {
       -- Sets the fallback highlight groups to nvim-cmp's highlight groups
       -- Useful for when your theme doesn't support blink.cmp
