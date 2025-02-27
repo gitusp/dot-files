@@ -23,6 +23,16 @@ return {
       ['<S-Tab>'] = {},
     },
 
+    cmdline = {
+      completion = {
+        list = {
+          selection = {
+            preselect = false,
+          },
+        },
+      }
+    },
+
     appearance = {
       -- Sets the fallback highlight groups to nvim-cmp's highlight groups
       -- Useful for when your theme doesn't support blink.cmp
@@ -42,13 +52,6 @@ return {
     completion = {
       documentation = {
         auto_show = true,
-      },
-      list = {
-        selection = {
-          preselect = function(ctx)
-            return ctx.mode ~= 'cmdline'
-          end,
-        },
       },
     }
   },
