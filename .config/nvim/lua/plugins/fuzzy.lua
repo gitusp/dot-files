@@ -16,6 +16,9 @@ return {
       end
 
       fzf.setup({
+        files = {
+          fd_opts = fzf.defaults.files.fd_opts .. [[ --type d]],
+        },
         zoxide = {
           actions = {
             ["enter"] = wrap_zoxide_action(fzf.actions.file_edit),
