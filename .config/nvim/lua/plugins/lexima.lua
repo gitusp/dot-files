@@ -62,6 +62,14 @@ return {
           filetype = {'typescriptreact', 'javascriptreact'}
         },
       })
+      vim.api.nvim_call_function("lexima#add_rule", {
+        {
+          char = '>',
+          at = '<\\(\\(\\w\\|\\.\\)\\+\\)[^>]*\\%#',
+          input_after = '</\\1>',
+          with_submatch = true
+        }
+      })
     end,
   },
 }
