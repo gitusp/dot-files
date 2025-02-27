@@ -7,6 +7,8 @@ config.window_decorations = 'RESIZE'
 config.hide_tab_bar_if_only_one_tab = true
 config.font = wezterm.font('Source Han Code JP', { weight = 'Medium' })
 config.font_size = 11.0
+config.initial_rows = 96
+config.initial_cols = 320
 
 config.keys = {
   {
