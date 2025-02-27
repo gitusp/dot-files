@@ -1,4 +1,4 @@
-nmap <buffer><silent> <localleader>t :call <SID>ToggleCheckbox()<CR>
+nmap <buffer><silent> <localleader>c :call <SID>ToggleCheckbox()<CR>
 
 function! s:ToggleCheckbox()
   let line = getline('.')
