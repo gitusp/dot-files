@@ -2,7 +2,10 @@ return {
   {
     "github/copilot.vim",
     init = function()
-      vim.g.copilot_filetypes = { markdown = false }
+      vim.g.copilot_filetypes = {
+        markdown = false,
+        ['copilot-chat'] = false,
+      }
     end,
   },
   {
@@ -12,6 +15,8 @@ return {
       { "nvim-lua/plenary.nvim", branch = "master" },
     },
     build = "make tiktoken",
-    opts = {},
-  }
+    opts = {
+      model = 'claude-3.7-sonnet',
+    },
+  },
 }
