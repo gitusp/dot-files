@@ -1,6 +1,10 @@
 return {
   'saghen/blink.cmp',
 
+  dependencies = {
+    'Kaiser-Yang/blink-cmp-avante',
+  },
+
   -- use a release tag to download pre-built binaries
   version = '*',
   -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
@@ -52,7 +56,17 @@ return {
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-      default = { 'lsp', 'path', 'buffer' },
+      default = { 'avante', 'lsp', 'path', 'buffer' },
+
+      providers = {
+        avante = {
+          module = 'blink-cmp-avante',
+          name = 'Avante',
+          opts = {
+            -- options for blink-cmp-avante
+          }
+        }
+      },
     },
 
     completion = {
