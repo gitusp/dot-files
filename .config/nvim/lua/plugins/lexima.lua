@@ -16,7 +16,7 @@ return {
           input = '<bs><bs>',
           at = '^- \\%#$',
           filetype = 'markdown',
-          priority = 1
+          priority = 2
         },
       })
       vim.api.nvim_call_function("lexima#add_rule", {
@@ -25,7 +25,7 @@ return {
           input = '<bs><bs><bs>- ',
           at = '^\\s\\+- \\%#$',
           filetype = 'markdown',
-          priority = 1,
+          priority = 2,
         },
       })
       vim.api.nvim_call_function("lexima#add_rule", {
@@ -34,7 +34,7 @@ return {
           input = '<bs><bs><bs><bs><bs><bs>',
           at = '^- \\[ ] \\%#$',
           filetype = 'markdown',
-          priority = 1
+          priority = 2
         },
       })
       vim.api.nvim_call_function("lexima#add_rule", {
@@ -42,6 +42,15 @@ return {
           char = '<cr>',
           input = '<bs><bs><bs><bs><bs><bs><bs>- [ ] ',
           at = '^\\s\\+- \\[ ] \\%#$',
+          filetype = 'markdown',
+          priority = 2,
+        },
+      })
+      vim.api.nvim_call_function("lexima#add_rule", {
+        {
+          char = '<cr>',
+          input = '<cr>- [ ] ',
+          at = '^\\s*- \\[ ] .*\\%#',
           filetype = 'markdown',
           priority = 1,
         },
@@ -52,6 +61,14 @@ return {
           input = '<cr>- ',
           at = '^\\s*- .*\\%#',
           filetype = 'markdown'
+        },
+      })
+      vim.api.nvim_call_function("lexima#add_rule", {
+        {
+          char = '<bs>',
+          input = '<bs><bs><bs><bs>',
+          at = '^\\s*- \\[ ] \\%#',
+          filetype = 'markdown',
         },
       })
       vim.api.nvim_call_function("lexima#add_rule", {
