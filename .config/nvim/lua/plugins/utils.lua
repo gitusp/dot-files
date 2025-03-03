@@ -1,5 +1,4 @@
 return {
-  { 'justinmk/vim-dirvish' },
   { "tpope/vim-repeat" },
   { "tpope/vim-unimpaired" },
   { "tpope/vim-projectionist" },
@@ -29,6 +28,17 @@ return {
     "folke/ts-comments.nvim",
     opts = {},
     event = "VeryLazy",
+  },
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    lazy = false,
+    config = function()
+      require("oil").setup({
+        skip_confirm_for_simple_edits = true,
+      })
+    end
   },
   {
     'stevearc/quicker.nvim',
