@@ -68,6 +68,11 @@ vim.api.nvim_create_user_command('Rename', vim.lsp.buf.rename, { desc = 'LSP ren
 vim.api.nvim_create_user_command('Format', vim.lsp.buf.format, { desc = 'LSP format' })
 
 --
+-- Aliases
+--
+vim.cmd('cnoreabbrev O Octo')
+
+--
 -- Keymaps
 --
 -- Single key mappings
