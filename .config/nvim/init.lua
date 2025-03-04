@@ -101,6 +101,10 @@ vim.keymap.set("n", "<localleader>?", function() require('telescope.builtin').ke
 vim.keymap.set("n", "]t", function() require("todo-comments").jump_next() end, { desc = "Next todo comment" })
 vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end, { desc = "Previous todo comment" })
 
+-- Tab navigation
+vim.keymap.set("n", "<TAB>", "<cmd>tabnext<CR>", { desc = "Next tab" })
+vim.keymap.set("n", "<S-TAB>", "<cmd>tabprevious<CR>", { desc = "Previous tab" })
+
 -- Fzf shortcuts
 vim.keymap.set('n', '<c-p>', '<cmd>FzfFiles<cr>', { desc = 'FZF files' })
 vim.keymap.set('n', '<c-n>', '<cmd>FzfMru<cr>', { desc = 'FZF MRU' })
