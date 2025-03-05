@@ -82,7 +82,7 @@ return {
       vim.api.nvim_call_function("lexima#add_rule", {
         {
           char = '>',
-          at = '<\\(\\(\\w\\|\\.\\)\\+\\)[^>]*\\%#',
+          at = '<\\(\\(\\w\\|\\.\\)\\+\\)[^/>]*\\%#',
           input_after = '</\\1>',
           with_submatch = true,
           filetype = {'typescriptreact', 'javascriptreact', 'markdown', 'html', 'xml'}
