@@ -73,17 +73,26 @@ return {
       })
       vim.api.nvim_call_function("lexima#add_rule", {
         {
-          char = '>',
-          input_after = '</>',
-          at = '<\\%#',
-          filetype = {'typescriptreact', 'javascriptreact'}
-        },
+          char = '<',
+          input_after = '>',
+          filetype = {'typescriptreact', 'javascriptreact', 'markdown', 'html', 'xml'}
+        }
       })
       vim.api.nvim_call_function("lexima#add_rule", {
         {
           char = '>',
-          at = '<\\(\\(\\w\\|\\.\\)\\+\\)[^/>]*\\%#',
+          input_after = '</>',
+          leave = '>',
+          at = '<\\%#>',
+          filetype = {'typescriptreact', 'javascriptreact'}
+        }
+      })
+      vim.api.nvim_call_function("lexima#add_rule", {
+        {
+          char = '>',
           input_after = '</\\1>',
+          leave = '>',
+          at = '<\\(\\(\\w\\|\\.\\)\\+\\)[^/>]*\\%#>',
           with_submatch = true,
           filetype = {'typescriptreact', 'javascriptreact', 'markdown', 'html', 'xml'}
         }
