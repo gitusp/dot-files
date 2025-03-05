@@ -1,4 +1,5 @@
 nmap <buffer><silent> <localleader>c :call <SID>ToggleCheckbox()<CR>
+nmap <buffer><silent> <localleader>t :TableModeRealign<CR>
 
 function! s:ToggleCheckbox()
   let line = getline('.')
