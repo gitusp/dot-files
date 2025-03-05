@@ -53,6 +53,7 @@ return {
           ["cd"] = { "actions.cd", opts = { scope = "win" }, mode = "n" },
           ["gs"] = { "actions.change_sort", mode = "n" },
           ["gx"] = "actions.open_external",
+          ["gy"] = { "actions.yank_entry" },
           ["g."] = { "actions.toggle_hidden", mode = "n" },
           ["g\\"] = { "actions.toggle_trash", mode = "n" },
         },
