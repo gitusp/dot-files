@@ -10,6 +10,7 @@
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
   "lexima.vim": { "branch": "master", "commit": "f851b232505766aff7bed7d20100ad31c9c0b33b" },
   "lualine.nvim": { "branch": "master", "commit": "f4f791f67e70d378a754d02da068231d2352e5bc" },
+  "multicursor.nvim": { "branch": "1.0", "commit": "84c21d23622fc9655dd424f707703faa3bd2d5f4" },
   "nvim-lspconfig": { "branch": "master", "commit": "84e0cd5a3c58e88ef706fdf4a1eed59ded1d3ce2" },
   "nvim-surround": { "branch": "main", "commit": "ae298105122c87bbe0a36b1ad20b06d417c0433e" },
   "nvim-treesitter": { "branch": "master", "commit": "55c5c762fee2e813b4e43bbfaf5b91d182bd2875" },
