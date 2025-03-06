@@ -9,9 +9,14 @@ return {
 
       local set = vim.keymap.set
 
-      -- Add or skip adding a new cursor by matching word/selection
-      set({"n", "x"}, "<c-n>", function() mc.matchAddCursor(1) end)
-      set({"n", "x"}, "<c-s>", function() mc.matchSkipCursor(1) end)
+      -- Add a new cursor below the main cursor.
+      set({"n", "x"}, "<c-n>", function() mc.lineAddCursor(1) end)
+
+      -- Add a new cursor by matching word/selection
+      set({"n", "x"}, "<c-8>", function() mc.matchAddCursor(1) end)
+
+      -- Delete the main cursor.
+      set({"n", "x"}, "<leader>x", mc.deleteCursor)
 
       -- Rotate the main cursor.
       set({"n", "x"}, "]r", mc.nextCursor)

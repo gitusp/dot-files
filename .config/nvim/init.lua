@@ -107,14 +107,13 @@ vim.keymap.set("n", "]t", function() require("todo-comments").jump_next() end, {
 vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end, { desc = "Previous todo comment" })
 
 -- Tab navigation
-vim.keymap.set("n", "<TAB>", "<cmd>tabnext<CR>", { desc = "Next tab" })
-vim.keymap.set("n", "<S-TAB>", "<cmd>tabprevious<CR>", { desc = "Previous tab" })
+vim.keymap.set("n", "<c-w><tab>", "<cmd>tabnext<CR>", { desc = "Next tab" })
 
 -- Fzf shortcuts
 vim.keymap.set('n', '<c-p>', '<cmd>FzfFiles<cr>', { desc = 'FZF files' })
 vim.keymap.set('n', '<bs>', '<cmd>FzfMru<cr>', { desc = 'FZF MRU' })
-vim.keymap.set('n', '<c-8>', '<cmd>FzfGrepCword<cr>', { desc = 'FZF search word under cursor' })
 vim.keymap.set('n', 'gs', '<cmd>FzfLiveGrepNative<cr>', { desc = 'FZF live grep' })
+vim.keymap.set('n', 'gS', '<cmd>FzfGrepCword<cr>', { desc = 'FZF search word under cursor' })
 vim.keymap.set('n', 'gd', '<cmd>FzfLspDefinitions<cr>', { desc = 'FZF LSP definitions' })
 vim.keymap.set('n', 'gr', '<cmd>FzfLspReferences<cr>', { desc = 'FZF LSP references' })
 vim.keymap.set('n', 'gy', '<cmd>FzfLspTypedefs<cr>', { desc = 'FZF LSP type definitions' })
