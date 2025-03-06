@@ -112,7 +112,7 @@ vim.keymap.set("n", "<S-TAB>", "<cmd>tabprevious<CR>", { desc = "Previous tab" }
 
 -- Fzf shortcuts
 vim.keymap.set('n', '<c-p>', '<cmd>FzfFiles<cr>', { desc = 'FZF files' })
-vim.keymap.set('n', '<c-n>', '<cmd>FzfMru<cr>', { desc = 'FZF MRU' })
+vim.keymap.set('n', '<bs>', '<cmd>FzfMru<cr>', { desc = 'FZF MRU' })
 vim.keymap.set('n', '<c-8>', '<cmd>FzfGrepCword<cr>', { desc = 'FZF search word under cursor' })
 vim.keymap.set('n', 'gs', '<cmd>FzfLiveGrepNative<cr>', { desc = 'FZF live grep' })
 vim.keymap.set('n', 'gd', '<cmd>FzfLspDefinitions<cr>', { desc = 'FZF LSP definitions' })
