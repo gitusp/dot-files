@@ -1,14 +1,7 @@
 return {
   { "tpope/vim-fugitive" },
   { "tpope/vim-rhubarb" },
-  {
-    "rbong/vim-flog",
-    lazy = true,
-    cmd = { "Flog", "Flogsplit", "Floggit" },
-    dependencies = {
-      "tpope/vim-fugitive",
-    },
-  },
+  { "junegunn/gv.vim" },
   { "lewis6991/gitsigns.nvim",
       config = function()
         require("gitsigns").setup({
