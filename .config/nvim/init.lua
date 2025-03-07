@@ -64,8 +64,6 @@ end, { desc = 'Journal' })
 vim.api.nvim_create_user_command('Spawn', function()
   vim.cmd('silent !wezterm cli spawn --new-window --cwd "' .. vim.fn.expand("%"):gsub("[^/]*$", "") .. '"')
 end, { desc = 'Spawn terminal with cwd' })
-vim.api.nvim_create_user_command('Rename', vim.lsp.buf.rename, { desc = 'LSP rename' })
-vim.api.nvim_create_user_command('Format', vim.lsp.buf.format, { desc = 'LSP format' })
 
 --
 -- Aliases
@@ -87,7 +85,6 @@ vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 -- Single key mappings with leader
 vim.keymap.set("n", "<leader>q", function() require("quicker").toggle() end, { desc = "Toggle quickfix" })
 vim.keymap.set("n", "<leader>l", function() require("quicker").toggle({ loclist = true }) end, { desc = "Toggle loclist" })
-vim.keymap.set("n", "<leader>t", "<cmd>tabnew<cr>", { desc = "Open new tab" })
 vim.keymap.set("n", "<leader>c", "<cmd>CopilotChatOpen<cr>", { desc = "Open Copilot Chat" })
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { desc = "Write" })
 vim.keymap.set("n", "<leader>s", "<cmd>Scratch<cr>", { desc = "Util scratch" })
@@ -96,7 +93,7 @@ vim.keymap.set('n', '<leader>g', '<cmd>vert G<cr>', { desc = 'Git status' })
 vim.keymap.set("n", "<leader>d", vim.diagnostic.setqflist, { desc = "LSP Diagnostics" })
 vim.keymap.set("n", "<leader>m", "<cmd>TSC<cr>", { desc = "Compile TypeScript" })
 vim.keymap.set("n", "<leader>v", "<cmd>GV --all<cr>", { desc = "Git log" })
-vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename)
+vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "LSP Rename" })
 vim.keymap.set("n", "<leader>n", "<cmd>Spawn<cr>", { desc = "Spawn terminal with cwd" })
 vim.keymap.set("n", "<leader>:", function() require('telescope.builtin').commands() end, { desc = 'Telescope commands' })
 vim.keymap.set("n", "<leader>?", function() require('telescope.builtin').keymaps({ default_text = "<Space>" }) end, { desc = "Telescope leader key mappings" })
@@ -108,6 +105,7 @@ vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end, {
 
 -- Tab navigation
 vim.keymap.set("n", "<c-w><tab>", "<cmd>tabnext<CR>", { desc = "Next tab" })
+vim.keymap.set("n", "<c-w>N", "<cmd>tabnew<cr>", { desc = "Open new tab" })
 
 -- Fzf shortcuts
 vim.keymap.set('n', '<c-p>', '<cmd>FzfFiles<cr>', { desc = 'FZF files' })
