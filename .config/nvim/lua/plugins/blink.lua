@@ -24,7 +24,7 @@ return {
     keymap = {
       preset = 'default',
 
-      ['<C-q>'] = { 'show' },
+      ['<C-l>'] = { 'show' },
       ['<Tab>'] = {},
       ['<S-Tab>'] = {},
     },

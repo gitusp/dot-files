@@ -78,11 +78,11 @@ vim.keymap.set("n", "<c-l>", "<cmd>nohlsearch<CR><C-L>")
 vim.keymap.set("n", "Q", "@q")
 vim.keymap.set("n", "_", "@:")
 vim.keymap.set({"n", "x"}, "Y", '"+y')
-vim.keymap.set("n", "<c-q>", vim.lsp.buf.code_action)
 vim.keymap.set("n", "<c-/>", "<cmd>FzfLgrepCurbuf<cr>")
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 -- Single key mappings with leader
+vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action)
 vim.keymap.set("n", "<leader>q", function() require("quicker").toggle() end, { desc = "Toggle quickfix" })
 vim.keymap.set("n", "<leader>l", function() require("quicker").toggle({ loclist = true }) end, { desc = "Toggle loclist" })
 vim.keymap.set("n", "<leader>c", "<cmd>CopilotChatOpen<cr>", { desc = "Open Copilot Chat" })
