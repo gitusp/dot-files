@@ -61,9 +61,6 @@ end, { desc = 'Scratch' })
 vim.api.nvim_create_user_command('Journal', function()
   vim.cmd('e ' .. vim.fn.expand("%"):gsub("[^/]*$", "") .. vim.fn.strftime("%Y-%m-%d") .. '.md')
 end, { desc = 'Journal' })
-vim.api.nvim_create_user_command('Spawn', function()
-  vim.cmd('silent !wezterm cli spawn --new-window --cwd "' .. vim.fn.expand("%"):gsub("[^/]*$", "") .. '"')
-end, { desc = 'Spawn terminal with cwd' })
 
 --
 -- Keymaps
@@ -89,7 +86,6 @@ vim.keymap.set("n", "<leader>d", vim.diagnostic.setqflist, { desc = "LSP Diagnos
 vim.keymap.set("n", "<leader>m", "<cmd>TSC<cr>", { desc = "Compile TypeScript" })
 vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "LSP Rename" })
 vim.keymap.set("n", "<leader>f", "<cmd>Flog<cr>", { desc = "Git log" })
-vim.keymap.set("n", "<leader>n", "<cmd>Spawn<cr>", { desc = "Spawn terminal with cwd" })
 vim.keymap.set("n", "<leader>o", "<cmd>OverseerRun<cr>", { desc = "Run task" })
 vim.keymap.set("n", "<leader>:", function() require('telescope.builtin').commands() end, { desc = 'Telescope commands' })
 vim.keymap.set("n", "<leader>?", function() require('telescope.builtin').keymaps({ default_text = "<Space>" }) end, { desc = "Telescope leader key mappings" })
