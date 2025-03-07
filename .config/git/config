@@ -1,3 +1,0 @@
-[alias]
-  ghm = "!gh pr merge -d -m"
-  ghma = "!gh pr merge -d -m --admin"
