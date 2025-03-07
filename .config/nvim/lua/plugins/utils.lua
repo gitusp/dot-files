@@ -88,4 +88,9 @@ return {
       })
     end,
   },
+  {
+    'stevearc/overseer.nvim',
+    opts = {},
+    config = true,
+  },
 }
