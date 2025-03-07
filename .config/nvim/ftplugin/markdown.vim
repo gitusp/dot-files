@@ -1,20 +1,27 @@
 nmap <buffer><silent> <localleader>c :call <SID>ToggleCheckbox()<CR>
+vmap <buffer><silent> <localleader>c :call <SID>ToggleCheckbox()<CR>
 nmap <buffer><silent> <localleader>t :TableModeRealign<CR>
 
-function! s:ToggleCheckbox()
-  let line = getline('.')
-  let dest = ''
+function! s:ToggleCheckbox() range
+  let l:regex = '^\s*- \[\zs[ xX]\ze\]'
+  let l:pos = winsaveview()
+  let l:dest = ''
 
-  if match(line, '^\s*- \[ ]') != -1
-    let dest = 'x'
-  elseif match(line, '^\s*- \[x]') != -1
-    let dest = ' '
-  endif
+  for line_num in range(a:firstline, a:lastline)
+    let l:line = getline(line_num)
+    let l:checkbox = matchstr(l:line, regex)
 
-  if dest != ''
-    let l:pos = winsaveview()
-    exe 's/^\s*- \[\zs.\ze]/' . dest . '/'
-    call winrestview(l:pos)
-  endif
+    if l:checkbox == ''
+      continue
+    endif
+
+    if l:dest == ''
+      let l:dest = l:checkbox == ' ' ? 'x' : ' '
+    endif
+
+    execute line_num . 's/' . l:regex . '/' . l:dest . '/'
+  endfor
+
+  call winrestview(l:pos)
 endfunction
 
