@@ -66,11 +66,6 @@ vim.api.nvim_create_user_command('Spawn', function()
 end, { desc = 'Spawn terminal with cwd' })
 
 --
--- Aliases
---
-vim.cmd('cnoreabbrev O Octo')
-
---
 -- Keymaps
 --
 -- Single key mappings

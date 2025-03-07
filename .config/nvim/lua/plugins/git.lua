@@ -41,24 +41,4 @@ return {
         })
       end
   },
-  {
-    'pwntester/octo.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'ibhagwan/fzf-lua',
-      'nvim-tree/nvim-web-devicons',
-    },
-    config = function ()
-      require("octo").setup({
-        use_local_fs = true,
-        mappings = {
-          submit_win = {
-            approve_review = { lhs = "<localleader>a", desc = "approve review" },
-            comment_review = { lhs = "<localleader>c", desc = "comment review" },
-            request_changes = { lhs = "<localleader>r", desc = "request changes review" },
-          },
-        }
-      })
-    end
-  }
 }
