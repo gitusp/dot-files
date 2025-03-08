@@ -90,6 +90,10 @@ vim.keymap.set("n", "<leader>o", "<cmd>OverseerRun<cr>", { desc = "Run task" })
 vim.keymap.set("n", "<leader>:", function() require('telescope.builtin').commands() end, { desc = 'Telescope commands' })
 vim.keymap.set("n", "<leader>?", function() require('telescope.builtin').keymaps({ default_text = "<Space>" }) end, { desc = "Telescope leader key mappings" })
 vim.keymap.set("n", "<localleader>?", function() require('telescope.builtin').keymaps({ default_text = "\\" }) end, { desc = "Telescope localleader key mappings" })
+vim.keymap.set('n', '<leader>b', '<cmd>GBrowse<cr>', { desc = 'Git browse' })
+vim.keymap.set('n', '<leader>p', '<cmd>PBrowse<cr>', { desc = 'Git PR browse' })
+vim.keymap.set('x', '<leader>b', ":'<,'>GBrowse<cr>", { desc = 'Git browse' })
+vim.keymap.set('x', '<leader>p', ":'<,'>PBrowse<cr>", { desc = 'Git PR browse' })
 
 -- TODO shortcuts
 vim.keymap.set("n", "]t", function() require("todo-comments").jump_next() end, { desc = "Next todo comment" })
