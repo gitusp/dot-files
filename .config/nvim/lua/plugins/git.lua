@@ -41,5 +41,5 @@ return {
         })
       end
   },
-  { 'gitusp/pbrowse.vim' },
+  { 'gitusp/pbrowse.nvim' },
 }
