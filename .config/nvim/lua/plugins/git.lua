@@ -41,5 +41,9 @@ return {
         })
       end
   },
-  { 'gitusp/pbrowse.nvim' },
+  {
+    "gitusp/pbrowse.nvim",
+    lazy = true,
+    cmd = { "PBrowse" },
+  },
 }
