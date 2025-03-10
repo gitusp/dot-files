@@ -93,4 +93,5 @@ return {
     opts = {},
     config = true,
   },
+  { "lukasx999/syncwd.nvim" },
 }
