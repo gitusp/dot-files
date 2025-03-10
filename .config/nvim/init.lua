@@ -60,6 +60,22 @@ end, { desc = 'Scratch' })
 vim.api.nvim_create_user_command('Journal', function()
   vim.cmd('e ' .. vim.fn.expand("%"):gsub("[^/]*$", "") .. vim.fn.strftime("%Y-%m-%d") .. '.md')
 end, { desc = 'Journal' })
+vim.api.nvim_create_user_command('PReview', function(opts)
+  vim.notify("Fetching PR information...", vim.log.levels.INFO)
+  local gh_output = vim.fn.system('gh pr view --json baseRefName --jq .baseRefName 2>/dev/null')
+  if vim.v.shell_error ~= 0 or gh_output == "" then
+    vim.notify("Failed to get parent branch", vim.log.levels.ERROR)
+    return
+  end
+
+  vim.notify("Fetching latest changes...", vim.log.levels.INFO)
+  vim.fn.system('git fetch')
+
+  local remote = opts.args ~= "" and opts.args or "origin"
+  local parent_branch = remote .. "/" .. gh_output:gsub('%s+$', '')
+  local merge_base = vim.fn.system('git merge-base ' .. parent_branch .. ' HEAD'):gsub('%s+$', '')
+  vim.cmd('G difftool -y ' .. merge_base)
+end, { desc = 'Review PR', nargs = '?' })
 
 --
 -- Keymaps
@@ -100,6 +116,7 @@ vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end, {
 
 -- Tab navigation
 vim.keymap.set("n", "<c-w><tab>", "<cmd>tabnext<CR>", { desc = "Next tab" })
+vim.keymap.set("n", "<c-w><s-tab>", "<cmd>tabprevious<CR>", { desc = "Previous tab" })
 vim.keymap.set("n", "<c-w>N", "<cmd>tabnew<cr>", { desc = "Open new tab" })
 
 -- Fzf shortcuts
