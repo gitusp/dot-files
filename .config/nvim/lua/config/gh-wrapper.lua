@@ -1,4 +1,4 @@
-local function pr_checkout()
+vim.api.nvim_create_user_command('PRCheckout', function()
   require('fzf-lua').fzf_exec('gh pr list --json number,title,author --template \'{{range .}}{{tablerow .number .title .author.login}}{{end}}{{tablerender}}\'', {
     prompt = "PRs> ",
     actions = {
@@ -15,9 +15,9 @@ local function pr_checkout()
     },
     preview = "CLICOLOR_FORCE=1 gh pr view `echo {} | cut -d' ' -f1`",
   })
-end
+end, {})
 
-local function pr_review()
+vim.api.nvim_create_user_command('PRReview', function()
   vim.notify("Fetching PR information...", vim.log.levels.INFO)
   local gh_output = vim.fn.system('gh pr view --json baseRefName --jq .baseRefName 2>/dev/null')
   if vim.v.shell_error ~= 0 or gh_output == "" then
@@ -28,11 +28,7 @@ local function pr_review()
   local parent_branch = "origin/" .. gh_output:gsub('%s+$', '')
   local merge_base = vim.fn.system('git merge-base ' .. parent_branch .. ' HEAD'):gsub('%s+$', '')
   vim.cmd('G difftool -y ' .. merge_base)
-end
-
-vim.api.nvim_create_user_command('PRCheckout', pr_checkout, {})
-
-vim.api.nvim_create_user_command('PRReview', pr_review, {})
+end, {})
 
 vim.api.nvim_create_user_command('PRBrowse', function()
   local gh_output = vim.fn.system('gh pr view -w')
