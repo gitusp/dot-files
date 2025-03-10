@@ -1,4 +1,5 @@
 require("config.lazy")
+require("config.gh-wrapper")
 
 --
 -- Base Configuration
@@ -60,40 +61,6 @@ end, { desc = 'Scratch' })
 vim.api.nvim_create_user_command('Journal', function()
   vim.cmd('e ' .. vim.fn.expand("%"):gsub("[^/]*$", "") .. vim.fn.strftime("%Y-%m-%d") .. '.md')
 end, { desc = 'Journal' })
-vim.api.nvim_create_user_command('PReview', function(opts)
-  require('fzf-lua').fzf_exec('gh pr list --json number,title,author --template \'{{range .}}{{tablerow .number .title .author.login}}{{end}}{{tablerender}}\'', {
-    prompt = "PRs> ",
-    actions = {
-      ['default'] = function(selected)
-        local parts = vim.split(selected[1], ' ')
-        local pr_number = parts[1]
-
-        -- Try to fetch and checkout PR directly
-        checkout_result = vim.fn.system('gh pr checkout ' .. pr_number .. ' 2>&1')
-        if vim.v.shell_error ~= 0 then
-          vim.notify("Failed to checkout PR: " .. checkout_result, vim.log.levels.ERROR)
-          return
-        end
-
-        vim.notify("Fetching PR information...", vim.log.levels.INFO)
-        local gh_output = vim.fn.system('gh pr view --json baseRefName --jq .baseRefName 2>/dev/null')
-        if vim.v.shell_error ~= 0 or gh_output == "" then
-          vim.notify("Failed to get parent branch", vim.log.levels.ERROR)
-          return
-        end
-
-        vim.notify("Fetching latest changes...", vim.log.levels.INFO)
-        vim.fn.system('git fetch')
-
-        local remote = opts.args ~= "" and opts.args or "origin"
-        local parent_branch = remote .. "/" .. gh_output:gsub('%s+$', '')
-        local merge_base = vim.fn.system('git merge-base ' .. parent_branch .. ' HEAD'):gsub('%s+$', '')
-        vim.cmd('G difftool -y ' .. merge_base)
-      end
-    },
-    preview = "CLICOLOR_FORCE=1 gh pr view `echo {} | cut -d' ' -f1`",
-  })
-end, { desc = 'Review PR', nargs = '?' })
 
 --
 -- Keymaps
@@ -139,7 +106,7 @@ vim.keymap.set("n", "<c-w>N", "<cmd>tabnew<cr>", { desc = "Open new tab" })
 
 -- Fzf shortcuts
 vim.keymap.set('n', '<c-p>', '<cmd>FzfFiles<cr>', { desc = 'FZF files' })
-vim.keymap.set('n', '<bs>', '<cmd>FzfMru<cr>', { desc = 'FZF MRU' })
+vim.keymap.set('n', 'gh', '<cmd>FzfMru<cr>', { desc = 'FZF MRU' })
 vim.keymap.set('n', 'gs', '<cmd>FzfLiveGrepNative<cr>', { desc = 'FZF live grep' })
 vim.keymap.set('n', 'gS', '<cmd>FzfGrepCword<cr>', { desc = 'FZF search word under cursor' })
 vim.keymap.set('n', 'gd', '<cmd>FzfLspDefinitions<cr>', { desc = 'FZF LSP definitions' })
