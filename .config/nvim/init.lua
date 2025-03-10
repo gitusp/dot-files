@@ -61,20 +61,38 @@ vim.api.nvim_create_user_command('Journal', function()
   vim.cmd('e ' .. vim.fn.expand("%"):gsub("[^/]*$", "") .. vim.fn.strftime("%Y-%m-%d") .. '.md')
 end, { desc = 'Journal' })
 vim.api.nvim_create_user_command('PReview', function(opts)
-  vim.notify("Fetching PR information...", vim.log.levels.INFO)
-  local gh_output = vim.fn.system('gh pr view --json baseRefName --jq .baseRefName 2>/dev/null')
-  if vim.v.shell_error ~= 0 or gh_output == "" then
-    vim.notify("Failed to get parent branch", vim.log.levels.ERROR)
-    return
-  end
+  require('fzf-lua').fzf_exec('gh pr list --json number,title,author --template \'{{range .}}{{tablerow .number .title .author.login}}{{end}}{{tablerender}}\'', {
+    prompt = "PRs> ",
+    actions = {
+      ['default'] = function(selected)
+        local parts = vim.split(selected[1], ' ')
+        local pr_number = parts[1]
 
-  vim.notify("Fetching latest changes...", vim.log.levels.INFO)
-  vim.fn.system('git fetch')
+        -- Try to fetch and checkout PR directly
+        checkout_result = vim.fn.system('gh pr checkout ' .. pr_number .. ' 2>&1')
+        if vim.v.shell_error ~= 0 then
+          vim.notify("Failed to checkout PR: " .. checkout_result, vim.log.levels.ERROR)
+          return
+        end
 
-  local remote = opts.args ~= "" and opts.args or "origin"
-  local parent_branch = remote .. "/" .. gh_output:gsub('%s+$', '')
-  local merge_base = vim.fn.system('git merge-base ' .. parent_branch .. ' HEAD'):gsub('%s+$', '')
-  vim.cmd('G difftool -y ' .. merge_base)
+        vim.notify("Fetching PR information...", vim.log.levels.INFO)
+        local gh_output = vim.fn.system('gh pr view --json baseRefName --jq .baseRefName 2>/dev/null')
+        if vim.v.shell_error ~= 0 or gh_output == "" then
+          vim.notify("Failed to get parent branch", vim.log.levels.ERROR)
+          return
+        end
+
+        vim.notify("Fetching latest changes...", vim.log.levels.INFO)
+        vim.fn.system('git fetch')
+
+        local remote = opts.args ~= "" and opts.args or "origin"
+        local parent_branch = remote .. "/" .. gh_output:gsub('%s+$', '')
+        local merge_base = vim.fn.system('git merge-base ' .. parent_branch .. ' HEAD'):gsub('%s+$', '')
+        vim.cmd('G difftool -y ' .. merge_base)
+      end
+    },
+    preview = "CLICOLOR_FORCE=1 gh pr view `echo {} | cut -d' ' -f1`",
+  })
 end, { desc = 'Review PR', nargs = '?' })
 
 --
