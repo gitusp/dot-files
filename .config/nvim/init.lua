@@ -20,7 +20,6 @@ vim.o.smarttab = true
 
 vim.o.lazyredraw = true
 vim.o.shortmess = vim.o.shortmess .. 'I'
-vim.o.showtabline = 0
 vim.o.signcolumn = "yes"
 vim.o.diffopt = vim.o.diffopt .. ',iwhite'
 vim.o.diffopt = vim.o.diffopt .. ',algorithm:histogram'
