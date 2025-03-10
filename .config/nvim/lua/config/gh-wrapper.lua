@@ -1,17 +1,37 @@
-vim.api.nvim_create_user_command('PRCheckout', function()
+local function get_pr_number(selected)
+  local parts = vim.split(selected[1], ' ')
+  return parts[1]
+end
+
+local function checkout_pr(pr_number)
+  vim.notify("Checking out PR " .. pr_number, vim.log.levels.INFO)
+  checkout_result = vim.fn.system('gh pr checkout ' .. pr_number .. ' 2>&1')
+  if vim.v.shell_error ~= 0 then
+    error("Failed to checkout PR: " .. checkout_result)
+  end
+end
+
+vim.api.nvim_create_user_command('PR', function()
   require('fzf-lua').fzf_exec('gh pr list --json number,title,author --template \'{{range .}}{{tablerow .number .title .author.login}}{{end}}{{tablerender}}\'', {
     prompt = "PRs> ",
     actions = {
       ['default'] = function(selected)
-        local parts = vim.split(selected[1], ' ')
-        local pr_number = parts[1]
-
-        vim.notify("Checking out PR " .. pr_number, vim.log.levels.INFO)
-        checkout_result = vim.fn.system('gh pr checkout ' .. pr_number .. ' 2>&1')
-        if vim.v.shell_error ~= 0 then
-          vim.notify("Failed to checkout PR: " .. checkout_result, vim.log.levels.ERROR)
+        vim.fn.system('gh pr view ' .. get_pr_number(selected) .. ' -w')
+      end,
+      ['ctrl-o'] = function(selected)
+        local success, result = pcall(checkout_pr, get_pr_number(selected))
+        if not success then
+          vim.notify(result, vim.log.levels.ERROR)
         end
-      end
+      end,
+      ['ctrl-r'] = function(selected)
+        local success, result = pcall(checkout_pr, get_pr_number(selected))
+        if not success then
+          vim.notify(result, vim.log.levels.ERROR)
+        else
+          vim.cmd('PRReview')
+        end
+      end,
     },
     preview = "CLICOLOR_FORCE=1 gh pr view `echo {} | cut -d' ' -f1`",
   })
@@ -31,10 +51,11 @@ vim.api.nvim_create_user_command('PRReview', function()
 end, {})
 
 vim.api.nvim_create_user_command('PRBrowse', function()
-  local gh_output = vim.fn.system('gh pr view -w')
-  if vim.v.shell_error ~= 0 then
-    vim.fn.system('gh pr create -w')
-  end
+  vim.fn.system('gh pr view -w')
+end, {})
+
+vim.api.nvim_create_user_command('PRCreate', function()
+  vim.fn.system('gh pr create -w')
 end, {})
 
 vim.api.nvim_create_user_command('PRMerge', function()
