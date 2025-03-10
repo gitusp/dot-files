@@ -46,11 +46,10 @@ vim.api.nvim_create_user_command('PRReview', function()
 end, {})
 
 vim.api.nvim_create_user_command('PRBrowse', function()
-  vim.fn.system('gh pr view -w')
-end, {})
-
-vim.api.nvim_create_user_command('PRCreate', function()
-  vim.fn.system('gh pr create -w')
+  local gh_output = vim.fn.system('gh pr view -w')
+  if vim.v.shell_error ~= 0 then
+    vim.fn.system('gh pr create -w')
+  end
 end, {})
 
 vim.api.nvim_create_user_command('PRMerge', function()
