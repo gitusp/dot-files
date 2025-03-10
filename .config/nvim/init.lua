@@ -139,7 +139,7 @@ vim.keymap.set("n", "<c-w>N", "<cmd>tabnew<cr>", { desc = "Open new tab" })
 
 -- Fzf shortcuts
 vim.keymap.set('n', '<c-p>', '<cmd>FzfFiles<cr>', { desc = 'FZF files' })
-vim.keymap.set('n', '<bs>', '<cmd>FzfMru<cr>', { desc = 'FZF MRU' })
+vim.keymap.set('n', 'gh', '<cmd>FzfMru<cr>', { desc = 'FZF MRU' })
 vim.keymap.set('n', 'gs', '<cmd>FzfLiveGrepNative<cr>', { desc = 'FZF live grep' })
 vim.keymap.set('n', 'gS', '<cmd>FzfGrepCword<cr>', { desc = 'FZF search word under cursor' })
 vim.keymap.set('n', 'gd', '<cmd>FzfLspDefinitions<cr>', { desc = 'FZF LSP definitions' })
