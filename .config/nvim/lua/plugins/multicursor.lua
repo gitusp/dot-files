@@ -32,10 +32,6 @@ return {
         end
       end)
 
-      -- Append/insert for each line of visual selections.
-      set("x", "I", mc.insertVisual)
-      set("x", "A", mc.appendVisual)
-
       -- Jumplist support
       set({"x", "n"}, "<c-i>", mc.jumpForward)
       set({"x", "n"}, "<c-o>", mc.jumpBackward)
