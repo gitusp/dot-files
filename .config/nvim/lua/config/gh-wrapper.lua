@@ -52,10 +52,6 @@ end, {})
 
 vim.api.nvim_create_user_command('PRReview', pr_review, {})
 
-vim.api.nvim_create_user_command('PRBrowse', function()
-  vim.fn.system('gh pr view -w')
-end, {})
-
 vim.api.nvim_create_user_command('PRCreate', function()
   vim.fn.system('gh pr create -w')
 end, {})
