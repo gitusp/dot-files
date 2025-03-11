@@ -50,6 +50,15 @@ vim.api.nvim_create_autocmd( 'TextYankPost', {
     vim.highlight.on_yank({ higroup='Visual', timeout=500 })
   end
 })
+-- https://wezterm.org/shell-integration.html
+vim.api.nvim_create_autocmd('DirChanged', {
+  group = 'base',
+  callback = function()
+    local cwd = vim.fn.getcwd()
+    local hostname = vim.fn.hostname()
+    os.execute('printf "\\033]7;file://' .. hostname .. cwd .. '\\033\\\\"')
+  end,
+})
 
 --
 -- Custom Commands
