@@ -1,8 +1,3 @@
-local function get_pr_number(selected)
-  local parts = vim.split(selected[1], ' ')
-  return parts[1]
-end
-
 local function pr_checkout(pr_number)
   vim.notify("Checking out PR " .. pr_number, vim.log.levels.INFO)
   checkout_result = vim.fn.system('gh pr checkout ' .. pr_number .. ' 2>&1')
@@ -25,17 +20,22 @@ local function pr_review()
 end
 
 vim.api.nvim_create_user_command('PR', function()
+  local function get_pr_number(selected)
+    local parts = vim.split(selected[1], ' ')
+    return parts[1]
+  end
+
   require('fzf-lua').fzf_exec('gh pr list --json number,title,author --template \'{{range .}}{{tablerow .number .title .author.login}}{{end}}{{tablerender}}\'', {
     prompt = "PRs> ",
     actions = {
       ['default'] = function(selected)
+        vim.fn.system('gh pr view ' .. get_pr_number(selected) .. ' -w')
+      end,
+      ['ctrl-o'] = function(selected)
         local success, result = pcall(pr_checkout, get_pr_number(selected))
         if not success then
           vim.notify(result, vim.log.levels.ERROR)
         end
-      end,
-      ['ctrl-o'] = function(selected)
-        vim.fn.system('gh pr view ' .. get_pr_number(selected) .. ' -w')
       end,
       ['ctrl-r'] = function(selected)
         local success, result = pcall(pr_checkout, get_pr_number(selected))
