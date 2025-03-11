@@ -12,6 +12,7 @@ return {
         return function(selected, opts)
           selected[1] = selected[1]:match("[^\t]+$")
           action(selected, opts)
+          require("oil.actions").cd.callback({ scope = "win" })
         end
       end
 
