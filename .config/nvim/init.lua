@@ -115,7 +115,3 @@ vim.keymap.set('n', 'gr', '<cmd>FzfLspReferences<cr>', { desc = 'FZF LSP referen
 vim.keymap.set('n', 'gy', '<cmd>FzfLspTypedefs<cr>', { desc = 'FZF LSP type definitions' })
 vim.keymap.set('n', 'gl', '<cmd>FzfLspImplementations<cr>', { desc = 'FZF LSP implementations' })
 vim.keymap.set('n', 'gz', '<cmd>FzfZoxide<cr>', { desc = 'FZF Zoxide' })
-
-vim.keymap.set('n', 'gK', function()
-  vim.diagnostic.open_float(0, { scope = 'line' })
-end, { desc = 'Open diagnostics float' })
