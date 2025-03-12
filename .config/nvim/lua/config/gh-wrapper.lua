@@ -1,5 +1,7 @@
 local namespace = vim.api.nvim_create_namespace('pr-threads')
 
+local pr_shown = false
+
 local function pr_checkout(pr_number)
   vim.notify("Checking out PR " .. pr_number, vim.log.levels.INFO)
   checkout_result = vim.fn.system('gh pr checkout ' .. pr_number .. ' 2>&1')
@@ -7,8 +9,6 @@ local function pr_checkout(pr_number)
     error("Failed to checkout PR: " .. checkout_result)
   end
 end
-
-local shown = false
 
 local function pr_review()
   vim.cmd('PRFetchThreads')
@@ -137,8 +137,9 @@ vim.api.nvim_create_user_command('PRFetchThreads', function()
               
                 local buf_diagnostics = {}
                 for _, thread in pairs(threads) do
-                  local collapsed = thread.isResolved or thread.isOutdated
-                  if (type(thread.startLine) == "number" or type(thread.line) == "number") and not collapsed then
+                  local hidden = thread.isResolved or thread.isOutdated
+                  local has_line = type(thread.startLine) == "number" or type(thread.line) == "number"
+                  if has_line and not hidden then
                     local diag = build_diagnostic(base_path, merge_base, thread)
                     
                     -- Group diagnostics by buffer
@@ -153,7 +154,7 @@ vim.api.nvim_create_user_command('PRFetchThreads', function()
                 for bufnr, diagnostics in pairs(buf_diagnostics) do
                   vim.diagnostic.set(namespace, bufnr, diagnostics, {})
                 end
-                shown = true
+                pr_shown = true
 
                 vim.notify("Loaded all the threads into diagnostics", vim.log.levels.INFO)
               end
@@ -189,16 +190,16 @@ end, {})
 
 vim.api.nvim_create_user_command('PRShowThreads', function()
   vim.diagnostic.show(namespace)
-  shown = true
+  pr_shown = true
 end, {})
 
 vim.api.nvim_create_user_command('PRHideThreads', function()
   vim.diagnostic.hide(namespace)
-  shown = false
+  pr_shown = false
 end, {})
 
 vim.api.nvim_create_user_command('PRToggleThreads', function()
-  if shown then
+  if pr_shown then
     vim.cmd('PRHideThreads')
   else
     vim.cmd('PRShowThreads')
