@@ -99,13 +99,16 @@ vim.api.nvim_create_user_command('PRThreads', function()
         
           local buf_diagnostics = {}
           for _, thread in pairs(threads) do
-            local diag = build_diagnostic(base_path, thread)
-            
-            -- Group diagnostics by buffer
-            if not buf_diagnostics[diag.bufnr] then
-              buf_diagnostics[diag.bufnr] = {}
+            if type(thread.comment.start_line) == "number" or type(thread.comment.line) == "number" then
+              local diag = build_diagnostic(base_path, thread)
+              
+              -- Group diagnostics by buffer
+              if not buf_diagnostics[diag.bufnr] then
+                buf_diagnostics[diag.bufnr] = {}
+              end
+              table.insert(buf_diagnostics[diag.bufnr], diag)
             end
-            table.insert(buf_diagnostics[diag.bufnr], diag)
+            -- Otherwise, the comment is outdated.
           end
 
           for bufnr, diagnostics in pairs(buf_diagnostics) do
