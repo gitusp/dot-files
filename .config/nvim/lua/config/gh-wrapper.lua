@@ -8,8 +8,10 @@ local function pr_checkout(pr_number)
   end
 end
 
+local shown = false
+
 local function pr_review()
-  vim.cmd('PRThreads')
+  vim.cmd('PRFetchThreads')
 
   vim.notify("Fetching PR information...", vim.log.levels.INFO)
   local gh_output = vim.fn.system('gh pr view --json baseRefName --jq .baseRefName 2>/dev/null')
@@ -51,7 +53,7 @@ local function build_diagnostic(base_path, merge_base, thread)
   return diag
 end
 
-vim.api.nvim_create_user_command('PRThreads', function()
+vim.api.nvim_create_user_command('PRFetchThreads', function()
   vim.notify("Fetching PR threads...", vim.log.levels.INFO)
   
   vim.fn.jobstart('gh pr view --json headRefName --jq .headRefName 2>/dev/null', {
@@ -147,9 +149,11 @@ vim.api.nvim_create_user_command('PRThreads', function()
                   end
                 end
 
+                vim.diagnostic.reset(namespace)
                 for bufnr, diagnostics in pairs(buf_diagnostics) do
                   vim.diagnostic.set(namespace, bufnr, diagnostics, {})
                 end
+                shown = true
 
                 vim.notify("Loaded all the threads into diagnostics", vim.log.levels.INFO)
               end
@@ -181,6 +185,24 @@ vim.api.nvim_create_user_command('PRThreads', function()
       end
     end,
   })
+end, {})
+
+vim.api.nvim_create_user_command('PRShowThreads', function()
+  vim.diagnostic.show(namespace)
+  shown = true
+end, {})
+
+vim.api.nvim_create_user_command('PRHideThreads', function()
+  vim.diagnostic.hide(namespace)
+  shown = false
+end, {})
+
+vim.api.nvim_create_user_command('PRToggleThreads', function()
+  if shown then
+    vim.cmd('PRHideThreads')
+  else
+    vim.cmd('PRShowThreads')
+  end
 end, {})
 
 vim.api.nvim_create_user_command('PR', function()
