@@ -1,5 +1,7 @@
 local namespace = vim.api.nvim_create_namespace('pr-threads')
 
+local pr_shown = false
+
 local function pr_checkout(pr_number)
   vim.notify("Checking out PR " .. pr_number, vim.log.levels.INFO)
   checkout_result = vim.fn.system('gh pr checkout ' .. pr_number .. ' 2>&1')
@@ -9,7 +11,7 @@ local function pr_checkout(pr_number)
 end
 
 local function pr_review()
-  vim.cmd('PRThreads')
+  vim.cmd('PRFetchThreads')
 
   vim.notify("Fetching PR information...", vim.log.levels.INFO)
   local gh_output = vim.fn.system('gh pr view --json baseRefName --jq .baseRefName 2>/dev/null')
@@ -23,40 +25,38 @@ local function pr_review()
   vim.cmd('G difftool -y ' .. merge_base)
 end
 
-local function build_diagnostic(base_path, thread)
-  local comments = {thread.comment}
-  for _, reply_comment in ipairs(thread.reply_comments) do
-    table.insert(comments, reply_comment)
+local function build_diagnostic(base_path, merge_base, thread)
+  local messages = {}
+  for _, comment in ipairs(thread.comments.nodes) do
+    table.insert(messages, comment.author.login .. " (" .. comment.createdAt .. "):\n" .. comment.body)
   end
 
-  local messages = {}
-  for _, comment in ipairs(comments) do
-    table.insert(messages, comment.user.login .. " (" .. comment.created_at .. "):\n" .. comment.body)
-  end
+  local path = thread.diffSide == "RIGHT"
+    and base_path .. '/' .. thread.path
+    or 'fugitive://' .. base_path .. '/.git//' .. merge_base .. '/' .. thread.path
 
   local diag = {
-    bufnr = vim.fn.bufadd(base_path .. '/' .. thread.comment.path),
+    bufnr = vim.fn.bufadd(path),
     col = 0,
     message = table.concat(messages, "\n\n"),
     severity = vim.diagnostic.severity.INFO,
     source = "PR Comment"
   }
 
-  if type(thread.comment.start_line) == "number" then
-    diag.lnum = thread.comment.start_line - 1
-    diag.end_lnum = thread.comment.line - 1
+  if type(thread.startLine) == "number" then
+    diag.lnum = thread.startLine - 1
+    diag.end_lnum = thread.line - 1
   else
-    diag.lnum = thread.comment.line - 1
+    diag.lnum = thread.line - 1
   end
 
   return diag
 end
 
-vim.api.nvim_create_user_command('PRThreads', function()
-  vim.notify("Fetching PR comments...", vim.log.levels.INFO)
+vim.api.nvim_create_user_command('PRFetchThreads', function()
+  vim.notify("Fetching PR threads...", vim.log.levels.INFO)
   
-  -- Get current PR number asynchronously
-  vim.fn.jobstart('gh pr view --json number --jq .number 2>/dev/null', {
+  vim.fn.jobstart('gh pr view --json headRefName --jq .headRefName 2>/dev/null', {
     stdout_buffered = true,
     on_stdout = function(_, data)
       if #data == 0 or (data[1] == "" and #data == 1) then
@@ -64,70 +64,116 @@ vim.api.nvim_create_user_command('PRThreads', function()
         return
       end
       
-      local pr_number = data[1]:gsub('%s+$', '')
-      
-      -- Fetch PR review comments using REST API asynchronously
-      vim.fn.jobstart('gh api repos/:owner/:repo/pulls/' .. pr_number .. '/comments --paginate', {
-        stdout_buffered = true,
-        on_stdout = function(_, comments_data)
-          if #comments_data == 0 or (comments_data[1] == "" and #comments_data == 1) then
-            vim.notify("Failed to fetch PR comments", vim.log.levels.ERROR)
-            return
-          end
-          
-          local comments_json = table.concat(comments_data, '\n')
-          
-          local comments = vim.fn.json_decode(comments_json)
-          if #comments == 0 then
-            vim.notify("No comments found in this PR", vim.log.levels.INFO)
-            return
-          end
-          
-          local threads = {}
-          for _, comment in ipairs(comments) do
-            if comment.in_reply_to_id then
-              table.insert(threads[comment.in_reply_to_id].reply_comments, comment)
-            else
-              threads[comment.id] = {
-                comment = comment,
-                reply_comments = {}
-              }
-            end
-          end
-          
-          local base_path = vim.fn.trim(vim.fn.system('git rev-parse --show-toplevel')):gsub('%s+$', '')
-        
-          local buf_diagnostics = {}
-          for _, thread in pairs(threads) do
-            if type(thread.comment.start_line) == "number" or type(thread.comment.line) == "number" then
-              local diag = build_diagnostic(base_path, thread)
-              
-              -- Group diagnostics by buffer
-              if not buf_diagnostics[diag.bufnr] then
-                buf_diagnostics[diag.bufnr] = {}
+      local headRefName = data[1]:gsub('%s+$', '')
+
+      local threads = {}
+
+      local function load_threads(threads, after)
+        local after_arg = after and ' -F after=\'' .. after .. '\'' or ''
+        vim.fn.jobstart(
+          'gh api graphql -F owner=\'{owner}\' -F name=\'{repo}\' -F headRefName=\'' .. headRefName .. '\'' .. after_arg .. ' -f query=\'' ..
+          '  query($name: String!, $owner: String!, $headRefName: String!, $after: String) {' ..
+          '    repository(owner: $owner, name: $name) {' ..
+          '      pullRequests(first: 1, headRefName: $headRefName) {' ..
+          '        nodes {' ..
+          '          baseRefName' ..
+          '          reviewThreads(first: 100, after: $after) {' ..
+          '            nodes {' ..
+          '              path' ..
+          '              line' ..
+          '              startLine' ..
+          '              diffSide' ..
+          '              isResolved' ..
+          '              isOutdated' ..
+          '              comments(first: 100) {' ..
+          '                nodes {' ..
+          '                  body' ..
+          '                  author {' ..
+          '                    login' ..
+          '                  }' ..
+          '                  createdAt' ..
+          '                }' ..
+          '              }' ..
+          '            }' ..
+          '            pageInfo {' ..
+          '              endCursor' ..
+          '              hasNextPage' ..
+          '            }' ..
+          '          }' ..
+          '        }' ..
+          '      }' ..
+          '    }' ..
+          '  }\'',
+          {
+            stdout_buffered = true,
+            on_stdout = function(_, repository_data)
+              if #repository_data == 0 or (repository_data[1] == "" and #repository_data == 1) then
+                vim.notify("Failed to fetch PR threads", vim.log.levels.ERROR)
+                return
               end
-              table.insert(buf_diagnostics[diag.bufnr], diag)
-            end
-            -- Otherwise, the comment is outdated.
-          end
+              
+              local repository_json = table.concat(repository_data, '\n')
+              local decoded = vim.fn.json_decode(repository_json)
 
-          for bufnr, diagnostics in pairs(buf_diagnostics) do
-            vim.diagnostic.set(namespace, bufnr, diagnostics, {})
-          end
+              if #decoded.data.repository.pullRequests.nodes == 0 then
+                vim.notify("PR not found", vim.log.levels.ERROR)
+                return
+              end
 
-          vim.notify("Loaded all the threads into diagnostics", vim.log.levels.INFO)
-        end,
-        on_stderr = function(_, data)
-          if #data > 0 and (data[1] ~= "" or #data > 1) then
-            vim.notify("Error fetching PR comments: " .. table.concat(data, "\n"), vim.log.levels.ERROR)
-          end
-        end,
-        on_exit = function(_, exit_code)
-          if exit_code ~= 0 then
-            vim.notify("Failed to fetch PR comments: exit code " .. exit_code, vim.log.levels.ERROR)
-          end
-        end,
-      })
+              if #decoded.data.repository.pullRequests.nodes[1].reviewThreads.nodes == 0 then
+                vim.notify("No threads found in this PR", vim.log.levels.INFO)
+                return
+              end
+
+              for _, thread in ipairs(decoded.data.repository.pullRequests.nodes[1].reviewThreads.nodes) do
+                table.insert(threads, thread)
+              end
+              
+              if decoded.data.repository.pullRequests.nodes[1].reviewThreads.pageInfo.hasNextPage then
+                load_threads(threads, decoded.data.repository.pullRequests.nodes[1].reviewThreads.pageInfo.endCursor)
+              else
+                local base_path = vim.fn.trim(vim.fn.system('git rev-parse --show-toplevel')):gsub('%s+$', '')
+                local merge_base = vim.fn.system('git merge-base origin/' .. decoded.data.repository.pullRequests.nodes[1].baseRefName .. ' HEAD'):gsub('%s+$', '')
+              
+                local buf_diagnostics = {}
+                for _, thread in pairs(threads) do
+                  local hidden = thread.isResolved or thread.isOutdated
+                  local has_line = type(thread.startLine) == "number" or type(thread.line) == "number"
+                  if has_line and not hidden then
+                    local diag = build_diagnostic(base_path, merge_base, thread)
+                    
+                    -- Group diagnostics by buffer
+                    if not buf_diagnostics[diag.bufnr] then
+                      buf_diagnostics[diag.bufnr] = {}
+                    end
+                    table.insert(buf_diagnostics[diag.bufnr], diag)
+                  end
+                end
+
+                vim.diagnostic.reset(namespace)
+                for bufnr, diagnostics in pairs(buf_diagnostics) do
+                  vim.diagnostic.set(namespace, bufnr, diagnostics, {})
+                end
+                pr_shown = true
+
+                vim.notify("Loaded all the threads into diagnostics", vim.log.levels.INFO)
+              end
+            end,
+            on_stderr = function(_, data)
+              if #data > 0 and (data[1] ~= "" or #data > 1) then
+                vim.notify("Error fetching PR threads: " .. table.concat(data, "\n"), vim.log.levels.ERROR)
+              end
+            end,
+            on_exit = function(_, exit_code)
+              if exit_code ~= 0 then
+                vim.notify("Failed to fetch PR threads: exit code " .. exit_code, vim.log.levels.ERROR)
+              end
+            end,
+          }
+        )
+      end
+      
+      load_threads({})
     end,
     on_stderr = function(_, data)
       if #data > 0 and (data[1] ~= "" or #data > 1) then
@@ -140,6 +186,24 @@ vim.api.nvim_create_user_command('PRThreads', function()
       end
     end,
   })
+end, {})
+
+vim.api.nvim_create_user_command('PRShowThreads', function()
+  vim.diagnostic.show(namespace)
+  pr_shown = true
+end, {})
+
+vim.api.nvim_create_user_command('PRHideThreads', function()
+  vim.diagnostic.hide(namespace)
+  pr_shown = false
+end, {})
+
+vim.api.nvim_create_user_command('PRToggleThreads', function()
+  if pr_shown then
+    vim.cmd('PRHideThreads')
+  else
+    vim.cmd('PRShowThreads')
+  end
 end, {})
 
 vim.api.nvim_create_user_command('PR', function()
