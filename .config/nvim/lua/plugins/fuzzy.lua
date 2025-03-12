@@ -34,6 +34,7 @@ return {
       vim.api.nvim_create_user_command('FzfLgrepCurbuf', fzf.lgrep_curbuf, { desc = 'FZF live grep current buffer' })
       vim.api.nvim_create_user_command('FzfGrepCword', fzf.grep_cword, { desc = 'FZF search word under cursor' })
       vim.api.nvim_create_user_command('FzfLiveGrepNative', fzf.live_grep_native, { desc = 'FZF live grep current project' })
+      vim.api.nvim_create_user_command('FzfDiagnosticsWorkspace', fzf.diagnostics_workspace, { desc = 'FZF diagnostics workspace' })
       vim.api.nvim_create_user_command('FzfLspReferences', fzf.lsp_references, { desc = 'FZF LSP references' })
       vim.api.nvim_create_user_command('FzfLspDefinitions', fzf.lsp_definitions, { desc = 'FZF LSP definitions' })
       vim.api.nvim_create_user_command('FzfLspDeclarations', fzf.lsp_declarations, { desc = 'FZF LSP declarations' })
