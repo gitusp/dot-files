@@ -81,7 +81,8 @@ vim.api.nvim_create_user_command('PRThreads', function()
           '              line' ..
           '              startLine' ..
           '              diffSide' ..
-          '              isCollapsed' ..
+          '              isResolved' ..
+          '              isOutdated' ..
           '              comments(first: 100) {' ..
           '                nodes {' ..
           '                  body' ..
@@ -134,7 +135,8 @@ vim.api.nvim_create_user_command('PRThreads', function()
               
                 local buf_diagnostics = {}
                 for _, thread in pairs(threads) do
-                  if (type(thread.startLine) == "number" or type(thread.line) == "number") and not thread.isCollapsed then
+                  local collapsed = thread.isResolved or thread.isOutdated
+                  if (type(thread.startLine) == "number" or type(thread.line) == "number") and not collapsed then
                     local diag = build_diagnostic(base_path, merge_base, thread)
                     
                     -- Group diagnostics by buffer
