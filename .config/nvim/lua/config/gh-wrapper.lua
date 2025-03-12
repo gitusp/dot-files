@@ -23,14 +23,18 @@ local function pr_review()
   vim.cmd('G difftool -y ' .. merge_base)
 end
 
-local function build_diagnostic(base_path, thread)
+local function build_diagnostic(base_path, merge_base, thread)
   local messages = {}
   for _, comment in ipairs(thread.comments.nodes) do
     table.insert(messages, comment.author.login .. " (" .. comment.createdAt .. "):\n" .. comment.body)
   end
 
+  local path = thread.diffSide == "RIGHT"
+    and base_path .. '/' .. thread.path
+    or 'fugitive://' .. base_path .. '/.git//' .. merge_base .. '/' .. thread.path
+
   local diag = {
-    bufnr = vim.fn.bufadd(base_path .. '/' .. thread.path),
+    bufnr = vim.fn.bufadd(path),
     col = 0,
     message = table.concat(messages, "\n\n"),
     severity = vim.diagnostic.severity.INFO,
@@ -70,14 +74,15 @@ vim.api.nvim_create_user_command('PRThreads', function()
           '    repository(owner: $owner, name: $name) {' ..
           '      pullRequests(first: 1, headRefName: $headRefName) {' ..
           '        nodes {' ..
+          '          baseRefName' ..
           '          reviewThreads(first: 100, after: $after) {' ..
           '            nodes {' ..
           '              path' ..
           '              line' ..
           '              startLine' ..
+          '              diffSide' ..
           '              isResolved' ..
           '              isOutdated' ..
-          '              path' ..
           '              comments(first: 100) {' ..
           '                nodes {' ..
           '                  body' ..
@@ -126,12 +131,13 @@ vim.api.nvim_create_user_command('PRThreads', function()
                 load_threads(threads, decoded.data.repository.pullRequests.nodes[1].reviewThreads.pageInfo.endCursor)
               else
                 local base_path = vim.fn.trim(vim.fn.system('git rev-parse --show-toplevel')):gsub('%s+$', '')
+                local merge_base = vim.fn.system('git merge-base origin/' .. decoded.data.repository.pullRequests.nodes[1].baseRefName .. ' HEAD'):gsub('%s+$', '')
               
                 local buf_diagnostics = {}
                 for _, thread in pairs(threads) do
                   local collapsed = thread.isResolved or thread.isOutdated
                   if (type(thread.startLine) == "number" or type(thread.line) == "number") and not collapsed then
-                    local diag = build_diagnostic(base_path, thread)
+                    local diag = build_diagnostic(base_path, merge_base, thread)
                     
                     -- Group diagnostics by buffer
                     if not buf_diagnostics[diag.bufnr] then
