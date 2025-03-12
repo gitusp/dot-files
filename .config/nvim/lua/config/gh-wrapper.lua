@@ -23,6 +23,35 @@ local function pr_review()
   vim.cmd('G difftool -y ' .. merge_base)
 end
 
+local function build_diagnostic(base_path, thread)
+  local comments = {thread.comment}
+  for _, reply_comment in ipairs(thread.reply_comments) do
+    table.insert(comments, reply_comment)
+  end
+
+  local messages = {}
+  for _, comment in ipairs(comments) do
+    table.insert(messages, comment.user.login .. " (" .. comment.created_at .. "):\n" .. comment.body)
+  end
+
+  local diag = {
+    bufnr = vim.fn.bufadd(base_path .. '/' .. thread.comment.path),
+    col = 0,
+    message = table.concat(messages, "\n\n"),
+    severity = vim.diagnostic.severity.INFO,
+    source = "PR Comment"
+  }
+
+  if type(thread.comment.start_line) == "number" then
+    diag.lnum = thread.comment.start_line - 1
+    diag.end_lnum = thread.comment.line - 1
+  else
+    diag.lnum = thread.comment.line - 1
+  end
+
+  return diag
+end
+
 vim.api.nvim_create_user_command('PRThreads', function()
   vim.notify("Fetching PR comments...", vim.log.levels.INFO)
   
@@ -54,7 +83,6 @@ vim.api.nvim_create_user_command('PRThreads', function()
             return
           end
           
-          -- Group comments by path and line (to simulate threads)
           local threads = {}
           for _, comment in ipairs(comments) do
             if comment.in_reply_to_id then
@@ -67,39 +95,11 @@ vim.api.nvim_create_user_command('PRThreads', function()
             end
           end
           
-          local function build_diagnostic(thread)
-            local comments = {thread.comment}
-            for _, reply_comment in ipairs(thread.reply_comments) do
-              table.insert(comments, reply_comment)
-            end
-
-            local messages = {}
-            for _, comment in ipairs(comments) do
-              table.insert(messages, comment.user.login .. " (" .. comment.created_at .. "):\n" .. comment.body)
-            end
-
-            local diag = {
-              bufnr = vim.fn.bufadd(thread.comment.path),
-              col = 0,
-              message = table.concat(messages, "\n\n"),
-              severity = vim.diagnostic.severity.INFO,
-              source = "PR Comment"
-            }
-
-            if type(thread.comment.start_line) == "number" then
-              diag.lnum = thread.comment.start_line - 1
-              diag.end_lnum = thread.comment.line - 1
-            else
-              diag.lnum = thread.comment.line - 1
-            end
-
-            return diag
-          end
-          
-          local buf_diagnostics = {}
+          local base_path = vim.fn.trim(vim.fn.system('git rev-parse --show-toplevel')):gsub('%s+$', '')
         
+          local buf_diagnostics = {}
           for _, thread in pairs(threads) do
-            local diag = build_diagnostic(thread)
+            local diag = build_diagnostic(base_path, thread)
             
             -- Group diagnostics by buffer
             if not buf_diagnostics[diag.bufnr] then
