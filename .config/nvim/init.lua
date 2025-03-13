@@ -1,5 +1,4 @@
 require("config.lazy")
-require("config.gh-wrapper")
 require("config.cwd")
 
 --

@@ -46,4 +46,9 @@ return {
     lazy = true,
     cmd = { "PBrowse" },
   },
+  {
+    "gitusp/pr-review.nvim",
+    lazy = true,
+    cmd = { "PRBrowse", "PRReview", "PRFetchThreads", "PRShowThreads", "PRHideThreads", "PRToggleThreads" },
+  },
 }
