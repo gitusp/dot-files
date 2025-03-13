@@ -192,7 +192,7 @@ local function review()
   vim.cmd('G difftool -y ' .. merge_base)
 end
 
-local function select()
+local function browse()
   require('fzf-lua').fzf_exec('gh pr list --json number,title,author --template \'{{range .}}{{tablerow .number .title .author.login}}{{end}}{{tablerender}}\'', {
     prompt = "PRs> ",
     actions = {
@@ -236,7 +236,7 @@ local function toggle_threads()
   end
 end
 
-vim.api.nvim_create_user_command('PR', select, {})
+vim.api.nvim_create_user_command('PRBrowse', browse, {})
 
 vim.api.nvim_create_user_command('PRReview', review, {})
 
