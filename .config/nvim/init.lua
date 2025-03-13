@@ -63,10 +63,18 @@ vim.api.nvim_create_user_command('Journal', function()
   vim.cmd('e ' .. vim.fn.expand("%"):gsub("[^/]*$", "") .. vim.fn.strftime("%Y-%m-%d") .. '.md')
 end, { desc = 'Journal' })
 vim.api.nvim_create_user_command('PRCreate', function()
-  vim.fn.system('gh pr create -w')
+  vim.notify("Opening current PR create page...", vim.log.levels.INFO)
+  result = vim.fn.system('gh pr create -w 2>&1')
+  if vim.v.shell_error ~= 0 then
+    error("Failed to open: " .. result)
+  end
 end, {})
 vim.api.nvim_create_user_command('PRMerge', function()
-  vim.fn.system('gh pr merge -d -m --admin')
+  vim.notify("Merging current PR...", vim.log.levels.INFO)
+  result = vim.fn.system('gh pr merge -d -m --admin 2>&1')
+  if vim.v.shell_error ~= 0 then
+    error("Failed to merge: " .. result)
+  end
 end, {})
 
 --
