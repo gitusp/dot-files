@@ -1,28 +1,10 @@
 local namespace = vim.api.nvim_create_namespace('pr-threads')
 
-local pr_shown = false
+local pr_threads_shown = false
 
-local function pr_checkout(pr_number)
-  vim.notify("Checking out PR " .. pr_number, vim.log.levels.INFO)
-  checkout_result = vim.fn.system('gh pr checkout ' .. pr_number .. ' 2>&1')
-  if vim.v.shell_error ~= 0 then
-    error("Failed to checkout PR: " .. checkout_result)
-  end
-end
-
-local function pr_review()
-  vim.cmd('PRFetchThreads')
-
-  vim.notify("Fetching PR information...", vim.log.levels.INFO)
-  local gh_output = vim.fn.system('gh pr view --json baseRefName --jq .baseRefName 2>/dev/null')
-  if vim.v.shell_error ~= 0 or gh_output == "" then
-    vim.notify("Failed to get parent branch", vim.log.levels.ERROR)
-    return
-  end
-
-  local parent_branch = "origin/" .. gh_output:gsub('%s+$', '')
-  local merge_base = vim.fn.system('git merge-base ' .. parent_branch .. ' HEAD'):gsub('%s+$', '')
-  vim.cmd('G difftool -y ' .. merge_base)
+local function fst(selected)
+  local parts = vim.split(selected[1], ' ')
+  return parts[1]
 end
 
 local function build_diagnostic(base_path, merge_base, thread)
@@ -53,7 +35,15 @@ local function build_diagnostic(base_path, merge_base, thread)
   return diag
 end
 
-vim.api.nvim_create_user_command('PRFetchThreads', function()
+local function checkout(pr_number)
+  vim.notify("Checking out PR " .. pr_number, vim.log.levels.INFO)
+  checkout_result = vim.fn.system('gh pr checkout ' .. pr_number .. ' 2>&1')
+  if vim.v.shell_error ~= 0 then
+    error("Failed to checkout PR: " .. checkout_result)
+  end
+end
+
+local function fetch_threads()
   vim.notify("Fetching PR threads...", vim.log.levels.INFO)
   
   vim.fn.jobstart('gh pr view --json headRefName --jq .headRefName 2>/dev/null', {
@@ -154,7 +144,7 @@ vim.api.nvim_create_user_command('PRFetchThreads', function()
                 for bufnr, diagnostics in pairs(buf_diagnostics) do
                   vim.diagnostic.set(namespace, bufnr, diagnostics, {})
                 end
-                pr_shown = true
+                pr_threads_shown = true
 
                 vim.notify("Loaded all the threads into diagnostics", vim.log.levels.INFO)
               end
@@ -186,63 +176,75 @@ vim.api.nvim_create_user_command('PRFetchThreads', function()
       end
     end,
   })
-end, {})
+end
 
-vim.api.nvim_create_user_command('PRShowThreads', function()
-  vim.diagnostic.show(namespace)
-  pr_shown = true
-end, {})
+local function review()
+  fetch_threads()
 
-vim.api.nvim_create_user_command('PRHideThreads', function()
-  vim.diagnostic.hide(namespace)
-  pr_shown = false
-end, {})
-
-vim.api.nvim_create_user_command('PRToggleThreads', function()
-  if pr_shown then
-    vim.cmd('PRHideThreads')
-  else
-    vim.cmd('PRShowThreads')
-  end
-end, {})
-
-vim.api.nvim_create_user_command('PR', function()
-  local function get_pr_number(selected)
-    local parts = vim.split(selected[1], ' ')
-    return parts[1]
+  vim.notify("Fetching PR information...", vim.log.levels.INFO)
+  local gh_output = vim.fn.system('gh pr view --json baseRefName --jq .baseRefName 2>/dev/null')
+  if vim.v.shell_error ~= 0 or gh_output == "" then
+    vim.notify("Failed to get parent branch", vim.log.levels.ERROR)
+    return
   end
 
+  local parent_branch = "origin/" .. gh_output:gsub('%s+$', '')
+  local merge_base = vim.fn.system('git merge-base ' .. parent_branch .. ' HEAD'):gsub('%s+$', '')
+  vim.cmd('G difftool -y ' .. merge_base)
+end
+
+local function select()
   require('fzf-lua').fzf_exec('gh pr list --json number,title,author --template \'{{range .}}{{tablerow .number .title .author.login}}{{end}}{{tablerender}}\'', {
     prompt = "PRs> ",
     actions = {
       ['default'] = function(selected)
-        vim.fn.system('gh pr view ' .. get_pr_number(selected) .. ' -w')
+        vim.fn.system('gh pr view ' .. fst(selected) .. ' -w')
       end,
       ['ctrl-o'] = function(selected)
-        local success, result = pcall(pr_checkout, get_pr_number(selected))
+        local success, result = pcall(checkout, fst(selected))
         if not success then
           vim.notify(result, vim.log.levels.ERROR)
         end
       end,
       ['ctrl-r'] = function(selected)
-        local success, result = pcall(pr_checkout, get_pr_number(selected))
+        local success, result = pcall(checkout, fst(selected))
         if not success then
           vim.notify(result, vim.log.levels.ERROR)
         else
-          pr_review()
+          review()
         end
       end,
     },
     preview = "CLICOLOR_FORCE=1 gh pr view `echo {} | cut -d' ' -f1`",
   })
-end, {})
+end
 
-vim.api.nvim_create_user_command('PRReview', pr_review, {})
+local function pr_show_threads()
+  vim.diagnostic.show(namespace)
+  pr_threads_shown = true
+end
 
-vim.api.nvim_create_user_command('PRCreate', function()
-  vim.fn.system('gh pr create -w')
-end, {})
+local function pr_hide_threads()
+  vim.diagnostic.hide(namespace)
+  pr_threads_shown = false
+end
 
-vim.api.nvim_create_user_command('PRMerge', function()
-  vim.fn.system('gh pr merge -d -m --admin')
-end, {})
+local function pr_toggle_threads()
+  if pr_threads_shown then
+    pr_hide_threads()
+  else
+    pr_show_threads()
+  end
+end
+
+vim.api.nvim_create_user_command('PR', select, {})
+
+vim.api.nvim_create_user_command('PRReview', review, {})
+
+vim.api.nvim_create_user_command('PRFetchThreads', fetch_threads, {})
+
+vim.api.nvim_create_user_command('PRShowThreads', pr_show_threads, {})
+
+vim.api.nvim_create_user_command('PRHideThreads', pr_hide_threads, {})
+
+vim.api.nvim_create_user_command('PRToggleThreads', pr_toggle_threads, {})

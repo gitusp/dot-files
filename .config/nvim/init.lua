@@ -62,6 +62,12 @@ end, { desc = 'Scratch' })
 vim.api.nvim_create_user_command('Journal', function()
   vim.cmd('e ' .. vim.fn.expand("%"):gsub("[^/]*$", "") .. vim.fn.strftime("%Y-%m-%d") .. '.md')
 end, { desc = 'Journal' })
+vim.api.nvim_create_user_command('PRCreate', function()
+  vim.fn.system('gh pr create -w')
+end, {})
+vim.api.nvim_create_user_command('PRMerge', function()
+  vim.fn.system('gh pr merge -d -m --admin')
+end, {})
 
 --
 -- Keymaps
