@@ -71,11 +71,6 @@ end, {})
 vim.api.nvim_create_user_command('PRMerge', function()
   vim.notify("Merging current PR...", vim.log.levels.INFO)
   vim.fn.jobstart('gh pr merge -d -m --admin', {
-    on_stderr = function(_, stderr_data)
-      if #stderr_data > 0 and (stderr_data[1] ~= "" or #stderr_data > 1) then
-        vim.notify("Error merging PR: " .. table.concat(stderr_data, "\n"), vim.log.levels.ERROR)
-      end
-    end,
     on_exit = function(_, exit_code)
       if exit_code == 0 then
         vim.notify("Successfully merged PR", vim.log.levels.INFO)
