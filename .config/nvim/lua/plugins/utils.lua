@@ -50,7 +50,7 @@ return {
           ["_"] = { "actions.open_cwd", mode = "n" },
           ["`"] = { "actions.cd", mode = "n" },
           ["cd"] = { "actions.cd", opts = { scope = "win" }, mode = "n" },
-          ["yp"] = "actions.preview",
+          ["cp"] = "actions.preview",
           ["gs"] = { "actions.change_sort", mode = "n" },
           ["gx"] = "actions.open_external",
           ["gy"] = { "actions.yank_entry" },
