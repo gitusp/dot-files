@@ -48,6 +48,10 @@ return {
   },
   {
     "gitusp/pr-review.nvim",
+    dependencies = {
+      "ibhagwan/fzf-lua",
+      "tpope/vim-fugitive",
+    },
     lazy = true,
     cmd = { "PRBrowse", "PRReview", "PRFetchThreads", "PRShowThreads", "PRHideThreads", "PRToggleThreads" },
   },
