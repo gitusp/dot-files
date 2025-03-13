@@ -50,15 +50,13 @@ local function fetch_threads()
     stdout_buffered = true,
     on_stdout = function(_, data)
       if #data == 0 or (data[1] == "" and #data == 1) then
-        vim.notify("Failed to get PR number. Are you on a PR branch?", vim.log.levels.ERROR)
+        vim.notify("Failed to get PR' headRefName. Are you on a PR branch?", vim.log.levels.ERROR)
         return
       end
       
       local headRefName = data[1]:gsub('%s+$', '')
 
-      local threads = {}
-
-      local function load_threads(threads, after)
+      local function load_threads(threads, cb, after)
         local after_arg = after and ' -F after=\'' .. after .. '\'' or ''
         vim.fn.jobstart(
           'gh api graphql -F owner=\'{owner}\' -F name=\'{repo}\' -F headRefName=\'' .. headRefName .. '\'' .. after_arg .. ' -f query=\'' ..
@@ -120,33 +118,9 @@ local function fetch_threads()
               end
               
               if decoded.data.repository.pullRequests.nodes[1].reviewThreads.pageInfo.hasNextPage then
-                load_threads(threads, decoded.data.repository.pullRequests.nodes[1].reviewThreads.pageInfo.endCursor)
+                load_threads(threads, cb, decoded.data.repository.pullRequests.nodes[1].reviewThreads.pageInfo.endCursor)
               else
-                local base_path = vim.fn.trim(vim.fn.system('git rev-parse --show-toplevel')):gsub('%s+$', '')
-                local merge_base = vim.fn.system('git merge-base origin/' .. decoded.data.repository.pullRequests.nodes[1].baseRefName .. ' HEAD'):gsub('%s+$', '')
-              
-                local buf_diagnostics = {}
-                for _, thread in pairs(threads) do
-                  local hidden = thread.isResolved or thread.isOutdated
-                  local has_line = type(thread.startLine) == "number" or type(thread.line) == "number"
-                  if has_line and not hidden then
-                    local diag = build_diagnostic(base_path, merge_base, thread)
-                    
-                    -- Group diagnostics by buffer
-                    if not buf_diagnostics[diag.bufnr] then
-                      buf_diagnostics[diag.bufnr] = {}
-                    end
-                    table.insert(buf_diagnostics[diag.bufnr], diag)
-                  end
-                end
-
-                vim.diagnostic.reset(namespace)
-                for bufnr, diagnostics in pairs(buf_diagnostics) do
-                  vim.diagnostic.set(namespace, bufnr, diagnostics, {})
-                end
-                pr_threads_shown = true
-
-                vim.notify("Loaded all the threads into diagnostics", vim.log.levels.INFO)
+                cb(threads, decoded.data.repository.pullRequests.nodes[1].baseRefName)
               end
             end,
             on_stderr = function(_, data)
@@ -163,7 +137,32 @@ local function fetch_threads()
         )
       end
       
-      load_threads({})
+      load_threads({}, function(threads, baseRefName)
+        local base_path = vim.fn.trim(vim.fn.system('git rev-parse --show-toplevel')):gsub('%s+$', '')
+        local merge_base = vim.fn.system('git merge-base origin/' .. baseRefName .. ' HEAD'):gsub('%s+$', '')
+      
+        local buf_diagnostics = {}
+        for _, thread in pairs(threads) do
+          local hidden = thread.isResolved or thread.isOutdated
+          local has_line = type(thread.startLine) == "number" or type(thread.line) == "number"
+          if has_line and not hidden then
+            local diag = build_diagnostic(base_path, merge_base, thread)
+            
+            if not buf_diagnostics[diag.bufnr] then
+              buf_diagnostics[diag.bufnr] = {}
+            end
+            table.insert(buf_diagnostics[diag.bufnr], diag)
+          end
+        end
+
+        vim.diagnostic.reset(namespace)
+        for bufnr, diagnostics in pairs(buf_diagnostics) do
+          vim.diagnostic.set(namespace, bufnr, diagnostics, {})
+        end
+        pr_threads_shown = true
+
+        vim.notify("Loaded all the threads into diagnostics", vim.log.levels.INFO)
+      end)
     end,
     on_stderr = function(_, data)
       if #data > 0 and (data[1] ~= "" or #data > 1) then
@@ -219,21 +218,21 @@ local function select()
   })
 end
 
-local function pr_show_threads()
+local function show_threads()
   vim.diagnostic.show(namespace)
   pr_threads_shown = true
 end
 
-local function pr_hide_threads()
+local function hide_threads()
   vim.diagnostic.hide(namespace)
   pr_threads_shown = false
 end
 
-local function pr_toggle_threads()
+local function toggle_threads()
   if pr_threads_shown then
-    pr_hide_threads()
+    hide_threads()
   else
-    pr_show_threads()
+    show_threads()
   end
 end
 
@@ -243,8 +242,8 @@ vim.api.nvim_create_user_command('PRReview', review, {})
 
 vim.api.nvim_create_user_command('PRFetchThreads', fetch_threads, {})
 
-vim.api.nvim_create_user_command('PRShowThreads', pr_show_threads, {})
+vim.api.nvim_create_user_command('PRShowThreads', show_threads, {})
 
-vim.api.nvim_create_user_command('PRHideThreads', pr_hide_threads, {})
+vim.api.nvim_create_user_command('PRHideThreads', hide_threads, {})
 
-vim.api.nvim_create_user_command('PRToggleThreads', pr_toggle_threads, {})
+vim.api.nvim_create_user_command('PRToggleThreads', toggle_threads, {})
