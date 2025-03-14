@@ -5,7 +5,7 @@
   "curl.nvim": { "branch": "main", "commit": "fe07677a2a24bc8793b90fa2c0da626ea6c9e47d" },
   "flash.nvim": { "branch": "main", "commit": "3c942666f115e2811e959eabbdd361a025db8b63" },
   "fzf-lua": { "branch": "main", "commit": "d0418e3366809246ab6fb7f298723a2ce80c30c6" },
-  "gh-run-status.nvim": { "branch": "main", "commit": "dd30c142d87822703f55750a5f396c981ec1e27a" },
+  "gh-run-status.nvim": { "branch": "main", "commit": "58cf08835c9afce0df811cc4488e740317aa7277" },
   "github-theme": { "branch": "main", "commit": "c106c9472154d6b2c74b74565616b877ae8ed31d" },
   "gitsigns.nvim": { "branch": "main", "commit": "011dc6718bcebdf92a5336bb0da79189c3afe621" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },

@@ -33,34 +33,30 @@ return {
         'gitusp/gh-run-status.nvim',
       },
       config = function()
-        local gh_run_status = require('gh-run-status')
+        local get_gh_run_status = require('gh-run-status').create_getter()
+        local function gh_run_status()
+          local status, conclusion = get_gh_run_status(vim.fn.getcwd())
+          if not status then
+            return ""
+          end
+
+          -- See https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/about-status-checks#check-statuses-and-conclusions
+          if status == "completed" then
+            if conclusion == "success" or conclusion == "neutral" or conclusion == "skipped" then
+              return "✓"
+            else
+              return "✗"
+            end
+          elseif status == "expected" or status == "in_progress" or status == "pending" or status == "queued" or status == "requested" or status == "waiting" then
+            return "⏱"
+          else
+            return "✗"
+          end
+        end
 
         require('lualine').setup({
           sections = {
-            lualine_b = {
-              'branch',
-              function()
-                local status, conclusion = gh_run_status.get(vim.fn.getcwd())
-                if not status then
-                  return ""
-                end
-
-                -- See https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/about-status-checks#check-statuses-and-conclusions
-                if status == "completed" then
-                  if conclusion == "success" or conclusion == "neutral" or conclusion == "skipped" then
-                    return "✓"
-                  else
-                    return "✗"
-                  end
-                elseif status == "expected" or status == "in_progress" or status == "pending" or status == "queued" or status == "requested" or status == "waiting" then
-                  return "⏱"
-                else
-                  return "✗"
-                end
-              end,
-              'diff',
-              'diagnostics'
-            },
+            lualine_b = { 'branch', gh_run_status, 'diff', 'diagnostics' },
           }
         })
       end,
