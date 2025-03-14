@@ -41,11 +41,6 @@ local function check_github_status(path, branch, cb)
 end
 
 local function watch_status(path, branch, abort_signal)
-  local function flush()
-    status_cache[path].status = nil
-    status_cache[path].conclusion = nil
-  end
-
   local function next()
     status_cache[path].accessed = false
 
@@ -84,7 +79,8 @@ local function watch_status(path, branch, abort_signal)
             next()
           end)
         else
-          flush()
+          status_cache[path].status = nil
+          status_cache[path].conclusion = nil
           next()
         end
       end
@@ -145,7 +141,7 @@ function M.get(path)
     status_cache[path].branch = branch_cache[path].branch
     status_cache[path].status = nil
     status_cache[path].conclusion = nil
-    
+
     if status_cache[path].abort_signal then
       status_cache[path].abort_signal.abort = true
     end
