@@ -107,7 +107,7 @@ local function watch(path)
   )
 end
 
-function M.get_status(path)
+function M.get(path)
   if cache[path] then
     cache[path].accessed = true
   else

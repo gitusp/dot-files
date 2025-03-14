@@ -29,7 +29,36 @@ return {
   {
     'nvim-lualine/lualine.nvim',
       dependencies = { 'nvim-tree/nvim-web-devicons' },
-      config = true,
+      config = function()
+        require('lualine').setup({
+          sections = {
+            lualine_b = {
+              'branch',
+              function()
+                local status, conclusion = require('config.gh-run-status').get(vim.fn.getcwd())
+                if not status then
+                  return ""
+                end
+
+                -- See https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/about-status-checks#check-statuses-and-conclusions
+                if status == "completed" then
+                  if conclusion == "success" or conclusion == "neutral" or conclusion == "skipped" then
+                    return "✓"
+                  else
+                    return "✗"
+                  end
+                elseif status == "expected" or status == "in_progress" or status == "pending" or status == "queued" or status == "requested" or status == "waiting" then
+                  return "⏱"
+                else
+                  return "✗"
+                end
+              end,
+              'diff',
+              'diagnostics'
+            },
+          }
+        })
+      end,
   },
   {
     "rachartier/tiny-inline-diagnostic.nvim",
