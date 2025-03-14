@@ -63,22 +63,25 @@ vim.api.nvim_create_user_command('Journal', function()
 end, { desc = 'Journal' })
 vim.api.nvim_create_user_command('PRCreate', function()
   vim.notify("Opening current PR create page...", vim.log.levels.INFO)
-  local result = vim.fn.system('gh pr create -w 2>&1')
-  if vim.v.shell_error ~= 0 then
-    error("Failed to open: " .. result)
-  end
+  vim.system({ 'gh', 'pr', 'create', '-w' }, nil, function(result)
+    if result.code ~= 0 then
+      vim.schedule(function()
+        vim.notify("Failed to open: " .. result.stderr, vim.log.levels.ERROR)
+      end)
+    end
+  end)
 end, {})
 vim.api.nvim_create_user_command('PRMerge', function()
   vim.notify("Merging current PR...", vim.log.levels.INFO)
-  vim.fn.jobstart('gh pr merge -d -m --admin', {
-    on_exit = function(_, exit_code)
-      if exit_code == 0 then
+  vim.system({ 'gh', 'pr', 'merge', '-d', '-m', '--admin' }, nil, function(result)
+    vim.schedule(function()
+      if result.code == 0 then
         vim.notify("Successfully merged PR", vim.log.levels.INFO)
       else
-        vim.notify("Failed to merge PR: exit code " .. exit_code, vim.log.levels.ERROR)
+        vim.notify("Failed to merge PR: " .. result.stderr, vim.log.levels.ERROR)
       end
-    end,
-  })
+    end)
+  end)
 end, {})
 
 --
