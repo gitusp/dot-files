@@ -28,14 +28,19 @@ return {
   },
   {
     'nvim-lualine/lualine.nvim',
-      dependencies = { 'nvim-tree/nvim-web-devicons' },
+      dependencies = {
+        'nvim-tree/nvim-web-devicons',
+        'gitusp/gh-run-status.nvim',
+      },
       config = function()
+        local gh_run_status = require('gh-run-status')
+
         require('lualine').setup({
           sections = {
             lualine_b = {
               'branch',
               function()
-                local status, conclusion = require('config.gh-run-status').get(vim.fn.getcwd())
+                local status, conclusion = gh_run_status.get(vim.fn.getcwd())
                 if not status then
                   return ""
                 end
