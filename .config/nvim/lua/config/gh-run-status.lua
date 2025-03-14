@@ -41,8 +41,6 @@ local function check_github_status(path, branch, cb)
 end
 
 local function watch_status(path, branch, abort_signal)
-  local local_abort_signal = abort_signal and abort_signal or { abort = false }
-
   local function flush()
     status_cache[path].status = nil
     status_cache[path].conclusion = nil
@@ -53,12 +51,12 @@ local function watch_status(path, branch, abort_signal)
 
     local timer = vim.uv.new_timer()
     timer:start(10000, 0, function()
-      if local_abort_signal.abort then
+      if abort_signal.abort then
         return
       end
 
       if status_cache[path].accessed then
-        watch_status(path, branch, local_abort_signal)
+        watch_status(path, branch, abort_signal)
       else
         status_cache[path] = nil
       end
@@ -69,13 +67,13 @@ local function watch_status(path, branch, abort_signal)
     get_repo_url(
       path,
       function(repo_url)
-        if local_abort_signal.abort then
+        if abort_signal.abort then
           return
         end
 
         if repo_url and repo_url:match("github.com") then
           check_github_status(path, branch, function(status_result)
-            if local_abort_signal.abort then
+            if abort_signal.abort then
               return
             end
 
@@ -93,10 +91,6 @@ local function watch_status(path, branch, abort_signal)
     )
   else
     next()
-  end
-
-  return function()
-    local_abort_signal.abort = true
   end
 end
 
@@ -152,11 +146,13 @@ function M.get(path)
     status_cache[path].status = nil
     status_cache[path].conclusion = nil
     
-    if status_cache[path].abort then
-      status_cache[path].abort()
+    if status_cache[path].abort_signal then
+      status_cache[path].abort_signal.abort = true
     end
 
-    status_cache[path].abort = watch_status(path, branch_cache[path].branch)
+    local abort_signal = { abort = false }
+    watch_status(path, branch_cache[path].branch, abort_signal)
+    status_cache[path].abort_signal = abort_signal
   end
 
   return status_cache[path].status, status_cache[path].conclusion
