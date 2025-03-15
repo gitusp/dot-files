@@ -73,6 +73,34 @@ return {
       })
       vim.api.nvim_call_function("lexima#add_rule", {
         {
+          char = '<cr>',
+          input = '<bs><bs><c-w><bs>\\1. ',
+          at = '^\\s\\+\\(\\d\\+\\)\\. \\%#$',
+          filetype = 'markdown',
+          with_submatch = true,
+          priority = 1,
+        },
+      })
+      vim.api.nvim_call_function("lexima#add_rule", {
+        {
+          char = '<cr>',
+          input = '<bs><bs><c-w>',
+          at = '^\\d\\+\\. \\%#$',
+          filetype = 'markdown',
+          priority = 1,
+        },
+      })
+      vim.api.nvim_call_function("lexima#add_rule", {
+        {
+          char = '<cr>',
+          input = '<cr>\\1<esc><c-a>a. ',
+          at = '^\\s*\\(\\d\\+\\)\\. .*\\%#',
+          filetype = 'markdown',
+          with_submatch = true,
+        },
+      })
+      vim.api.nvim_call_function("lexima#add_rule", {
+        {
           char = '<',
           input_after = '>',
           filetype = {'typescriptreact', 'javascriptreact', 'markdown', 'html', 'xml'}
