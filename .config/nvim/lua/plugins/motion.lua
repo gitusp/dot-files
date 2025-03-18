@@ -20,5 +20,11 @@ return {
     keys = {
       { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
     },
-  }
+  },
+  {
+    "kana/vim-textobj-entire",
+    dependencies = {
+      "kana/vim-textobj-user",
+    }
+  },
 }
