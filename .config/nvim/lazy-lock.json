@@ -21,7 +21,7 @@
   "overseer.nvim": { "branch": "master", "commit": "d95931e9e8cc4429819c8bbae395da00a6800d1e" },
   "pbrowse.nvim": { "branch": "main", "commit": "dfa5b8d594cc3aa6f4c845e73ff5dedacf4a962c" },
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
-  "pr-review.nvim": { "branch": "main", "commit": "aeadb0102cadfa69d4b737f2b4b7f78a9040db0d" },
+  "pr-review.nvim": { "branch": "main", "commit": "927c4fcb3d2fa1a21782563ac317533d988eda05" },
   "quicker.nvim": { "branch": "master", "commit": "1798be71cdcb15fb84fa8054148a56e17fd391dc" },
   "snacks.nvim": { "branch": "main", "commit": "bc0630e43be5699bb94dadc302c0d21615421d93" },
   "syncwd.nvim": { "branch": "main", "commit": "681c2f6dc4a93bdd553208a6a354b8742b402258" },
