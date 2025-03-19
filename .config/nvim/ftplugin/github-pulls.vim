@@ -1,7 +1,7 @@
-nmap <buffer><silent> <cr> :call <SID>Open()<CR>
-nmap <buffer><silent> . :call <SID>Cmd()<CR>
+nmap <buffer><silent> <cr> :call <SID>OpenPr()<CR>
+nmap <buffer><silent> . :call <SID>PopulateCmdline()<CR>
 
-function! s:Open()
+function! s:OpenPr()
   if (line('.') - 1) % 3 == 0
     let l:line = getline(".")
     let l:col = col(".")
@@ -15,7 +15,7 @@ function! s:Open()
   execute "norm! \<cr>"
 endfunction
 
-function! s:Cmd()
+function! s:PopulateCmdline()
   if (line('.') - 1) % 3 == 0
     let l:line = getline(".")
     let l:col = col(".")
