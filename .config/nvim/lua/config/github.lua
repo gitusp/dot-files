@@ -35,3 +35,24 @@ vim.api.nvim_create_autocmd("BufNewFile", {
 vim.api.nvim_create_user_command('PRList', function()
   vim.cmd('vnew github-pulls://' .. vim.fn.getcwd())
 end, { desc = 'List pull requests' })
+
+local M = {}
+
+function M.open_pr(num)
+  local url = vim.fn.expand("%")
+  local cwd = string.sub(url, string.len("github-pulls://") + 1, string.len(url))
+
+  vim.system(
+    {'gh', 'pr', 'view', num, '-w'},
+    { cwd = cwd },
+    function(result)
+      if result.code ~=0 then
+        vim.schedule(function()
+          vim.notify("Failed to open PR #" .. num, vim.log.levels.ERROR)
+        end)
+      end
+    end
+  )
+end
+
+return M

@@ -7,7 +7,7 @@ function! s:Open()
     let l:col = col(".")
     let l:num = matchstr(l:line, '^#\zs\d\+\ze \[')
     if l:num != '' && l:col < len(l:num) + 2
-      call system('gh pr view ' .. shellescape(l:num) .. ' -w')
+      exec "lua require('config.github').open_pr(" .. l:num .. ")"
       return
     endif
   endif
