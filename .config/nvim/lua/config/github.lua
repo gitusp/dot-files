@@ -13,7 +13,6 @@ vim.api.nvim_create_autocmd("BufNewFile", {
     vim.api.nvim_set_option_value('swapfile', false, { buf = buf })
     vim.api.nvim_set_option_value('readonly', true, { buf = buf })
 
-    -- TODO: <cr> to open web
     -- TODO: dot to populate commands
 
     vim.system({
