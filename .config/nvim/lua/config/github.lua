@@ -1,7 +1,7 @@
 vim.api.nvim_create_augroup('github', {})
 vim.api.nvim_create_autocmd("BufNewFile", {
   group = 'github',
-  pattern = {"github://pulls"},
+  pattern = {"github-pulls://*"},
   callback = function()
     local buf = vim.api.nvim_get_current_buf()
 
@@ -33,5 +33,5 @@ vim.api.nvim_create_autocmd("BufNewFile", {
 })
 
 vim.api.nvim_create_user_command('PRList', function()
-  vim.cmd('vnew github://pulls')
+  vim.cmd('vnew github-pulls://' .. vim.fn.getcwd())
 end, { desc = 'List pull requests' })
