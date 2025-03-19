@@ -19,10 +19,10 @@ function! s:Cmd()
   if (line('.') - 1) % 3 == 0
     let l:line = getline(".")
     let l:col = col(".")
-    let l:elms = split(l:line, "] <- [")
+    let l:root_elms = split(l:line, "] <- [")
 
-    if len(l:elms) == 2
-      let l:front_elms = split(l:elms[0], '[')
+    if len(l:root_elms) == 2
+      let l:front_elms = split(l:root_elms[0], '[')
       let l:col = l:col - len(l:front_elms[0])
 
       if l:col > 0
@@ -36,8 +36,7 @@ function! s:Cmd()
         let l:col = l:col - len("] <- ")
 
         if l:col > 0
-          let l:back_elms = split(l:elms[1], ']')
-          call feedkeys(': origin/' .. l:back_elms[0] .. "\<c-b>", 'n')
+          call feedkeys(': origin/' .. l:root_elms[1][:-2] .. "\<c-b>", 'n')
         endif
       endif
     endif
