@@ -15,12 +15,11 @@ vim.api.nvim_create_autocmd("BufNewFile", {
 
     -- TODO: <cr> to open web
     -- TODO: dot to populate commands
-    -- TODO: syntax highlight
 
     vim.system({
       'gh', 'pr', 'list',
       '--json', 'number,title,author,headRefName,baseRefName',
-      '--template', '{{range .}}{{.number}} [origin/{{.baseRefName}}] <- [origin/{{.headRefName}}]\n{{.title}} by {{.author.login}}\n\n{{end}}'
+      '--template', '{{range .}}#{{.number}} [origin/{{.baseRefName}}] <- [origin/{{.headRefName}}]\n{{.title}} by {{.author.login}}\n\n{{end}}'
     }, nil, function(result)
       vim.schedule(function()
         if result.code ~= 0 then
