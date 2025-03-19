@@ -1,5 +1,5 @@
 vim.api.nvim_create_augroup('github', {})
-vim.api.nvim_create_autocmd("BufNewFile", {
+vim.api.nvim_create_autocmd("BufReadCmd", {
   group = 'github',
   pattern = {"github-pulls://*"},
   callback = function()
