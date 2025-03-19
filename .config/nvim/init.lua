@@ -1,5 +1,6 @@
 require("config.lazy")
 require("config.cwd")
+require("config.github")
 
 --
 -- Base Configuration
