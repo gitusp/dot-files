@@ -1,3 +1,6 @@
 [alias]
   co = checkout
   f = fetch
+
+[commit]
+  template=~/.config/git/commit.txt

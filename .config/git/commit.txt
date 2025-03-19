@@ -1,0 +1,12 @@
+
+# <type>[optional scope]: <description>
+# 
+# [optional body]
+# 
+# [optional footer(s)]
+#
+# TYPE: build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test
+#
+# BREAKING CHANGE: a commit that has a footer BREAKING CHANGE:, or appends a ! after the type/scope,
+# introduces a breaking API change (correlating with MAJOR in Semantic Versioning).
+# A BREAKING CHANGE can be part of commits of any type.
