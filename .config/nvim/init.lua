@@ -84,6 +84,16 @@ vim.api.nvim_create_user_command('PRMerge', function()
     end)
   end)
 end, {})
+vim.api.nvim_create_user_command('PRReview', function(opts)
+  local result = vim.system({ 'git', 'merge-base', opts.args, 'HEAD' }):wait()
+  if result.code ~= 0 then
+    vim.notify("Failed to get merge-base", vim.log.levels.ERROR)
+    return
+  end
+
+  local merge_base = result.stdout:gsub('%s+$', '')
+  vim.cmd('Git difftool -y ' .. merge_base)
+end, { nargs = 1 })
 
 --
 -- Keymaps
