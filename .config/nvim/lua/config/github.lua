@@ -13,12 +13,10 @@ vim.api.nvim_create_autocmd("BufNewFile", {
     vim.api.nvim_set_option_value('swapfile', false, { buf = buf })
     vim.api.nvim_set_option_value('readonly', true, { buf = buf })
 
-    -- TODO: dot to populate commands
-
     vim.system({
       'gh', 'pr', 'list',
       '--json', 'number,title,author,headRefName,baseRefName',
-      '--template', '{{range .}}#{{.number}} [origin/{{.baseRefName}}] <- [origin/{{.headRefName}}]\n{{.title}} by {{.author.login}}\n\n{{end}}'
+      '--template', '{{range .}}#{{.number}} [{{.baseRefName}}] <- [{{.headRefName}}]\n{{.title}} by {{.author.login}}\n\n{{end}}'
     }, nil, function(result)
       vim.schedule(function()
         if result.code ~= 0 then
