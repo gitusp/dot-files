@@ -41,4 +41,10 @@ return {
         })
       end
   },
+  {
+    "gitusp/gh-utils.nvim",
+    lazy = true,
+    cmd = { "PRList", "PRReview", "PRMerge" },
+    ft = "github-pulls"
+  },
 }
