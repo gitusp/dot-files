@@ -1,6 +1,5 @@
 require("config.lazy")
 require("config.cwd")
-require("config.github")
 
 --
 -- Base Configuration
@@ -72,28 +71,6 @@ vim.api.nvim_create_user_command('PRCreate', function()
     end
   end)
 end, {})
-vim.api.nvim_create_user_command('PRMerge', function()
-  vim.notify("Merging current PR...", vim.log.levels.INFO)
-  vim.system({ 'gh', 'pr', 'merge', '-d', '-m', '--admin' }, nil, function(result)
-    vim.schedule(function()
-      if result.code == 0 then
-        vim.notify("Successfully merged PR", vim.log.levels.INFO)
-      else
-        vim.notify("Failed to merge PR: " .. result.stderr, vim.log.levels.ERROR)
-      end
-    end)
-  end)
-end, {})
-vim.api.nvim_create_user_command('PRReview', function(opts)
-  local result = vim.system({ 'git', 'merge-base', opts.args, 'HEAD' }):wait()
-  if result.code ~= 0 then
-    vim.notify("Failed to get merge-base", vim.log.levels.ERROR)
-    return
-  end
-
-  local merge_base = result.stdout:gsub('%s+$', '')
-  vim.cmd('Git difftool -y ' .. merge_base)
-end, { nargs = 1 })
 
 --
 -- Keymaps
