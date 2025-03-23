@@ -61,7 +61,7 @@ end, { desc = 'Scratch' })
 vim.api.nvim_create_user_command('Journal', function()
   vim.cmd('e ' .. vim.fn.expand("%"):gsub("[^/]*$", "") .. vim.fn.strftime("%Y-%m-%d") .. '.md')
 end, { desc = 'Journal' })
-vim.cmd.abbrev('PRC', 'PRCreate -w')
+vim.cmd.abbrev('PRC', 'PRCreate -f')
 vim.cmd.abbrev('PRM', 'PRMerge -d -m --admin')
 
 --
