@@ -50,7 +50,7 @@ return {
         {
           char = '<cr>',
           input = '<cr>- [ ] ',
-          at = '^\\s*- \\[ ] .*\\%#',
+          at = '^\\s*- \\[[ xX]] .*\\%#',
           filetype = 'markdown',
           priority = 1,
         },
