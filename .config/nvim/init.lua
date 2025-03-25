@@ -72,7 +72,6 @@ vim.keymap.set("n", "<c-l>", "<cmd>nohlsearch<CR><C-L>")
 vim.keymap.set("n", "Q", "@q")
 vim.keymap.set("n", "_", "@:")
 vim.keymap.set({"n", "x"}, "Y", '"+y')
-vim.keymap.set("n", "<c-/>", "<cmd>FzfLgrepCurbuf<cr>")
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 -- Single key mappings with leader
@@ -104,6 +103,7 @@ vim.keymap.set("n", "<c-w>N", "<cmd>tabnew<cr>", { desc = "Open new tab" })
 -- Fzf shortcuts
 vim.keymap.set('n', '<c-p>', '<cmd>FzfFiles<cr>', { desc = 'FZF files' })
 vim.keymap.set('n', 'gh', '<cmd>FzfMru<cr>', { desc = 'FZF MRU' })
+vim.keymap.set('n', 'gb', '<cmd>FzfLgrepCurbuf<cr>')
 vim.keymap.set('n', 'gs', '<cmd>FzfLiveGrepNative<cr>', { desc = 'FZF live grep' })
 vim.keymap.set('n', 'gS', '<cmd>FzfGrepCword<cr>', { desc = 'FZF search word under cursor' })
 vim.keymap.set('n', 'gd', '<cmd>FzfLspDefinitions<cr>', { desc = 'FZF LSP definitions' })
