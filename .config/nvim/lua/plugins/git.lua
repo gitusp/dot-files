@@ -45,6 +45,10 @@ return {
     "gitusp/gh-utils.nvim",
     lazy = true,
     cmd = { "PRList", "PRReview", "PRMerge", "PRCreate" },
-    ft = "github-pulls"
+    ft = "github-pulls",
+    opts = {
+      merge_flags = { '-d', '-m', '--admin' },
+      create_flags = { '-f' },
+    }
   },
 }
