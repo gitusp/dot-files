@@ -43,7 +43,6 @@ return {
   },
   {
     "gitusp/gh-utils.nvim",
-    branch = 'feature/poplate-pr-num',
     lazy = true,
     cmd = { "PRList", "PRReview", "PRMerge", "PRCreate" },
     ft = "github-pulls",
