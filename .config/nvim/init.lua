@@ -98,10 +98,10 @@ vim.keymap.set("n", "<c-w>N", "<cmd>tabnew<cr>", { desc = "Open new tab" })
 
 -- Fzf shortcuts
 vim.keymap.set('n', '<c-p>', '<cmd>FzfFiles<cr>', { desc = 'FZF files' })
-vim.keymap.set('n', 'gh', '<cmd>FzfMru<cr>', { desc = 'FZF MRU' })
-vim.keymap.set('n', 'gb', '<cmd>FzfLgrepCurbuf<cr>')
-vim.keymap.set('n', 'gs', '<cmd>FzfLiveGrepNative<cr>', { desc = 'FZF live grep' })
-vim.keymap.set('n', 'gS', '<cmd>FzfGrepCword<cr>', { desc = 'FZF search word under cursor' })
+vim.keymap.set('n', 'gh', '<cmd>FzfMru<cr>', { desc = 'FZF MRU | mnemonic - history' })
+vim.keymap.set('n', 'g/', '<cmd>FzfLgrepCurbuf<cr>', { desc = 'FZF live grep current buffer | mnemonic - powerful /' })
+vim.keymap.set('n', 'gs', '<cmd>FzfLiveGrepNative<cr>', { desc = 'FZF live grep | mnemonic - search' })
+vim.keymap.set('n', 'gS', '<cmd>FzfGrepCword<cr>', { desc = 'FZF search word under cursor | mnemonic - Search' })
 vim.keymap.set('n', 'gz', '<cmd>FzfZoxide<cr>', { desc = 'FZF Zoxide' })
 
 vim.api.nvim_create_autocmd('LspAttach', {
