@@ -102,5 +102,11 @@ vim.keymap.set('n', 'gh', '<cmd>FzfMru<cr>', { desc = 'FZF MRU' })
 vim.keymap.set('n', 'gb', '<cmd>FzfLgrepCurbuf<cr>')
 vim.keymap.set('n', 'gs', '<cmd>FzfLiveGrepNative<cr>', { desc = 'FZF live grep' })
 vim.keymap.set('n', 'gS', '<cmd>FzfGrepCword<cr>', { desc = 'FZF search word under cursor' })
-vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'LSP definition' })
 vim.keymap.set('n', 'gz', '<cmd>FzfZoxide<cr>', { desc = 'FZF Zoxide' })
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = 'LSP actions',
+  callback = function(event)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'LSP definition', buffer = event.buf })
+  end,
+})
