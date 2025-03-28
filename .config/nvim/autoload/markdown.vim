@@ -43,17 +43,3 @@ function! markdown#toggleCheckbox() range
 
   call winrestview(l:pos)
 endfunction
-
-function! markdown#journal()
-  let l:buf_name = substitute(expand('%'), "[^/]*$", "", "") .. strftime("%Y%m%d%H%M%S") .. '.md'
-  execute 'vnew ' .. l:buf_name
-endfunction
-
-function! markdown#journalize() range
-  let l:lines = getline(a:firstline, a:lastline)
-  execute a:firstline .. ',' .. a:lastline .. 'delete _'
-  write
-  call markdown#journal()
-  call setline(1, l:lines)
-  write
-endfunction
