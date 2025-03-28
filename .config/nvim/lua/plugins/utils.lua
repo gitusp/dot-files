@@ -1,3 +1,7 @@
+local function journal()
+  vim.fn.feedkeys(vim.fn.strftime("%Y%m%dT%H%M%S") .. '.md', 'n')
+end
+
 return {
   { "tpope/vim-repeat" },
   { "tpope/vim-projectionist" },
@@ -53,6 +57,7 @@ return {
           ["gy"] = { "actions.yank_entry" },
           ["g."] = { "actions.toggle_hidden", mode = "n" },
           ["g\\"] = { "actions.toggle_trash", mode = "n" },
+          ["<c-x><c-j>"] = { journal, mode = "i" },
         },
         use_default_keymaps = false,
       })
