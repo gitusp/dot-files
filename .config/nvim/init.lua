@@ -82,6 +82,7 @@ vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { desc = "Write" })
 vim.keymap.set("n", "<leader>s", "<cmd>Scratch<cr>", { desc = "Util scratch" })
 vim.keymap.set("n", "<leader>j", "<cmd>Journal<cr>", { desc = "Util journal" })
 vim.keymap.set('n', '<leader>g', '<cmd>vert G<cr>', { desc = 'Git status' })
+vim.keymap.set("n", "<leader>t", '<cmd>TodoQuickFix<cr>', { desc = "LSP Diagnostics" })
 vim.keymap.set("n", "<leader>d", vim.diagnostic.setqflist, { desc = "LSP Diagnostics" })
 vim.keymap.set("n", "<leader>m", "<cmd>TSC<cr>", { desc = "Compile TypeScript" })
 vim.keymap.set("n", "<leader>f", "<cmd>Flog<cr>", { desc = "Git log" })
@@ -90,13 +91,15 @@ vim.keymap.set("n", "<leader>:", function() require('telescope.builtin').command
 vim.keymap.set("n", "<leader>?", function() require('telescope.builtin').keymaps({ default_text = "<Space>" }) end, { desc = "Telescope leader key mappings" })
 vim.keymap.set("n", "<localleader>?", function() require('telescope.builtin').keymaps({ default_text = "\\" }) end, { desc = "Telescope localleader key mappings" })
 
+-- Toggle options
+vim.keymap.set("n", "yod", ':<C-R>=&diff ? "diffoff" : "diffthis"<CR><CR>', { desc = "Toggle diff" })
+vim.keymap.set("n", "yow", ':set <C-R>=&wrap ? "nowrap" : "wrap"<CR><CR>', { desc = "Toggle wrap" })
+
 -- TODO shortcuts
 vim.keymap.set("n", "]t", function() require("todo-comments").jump_next() end, { desc = "Next todo comment" })
 vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end, { desc = "Previous todo comment" })
 
--- Tab navigation
-vim.keymap.set("n", "<c-w><tab>", "<cmd>tabnext<CR>", { desc = "Next tab" })
-vim.keymap.set("n", "<c-w><s-tab>", "<cmd>tabprevious<CR>", { desc = "Previous tab" })
+-- Extend window command
 vim.keymap.set("n", "<c-w>N", "<cmd>tabnew<cr>", { desc = "Open new tab" })
 
 -- Fzf shortcuts
