@@ -52,6 +52,7 @@ endfunction
 function! markdown#journalize() range
   let l:lines = getline(a:firstline, a:lastline)
   execute a:firstline .. ',' .. a:lastline .. 'delete _'
+  write
   call markdown#journal()
   call setline(1, l:lines)
   write
