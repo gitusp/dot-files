@@ -53,6 +53,16 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank({ higroup='Visual', timeout=500 })
   end
 })
+vim.api.nvim_create_autocmd('BufRead', {
+  group = 'base',
+  pattern = {'*'},
+  callback = function()
+    local lines = vim.fn.getline(1, '$')
+    if #lines == 1 and lines[1] == '' then
+      vim.cmd('doautocmd BufNewFile')
+    end
+  end
+})
 
 --
 -- Custom Commands
