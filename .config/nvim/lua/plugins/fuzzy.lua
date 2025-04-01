@@ -31,9 +31,8 @@ return {
       })
 
       vim.api.nvim_create_user_command('FzfFiles', fzf.files, { desc = 'FZF files' })
-      vim.api.nvim_create_user_command('FzfLgrepCurbuf', fzf.lgrep_curbuf, { desc = 'FZF live grep current buffer' })
-      vim.api.nvim_create_user_command('FzfGrepCword', fzf.grep_cword, { desc = 'FZF search word under cursor' })
-      vim.api.nvim_create_user_command('FzfLiveGrepNative', fzf.live_grep_native, { desc = 'FZF live grep current project' })
+      vim.api.nvim_create_user_command('FzfGrepCurbuf', fzf.grep_curbuf, { desc = 'FZF grep current buffer' })
+      vim.api.nvim_create_user_command('FzfGrepProject', fzf.grep_project, { desc = 'FZF grep project' })
       vim.api.nvim_create_user_command('FzfDiagnosticsWorkspace', fzf.diagnostics_workspace, { desc = 'FZF diagnostics workspace' })
       vim.api.nvim_create_user_command('FzfLspReferences', fzf.lsp_references, { desc = 'FZF LSP references' })
       vim.api.nvim_create_user_command('FzfLspDefinitions', fzf.lsp_definitions, { desc = 'FZF LSP definitions' })
@@ -75,6 +74,57 @@ return {
       vim.api.nvim_create_user_command('FzfMru', function() mrx("mru") end, { desc = 'FZF MRU' })
       vim.api.nvim_create_user_command('FzfMrr', function() mrx("mrr") end, { desc = 'FZF MRR' })
       vim.api.nvim_create_user_command('FzfMrw', function() mrx("mrw") end, { desc = 'FZF MRW' })
+
+      --
+      -- gs, gS mappings
+      --
+      local function grep(word, search)
+        if word then
+          search = [[\b]] .. fzf.utils.rg_escape(search) .. [[\b]]
+          fzf.grep({ search = search, no_esc = true })
+        else
+          fzf.grep({ search = search })
+        end
+      end
+
+      local function create_search_visual(word)
+        return function()
+          local search = fzf.utils.get_visual_selection()
+          grep(word, search)
+        end
+      end
+
+      local function create_search_opfunc(word)
+        return function()
+          local old_func = vim.go.operatorfunc
+
+          _G.opfunc_search_range = function()
+            local start = vim.api.nvim_buf_get_mark(0, '[')
+            local finish = vim.api.nvim_buf_get_mark(0, ']')
+
+            local search
+            if start[1] == finish[1] then
+              local line = vim.fn.getline(start[1])
+              search = string.sub(line, start[2] + 1, finish[2] + 1)
+            else
+              local lines = vim.fn.getline(start[1], finish[1])
+              search = table.concat(lines, "\n")
+            end
+            grep(word, search)
+
+            vim.go.operatorfunc = old_func
+            _G.opfunc_search_range = nil
+          end
+
+          vim.go.operatorfunc = 'v:lua.opfunc_search_range'
+          vim.api.nvim_feedkeys('g@', 'n', false)
+        end
+      end
+
+      vim.keymap.set("n", "gs", create_search_opfunc(false), { desc = 'FZF operator' })
+      vim.keymap.set("n", "gS", create_search_opfunc(true), { desc = 'FZF operator - word' })
+      vim.keymap.set('x', 'gs', create_search_visual(false), { desc = 'FZF grep visual' })
+      vim.keymap.set('x', 'gS', create_search_visual(true), { desc = 'FZF grep visual - word' })
     end
   },
   {
