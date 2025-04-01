@@ -67,10 +67,10 @@ vim.api.nvim_create_autocmd('BufRead', {
 --
 -- Custom Commands
 --
-vim.api.nvim_create_user_command('Scratch', function()
+vim.api.nvim_create_user_command('Scrum', function()
   vim.cmd('vnew')
-  vim.cmd('e ~/vaults/scratch/index.md')
-end, { desc = 'Scratch' })
+  vim.cmd('e ~/vaults/sprint/daily-scrums/' .. vim.fn.strftime("%Y%m%d") .. '.md')
+end, { desc = 'Scrum' })
 vim.api.nvim_create_user_command('Journal', function()
   vim.cmd('vnew')
   vim.cmd('e ~/vaults/journal/' .. vim.fn.strftime("%Y%m%dT%H%M%S") .. '.md')
@@ -90,7 +90,7 @@ vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 vim.keymap.set("n", "<leader>q", function() require("quicker").toggle() end, { desc = "Toggle quickfix" })
 vim.keymap.set("n", "<leader>l", function() require("quicker").toggle({ loclist = true }) end, { desc = "Toggle loclist" })
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { desc = "Write" })
-vim.keymap.set("n", "<leader>s", "<cmd>Scratch<cr>", { desc = "Util scratch" })
+vim.keymap.set("n", "<leader>s", "<cmd>Scrum<cr>", { desc = "Util scrum" })
 vim.keymap.set("n", "<leader>j", "<cmd>Journal<cr>", { desc = "Util journal" })
 vim.keymap.set('n', '<leader>g', '<cmd>vert G<cr>', { desc = 'Git status' })
 vim.keymap.set("n", "<leader>t", '<cmd>TodoQuickFix<cr>', { desc = "Set TODOs to qf" })
