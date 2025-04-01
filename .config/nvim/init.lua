@@ -113,6 +113,9 @@ vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end, {
 -- Extend window command
 vim.keymap.set("n", "<c-w>N", "<cmd>tabnew<cr>", { desc = "Open new tab" })
 
+-- Alternate navigation(overwrites print ascii value)
+vim.keymap.set("n", "ga", "<cmd>A<cr>", { desc = "Alternate file" })
+
 -- Fzf shortcuts
 vim.keymap.set('n', '<c-p>', '<cmd>FzfFiles<cr>', { desc = 'FZF files' })
 vim.keymap.set('n', 'gh', '<cmd>FzfMru<cr>', { desc = 'FZF MRU | mnemonic - history' })
