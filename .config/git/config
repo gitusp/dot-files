@@ -1,2 +1,6 @@
 [commit]
   template=~/.config/git/commit.txt
+
+[alias]
+  co = checkout
+  f = fetch
