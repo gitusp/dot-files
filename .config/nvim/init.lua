@@ -68,9 +68,25 @@ vim.api.nvim_create_autocmd('BufRead', {
 -- Custom Commands
 --
 vim.api.nvim_create_user_command('Scrum', function()
+  local title = vim.fn.strftime("%Y-%m-%d")
+
   vim.cmd('vnew')
-  vim.cmd('e ~/vaults/sprint/daily-scrums/' .. vim.fn.strftime("%Y%m%d") .. '.md')
+  vim.cmd('e ~/vaults/sprint/daily-scrums/' .. title .. '.md')
   vim.keymap.set("n", "gq", "<cmd>q<cr>", { buffer = true })
+
+  if vim.fn.filereadable(vim.fn.expand('%')) == 0 then
+    local template = vim.fn.system(
+      'export title=' .. title .. ' && cat ~/vaults/sprint/templates/daily-scrum.md | mo'
+    ):gsub('%s+$', '')
+
+    if vim.v.shell_error == 0 then
+      local buf = vim.api.nvim_get_current_buf()
+      vim.api.nvim_buf_set_lines(buf, 0, 1, false, vim.split(template, '\n'))
+      vim.cmd('w')
+    else
+      vim.notify('Failed to load template', vim.log.levels.ERROR)
+    end
+  end
 end, { desc = 'Scrum' })
 vim.api.nvim_create_user_command('Journal', function()
   vim.cmd('vnew')
