@@ -118,6 +118,22 @@ return {
       })
       vim.api.nvim_call_function("lexima#add_rule", {
         {
+          char = '=',
+          delete = 1,
+          at = '<\\%#>',
+          filetype = {'typescriptreact', 'javascriptreact'},
+        }
+      })
+      vim.api.nvim_call_function("lexima#add_rule", {
+        {
+          char = ' ',
+          delete = 1,
+          at = '<\\%#>',
+          filetype = {'typescriptreact', 'javascriptreact'},
+        }
+      })
+      vim.api.nvim_call_function("lexima#add_rule", {
+        {
           char = '>',
           input_after = '</\\1>',
           leave = '>',
