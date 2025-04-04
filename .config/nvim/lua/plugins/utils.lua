@@ -1,20 +1,10 @@
 return {
-  { "tpope/vim-repeat" },
-  {
-    "tpope/vim-projectionist",
-    config = function()
-      vim.api.nvim_create_autocmd('User', {
-        pattern = {'ProjectionistApplyTemplate'},
-        callback = function()
-          vim.cmd('silent! %s/\\~\\~DATE\\~\\~/' .. vim.fn.strftime("%Y-%m-%d") .. '/g')
-        end,
-      })
-    end,
-  },
+  { 'tpope/vim-repeat' },
+  { 'tpope/vim-projectionist' },
   { 'tpope/vim-abolish' },
   { 'tommcdo/vim-exchange' },
   { 'tpope/vim-dadbod' },
-  { "tpope/vim-dotenv",
+  { 'tpope/vim-dotenv',
       config = function()
         vim.cmd("try | Dotenv .env.local | catch | endtry")
       end
