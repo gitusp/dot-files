@@ -3,4 +3,5 @@
 
 [alias]
   co = checkout
+  cp = cherry-pick
   f = fetch
