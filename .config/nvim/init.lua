@@ -1,5 +1,7 @@
 require("config.lazy")
 require("config.cwd")
+require("config.commands")
+require("config.autocmds")
 
 --
 -- Base Configuration
@@ -44,56 +46,6 @@ vim.diagnostic.config({
     float = true,
   },
 })
-
--- Highlight on yank
-vim.api.nvim_create_augroup('base', {})
-vim.api.nvim_create_autocmd('TextYankPost', {
-  group = 'base',
-  callback = function()
-    vim.highlight.on_yank({ higroup='Visual', timeout=500 })
-  end
-})
-vim.api.nvim_create_autocmd('BufRead', {
-  group = 'base',
-  pattern = {'*'},
-  callback = function()
-    local lines = vim.fn.getline(1, '$')
-    if #lines == 1 and lines[1] == '' then
-      vim.cmd('doautocmd BufNewFile')
-    end
-  end
-})
-
---
--- Custom Commands
---
-vim.api.nvim_create_user_command('Scrum', function(opts)
-  local title = vim.fn.strftime("%Y-%m-%d")
-
-  vim.cmd('vnew')
-  vim.cmd('e ~/vaults/sprint/daily-scrums/' .. title .. '.md')
-  vim.keymap.set("n", "gq", "<cmd>q<cr>", { buffer = true })
-
-  if vim.fn.filereadable(vim.fn.expand('%')) == 0 then
-    local filename = opts.bang and 'holiday' or 'workday'
-    local template = vim.fn.system(
-      'export title=' .. title .. ' && cat ~/vaults/sprint/templates/' .. filename .. '.md | mo'
-    ):gsub('%s+$', '')
-
-    if vim.v.shell_error == 0 then
-      local buf = vim.api.nvim_get_current_buf()
-      vim.api.nvim_buf_set_lines(buf, 0, 1, false, vim.split(template, '\n'))
-      vim.cmd('w')
-    else
-      vim.notify('Failed to load template', vim.log.levels.ERROR)
-    end
-  end
-end, { desc = 'Scrum', bang = true })
-vim.api.nvim_create_user_command('Journal', function()
-  vim.cmd('vnew')
-  vim.cmd('e ~/vaults/journal/' .. vim.fn.strftime("%Y%m%dT%H%M%S") .. '.md')
-  vim.keymap.set("n", "gq", "<cmd>q<cr>", { buffer = true })
-end, { desc = 'Journal' })
 
 --
 -- Keymaps
