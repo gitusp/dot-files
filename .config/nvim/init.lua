@@ -58,14 +58,15 @@ vim.keymap.set({"n", "x"}, "Y", '"+y')
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 -- Single key mappings with leader
+vim.keymap.set("n", "<leader>s", "<cmd>w<cr>", { desc = "Write | mnemonic - save" }) -- 連続して使用することはないので組み合わせで良い
 vim.keymap.set("n", "<leader>q", function() require("quicker").toggle() end, { desc = "Toggle quickfix" })
 vim.keymap.set("n", "<leader>l", function() require("quicker").toggle({ loclist = true }) end, { desc = "Toggle loclist" })
-vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { desc = "Write" })
-vim.keymap.set("n", "<leader>s", "<cmd>Scrum<cr>", { desc = "Util scrum" })
 vim.keymap.set("n", "<leader>j", "<cmd>Journal<cr>", { desc = "Util journal" })
 vim.keymap.set('n', '<leader>g', '<cmd>vert G<cr>', { desc = 'Git status' })
 vim.keymap.set("n", "<leader>t", '<cmd>TodoQuickFix<cr>', { desc = "Set TODOs to qf" })
-vim.keymap.set("n", "<leader>d", vim.diagnostic.setqflist, { desc = "Set LSP diagnostics to qf" })
+vim.keymap.set("n", "<leader>d", "<cmd>DailyScrum<cr>", { desc = "Util daily scrum - workday" })
+vim.keymap.set("n", "<leader>D", "<cmd>DailyScrum!<cr>", { desc = "Util daily scrum - holiday" })
+vim.keymap.set("n", "<leader>n", vim.diagnostic.setqflist, { desc = "Set LSP diagnostics to qf | mnemonic n of diagnostics" })
 vim.keymap.set("n", "<leader>m", "<cmd>TSC<cr>", { desc = "Compile TypeScript" })
 vim.keymap.set("n", "<leader>f", "<cmd>Flog<cr>", { desc = "Git log" })
 vim.keymap.set("n", "<leader>o", "<cmd>OverseerRun<cr>", { desc = "Run task" })

@@ -1,4 +1,4 @@
-vim.api.nvim_create_user_command('Scrum', function(opts)
+vim.api.nvim_create_user_command('DailyScrum', function(opts)
   local title = vim.fn.strftime("%Y-%m-%d")
 
   vim.cmd('vnew')
@@ -19,7 +19,7 @@ vim.api.nvim_create_user_command('Scrum', function(opts)
       vim.notify('Failed to load template', vim.log.levels.ERROR)
     end
   end
-end, { desc = 'Scrum', bang = true })
+end, { bang = true })
 
 vim.api.nvim_create_user_command('Journal', function()
   vim.cmd('vnew')
