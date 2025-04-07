@@ -42,8 +42,8 @@ vim.diagnostic.config({
       [vim.diagnostic.severity.HINT] = "",
     },
   },
-  virtual_lines = {
-   current_line = true,
+  jump = {
+    float = true,
   },
 })
 
