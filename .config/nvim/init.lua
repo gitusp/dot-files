@@ -42,8 +42,8 @@ vim.diagnostic.config({
       [vim.diagnostic.severity.HINT] = "",
     },
   },
-  jump = {
-    float = true,
+  virtual_lines = {
+   current_line = true,
   },
 })
 
@@ -99,5 +99,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
   callback = function(event)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'LSP definition', buffer = event.buf })
+    vim.keymap.set("n", "gK", vim.diagnostic.open_float, { desc = "Diagnostic float" })
   end,
 })
