@@ -53,7 +53,6 @@ vim.diagnostic.config({
 -- Single key mappings
 vim.keymap.set("n", "<c-l>", "<cmd>nohlsearch<CR><C-L>")
 vim.keymap.set("n", "Q", "@q")
-vim.keymap.set("n", "_", "@:")
 vim.keymap.set({"n", "x"}, "Y", '"+y')
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 

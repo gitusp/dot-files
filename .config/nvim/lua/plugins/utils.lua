@@ -46,6 +46,7 @@ return {
           ["<C-c>"] = { "actions.close", mode = "n" },
           ["<C-l>"] = "actions.refresh",
           ["-"] = { "actions.parent", mode = "n" },
+          ["_"] = { "actions.open_cwd", mode = "n" },
           ["cd"] = { "actions.cd", opts = { scope = "win" }, mode = "n" },
           ["yop"] = "actions.preview",
           ["yos"] = { "actions.change_sort", mode = "n" },
