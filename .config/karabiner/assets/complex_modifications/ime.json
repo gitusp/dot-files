@@ -33,6 +33,37 @@
           ]
         }
       ]
+    },
+    {
+      "description": "Change quote to IME switch",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "quote"
+          },
+          "to": [
+            {
+              "key_code": "japanese_eisuu"
+            }
+          ],
+          "to_after_key_up": [
+            {
+              "key_code": "japanese_kana"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "input_source_id": "^com\\.google\\.inputmethod\\.Japanese\\.base$"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
