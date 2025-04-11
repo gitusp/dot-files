@@ -2,7 +2,7 @@
   "title": "Settings for Footpedal",
   "rules": [
     {
-      "description": "Change command down/up to :/<cr>",
+      "description": "Change command down/up to IME switch",
       "manipulators": [
         {
           "type": "basic",
@@ -11,17 +11,15 @@
           },
           "to": [
             {
-              "key_code": "japanese_eisuu"
-            },
-            {
-              "key_code": "semicolon",
-              "modifiers": ["shift"],
+              "key_code": "spacebar",
+              "modifiers": ["command"],
               "repeat": false
             }
           ],
           "to_after_key_up": [
             {
-              "key_code": "return_or_enter"
+              "key_code": "spacebar",
+              "modifiers": ["command"]
             }
           ],
           "conditions": [
@@ -33,16 +31,6 @@
                   "product_id": 8455,
                   "description": "footpedal"
                 }
-              ]
-            },
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "^com\\.apple\\.Terminal$",
-                "^io\\.alacritty$",
-                "^net\\.kovidgoyal\\.kitty$",
-                "^com\\.googlecode\\.iterm2$",
-                "^com\\.google\\.android\\.studio$"
               ]
             }
           ]
