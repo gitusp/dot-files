@@ -1,0 +1,38 @@
+{
+  "title": "Settings for IME",
+  "rules": [
+    {
+      "description": "Change <c-m> to double enter",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "m",
+            "modifiers": {
+              "mandatory": ["control"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "return_or_enter"
+            },
+            {
+              "key_code": "return_or_enter"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "input_source_id": "^com\\.google\\.inputmethod\\.Japanese\\.base$"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
