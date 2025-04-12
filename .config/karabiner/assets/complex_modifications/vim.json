@@ -11,10 +11,10 @@
           },
           "to": [
             {
-              "key_code": "escape"
+              "key_code": "japanese_eisuu"
             },
             {
-              "key_code": "japanese_eisuu"
+              "key_code": "escape"
             }
           ]
         }
@@ -33,42 +33,11 @@
           },
           "to": [
             {
+              "key_code": "japanese_eisuu"
+            },
+            {
               "key_code": "open_bracket",
               "modifiers": ["control"]
-            },
-            {
-              "key_code": "japanese_eisuu"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "description": "Change pure tab to escape",
-      "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "tab"
-          },
-          "to": [
-            {
-              "key_code": "escape"
-            },
-            {
-              "key_code": "japanese_eisuu"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "^com\\.apple\\.Terminal$",
-                "^org\\.alacritty$",
-                "^net\\.kovidgoyal\\.kitty$",
-                "^com\\.googlecode\\.iterm2$",
-                "^com\\.github\\.wez\\.wezterm$"
-              ]
             }
           ]
         }
