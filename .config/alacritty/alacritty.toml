@@ -1,0 +1,20 @@
+[general]
+import = [
+  "~/.config/alacritty/themes/themes/github_light.toml"
+]
+
+[window]
+
+padding.x = 11
+padding.y = 11
+
+decorations = "None"
+
+[font]
+
+normal.family = "SauceCodePro Nerd Font Mono"
+bold.family = "SauceCodePro Nerd Font Mono"
+italic.family = "SauceCodePro Nerd Font Mono"
+bold_italic.family = "SauceCodePro Nerd Font Mono"
+
+size = 12.0
