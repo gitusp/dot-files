@@ -2,7 +2,7 @@
   "title": "Settings for IME",
   "rules": [
     {
-      "description": "Change <c-m> to double enter",
+      "description": "Change <c-m> to commit then enter",
       "manipulators": [
         {
           "type": "basic",
@@ -15,10 +15,13 @@
           },
           "to": [
             {
-              "key_code": "return_or_enter"
+              "key_code": "japanese_eisuu"
             },
             {
               "key_code": "return_or_enter"
+            },
+            {
+              "key_code": "japanese_kana"
             }
           ],
           "conditions": [
@@ -35,12 +38,12 @@
       ]
     },
     {
-      "description": "Change quote to IME switch",
+      "description": "Change semicolon to IME switch",
       "manipulators": [
         {
           "type": "basic",
           "from": {
-            "key_code": "quote"
+            "key_code": "semicolon"
           },
           "to": [
             {
