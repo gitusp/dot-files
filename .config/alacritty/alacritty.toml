@@ -12,9 +12,16 @@ decorations = "None"
 
 [font]
 
-normal.family = "SauceCodePro Nerd Font Mono"
-bold.family = "SauceCodePro Nerd Font Mono"
-italic.family = "SauceCodePro Nerd Font Mono"
-bold_italic.family = "SauceCodePro Nerd Font Mono"
+normal.family = "PlemolJP Console NF"
+bold.family = "PlemolJP Console NF"
+italic.family = "PlemolJP Console NF"
+bold_italic.family = "PlemolJP Console NF"
+
+normal.style = "Medium"
+bold.style = "Bold"
+italic.style = "Medium Italic"
+bold_italic.style = "Bold Italic"
 
 size = 12.0
+offset.y = 4
+offset.x = 2
