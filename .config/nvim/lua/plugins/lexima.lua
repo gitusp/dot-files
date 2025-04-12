@@ -151,6 +151,14 @@ return {
           filetype = {'typescriptreact', 'javascriptreact', 'markdown', 'html', 'xml'}
         }
       })
+      vim.api.nvim_call_function("lexima#add_rule", {
+        {
+          char = '<bs>',
+          input = '<bs><bs><bs>',
+          at = '\\s*// \\%#',
+          filetype = {'typescriptreact', 'javascriptreact', 'typescript', 'javascript'},
+        }
+      })
     end,
   },
 }
