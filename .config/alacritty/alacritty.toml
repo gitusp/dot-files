@@ -12,10 +12,10 @@ decorations = "None"
 
 [font]
 
-normal.family = "PlemolJP Console NF"
-bold.family = "PlemolJP Console NF"
-italic.family = "PlemolJP Console NF"
-bold_italic.family = "PlemolJP Console NF"
+normal.family = "PlemolJP35 Console NF"
+bold.family = "PlemolJP35 Console NF"
+italic.family = "PlemolJP35 Console NF"
+bold_italic.family = "PlemolJP35 Console NF"
 
 normal.style = "Medium"
 bold.style = "Bold"
@@ -24,4 +24,4 @@ bold_italic.style = "Bold Italic"
 
 size = 12.0
 offset.y = 4
-offset.x = 2
+offset.x = 1
