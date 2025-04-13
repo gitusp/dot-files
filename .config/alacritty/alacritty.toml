@@ -5,17 +5,17 @@ import = [
 
 [window]
 
-padding.x = 11
-padding.y = 11
+padding.x = 8
+padding.y = 8
 
 decorations = "None"
 
 [font]
 
-normal.family = "PlemolJP35 Console NF"
-bold.family = "PlemolJP35 Console NF"
-italic.family = "PlemolJP35 Console NF"
-bold_italic.family = "PlemolJP35 Console NF"
+normal.family = "PlemolJP Console NF"
+bold.family = "PlemolJP Console NF"
+italic.family = "PlemolJP Console NF"
+bold_italic.family = "PlemolJP Console NF"
 
 normal.style = "Medium"
 bold.style = "Bold"
@@ -24,4 +24,4 @@ bold_italic.style = "Bold Italic"
 
 size = 12.0
 offset.y = 4
-offset.x = 1
+offset.x = 2
