@@ -49,18 +49,6 @@
             {
               "key_code": "tab"
             }
-          ],
-          "conditions": [
-            {
-              "type": "frontmost_application_unless",
-              "bundle_identifiers": [
-                "^com\\.apple\\.Terminal$",
-                "^org\\.alacritty$",
-                "^net\\.kovidgoyal\\.kitty$",
-                "^com\\.googlecode\\.iterm2$",
-                "^com\\.github\\.wez\\.wezterm$"
-              ]
-            }
           ]
         }
       ]
