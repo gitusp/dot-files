@@ -64,7 +64,8 @@
           "from": {
             "key_code": "m",
             "modifiers": {
-              "mandatory": ["control"]
+              "mandatory": ["control", "command"],
+              "optional": ["any"]
             }
           },
           "to": [
@@ -73,43 +74,6 @@
             }
           ],
           "to_after_key_up": [
-            {
-              "key_code": "return_or_enter"
-            },
-            {
-              "key_code": "japanese_kana"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "input_source_id": "^com\\.google\\.inputmethod\\.Japanese\\.base$"
-                }
-              ]
-            },
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "^org\\.alacritty$"
-              ]
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "m",
-            "modifiers": {
-              "mandatory": ["control", "command"],
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "japanese_eisuu"
-            },
             {
               "key_code": "return_or_enter",
               "modifiers": ["command"]
@@ -141,7 +105,9 @@
           "to": [
             {
               "key_code": "japanese_eisuu"
-            },
+            }
+          ],
+          "to_after_key_up": [
             {
               "key_code": "return_or_enter"
             },
@@ -183,41 +149,6 @@
         {
           "type": "basic",
           "from": {
-            "key_code": "return_or_enter"
-          },
-          "to": [
-            {
-              "key_code": "japanese_eisuu"
-            }
-          ],
-          "to_after_key_up": [
-            {
-              "key_code": "return_or_enter"
-            },
-            {
-              "key_code": "japanese_kana"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "input_source_id": "^com\\.google\\.inputmethod\\.Japanese\\.base$"
-                }
-              ]
-            },
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "^org\\.alacritty$"
-              ]
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
             "key_code": "return_or_enter",
             "modifiers": {
               "mandatory": ["command"],
@@ -227,7 +158,9 @@
           "to": [
             {
               "key_code": "japanese_eisuu"
-            },
+            }
+          ],
+          "to_after_key_up": [
             {
               "key_code": "return_or_enter",
               "modifiers": ["command"]
@@ -258,7 +191,9 @@
           "to": [
             {
               "key_code": "japanese_eisuu"
-            },
+            }
+          ],
+          "to_after_key_up": [
             {
               "key_code": "return_or_enter"
             },
