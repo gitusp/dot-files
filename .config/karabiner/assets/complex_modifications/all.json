@@ -151,8 +151,34 @@
       ]
     },
     {
-      "description": "Change semicolon to IME switch",
+      "description": "IME switchers",
       "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "left_control"
+          },
+          "to": [
+            {
+              "key_code": "japanese_eisuu"
+            }
+          ],
+          "to_after_key_up": [
+            {
+              "key_code": "japanese_kana"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "input_source_id": "^com\\.google\\.inputmethod\\.Japanese\\.base$"
+                }
+              ]
+            }
+          ]
+        },
         {
           "type": "basic",
           "from": {
