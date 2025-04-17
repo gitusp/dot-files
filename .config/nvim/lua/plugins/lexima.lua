@@ -65,7 +65,7 @@ return {
       })
       vim.api.nvim_call_function("lexima#add_rule", {
         {
-          char = '<c-h>',
+          char = '<bs>',
           input = '<bs><bs><bs><bs>',
           at = '^\\s*- \\[ ] \\%#',
           filetype = 'markdown',
@@ -153,7 +153,7 @@ return {
       })
       vim.api.nvim_call_function("lexima#add_rule", {
         {
-          char = '<c-h>',
+          char = '<bs>',
           input = '<bs><bs><bs>',
           at = '\\s*// \\%#',
           filetype = {'typescriptreact', 'javascriptreact', 'typescript', 'javascript'},
