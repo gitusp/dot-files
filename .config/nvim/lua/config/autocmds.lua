@@ -20,3 +20,10 @@ vim.api.nvim_create_autocmd('BufRead', {
   end
 })
 
+-- insertモード以外ではIMEを無効化する
+vim.api.nvim_create_autocmd('InsertLeave', {
+  desc = "Auto IME disabler",
+  callback = function()
+    vim.system({ "macism", "net.mtgto.inputmethod.macSKK.ascii" })
+  end,
+})
