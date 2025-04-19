@@ -118,7 +118,7 @@
       ]
     },
     {
-      "description": "conditional c-j to command-space",
+      "description": "IME switch",
       "manipulators": [
         {
           "type": "basic",
@@ -130,8 +130,7 @@
           },
           "to": [
             {
-              "key_code": "spacebar",
-              "modifiers": ["command"]
+              "key_code": "japanese_kana"
             }
           ],
           "conditions": [
@@ -144,6 +143,64 @@
               "input_sources": [
                 {
                   "input_source_id": "^com\\.apple\\.keylayout\\.ABC$"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "quote"
+          },
+          "to": [
+            {
+              "key_code": "japanese_eisuu"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "input_source_id": "^net\\.mtgto\\.inputmethod\\.macSKK\\.hiragana$"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "vim hiragana c-o",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "o",
+            "modifiers": {
+              "mandatory": ["control"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "japanese_eisuu"
+            },
+            {
+              "key_code": "o",
+              "modifiers": ["control", "shift"]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"]
+            },
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "input_source_id": "^net\\.mtgto\\.inputmethod\\.macSKK\\.hiragana$"
                 }
               ]
             }
