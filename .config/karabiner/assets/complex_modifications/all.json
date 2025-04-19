@@ -89,14 +89,22 @@
           },
           "to": [
             {
-              "key_code": "j",
-              "modifiers": ["option"]
+              "key_code": "spacebar",
+              "modifiers": ["command"]
             }
           ],
           "conditions": [
             {
               "type": "frontmost_application_unless",
               "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"]
+            },
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "input_source_id": "^com\\.apple\\.keylayout\\.ABC$"
+                }
+              ]
             }
           ]
         }
