@@ -94,12 +94,35 @@ vim.keymap.set('n', 'gl', '<cmd>FzfGrepProject<cr>', { desc = 'FZF grep project 
 vim.keymap.set('n', 'g/', '<cmd>FzfGrepCurbuf<cr>', { desc = 'FZF grep current buffer | mnemonic - powerful /' })
 vim.keymap.set('n', 'gz', '<cmd>FzfZoxide<cr>', { desc = 'FZF Zoxide' })
 
+--
 -- SKK Japanese mode
+--
 -- <c-j>がedge motionとぶつかるので, SKK側の切り替えをoption-jに設定している.
 -- insert modeの時のみ<c-j>をoption-jとして送信する.
 vim.keymap.set('i', '<c-j>', function()
   vim.system({ "sendkeys", "--initial-delay", "0", "--characters", "<c:j:option>" })
 end, { desc = 'Send SKK Japanese Key' })
+
+-- <c-o>が押された際にhiraganaモードであれば,
+-- その後insertモードに入った際に入力モードを復帰する.
+vim.keymap.set('i', '<c-o>', function()
+  local out = vim.fn.system('macism')
+  if vim.v.shell_error == 0 then
+    if out:gsub("%s+$", "") == "net.mtgto.inputmethod.macSKK.hiragana" then
+      vim.api.nvim_create_autocmd('InsertEnter', {
+        desc = "Restore input method",
+        callback = function()
+          vim.system({ "macism", "net.mtgto.inputmethod.macSKK.hiragana" })
+        end,
+        once = true,
+      })
+    end
+  end
+
+  -- 本来の<c-o>を送信
+  local key = vim.api.nvim_replace_termcodes("<c-o>", true, false, true)
+  vim.api.nvim_feedkeys(key, 'n', false)
+end, { desc = 'Preserve input mode' })
 
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
