@@ -116,6 +116,32 @@
           ]
         }
       ]
+    },
+    {
+      "description": "c-j to option-j unless frontmost application is wezterm",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": ["control"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "j",
+              "modifiers": ["option"]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

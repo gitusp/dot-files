@@ -94,6 +94,13 @@ vim.keymap.set('n', 'gl', '<cmd>FzfGrepProject<cr>', { desc = 'FZF grep project 
 vim.keymap.set('n', 'g/', '<cmd>FzfGrepCurbuf<cr>', { desc = 'FZF grep current buffer | mnemonic - powerful /' })
 vim.keymap.set('n', 'gz', '<cmd>FzfZoxide<cr>', { desc = 'FZF Zoxide' })
 
+-- SKK Japanese mode
+-- <c-j>がedge motionとぶつかるので, SKK側の切り替えをoption-jに設定している.
+-- insert modeの時のみ<c-j>をoption-jとして送信する.
+vim.keymap.set('i', '<c-j>', function()
+  vim.system({ "sendkeys", "--initial-delay", "0", "--characters", "<c:j:option>" })
+end, { desc = 'Send SKK Japanese Key' })
+
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
   callback = function(event)
