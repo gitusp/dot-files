@@ -98,7 +98,7 @@ vim.keymap.set('n', 'gz', '<cmd>FzfZoxide<cr>', { desc = 'FZF Zoxide' })
 vim.keymap.set('i', '<c-j>', function()
   local out = vim.fn.system('macism')
   if vim.v.shell_error == 0 and out:gsub("%s+$", "") == "com.apple.keylayout.ABC" then
-    vim.system({ "macism", "net.mtgto.inputmethod.macSKK.hiragana" })
+    vim.system({ "macism", "net.mtgto.inputmethod.macSKK.hiragana" }):wait()
   end
 end, { desc = 'Enable hiragana' })
 
@@ -108,7 +108,7 @@ local function restoreime(type)
     vim.api.nvim_create_autocmd('InsertEnter', {
       desc = "Restore input method",
       callback = function()
-        vim.system({ "macism", "net.mtgto.inputmethod.macSKK." .. type })
+        vim.system({ "macism", "net.mtgto.inputmethod.macSKK." .. type }):wait()
       end,
       once = true,
     })
