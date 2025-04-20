@@ -164,6 +164,15 @@
               "input_sources": [
                 {
                   "input_source_id": "^net\\.mtgto\\.inputmethod\\.macSKK\\.hiragana$"
+                },
+                {
+                  "input_source_id": "^net\\.mtgto\\.inputmethod\\.macSKK\\.katakana$"
+                },
+                {
+                  "input_source_id": "^net\\.mtgto\\.inputmethod\\.macSKK\\.hankaku$"
+                },
+                {
+                  "input_source_id": "^net\\.mtgto\\.inputmethod\\.macSKK\\.eisu$"
                 }
               ]
             }
@@ -172,7 +181,7 @@
       ]
     },
     {
-      "description": "vim hiragana c-o",
+      "description": "vim conditional c-o",
       "manipulators": [
         {
           "type": "basic",
@@ -187,8 +196,12 @@
               "key_code": "japanese_eisuu"
             },
             {
-              "key_code": "o",
-              "modifiers": ["control", "shift"]
+              "key_code": "x",
+              "modifiers": ["control"]
+            },
+            {
+              "key_code": "h",
+              "modifiers": ["shift"]
             }
           ],
           "conditions": [
@@ -201,6 +214,114 @@
               "input_sources": [
                 {
                   "input_source_id": "^net\\.mtgto\\.inputmethod\\.macSKK\\.hiragana$"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "o",
+            "modifiers": {
+              "mandatory": ["control"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "japanese_eisuu"
+            },
+            {
+              "key_code": "x",
+              "modifiers": ["control"]
+            },
+            {
+              "key_code": "n",
+              "modifiers": ["shift"]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"]
+            },
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "input_source_id": "^net\\.mtgto\\.inputmethod\\.macSKK\\.hankaku$"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "o",
+            "modifiers": {
+              "mandatory": ["control"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "japanese_eisuu"
+            },
+            {
+              "key_code": "x",
+              "modifiers": ["control"]
+            },
+            {
+              "key_code": "k",
+              "modifiers": ["shift"]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"]
+            },
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "input_source_id": "^net\\.mtgto\\.inputmethod\\.macSKK\\.katakana$"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "o",
+            "modifiers": {
+              "mandatory": ["control"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "japanese_eisuu"
+            },
+            {
+              "key_code": "x",
+              "modifiers": ["control"]
+            },
+            {
+              "key_code": "e",
+              "modifiers": ["shift"]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"]
+            },
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "input_source_id": "^net\\.mtgto\\.inputmethod\\.macSKK\\.eisu$"
                 }
               ]
             }

@@ -102,20 +102,26 @@ vim.keymap.set('i', '<c-j>', function()
   end
 end, { desc = 'Enable hiragana' })
 
--- Modify <c-o> to eisuu + <c-s-o> if input method is hiragana
-vim.keymap.set('i', '<c-s-o>', function()
-  vim.api.nvim_create_autocmd('InsertEnter', {
-    desc = "Restore input method",
-    callback = function()
-      vim.system({ "macism", "net.mtgto.inputmethod.macSKK.hiragana" })
-    end,
-    once = true,
-  })
+-- Modify <c-o> if input method is not ABC
+local function restoreime(type)
+  return function()
+    vim.api.nvim_create_autocmd('InsertEnter', {
+      desc = "Restore input method",
+      callback = function()
+        vim.system({ "macism", "net.mtgto.inputmethod.macSKK." .. type })
+      end,
+      once = true,
+    })
 
-  -- <c-o>を送信
-  local key = vim.api.nvim_replace_termcodes("<c-o>", true, false, true)
-  vim.api.nvim_feedkeys(key, 'n', false)
-end, { desc = 'Preserve input mode' })
+    -- <c-o>を送信
+    local key = vim.api.nvim_replace_termcodes("<c-o>", true, false, true)
+    vim.api.nvim_feedkeys(key, 'n', false)
+  end
+end
+vim.keymap.set('i', '<c-x>H', restoreime("hiragana"))
+vim.keymap.set('i', '<c-x>K', restoreime("katakana"))
+vim.keymap.set('i', '<c-x>N', restoreime("hankaku"))
+vim.keymap.set('i', '<c-x>E', restoreime("eisu"))
 
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
