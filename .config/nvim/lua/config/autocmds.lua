@@ -19,3 +19,31 @@ vim.api.nvim_create_autocmd('BufRead', {
     end
   end
 })
+
+vim.api.nvim_create_autocmd('InsertEnter', {
+  group = 'base',
+  pattern = {'*'},
+  callback = function()
+    local out = vim.system({
+      "/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli",
+      "--set-variables",
+      '{"insert_mode":true}'
+    }):wait()
+
+    vim.notify(out.stdout)
+    vim.notify(out.stderr)
+    vim.notify("foo" .. out.code)
+  end
+})
+
+vim.api.nvim_create_autocmd('InsertLeave', {
+  group = 'base',
+  pattern = {'*'},
+  callback = function()
+    vim.system({
+      "/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli",
+      "--set-variables",
+      '{"insert_mode":false}'
+    }):wait()
+  end
+})

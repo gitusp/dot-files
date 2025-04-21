@@ -94,14 +94,6 @@ vim.keymap.set('n', 'gl', '<cmd>FzfGrepProject<cr>', { desc = 'FZF grep project 
 vim.keymap.set('n', 'g/', '<cmd>FzfGrepCurbuf<cr>', { desc = 'FZF grep current buffer | mnemonic - powerful /' })
 vim.keymap.set('n', 'gz', '<cmd>FzfZoxide<cr>', { desc = 'FZF Zoxide' })
 
--- Hook <c-j> only in insert mode
-vim.keymap.set('i', '<c-j>', function()
-  local out = vim.fn.system('macism')
-  if vim.v.shell_error == 0 and out:gsub("%s+$", "") == "com.apple.keylayout.ABC" then
-    vim.system({ "macism", "net.mtgto.inputmethod.macSKK.hiragana" }):wait()
-  end
-end, { desc = 'Enable hiragana' })
-
 -- Modify <c-o> if input method is not ABC
 local function restoreime(type)
   return function()

@@ -130,51 +130,40 @@
           },
           "to": [
             {
-              "key_code": "japanese_kana"
+              "key_code": "j",
+              "modifiers": ["control", "shift"]
             }
           ],
           "conditions": [
             {
               "type": "frontmost_application_unless",
               "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"]
-            },
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "input_source_id": "^com\\.apple\\.keylayout\\.ABC$"
-                }
-              ]
             }
           ]
         },
         {
           "type": "basic",
           "from": {
-            "key_code": "quote"
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": ["control"]
+            }
           },
           "to": [
             {
-              "key_code": "japanese_eisuu"
+              "key_code": "j",
+              "modifiers": ["control", "shift"]
             }
           ],
           "conditions": [
             {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "input_source_id": "^net\\.mtgto\\.inputmethod\\.macSKK\\.hiragana$"
-                },
-                {
-                  "input_source_id": "^net\\.mtgto\\.inputmethod\\.macSKK\\.katakana$"
-                },
-                {
-                  "input_source_id": "^net\\.mtgto\\.inputmethod\\.macSKK\\.hankaku$"
-                },
-                {
-                  "input_source_id": "^net\\.mtgto\\.inputmethod\\.macSKK\\.eisu$"
-                }
-              ]
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"]
+            },
+            {
+              "type": "variable_if",
+              "name": "insert_mode",
+              "value": true
             }
           ]
         }
