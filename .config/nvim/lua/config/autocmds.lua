@@ -29,10 +29,6 @@ vim.api.nvim_create_autocmd('InsertEnter', {
       "--set-variables",
       '{"insert_mode":true}'
     }):wait()
-
-    vim.notify(out.stdout)
-    vim.notify(out.stderr)
-    vim.notify("foo" .. out.code)
   end
 })
 
