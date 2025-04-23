@@ -25,10 +25,13 @@ vim.api.nvim_create_autocmd('InsertEnter', {
   pattern = {'*'},
   callback = function()
     local out = vim.system({
-      "/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli",
+      "./karabiner_cli",
       "--set-variables",
       '{"insert_mode":true}'
-    }):wait()
+    }, {
+      cwd = "/Library/Application Support/org.pqrs/Karabiner-Elements/bin",
+      detach = true
+    })
   end
 })
 
@@ -37,9 +40,12 @@ vim.api.nvim_create_autocmd('InsertLeave', {
   pattern = {'*'},
   callback = function()
     vim.system({
-      "/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli",
+      "./karabiner_cli",
       "--set-variables",
       '{"insert_mode":false}'
-    }):wait()
+    }, {
+      cwd = "/Library/Application Support/org.pqrs/Karabiner-Elements/bin",
+      detach = true
+    })
   end
 })
