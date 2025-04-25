@@ -20,32 +20,51 @@ vim.api.nvim_create_autocmd('BufRead', {
   end
 })
 
+local next = nil
+local running = false
+
+local function consume()
+  -- lock execution
+  if running then
+    return
+  end
+  running = true
+
+  -- consume state
+  local current = next
+  next = nil
+
+  -- set variable
+  local mode_str = current and 'true' or 'false'
+  vim.system({
+    "./karabiner_cli",
+    "--set-variables",
+    '{"insert_mode":' .. mode_str .. '}'
+  }, {
+    cwd = "/Library/Application Support/org.pqrs/Karabiner-Elements/bin"
+  }, function()
+    running = false
+    if next ~= nil then
+      consume()
+    end
+  end)
+end
+
+local function create_handler(mode)
+  return function()
+    next = mode
+    consume()
+  end
+end
+
 vim.api.nvim_create_autocmd('InsertEnter', {
   group = 'base',
   pattern = {'*'},
-  callback = function()
-    local out = vim.system({
-      "./karabiner_cli",
-      "--set-variables",
-      '{"insert_mode":true}'
-    }, {
-      cwd = "/Library/Application Support/org.pqrs/Karabiner-Elements/bin",
-      detach = true
-    })
-  end
+  callback = create_handler(true)
 })
 
 vim.api.nvim_create_autocmd('InsertLeave', {
   group = 'base',
   pattern = {'*'},
-  callback = function()
-    vim.system({
-      "./karabiner_cli",
-      "--set-variables",
-      '{"insert_mode":false}'
-    }, {
-      cwd = "/Library/Application Support/org.pqrs/Karabiner-Elements/bin",
-      detach = true
-    })
-  end
+  callback = create_handler(false)
 })
