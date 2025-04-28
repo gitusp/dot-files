@@ -5,7 +5,4 @@ local config = wezterm.config_builder()
 
 common.decorate(config)
 
-config.initial_rows = 96
-config.initial_cols = 320
-
 return config

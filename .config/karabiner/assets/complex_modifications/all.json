@@ -317,6 +317,39 @@
           ]
         }
       ]
+    },
+    {
+      "description": "pbedit",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "semicolon",
+            "modifiers": {
+              "mandatory": ["control"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "a",
+              "modifiers": ["command"]
+            },
+            {
+              "key_code": "c",
+              "modifiers": ["command"]
+            },
+            {
+              "shell_command": "open -n -W -a /Applications/Wezterm.app --args --config-file $HOME/.config/wezterm/pbedit.lua start --always-new-process -- zsh -c \". ~/.zprofile; ~/bin/pbedit\""
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$", "^com\\.mitchellh\\.ghostty$"]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
