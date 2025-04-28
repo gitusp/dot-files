@@ -137,7 +137,7 @@
           "conditions": [
             {
               "type": "frontmost_application_unless",
-              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"]
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$", "^com\\.mitchellh\\.ghostty$"]
             }
           ]
         },
@@ -158,7 +158,7 @@
           "conditions": [
             {
               "type": "frontmost_application_if",
-              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"]
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$", "^com\\.mitchellh\\.ghostty$"]
             },
             {
               "type": "variable_if",
@@ -196,7 +196,7 @@
           "conditions": [
             {
               "type": "frontmost_application_if",
-              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"]
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$", "^com\\.mitchellh\\.ghostty$"]
             },
             {
               "type": "input_source_if",
@@ -232,7 +232,7 @@
           "conditions": [
             {
               "type": "frontmost_application_if",
-              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"]
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$", "^com\\.mitchellh\\.ghostty$"]
             },
             {
               "type": "input_source_if",
@@ -268,7 +268,7 @@
           "conditions": [
             {
               "type": "frontmost_application_if",
-              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"]
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$", "^com\\.mitchellh\\.ghostty$"]
             },
             {
               "type": "input_source_if",
@@ -304,7 +304,7 @@
           "conditions": [
             {
               "type": "frontmost_application_if",
-              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"]
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$", "^com\\.mitchellh\\.ghostty$"]
             },
             {
               "type": "input_source_if",
