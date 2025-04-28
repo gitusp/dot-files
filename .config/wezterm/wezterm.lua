@@ -21,10 +21,4 @@ config.keys = {
   },
 }
 
-config.colors = {
-  cursor_fg = "#000000",
-  cursor_bg = "#cccccc",
-  compose_cursor = '#dddddd'
-}
-
 return config
