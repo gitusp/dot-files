@@ -68,3 +68,11 @@ vim.api.nvim_create_autocmd({ 'InsertLeave', 'CmdlineLeave', 'TermLeave' }, {
   pattern = {'*'},
   callback = create_handler(false)
 })
+
+vim.api.nvim_create_autocmd({ 'CmdlineLeave', 'TermLeave' }, {
+  group = 'base',
+  pattern = {'*'},
+  callback = function()
+    vim.system({ "macism", "net.mtgto.inputmethod.macSKK.ascii" }):wait()
+  end
+})
