@@ -69,10 +69,12 @@ vim.api.nvim_create_autocmd({ 'InsertLeave', 'CmdlineLeave', 'TermLeave' }, {
   callback = create_handler(false)
 })
 
-vim.api.nvim_create_autocmd({ 'CmdlineLeave', 'TermLeave' }, {
+vim.api.nvim_create_autocmd('ModeChanged', {
   group = 'base',
   pattern = {'*'},
   callback = function()
-    vim.system({ "macism", "net.mtgto.inputmethod.macSKK.ascii" }):wait()
+    if vim.v.event.new_mode == 'n' then
+      vim.system({ "macism", "net.mtgto.inputmethod.macSKK.ascii" }):wait()
+    end
   end
 })
