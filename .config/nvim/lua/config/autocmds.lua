@@ -57,13 +57,13 @@ local function create_handler(mode)
   end
 end
 
-vim.api.nvim_create_autocmd('InsertEnter', {
+vim.api.nvim_create_autocmd({ 'InsertEnter', 'CmdlineEnter', 'TermEnter' }, {
   group = 'base',
   pattern = {'*'},
   callback = create_handler(true)
 })
 
-vim.api.nvim_create_autocmd('InsertLeave', {
+vim.api.nvim_create_autocmd({ 'InsertLeave', 'CmdlineLeave', 'TermLeave' }, {
   group = 'base',
   pattern = {'*'},
   callback = create_handler(false)
