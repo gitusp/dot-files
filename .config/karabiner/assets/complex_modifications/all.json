@@ -175,12 +175,15 @@
         {
           "type": "basic",
           "from": {
-            "key_code": "semicolon",
+            "key_code": "j",
             "modifiers": {
-              "mandatory": ["control"]
+              "mandatory": ["control", "shift"]
             }
           },
           "to": [
+            {
+              "key_code": "japanese_eisuu"
+            },
             {
               "key_code": "a",
               "modifiers": ["command"]
