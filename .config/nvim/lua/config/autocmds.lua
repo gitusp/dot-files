@@ -50,30 +50,23 @@ local function consume()
   end)
 end
 
-local function create_handler(mode)
-  return function()
-    next = mode
-    consume()
-  end
+local function handle(mode)
+  next = mode
+  consume()
 end
-
-vim.api.nvim_create_autocmd({ 'InsertEnter', 'CmdlineEnter', 'TermEnter' }, {
-  group = 'base',
-  pattern = {'*'},
-  callback = create_handler(true)
-})
-
-vim.api.nvim_create_autocmd({ 'InsertLeave', 'CmdlineLeave', 'TermLeave' }, {
-  group = 'base',
-  pattern = {'*'},
-  callback = create_handler(false)
-})
 
 vim.api.nvim_create_autocmd('ModeChanged', {
   group = 'base',
   pattern = {'*'},
   callback = function()
-    if vim.v.event.new_mode == 'n' then
+    local mode = vim.v.event.new_mode:sub(1, 1)
+    
+    if mode == 'i' or mode == 'c' or mode == 't' then
+      handle(true)
+    end
+
+    if mode == 'n' then
+      handle(false)
       vim.system({ "macism", "net.mtgto.inputmethod.macSKK.ascii" }):wait()
     end
   end

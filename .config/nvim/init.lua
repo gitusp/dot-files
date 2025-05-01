@@ -94,27 +94,6 @@ vim.keymap.set('n', 'gl', '<cmd>FzfGrepProject<cr>', { desc = 'FZF grep project 
 vim.keymap.set('n', 'g/', '<cmd>FzfGrepCurbuf<cr>', { desc = 'FZF grep current buffer | mnemonic - powerful /' })
 vim.keymap.set('n', 'gz', '<cmd>FzfZoxide<cr>', { desc = 'FZF Zoxide' })
 
--- Modify <c-o> if input method is not ABC
-local function restoreime(type)
-  return function()
-    vim.api.nvim_create_autocmd('InsertEnter', {
-      desc = "Restore input method",
-      callback = function()
-        vim.system({ "macism", "net.mtgto.inputmethod.macSKK." .. type }):wait()
-      end,
-      once = true,
-    })
-
-    -- <c-o>を送信
-    local key = vim.api.nvim_replace_termcodes("<c-o>", true, false, true)
-    vim.api.nvim_feedkeys(key, 'n', false)
-  end
-end
-vim.keymap.set('i', '<c-x>H', restoreime("hiragana"))
-vim.keymap.set('i', '<c-x>K', restoreime("katakana"))
-vim.keymap.set('i', '<c-x>N', restoreime("hankaku"))
-vim.keymap.set('i', '<c-x>E', restoreime("eisu"))
-
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
   callback = function(event)
