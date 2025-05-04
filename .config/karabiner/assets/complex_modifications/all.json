@@ -175,9 +175,9 @@
         {
           "type": "basic",
           "from": {
-            "key_code": "j",
+            "key_code": "comma",
             "modifiers": {
-              "mandatory": ["control", "shift"]
+              "mandatory": ["control"]
             }
           },
           "to": [
