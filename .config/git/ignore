@@ -2,3 +2,4 @@
 .local/
 .local.*
 .DS_Store
+.obsidian/
