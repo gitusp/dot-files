@@ -57,6 +57,7 @@ vim.keymap.set({"n", "x"}, "Y", '"+y')
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 -- Single key mappings with leader
+vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
 vim.keymap.set("n", "<leader>s", "<cmd>w<cr>", { desc = "Write | mnemonic - save" }) -- 連続して使用することはないので組み合わせで良い
 vim.keymap.set("n", "<leader>q", function() require("quicker").toggle() end, { desc = "Toggle quickfix" })
 vim.keymap.set("n", "<leader>l", function() require("quicker").toggle({ loclist = true }) end, { desc = "Toggle loclist" })
