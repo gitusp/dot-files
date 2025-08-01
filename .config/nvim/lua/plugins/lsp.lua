@@ -74,6 +74,20 @@ return {
         end,
         capabilities = capabilities
       })
+      lspconfig.biome.setup({
+        cmd = { "npx", "biome", "lsp-proxy" },
+        filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "jsonc" },
+        root_dir = lspconfig.util.root_pattern("biome.json", "package.json"),
+        capabilities = capabilities,
+        on_attach = function(client, bufnr)
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            pattern = { "*.js", "*.jsx", "*.ts", "*.tsx", "*.json" },
+            callback = function()
+              vim.lsp.buf.format({ async = false })
+            end,
+          })
+        end,
+      })
     end
   },
 }
