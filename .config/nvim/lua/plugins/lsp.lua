@@ -5,34 +5,57 @@ return {
       { "saghen/blink.cmp" },
     },
     config = function()
-      require("lspconfig.configs").vtsls = require("vtsls").lspconfig
-
+      -- Set capabilities globally for all LSP servers
       local capabilities = require('blink.cmp').get_lsp_capabilities()
-      local lspconfig = require("lspconfig")
+      vim.lsp.config('*', {
+        capabilities = capabilities
+      })
 
-      lspconfig.cssmodules_ls.setup({
-        capabilities = capabilities
+      -- Global LspAttach autocmd for server-specific behaviors
+      vim.api.nvim_create_autocmd('LspAttach', {
+        callback = function(args)
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          local bufnr = args.buf
+
+          -- ESLint: Auto-fix on save
+          if client.name == 'eslint' then
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              buffer = bufnr,
+              command = "EslintFixAll",
+            })
+          end
+
+          -- Biome: Auto-format on save
+          if client.name == 'biome' then
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              buffer = bufnr,
+              callback = function()
+                vim.lsp.buf.format({ async = false })
+              end,
+            })
+          end
+        end,
       })
-      lspconfig.clangd.setup({
-        capabilities = capabilities
-      })
-      lspconfig.vtsls.setup({
-        capabilities = capabilities
-      })
-      lspconfig.jsonls.setup({
-        capabilities = capabilities
-      })
-      lspconfig.prismals.setup({
-        capabilities = capabilities
-      })
-      lspconfig.sqls.setup({
-        capabilities = capabilities
-      })
-      lspconfig.sourcekit.setup({
-        capabilities = capabilities
-      })
-      lspconfig.lua_ls.setup({
-        capabilities = capabilities,
+
+      -- Configure vtsls
+      vim.lsp.config('vtsls', require("vtsls").lspconfig)
+
+      -- Configure simple servers
+      local simple_servers = {
+        'cssmodules_ls',
+        'clangd',
+        'jsonls',
+        'prismals',
+        'sqls',
+        'sourcekit',
+      }
+
+      for _, server in ipairs(simple_servers) do
+        vim.lsp.enable(server)
+      end
+
+      -- Configure lua_ls with custom settings
+      vim.lsp.config('lua_ls', {
         on_init = function(client)
           if client.workspace_folders then
             local path = client.workspace_folders[1].name
@@ -65,29 +88,19 @@ return {
           Lua = {}
         }
       })
-      lspconfig.eslint.setup({
-        on_attach = function(client, bufnr)
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = bufnr,
-            command = "EslintFixAll",
-          })
-        end,
-        capabilities = capabilities
-      })
-      lspconfig.biome.setup({
+
+      -- Configure biome with custom settings
+      vim.lsp.config('biome', {
         cmd = { "npx", "biome", "lsp-proxy" },
         filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "jsonc" },
-        root_dir = lspconfig.util.root_pattern("biome.json", "package.json"),
-        capabilities = capabilities,
-        on_attach = function(client, bufnr)
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            pattern = { "*.js", "*.jsx", "*.ts", "*.tsx", "*.json" },
-            callback = function()
-              vim.lsp.buf.format({ async = false })
-            end,
-          })
-        end,
+        root_markers = { "biome.json", "package.json" },
       })
+
+      -- Enable servers with custom configurations
+      vim.lsp.enable('vtsls')
+      vim.lsp.enable('lua_ls')
+      vim.lsp.enable('eslint')
+      vim.lsp.enable('biome')
     end
   },
 }
