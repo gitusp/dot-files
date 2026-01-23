@@ -2,6 +2,25 @@
   "title": "all",
   "rules": [
     {
+      "description": "ctrl + ; to eisuu",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "semicolon",
+            "modifiers": {
+              "mandatory": ["control"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "japanese_eisuu"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "description": "control + i to tab",
       "manipulators": [
         {
