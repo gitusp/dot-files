@@ -2,6 +2,7 @@ require("config.lazy")
 require("config.cwd")
 require("config.commands")
 require("config.autocmds")
+require("config.clipscratch")
 
 --
 -- Base Configuration
