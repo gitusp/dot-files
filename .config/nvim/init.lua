@@ -122,7 +122,7 @@ function _G.speak_operator()
     text = table.concat(lines, "\n")
   end
 
-  vim.fn.jobstart({'say', text})
+  vim.fn.jobstart({'ospeak', text, "-v", "nova"})
 end
 
 -- Map yx as the operator
