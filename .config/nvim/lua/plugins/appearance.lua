@@ -5,25 +5,23 @@ return {
       lazy = false,
       priority = 1000,
       config = function()
-        local spec = require('github-theme.spec').load('github_light')
+        local is_kitty = vim.env.KITTY_WINDOW_ID ~= nil
+        local theme = is_kitty and 'github_dark' or 'github_light'
+        local spec = require('github-theme.spec').load(theme)
+        local opts = {
+          DiffAdd = { bg = spec.diff.add },
+          DiffChange = { bg = spec.diff.change },
+          DiffDelete = { bg = spec.diff.delete },
+        }
 
         require('github-theme').setup({
           groups = {
-            github_light = {
-              DiffAdd = {
-                bg = spec.diff.add,
-              },
-              DiffChange = {
-                bg = spec.diff.change,
-              },
-              DiffDelete = {
-                bg = spec.diff.delete,
-              },
-            },
+            github_light = opts,
+            github_dark_dimmed = opts,
           },
         })
 
-        vim.cmd('colorscheme github_light')
+        vim.cmd('colorscheme ' .. theme)
       end,
   },
   {
