@@ -107,6 +107,36 @@ vim.keymap.set('n', 'gz', '<cmd>FzfZoxide<cr>', { desc = 'FZF Zoxide' })
 vim.keymap.set('n', 'Zy', 'ggyG:q!<CR>', { desc = 'Yank all and quit' })
 vim.keymap.set('n', 'ZY', 'gg"+yG:q!<CR>', { desc = 'Yank all to clipboard and quit' })
 
+-- text-to-speech
+-- Set up the operator function
+function _G.speak_operator()
+  local start = vim.api.nvim_buf_get_mark(0, '[')
+  local finish = vim.api.nvim_buf_get_mark(0, ']')
+
+  local text
+  if start[1] == finish[1] then
+    local line = vim.fn.getline(start[1])
+    text = string.sub(line, start[2] + 1, finish[2] + 1)
+  else
+    local lines = vim.fn.getline(start[1], finish[1])
+    text = table.concat(lines, "\n")
+  end
+
+  vim.fn.jobstart({'say', text})
+end
+
+-- Map yx as the operator
+vim.keymap.set('n', 'yx', function()
+  vim.o.operatorfunc = 'v:lua.speak_operator'
+  return 'g@'
+end, { expr = true })
+
+-- Visual mode version
+vim.keymap.set('x', 'X', function()
+  vim.o.operatorfunc = 'v:lua.speak_operator'
+  return 'g@'
+end, { expr = true })
+
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
   callback = function(event)
