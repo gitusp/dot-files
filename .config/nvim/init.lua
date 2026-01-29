@@ -2,7 +2,6 @@ require("config.lazy")
 require("config.cwd")
 require("config.commands")
 require("config.autocmds")
-require("config.clipscratch")
 
 --
 -- Base Configuration
@@ -103,6 +102,10 @@ vim.keymap.set('n', 'gh', '<cmd>FzfMru<cr>', { desc = 'FZF MRU | mnemonic - hist
 vim.keymap.set('n', 'gl', '<cmd>FzfGrepProject<cr>', { desc = 'FZF grep project | mnemonic - go line' })
 vim.keymap.set('n', 'g/', '<cmd>FzfGrepCurbuf<cr>', { desc = 'FZF grep current buffer | mnemonic - powerful /' })
 vim.keymap.set('n', 'gz', '<cmd>FzfZoxide<cr>', { desc = 'FZF Zoxide' })
+
+-- Yank and quit
+vim.keymap.set('n', 'Zy', 'ggyG:q!<CR>', { desc = 'Yank all and quit' })
+vim.keymap.set('n', 'ZY', 'gg"+yG:q!<CR>', { desc = 'Yank all to clipboard and quit' })
 
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',

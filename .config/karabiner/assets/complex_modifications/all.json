@@ -189,7 +189,7 @@
       ]
     },
     {
-      "description": "pbedit",
+      "description": "anywhere scratch",
       "manipulators": [
         {
           "type": "basic",
@@ -204,21 +204,7 @@
               "key_code": "japanese_eisuu"
             },
             {
-              "key_code": "a",
-              "modifiers": ["command"]
-            },
-            {
-              "key_code": "c",
-              "modifiers": ["command"]
-            },
-            {
-              "shell_command": "/opt/homebrew/bin/nvim --server /tmp/nvim-todosession.sock --remote-send ':ClipScratch<CR>' && open -a kitty"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "frontmost_application_unless",
-              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$", "^com\\.mitchellh\\.ghostty$", "^net\\.kovidgoyal\\.kitty$"]
+              "shell_command": "open -a kitty"
             }
           ]
         }
