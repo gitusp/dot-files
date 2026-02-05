@@ -2,6 +2,25 @@
   "title": "all",
   "rules": [
     {
+      "description": "ctrl + . to f16",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "period",
+            "modifiers": {
+              "mandatory": ["control"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f16"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "description": "ctrl + ; to eisuu",
       "manipulators": [
         {
