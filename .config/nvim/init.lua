@@ -64,7 +64,6 @@ vim.keymap.set("n", "<leader>l", function() require("quicker").toggle({ loclist 
 vim.keymap.set("n", "<leader>j", "<cmd>Journal<cr>", { desc = "Util journal" })
 vim.keymap.set('n', '<leader>g', '<cmd>vert G<cr>', { desc = 'Git status' })
 vim.keymap.set("n", "<leader>t", '<cmd>TodoQuickFix<cr>', { desc = "Set TODOs to qf" })
-vim.keymap.set("n", "<leader>d", function() vim.cmd("DailyScrum " .. vim.v.count) end, { desc = "Util daily scrum" })
 vim.keymap.set("n", "<leader>n", vim.diagnostic.setqflist, { desc = "Set LSP diagnostics to qf | mnemonic n of diagnostics" })
 vim.keymap.set("n", "<leader>m", "<cmd>TSC<cr>", { desc = "Compile TypeScript" })
 vim.keymap.set("n", "<leader>f", "<cmd>Flog<cr>", { desc = "Git log" })
