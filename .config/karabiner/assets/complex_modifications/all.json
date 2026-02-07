@@ -2,25 +2,6 @@
   "title": "all",
   "rules": [
     {
-      "description": "ctrl + . to f16",
-      "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "period",
-            "modifiers": {
-              "mandatory": ["control"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "f16"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "description": "ctrl + ; to eisuu",
       "manipulators": [
         {
@@ -202,55 +183,6 @@
               "type": "variable_if",
               "name": "insert_mode",
               "value": true
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "description": "anywhere scratch",
-      "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "comma",
-            "modifiers": {
-              "mandatory": ["control"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "japanese_eisuu"
-            },
-            {
-              "shell_command": "open -a kitty"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "frontmost_application_unless",
-              "bundle_identifiers": ["^net\\.kovidgoyal\\.kitty$"]
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "comma",
-            "modifiers": {
-              "mandatory": ["control"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "tab",
-              "modifiers": ["command"]
-            }
-          ],
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": ["^net\\.kovidgoyal\\.kitty$"]
             }
           ]
         }
