@@ -137,6 +137,54 @@
       ]
     },
     {
+      "description": "ctrl + , to toggle kitty",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "comma",
+            "modifiers": {
+              "mandatory": ["control"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b net.kovidgoyal.kitty"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": ["^net\\.kovidgoyal\\.kitty$"]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "comma",
+            "modifiers": {
+              "mandatory": ["control"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "tab",
+              "modifiers": ["command"]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^net\\.kovidgoyal\\.kitty$"]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "description": "IME switch",
       "manipulators": [
         {
