@@ -143,14 +143,11 @@
           "type": "basic",
           "from": {
             "key_code": "comma",
-            "modifiers": {
-              "mandatory": ["control"],
-              "optional": ["any"]
-            }
+            "modifiers": { "mandatory": ["control"], "optional": ["any"] }
           },
           "to": [
             {
-              "shell_command": "/bin/zsh -lc 'front_app=$(/usr/bin/osascript -e \"tell application \\\"System Events\\\" to bundle identifier of first application process whose frontmost is true\"); if [[ -n \"$front_app\" ]]; then printf \"%s\" \"$front_app\" > /tmp/karabiner_previous_app_bundle_id; fi; /usr/bin/osascript -e \"tell application id \\\"local.weznote\\\" to activate\"'"
+              "shell_command": "front_app=$(/usr/bin/lsappinfo info -only bundleid $(/usr/bin/lsappinfo front) | cut -d '\"' -f4); if [ -n \"$front_app\" ]; then echo \"$front_app\" > /tmp/karabiner_previous_app_bundle_id; fi; /usr/bin/osascript -e 'tell application id \"local.weznote\" to activate'"
             }
           ],
           "conditions": [
@@ -164,14 +161,11 @@
           "type": "basic",
           "from": {
             "key_code": "comma",
-            "modifiers": {
-              "mandatory": ["control"],
-              "optional": ["any"]
-            }
+            "modifiers": { "mandatory": ["control"], "optional": ["any"] }
           },
           "to": [
             {
-              "shell_command": "/bin/zsh -lc 'prev_app=\"\"; if [[ -f /tmp/karabiner_previous_app_bundle_id ]]; then prev_app=$(cat /tmp/karabiner_previous_app_bundle_id); fi; if [[ -n \"$prev_app\" ]]; then /usr/bin/osascript -e \"tell application id \\\"$prev_app\\\" to activate\"; fi'"
+              "shell_command": "if [ -f /tmp/karabiner_previous_app_bundle_id ]; then prev_app=$(cat /tmp/karabiner_previous_app_bundle_id); if [ -n \"$prev_app\" ]; then /usr/bin/osascript -e \"tell application id \\\"$prev_app\\\" to activate\"; fi; fi"
             }
           ],
           "conditions": [
