@@ -137,7 +137,7 @@
       ]
     },
     {
-      "description": "ctrl + , to toggle kitty",
+      "description": "ctrl + , to toggle weznote",
       "manipulators": [
         {
           "type": "basic",
@@ -150,13 +150,13 @@
           },
           "to": [
             {
-              "shell_command": "/bin/zsh -lc 'front_app=$(/usr/bin/osascript -e \"tell application \\\"System Events\\\" to bundle identifier of first application process whose frontmost is true\"); if [[ -n \"$front_app\" ]]; then printf \"%s\" \"$front_app\" > /tmp/karabiner_previous_app_bundle_id; fi; /usr/bin/open -b net.kovidgoyal.kitty'"
+              "shell_command": "/bin/zsh -lc 'front_app=$(/usr/bin/osascript -e \"tell application \\\"System Events\\\" to bundle identifier of first application process whose frontmost is true\"); if [[ -n \"$front_app\" ]]; then printf \"%s\" \"$front_app\" > /tmp/karabiner_previous_app_bundle_id; fi; /usr/bin/osascript -e \"tell application id \\\"local.weznote\\\" to activate\"'"
             }
           ],
           "conditions": [
             {
               "type": "frontmost_application_unless",
-              "bundle_identifiers": ["^net\\.kovidgoyal\\.kitty$"]
+              "bundle_identifiers": ["^local\\.weznote$"]
             }
           ]
         },
@@ -171,13 +171,13 @@
           },
           "to": [
             {
-              "shell_command": "/bin/zsh -lc 'prev_app=\"\"; if [[ -f /tmp/karabiner_previous_app_bundle_id ]]; then prev_app=$(cat /tmp/karabiner_previous_app_bundle_id); fi; if [[ -n \"$prev_app\" ]]; then /usr/bin/open -b \"$prev_app\"; fi'"
+              "shell_command": "/bin/zsh -lc 'prev_app=\"\"; if [[ -f /tmp/karabiner_previous_app_bundle_id ]]; then prev_app=$(cat /tmp/karabiner_previous_app_bundle_id); fi; if [[ -n \"$prev_app\" ]]; then /usr/bin/osascript -e \"tell application id \\\"$prev_app\\\" to activate\"; fi'"
             }
           ],
           "conditions": [
             {
               "type": "frontmost_application_if",
-              "bundle_identifiers": ["^net\\.kovidgoyal\\.kitty$"]
+              "bundle_identifiers": ["^local\\.weznote$"]
             }
           ]
         }

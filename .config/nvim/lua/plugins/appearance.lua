@@ -5,7 +5,7 @@ return {
       lazy = false,
       priority = 1000,
       config = function()
-        local is_kitty = vim.env.KITTY_WINDOW_ID ~= nil
+        local is_kitty = vim.env.WEZNOTE_INSTANCE ~= nil
         local theme = is_kitty and 'github_dark' or 'github_light'
         local spec = require('github-theme.spec').load(theme)
         local opts = {

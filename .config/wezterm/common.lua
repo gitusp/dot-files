@@ -3,7 +3,6 @@ local wezterm = require 'wezterm'
 local M = {}
 
 function M.decorate(config)
-  config.color_scheme = 'Tomorrow'
   config.window_decorations = 'RESIZE'
   config.hide_tab_bar_if_only_one_tab = true
   config.font = wezterm.font('PlemolJP Console NF', { weight = 'Medium' })
