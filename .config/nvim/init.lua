@@ -143,3 +143,30 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set("n", "gK", vim.diagnostic.open_float, { desc = "Diagnostic float" })
   end,
 })
+
+-- WezNote
+local function setup_autosave()
+  if vim.env.WEZNOTE_INSTANCE == nil then
+    return
+  end
+
+  local group = vim.api.nvim_create_augroup("EnvAutoSave", { clear = true })
+
+  vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
+    group = group,
+    pattern = "*",
+    callback = function()
+      local buf = vim.api.nvim_get_current_buf()
+
+      if vim.api.nvim_get_option_value("modified", { buf = buf })
+         and vim.api.nvim_get_option_value("modifiable", { buf = buf })
+         and vim.fn.expand("%") ~= "" then
+
+        vim.cmd("silent! update")
+      end
+    end,
+    desc = "Global auto save enabled by WEZNOTE_INSTANCE env var",
+  })
+end
+
+setup_autosave()
