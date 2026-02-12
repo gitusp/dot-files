@@ -197,7 +197,7 @@
           "conditions": [
             {
               "type": "frontmost_application_unless",
-              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$", "^com\\.mitchellh\\.ghostty$", "^net\\.kovidgoyal\\.kitty$"]
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$", "^com\\.mitchellh\\.ghostty$", "^net\\.kovidgoyal\\.kitty$", "^local\\.weznote$"]
             }
           ]
         },
@@ -218,7 +218,7 @@
           "conditions": [
             {
               "type": "frontmost_application_if",
-              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$", "^com\\.mitchellh\\.ghostty$", "^net\\.kovidgoyal\\.kitty$"]
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$", "^com\\.mitchellh\\.ghostty$", "^net\\.kovidgoyal\\.kitty$", "^local\\.weznote$"]
             },
             {
               "type": "variable_if",
