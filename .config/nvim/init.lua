@@ -145,11 +145,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 -- WezNote
-local function setup_autosave()
-  if vim.env.WEZNOTE_INSTANCE == nil then
-    return
-  end
-
+if vim.env.WEZNOTE_INSTANCE ~= nil then
   local group = vim.api.nvim_create_augroup("EnvAutoSave", { clear = true })
 
   vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
@@ -168,5 +164,3 @@ local function setup_autosave()
     desc = "Global auto save enabled by WEZNOTE_INSTANCE env var",
   })
 end
-
-setup_autosave()
