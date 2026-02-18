@@ -2,12 +2,15 @@ return {
   {
     "cohama/lexima.vim",
     config = function()
+      local markdown_like = { 'markdown', 'docbase' }
+      local markup_like = { 'typescriptreact', 'javascriptreact', 'markdown', 'docbase', 'html', 'xml' }
+
       vim.api.nvim_call_function("lexima#add_rule", {
         {
           char = '[',
           input = '[ ] ',
           at = '^\\s*- \\%#',
-          filetype = 'markdown'
+          filetype = markdown_like
         },
       })
       vim.api.nvim_call_function("lexima#add_rule", {
@@ -15,7 +18,7 @@ return {
           char = '<cr>',
           input = '<bs><bs>',
           at = '^- \\%#$',
-          filetype = 'markdown',
+          filetype = markdown_like,
           priority = 2
         },
       })
@@ -24,7 +27,7 @@ return {
           char = '<cr>',
           input = '<bs><bs><bs>- ',
           at = '^\\s\\+- \\%#$',
-          filetype = 'markdown',
+          filetype = markdown_like,
           priority = 2,
         },
       })
@@ -33,7 +36,7 @@ return {
           char = '<cr>',
           input = '<bs><bs><bs><bs><bs><bs>',
           at = '^- \\[ ] \\%#$',
-          filetype = 'markdown',
+          filetype = markdown_like,
           priority = 2
         },
       })
@@ -42,7 +45,7 @@ return {
           char = '<cr>',
           input = '<bs><bs><bs><bs><bs><bs><bs>- [ ] ',
           at = '^\\s\\+- \\[ ] \\%#$',
-          filetype = 'markdown',
+          filetype = markdown_like,
           priority = 2,
         },
       })
@@ -51,7 +54,7 @@ return {
           char = '<cr>',
           input = '<cr>- [ ] ',
           at = '^\\s*- \\[[ xX]] .*\\%#',
-          filetype = 'markdown',
+          filetype = markdown_like,
           priority = 1,
         },
       })
@@ -60,7 +63,7 @@ return {
           char = '<cr>',
           input = '<cr>- ',
           at = '^\\s*- .*\\%#',
-          filetype = 'markdown'
+          filetype = markdown_like
         },
       })
       vim.api.nvim_call_function("lexima#add_rule", {
@@ -68,7 +71,7 @@ return {
           char = '<bs>',
           input = '<bs><bs><bs><bs>',
           at = '^\\s*- \\[ ] \\%#',
-          filetype = 'markdown',
+          filetype = markdown_like,
         },
       })
       vim.api.nvim_call_function("lexima#add_rule", {
@@ -76,7 +79,7 @@ return {
           char = '<cr>',
           input = '<bs><bs><c-w><bs>\\1. ',
           at = '^\\s\\+\\(\\d\\+\\)\\. \\%#$',
-          filetype = 'markdown',
+          filetype = markdown_like,
           with_submatch = true,
           priority = 1,
         },
@@ -86,7 +89,7 @@ return {
           char = '<cr>',
           input = '<bs><bs><c-w>',
           at = '^\\d\\+\\. \\%#$',
-          filetype = 'markdown',
+          filetype = markdown_like,
           priority = 1,
         },
       })
@@ -95,7 +98,7 @@ return {
           char = '<cr>',
           input = '<cr>\\1<esc><c-a>a. ',
           at = '^\\s*\\(\\d\\+\\)\\. .*\\%#',
-          filetype = 'markdown',
+          filetype = markdown_like,
           with_submatch = true,
         },
       })
@@ -103,7 +106,7 @@ return {
         {
           char = '<',
           input_after = '>',
-          filetype = {'typescriptreact', 'javascriptreact', 'markdown', 'html', 'xml'}
+          filetype = markup_like
         }
       })
       vim.api.nvim_call_function("lexima#add_rule", {
@@ -139,7 +142,7 @@ return {
           leave = '>',
           at = '<\\(\\(\\w\\|\\.\\)\\+\\)[^/>]*\\%#>',
           with_submatch = true,
-          filetype = {'typescriptreact', 'javascriptreact', 'markdown', 'html', 'xml'},
+          filetype = markup_like,
           priority = 1,
         }
       })
@@ -148,7 +151,7 @@ return {
           char = '>',
           leave = '>',
           at = '\\%#>',
-          filetype = {'typescriptreact', 'javascriptreact', 'markdown', 'html', 'xml'}
+          filetype = markup_like
         }
       })
       vim.api.nvim_call_function("lexima#add_rule", {
