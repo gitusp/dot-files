@@ -44,7 +44,7 @@ function! markdown#toggleCheckbox() range
 
   for line_num in range(a:firstline, a:lastline)
     let l:line = getline(line_num)
-    let l:checkbox = matchstr(l:line, regex)
+    let l:checkbox = matchstr(l:line, l:regex)
 
     if l:checkbox == ''
       continue
