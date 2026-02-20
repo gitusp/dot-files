@@ -89,13 +89,6 @@ return {
         }
       })
 
-      -- Configure biome with custom settings
-      vim.lsp.config('biome', {
-        cmd = { "npx", "biome", "lsp-proxy" },
-        filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "jsonc" },
-        root_markers = { "biome.json", "package.json" },
-      })
-
       -- Enable servers with custom configurations
       vim.lsp.enable('vtsls')
       vim.lsp.enable('lua_ls')
