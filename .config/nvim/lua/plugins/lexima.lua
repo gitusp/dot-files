@@ -25,28 +25,10 @@ return {
       vim.api.nvim_call_function("lexima#add_rule", {
         {
           char = '<cr>',
-          input = '<bs><bs><bs>- ',
-          at = '^\\s\\+- \\%#$',
-          filetype = markdown_like,
-          priority = 2,
-        },
-      })
-      vim.api.nvim_call_function("lexima#add_rule", {
-        {
-          char = '<cr>',
           input = '<bs><bs><bs><bs><bs><bs>',
           at = '^- \\[ ] \\%#$',
           filetype = markdown_like,
           priority = 2
-        },
-      })
-      vim.api.nvim_call_function("lexima#add_rule", {
-        {
-          char = '<cr>',
-          input = '<bs><bs><bs><bs><bs><bs><bs>- [ ] ',
-          at = '^\\s\\+- \\[ ] \\%#$',
-          filetype = markdown_like,
-          priority = 2,
         },
       })
       vim.api.nvim_call_function("lexima#add_rule", {
