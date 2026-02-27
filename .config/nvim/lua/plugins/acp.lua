@@ -1,5 +1,10 @@
 return {
   "carlos-algms/agentic.nvim",
+  dependencies = {
+    {
+      "hakonharnes/img-clip.nvim",
+    },
+  },
 
   opts = {
     provider = "codex-acp",
