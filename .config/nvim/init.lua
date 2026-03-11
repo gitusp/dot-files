@@ -57,12 +57,24 @@ vim.keymap.set({"n", "x"}, "Y", '"+y')
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 -- Single key mappings with leader
+local function toggle_git_status()
+  for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    if vim.bo[buf].filetype == "fugitive" then
+      vim.api.nvim_win_close(win, false)
+      return
+    end
+  end
+
+  vim.cmd("vert G")
+end
+
 vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
 vim.keymap.set("n", "<leader>s", "<cmd>w<cr>", { desc = "Write | mnemonic - save" }) -- 連続して使用することはないので組み合わせで良い
 vim.keymap.set("n", "<leader>q", function() require("quicker").toggle() end, { desc = "Toggle quickfix" })
 vim.keymap.set("n", "<leader>l", function() require("quicker").toggle({ loclist = true }) end, { desc = "Toggle loclist" })
 vim.keymap.set("n", "<leader>j", "<cmd>Journal<cr>", { desc = "Util journal" })
-vim.keymap.set('n', '<leader>g', '<cmd>vert G<cr>', { desc = 'Git status' })
+vim.keymap.set("n", "<leader>g", toggle_git_status, { desc = "Toggle git status" })
 vim.keymap.set("n", "<leader>t", '<cmd>TodoQuickFix<cr>', { desc = "Set TODOs to qf" })
 vim.keymap.set("n", "<leader>d", function() vim.cmd("DailyScrum " .. vim.v.count) end, { desc = "Util daily scrum" })
 vim.keymap.set("n", "<leader>n", vim.diagnostic.setqflist, { desc = "Set LSP diagnostics to qf | mnemonic n of diagnostics" })
