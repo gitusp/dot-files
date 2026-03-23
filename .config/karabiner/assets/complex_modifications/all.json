@@ -61,6 +61,131 @@
       ]
     },
     {
+      "description": "c-j to c-s-j, except fast c-w c-j in terminal apps",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": ["control"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "j",
+              "modifiers": ["control"]
+            },
+            {
+              "set_variable": {
+                "name": "terminal_ctrl_w_recent",
+                "value": 0
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^com\\.googlecode\\.iterm2$",
+                "^com\\.github\\.wez\\.wezterm$",
+                "^net\\.kovidgoyal\\.kitty$",
+                "^org\\.alacritty$",
+                "^com\\.mitchellh\\.ghostty$",
+                "^dev\\.warp\\.Warp-Stable$",
+                "^co\\.zeit\\.hyper$",
+                "^org\\.tabby$",
+                "^com\\.raphaelamorim\\.rio$"
+              ]
+            },
+            {
+              "type": "variable_if",
+              "name": "terminal_ctrl_w_recent",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "w",
+            "modifiers": {
+              "mandatory": ["control"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "set_variable": {
+                "name": "terminal_ctrl_w_recent",
+                "value": 1
+              }
+            },
+            {
+              "key_code": "w",
+              "modifiers": ["control"]
+            }
+          ],
+          "to_delayed_action": {
+            "to_if_invoked": [
+              {
+                "set_variable": {
+                  "name": "terminal_ctrl_w_recent",
+                  "value": 0
+                }
+              }
+            ],
+            "to_if_canceled": [
+              {
+                "set_variable": {
+                  "name": "terminal_ctrl_w_recent",
+                  "value": 0
+                }
+              }
+            ]
+          },
+          "parameters": {
+            "basic.to_delayed_action_delay_milliseconds": 180
+          },
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^com\\.googlecode\\.iterm2$",
+                "^com\\.github\\.wez\\.wezterm$",
+                "^net\\.kovidgoyal\\.kitty$",
+                "^org\\.alacritty$",
+                "^com\\.mitchellh\\.ghostty$",
+                "^dev\\.warp\\.Warp-Stable$",
+                "^co\\.zeit\\.hyper$",
+                "^org\\.tabby$",
+                "^com\\.raphaelamorim\\.rio$"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": ["control"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "j",
+              "modifiers": ["control", "shift"]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "description": "c-m to return_or_enter",
       "manipulators": [
         {
