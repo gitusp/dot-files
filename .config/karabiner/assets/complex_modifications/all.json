@@ -176,58 +176,6 @@
           ]
         }
       ]
-    },
-    {
-      "description": "IME switch",
-      "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "j",
-            "modifiers": {
-              "mandatory": ["control"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "j",
-              "modifiers": ["control", "shift"]
-            }
-          ],
-          "conditions": [
-            {
-              "type": "frontmost_application_unless",
-              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$", "^com\\.mitchellh\\.ghostty$", "^net\\.kovidgoyal\\.kitty$", "^local\\.weznote$"]
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "j",
-            "modifiers": {
-              "mandatory": ["control"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "j",
-              "modifiers": ["control", "shift"]
-            }
-          ],
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$", "^com\\.mitchellh\\.ghostty$", "^net\\.kovidgoyal\\.kitty$", "^local\\.weznote$"]
-            },
-            {
-              "type": "variable_if",
-              "name": "insert_mode",
-              "value": true
-            }
-          ]
-        }
-      ]
     }
   ]
 }
