@@ -221,6 +221,29 @@
       ]
     },
     {
+      "description": "Add eisuu to <c-\\>",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "backslash",
+            "modifiers": {
+              "mandatory": ["control"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "japanese_eisuu"
+            },
+            {
+              "key_code": "backslash",
+              "modifiers": ["control"]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "description": "Add eisuu to escape",
       "manipulators": [
         {
