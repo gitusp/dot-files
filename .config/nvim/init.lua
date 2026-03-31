@@ -118,6 +118,9 @@ vim.keymap.set('n', 'gz', '<cmd>FzfZoxide<cr>', { desc = 'FZF Zoxide' })
 vim.keymap.set('n', 'Zy', 'ggyG:q!<CR>', { desc = 'Yank all and quit' })
 vim.keymap.set('n', 'ZY', 'gg"+yG:q!<CR>', { desc = 'Yank all to clipboard and quit' })
 
+-- Terminal
+vim.keymap.set('t', '<C-\\>', '<C-\\><C-n>')
+
 -- text-to-speech
 -- Set up the operator function
 function _G.speak_operator()
