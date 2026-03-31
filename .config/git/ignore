@@ -1,5 +1,4 @@
-.env.local
-.local/
-.local.*
+*.local
+*.local.*
 .DS_Store
 .obsidian/
