@@ -15,11 +15,6 @@ return {
     opts = {}
   },
   {
-    "folke/ts-comments.nvim",
-    opts = {},
-    event = "VeryLazy",
-  },
-  {
     'stevearc/oil.nvim',
     opts = {},
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -42,8 +37,7 @@ return {
           ["-"] = { "actions.parent", mode = "n" },
           ["_"] = { "actions.open_cwd", mode = "n" },
           ["cd"] = { "actions.cd", opts = { scope = "win" }, mode = "n" },
-          ["yop"] = "actions.preview",
-          ["yos"] = { "actions.change_sort", mode = "n" },
+          ["gs"] = { "actions.change_sort", mode = "n" },
           ["."] = { "actions.open_cmdline", opts = { shorten_path = true } },
           ["gx"] = "actions.open_external",
           ["gy"] = { "actions.yank_entry", opts = { modify = ":~:." } },

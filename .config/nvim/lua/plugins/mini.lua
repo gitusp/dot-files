@@ -19,6 +19,9 @@ return {
         window     = { suffix = "" },
         yank       = { suffix = "" },
       })
+      require("mini.surround").setup()
+      require("mini.comment").setup()
+      require("mini.ai").setup()
     end,
   },
 }

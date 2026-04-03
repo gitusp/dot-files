@@ -16,6 +16,7 @@ return {
         end
       end
 
+      fzf.register_ui_select()
       fzf.setup({
         files = {
           fd_opts = fzf.defaults.files.fd_opts .. [[ --type d]],
@@ -76,7 +77,7 @@ return {
       vim.api.nvim_create_user_command('FzfMrw', function() mrx("mrw") end, { desc = 'FZF MRW' })
 
       --
-      -- gs, gS mappings
+      -- ys, yS mappings (grep operator)
       --
       local function grep(word, search)
         if word then
@@ -121,10 +122,10 @@ return {
         end
       end
 
-      vim.keymap.set("n", "gs", create_search_opfunc(false), { desc = 'FZF operator' })
-      vim.keymap.set("n", "gS", create_search_opfunc(true), { desc = 'FZF operator - word' })
-      vim.keymap.set('x', 'gs', create_search_visual(false), { desc = 'FZF grep visual' })
-      vim.keymap.set('x', 'gS', create_search_visual(true), { desc = 'FZF grep visual - word' })
+      vim.keymap.set("n", "ys", create_search_opfunc(false), { desc = 'FZF operator' })
+      vim.keymap.set("n", "yS", create_search_opfunc(true), { desc = 'FZF operator - word' })
+      vim.keymap.set('x', 'ys', create_search_visual(false), { desc = 'FZF grep visual' })
+      vim.keymap.set('x', 'yS', create_search_visual(true), { desc = 'FZF grep visual - word' })
     end
   },
 }
