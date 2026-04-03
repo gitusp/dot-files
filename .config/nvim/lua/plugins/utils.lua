@@ -14,15 +14,6 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {}
   },
-  { "motemen/vim-help-random" },
-  {
-    "oysandvik94/curl.nvim",
-    cmd = { "CurlOpen" },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    config = true,
-  },
   {
     "folke/ts-comments.nvim",
     opts = {},
