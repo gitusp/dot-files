@@ -127,9 +127,5 @@ return {
       vim.keymap.set('x', 'gS', create_search_visual(true), { desc = 'FZF grep visual - word' })
     end
   },
-  {
-    'nvim-telescope/telescope.nvim', tag = '0.1.8',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-  },
 }
 

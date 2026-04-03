@@ -89,9 +89,9 @@ vim.keymap.set('n', '<Leader>Y', function()
   vim.fn.setreg('+', vim.fn.expand('%'))
   print('Yanked to clipboard: ' .. vim.fn.expand('%'))
 end, { desc = 'Yank filename to system clipboard' })
-vim.keymap.set("n", "<leader>:", function() require('telescope.builtin').commands() end, { desc = 'Telescope commands' })
-vim.keymap.set("n", "<leader>?", function() require('telescope.builtin').keymaps({ default_text = "<Space>" }) end, { desc = "Telescope leader key mappings" })
-vim.keymap.set("n", "<localleader>?", function() require('telescope.builtin').keymaps({ default_text = "\\" }) end, { desc = "Telescope localleader key mappings" })
+vim.keymap.set("n", "<leader>:", function() require('fzf-lua').commands() end, { desc = 'FZF commands' })
+vim.keymap.set("n", "<leader>?", function() require('fzf-lua').keymaps({ query = "<Space>" }) end, { desc = "FZF leader key mappings" })
+vim.keymap.set("n", "<localleader>?", function() require('fzf-lua').keymaps({ query = "\\" }) end, { desc = "FZF localleader key mappings" })
 
 -- Toggle options
 vim.keymap.set("n", "yod", ':<C-R>=&diff ? "diffoff" : "diffthis"<CR><CR>', { desc = "Toggle diff" })
