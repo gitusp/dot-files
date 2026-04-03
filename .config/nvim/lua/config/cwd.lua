@@ -5,7 +5,7 @@ local function url_encode(str)
 end
 
 local function osc7_cwd()
-  local hostname = vim.loop.os_uname().nodename
+  local hostname = vim.uv.os_uname().nodename
   local cwd = vim.fn.getcwd()
   local encoded_cwd = url_encode(cwd)
   local osc7_seq = string.format('\027]7;file://%s/%s\027\\', hostname, encoded_cwd)
