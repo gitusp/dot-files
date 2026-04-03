@@ -19,7 +19,9 @@ return {
 
           -- ESLint: Auto-fix on save
           if client.name == 'eslint' then
+            local group = vim.api.nvim_create_augroup('LspEslintFixAll_' .. bufnr, { clear = true })
             vim.api.nvim_create_autocmd("BufWritePre", {
+              group = group,
               buffer = bufnr,
               command = "LspEslintFixAll",
             })
@@ -27,7 +29,9 @@ return {
 
           -- Biome: Auto-format on save
           if client.name == 'biome' then
+            local group = vim.api.nvim_create_augroup('LspBiomeFormat_' .. bufnr, { clear = true })
             vim.api.nvim_create_autocmd("BufWritePre", {
+              group = group,
               buffer = bufnr,
               callback = function()
                 vim.lsp.buf.format({ async = false })
