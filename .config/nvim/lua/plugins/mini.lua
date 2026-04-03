@@ -19,8 +19,17 @@ return {
         window     = { suffix = "" },
         yank       = { suffix = "" },
       })
+      require("mini.pairs").setup()
+      require("mini.operators").setup({
+        exchange = { prefix = "cx" },
+        evaluate = { prefix = "g=" },
+        multiply = { prefix = "" },
+        replace  = { prefix = "" },
+        sort     = { prefix = "" },
+      })
+      vim.keymap.del("x", "cx")
+      vim.keymap.set("x", "X", "<cmd>lua MiniOperators.exchange('visual')<cr>")
       require("mini.surround").setup()
-      require("mini.comment").setup()
       require("mini.ai").setup()
     end,
   },

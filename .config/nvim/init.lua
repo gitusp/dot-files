@@ -21,7 +21,6 @@ vim.o.shiftwidth = 2
 vim.o.expandtab = true
 vim.o.smarttab = true
 
-vim.o.lazyredraw = true
 vim.o.shortmess = vim.o.shortmess .. 'I'
 vim.o.signcolumn = "yes"
 vim.o.diffopt = vim.o.diffopt .. ',iwhite'
@@ -75,7 +74,6 @@ vim.keymap.set("n", "<leader>l", function() require("quicker").toggle({ loclist 
 vim.keymap.set("n", "<leader>g", toggle_git_status, { desc = "Toggle git status" })
 vim.keymap.set("n", "<leader>t", '<cmd>TodoQuickFix<cr>', { desc = "Set TODOs to qf" })
 vim.keymap.set("n", "<leader>d", vim.diagnostic.setqflist, { desc = "Set LSP diagnostics to qf" })
-vim.keymap.set("n", "<leader>m", "<cmd>TSC<cr>", { desc = "Compile TypeScript" })
 vim.keymap.set("n", "<leader>o", "<cmd>OverseerRun<cr>", { desc = "Run task" })
 vim.keymap.set("n", "<leader>:", function() require('fzf-lua').commands() end, { desc = 'FZF commands' })
 vim.keymap.set("n", "<leader>?", function() require('fzf-lua').keymaps({ query = "<Space>" }) end, { desc = "FZF leader key mappings" })

@@ -1,8 +1,5 @@
 return {
-  { 'tpope/vim-repeat' },
   { 'tpope/vim-projectionist' },
-  { 'tpope/vim-abolish' },
-  { 'tommcdo/vim-exchange' },
   { 'tpope/vim-dadbod' },
   { 'tpope/vim-dotenv',
       config = function()
@@ -11,7 +8,6 @@ return {
   },
   {
     "folke/todo-comments.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
     opts = {}
   },
   {

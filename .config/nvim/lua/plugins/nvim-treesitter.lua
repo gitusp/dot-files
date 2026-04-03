@@ -1,9 +1,7 @@
 return {
-  'nvim-treesitter/nvim-treesitter',
+  {
+    'nvim-treesitter/nvim-treesitter',
     build = ":TSUpdate",
-    dependencies = {
-      { "andymass/vim-matchup" }
-    },
     config = function()
       require('nvim-treesitter.configs').setup({
         ensure_installed = {
@@ -29,11 +27,20 @@ return {
         auto_install = true,
         highlight = {
           enable = true,
-          additional_vim_regex_highlighting = false,
         },
         matchup = {
           enable = true,
         }
       })
-    end
+    end,
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    opts = {},
+  },
+  {
+    "andymass/vim-matchup",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+  },
 }
