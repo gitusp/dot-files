@@ -69,8 +69,8 @@ local function toggle_git_status()
   vim.cmd("vert G")
 end
 
-vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
-vim.keymap.set("n", "<leader>s", "<cmd>w<cr>", { desc = "Write | mnemonic - save" }) -- 連続して使用することはないので組み合わせで良い
+vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { desc = "Write" })
+vim.keymap.set("n", "<leader>s", function() require('fzf-lua').lsp_document_symbols() end, { desc = "FZF document symbols" })
 vim.keymap.set("n", "<leader>q", function() require("quicker").toggle() end, { desc = "Toggle quickfix" })
 vim.keymap.set("n", "<leader>l", function() require("quicker").toggle({ loclist = true }) end, { desc = "Toggle loclist" })
 vim.keymap.set("n", "<leader>j", "<cmd>Journal<cr>", { desc = "Util journal" })
