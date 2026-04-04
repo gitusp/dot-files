@@ -31,6 +31,7 @@ return {
       vim.keymap.set("x", "X", "<cmd>lua MiniOperators.exchange('visual')<cr>")
       require("mini.surround").setup()
       require("mini.ai").setup()
+      require("mini.indentscope").setup()
     end,
   },
 }
