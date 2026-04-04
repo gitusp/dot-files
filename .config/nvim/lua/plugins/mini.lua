@@ -30,7 +30,17 @@ return {
       vim.keymap.del("x", "cx")
       vim.keymap.set("x", "X", "<cmd>lua MiniOperators.exchange('visual')<cr>")
       require("mini.surround").setup()
-      require("mini.ai").setup()
+      local gen_ai_spec = require("mini.extra").gen_ai_spec
+      require("mini.ai").setup({
+        mappings = {
+          around_last = '',
+          inside_last = '',
+        },
+        custom_textobjects = {
+          l = gen_ai_spec.line(),
+          g = gen_ai_spec.buffer(),
+        },
+      })
       require("mini.indentscope").setup()
     end,
   },
