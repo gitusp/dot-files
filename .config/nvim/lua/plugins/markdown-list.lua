@@ -36,10 +36,13 @@ end
 --   - [ ] foo → - [ ] foo / - [ ]
 --   - foo     → - foo / -
 --   1. foo    → 1. foo / 2.
+--   内容が空でインデントあり → デデントして prefix 維持
+--   内容が空でインデントなし → リスト終了
 function M.cr()
   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
   local line = vim.api.nvim_get_current_line()
-  local prefix = build_prefix(parse_line(line), 1)
+  local info = parse_line(line)
+  local prefix = build_prefix(info, 1)
 
   if not prefix then
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, false, true), "n", false)
@@ -48,7 +51,28 @@ function M.cr()
 
   local before = line:sub(1, col)
   local after = line:sub(col + 1)
+
+  -- 内容が空（prefix だけ）ならデデントまたはリスト終了
+  if after == "" and before == build_prefix(info, 0) then
+    local indent = info.indent or ""
+    if #indent > 0 then
+      -- デデントして同じ種類の prefix を維持
+      local sw = vim.bo.shiftwidth
+      local new_indent = indent:sub(1, math.max(#indent - sw, 0))
+      local new_line = build_prefix({ type = info.type, indent = new_indent, number = 1 }, 0)
+      vim.api.nvim_set_current_line(new_line)
+      vim.api.nvim_win_set_cursor(0, { row, #new_line })
+    else
+      -- インデントなし → リスト終了
+      vim.api.nvim_set_current_line("")
+      vim.api.nvim_win_set_cursor(0, { row, 0 })
+    end
+    return
+  end
+
   vim.api.nvim_set_current_line(before)
+  -- 行分割と行追加を同じ undo エントリにまとめる
+  pcall(function() vim.cmd("undojoin") end)
   vim.api.nvim_buf_set_lines(0, row, row, false, { prefix .. after })
   vim.api.nvim_win_set_cursor(0, { row + 1, #prefix })
 end
@@ -64,15 +88,34 @@ function M.open_bracket()
   return "["
 end
 
--- i <BS>: `- [ ] ` の直後で `[ ] ` (4文字) を削除 → `- ` に戻る
+-- i <BS>: prefix だけの行で prefix を削除
+--   `- [ ] ` → `- `  /  `- ` → indent  /  `1. ` → indent
 function M.bs()
   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
   local line = vim.api.nvim_get_current_line()
   local before = line:sub(1, col)
-  if before:match("^%s*- %[ %] $") and line:sub(col + 1) == "" then
-    vim.api.nvim_set_current_line(before:sub(1, -5) .. line:sub(col + 1))
-    vim.api.nvim_win_set_cursor(0, { row, col - 4 })
-    return
+  local after = line:sub(col + 1)
+  if after == "" then
+    -- `- [ ] ` → `- `
+    if before:match("^%s*- %[ %] $") then
+      vim.api.nvim_set_current_line(before:sub(1, -5))
+      vim.api.nvim_win_set_cursor(0, { row, col - 4 })
+      return
+    end
+    -- `- ` → indent のみ
+    local indent = before:match("^(%s*)- $")
+    if indent then
+      vim.api.nvim_set_current_line(indent)
+      vim.api.nvim_win_set_cursor(0, { row, #indent })
+      return
+    end
+    -- `1. ` → indent のみ
+    local indent2 = before:match("^(%s*)%d+%. $")
+    if indent2 then
+      vim.api.nvim_set_current_line(indent2)
+      vim.api.nvim_win_set_cursor(0, { row, #indent2 })
+      return
+    end
   end
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<BS>", true, false, true), "n", false)
 end
@@ -108,18 +151,15 @@ local function open_line(direction)
 
   local lines = {}
   for i = 1, count do
-    if info.type == "numbered" then
-      lines[i] = build_prefix(info, number_delta * i)
-    else
-      lines[i] = prefix
-    end
+    -- O: 上から昇順に並べるため逆順に生成
+    local delta = (direction == "below") and i or (count - i + 1)
+    lines[i] = build_prefix(info, number_delta * delta)
   end
 
   local insert_row = (direction == "below") and row or (row - 1)
-  local last_prefix = lines[count]
   vim.api.nvim_buf_set_lines(0, insert_row, insert_row, false, lines)
-  local cursor_row = (direction == "below") and (row + count) or row
-  vim.api.nvim_win_set_cursor(0, { cursor_row, #last_prefix })
+  local cursor_row = (direction == "below") and (row + count) or (row + count - 1)
+  vim.api.nvim_win_set_cursor(0, { cursor_row, #lines[count] })
   vim.cmd("startinsert!")
 end
 
@@ -136,9 +176,10 @@ local function setup_buffer()
     M.toggle_checkbox(vim.fn.line("."), vim.fn.line("."))
   end, opts)
   vim.keymap.set("v", "<CR>", function()
-    -- `:<C-u>` 相当: normal モードに戻し '< '> マークを確定させる
-    vim.cmd("normal! \27")
-    M.toggle_checkbox(vim.fn.line("'<"), vim.fn.line("'>"))
+    local l1, l2 = vim.fn.line("v"), vim.fn.line(".")
+    if l1 > l2 then l1, l2 = l2, l1 end
+    M.toggle_checkbox(l1, l2)
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
   end, opts)
   vim.keymap.set("n", "o", M.o, opts)
   vim.keymap.set("n", "O", M.O, opts)
