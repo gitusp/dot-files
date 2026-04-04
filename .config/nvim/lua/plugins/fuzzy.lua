@@ -3,7 +3,6 @@ return {
     "ibhagwan/fzf-lua",
     dependencies = {
       { "nvim-tree/nvim-web-devicons" },
-      { "lambdalisue/vim-mr" },
     },
     config = function()
       local fzf = require('fzf-lua')
@@ -41,40 +40,9 @@ return {
       vim.api.nvim_create_user_command('FzfLspTypedefs', fzf.lsp_typedefs, { desc = 'FZF LSP type definitions' })
       vim.api.nvim_create_user_command('FzfLspImplementations', fzf.lsp_implementations, { desc = 'FZF LSP implementations' })
       vim.api.nvim_create_user_command('FzfZoxide', fzf.zoxide, { desc = 'FZF zoxide' })
+      vim.api.nvim_create_user_command('FzfBuffers', fzf.buffers, { desc = 'FZF buffers' })
 
-      --- Thanks: https://zenn.dev/uga_rosa/articles/318bba82c53a1d
-      local function mrx(mode)
-        fzf.fzf_exec(
-          function(cb)
-            local list = vim.fn[("mr#%s#list"):format(mode)]()
-            local filtered = vim.fn["mr#filter"](list, vim.fn.getcwd())
-            for _, path in ipairs(filtered) do
-              cb(fzf.make_entry.file(path, { file_icons = true, color_icons = true }))
-            end
-            cb()
-          end,
-          {
-            prompt = ("%s> "):format(mode:upper()),
-            actions = {
-              ["enter"] = fzf.actions.file_edit_or_qf,
-              ["ctrl-s"] = fzf.actions.file_split,
-              ["ctrl-v"] = fzf.actions.file_vsplit,
-              ["ctrl-t"] = fzf.actions.file_tabedit,
-              ["alt-q"] = fzf.actions.file_sel_to_qf,
-              ["alt-Q"] = fzf.actions.file_sel_to_ll,
-            },
-            previewer = "builtin",
-            fzf_opts = {
-              ["--no-sort"] = "",
-              ["--multi"] = true,
-            },
-          }
-        )
-      end
-
-      vim.api.nvim_create_user_command('FzfMru', function() mrx("mru") end, { desc = 'FZF MRU' })
-      vim.api.nvim_create_user_command('FzfMrr', function() mrx("mrr") end, { desc = 'FZF MRR' })
-      vim.api.nvim_create_user_command('FzfMrw', function() mrx("mrw") end, { desc = 'FZF MRW' })
+      vim.api.nvim_create_user_command('FzfMru', function() fzf.oldfiles({ cwd_only = true }) end, { desc = 'FZF MRU' })
 
       --
       -- ys, yS mappings (grep operator)
@@ -118,7 +86,15 @@ return {
           end
 
           vim.go.operatorfunc = 'v:lua.opfunc_search_range'
-          vim.api.nvim_feedkeys('g@', 'n', false)
+
+          local key = vim.fn.getcharstr()
+          if key == 's' then
+            vim.go.operatorfunc = old_func
+            _G.opfunc_search_range = nil
+            fzf.grep_project()
+          else
+            vim.api.nvim_feedkeys('g@' .. key, 'n', false)
+          end
         end
       end
 

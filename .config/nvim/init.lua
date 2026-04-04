@@ -98,7 +98,6 @@ vim.keymap.set("n", "<c-w>N", "<cmd>tabnew<cr>", { desc = "Open new tab" })
 vim.keymap.set('n', '<leader>f', '<cmd>FzfFiles<cr>', { desc = 'FZF files' })
 vim.keymap.set("n", "<leader>/", '<cmd>FzfGrepCurbuf<cr>', { desc = "FZF grep current buffer" })
 vim.keymap.set("n", "<leader>h", '<cmd>FzfMru<cr>', { desc = "FZF MRU history" })
-vim.keymap.set("n", "<leader>r", '<cmd>FzfGrepProject<cr>', { desc = "FZF grep project (ripgrep)" })
 vim.keymap.set("n", "<leader>z", '<cmd>FzfZoxide<cr>', { desc = "FZF Zoxide" })
 
 -- Terminal
