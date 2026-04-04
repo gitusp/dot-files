@@ -95,7 +95,7 @@ vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end, {
 vim.keymap.set("n", "<c-w>N", "<cmd>tabnew<cr>", { desc = "Open new tab" })
 
 -- Fzf shortcuts
-vim.keymap.set('n', '<c-p>', '<cmd>FzfFiles<cr>', { desc = 'FZF files' })
+vim.keymap.set('n', '<leader>f', '<cmd>FzfFiles<cr>', { desc = 'FZF files' })
 vim.keymap.set("n", "<leader>/", '<cmd>FzfGrepCurbuf<cr>', { desc = "FZF grep current buffer" })
 vim.keymap.set("n", "<leader>h", '<cmd>FzfMru<cr>', { desc = "FZF MRU history" })
 vim.keymap.set("n", "<leader>r", '<cmd>FzfGrepProject<cr>', { desc = "FZF grep project (ripgrep)" })
