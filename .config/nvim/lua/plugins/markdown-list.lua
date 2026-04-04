@@ -82,7 +82,7 @@ function M.open_bracket()
   local line = vim.api.nvim_get_current_line()
   local col = vim.api.nvim_win_get_cursor(0)[2]
   local before = line:sub(1, col)
-  if before:match("^%s*- $") and line:sub(col + 1) == "" then
+  if before:match("^%s*- $") then
     return "[ ] "
   end
   return "["
@@ -95,20 +95,21 @@ function M.bs()
   local line = vim.api.nvim_get_current_line()
   local before = line:sub(1, col)
   local after = line:sub(col + 1)
+  -- `- [ ] ` → `- ` (カーソル後にテキストがあっても動作)
+  if before:match("^%s*- %[ %] $") then
+    local new_before = before:sub(1, -5)
+    vim.api.nvim_set_current_line(new_before .. after)
+    vim.api.nvim_win_set_cursor(0, { row, col - 4 })
+    return
+  end
+  -- `- ` → indent のみ (カーソル後にテキストがあっても動作)
+  local indent = before:match("^(%s*)- $")
+  if indent then
+    vim.api.nvim_set_current_line(indent .. after)
+    vim.api.nvim_win_set_cursor(0, { row, #indent })
+    return
+  end
   if after == "" then
-    -- `- [ ] ` → `- `
-    if before:match("^%s*- %[ %] $") then
-      vim.api.nvim_set_current_line(before:sub(1, -5))
-      vim.api.nvim_win_set_cursor(0, { row, col - 4 })
-      return
-    end
-    -- `- ` → indent のみ
-    local indent = before:match("^(%s*)- $")
-    if indent then
-      vim.api.nvim_set_current_line(indent)
-      vim.api.nvim_win_set_cursor(0, { row, #indent })
-      return
-    end
     -- `1. ` → indent のみ
     local indent2 = before:match("^(%s*)%d+%. $")
     if indent2 then
