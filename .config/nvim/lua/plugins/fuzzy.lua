@@ -48,12 +48,11 @@ return {
       -- ys, yS mappings (grep operator)
       --
       local function grep(word, search)
+        local opts = { search = search }
         if word then
-          search = [[\b]] .. fzf.utils.rg_escape(search) .. [[\b]]
-          fzf.grep({ search = search, no_esc = true })
-        else
-          fzf.grep({ search = search })
+          opts.rg_opts = '--word-regexp ' .. fzf.defaults.grep.rg_opts
         end
+        fzf.grep(opts)
       end
 
       local function create_search_visual(word)
@@ -87,13 +86,17 @@ return {
 
           vim.go.operatorfunc = 'v:lua.opfunc_search_range'
 
-          local key = vim.fn.getcharstr()
-          if key == 's' then
-            vim.go.operatorfunc = old_func
-            _G.opfunc_search_range = nil
-            fzf.grep_project()
+          if word then
+            vim.api.nvim_feedkeys('g@', 'n', false)
           else
-            vim.api.nvim_feedkeys('g@' .. key, 'n', false)
+            local key = vim.fn.getcharstr()
+            if key == 's' then
+              vim.go.operatorfunc = old_func
+              _G.opfunc_search_range = nil
+              fzf.grep_project()
+            else
+              vim.api.nvim_feedkeys('g@' .. key, 'n', false)
+            end
           end
         end
       end
