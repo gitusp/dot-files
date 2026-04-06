@@ -17,6 +17,8 @@ return {
           local client = vim.lsp.get_client_by_id(args.data.client_id)
           local bufnr = args.buf
 
+          vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr })
+
           -- ESLint: Auto-fix on save
           if client.name == 'eslint' then
             local group = vim.api.nvim_create_augroup('LspEslintFixAll_' .. bufnr, { clear = true })
