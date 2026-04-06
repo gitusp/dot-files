@@ -26,8 +26,6 @@ return {
           ["cd"] = { "actions.cd", opts = { scope = "win" }, mode = "n" },
           ["."] = { "actions.open_cmdline", opts = { shorten_path = true } },
           ["gy"] = { "actions.yank_entry", opts = { modify = ":~:." } },
-          ["gs"] = false,
-          ["cs"] = "actions.change_sort",
         },
       })
     end

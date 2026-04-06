@@ -20,6 +20,14 @@ return {
         files = {
           fd_opts = fzf.defaults.files.fd_opts .. [[ --type d]],
         },
+        grep = {
+          actions = {
+            ["alt-w"] = function(_, opts)
+              opts.toggle_flag = "--word-regexp"
+              fzf.actions.toggle_flag(_, opts)
+            end,
+          },
+        },
         zoxide = {
           actions = {
             ["enter"] = wrap_zoxide_action(fzf.actions.file_edit),
@@ -45,34 +53,23 @@ return {
       vim.api.nvim_create_user_command('FzfMru', function() fzf.oldfiles({ cwd_only = true }) end, { desc = 'FZF MRU' })
 
       --
-      -- gs, gS mappings (grep operator)
+      -- s mappings (grep operator)
       --
-      local function grep(word, search)
-        local opts = { search = search }
-        local rg_opts = '--multiline ' .. fzf.defaults.grep.rg_opts
-        if word then
-          rg_opts = '--word-regexp ' .. rg_opts
-        end
-        opts.rg_opts = rg_opts
-        fzf.grep(opts)
+      local function grep(search)
+        fzf.grep({
+          search = search,
+          rg_opts = '--multiline ' .. fzf.defaults.grep.rg_opts,
+        })
       end
 
-      local function create_search_visual(word)
-        return function()
-          local search = fzf.utils.get_visual_selection()
-          grep(word, search)
-        end
-      end
-
-      local function setup_opfunc(word)
+      local function setup_opfunc()
         local old_func = vim.go.operatorfunc
 
         local type_to_mode = { char = 'v', line = 'V', block = '\22' }
 
         _G.opfunc_search_range = function(type)
           local lines = vim.fn.getregion(vim.fn.getpos("'["), vim.fn.getpos("']"), { type = type_to_mode[type] })
-          local search = vim.trim(table.concat(lines, "\n"))
-          grep(word, search)
+          grep(vim.trim(table.concat(lines, "\n")))
 
           vim.go.operatorfunc = old_func
           _G.opfunc_search_range = nil
@@ -81,12 +78,10 @@ return {
         vim.go.operatorfunc = 'v:lua.opfunc_search_range'
       end
 
-      vim.keymap.set("n", "gs", function() setup_opfunc(false); return "g@" end, { expr = true, desc = 'FZF operator' })
-      vim.keymap.set("n", "gss", function() setup_opfunc(false); return "g@_" end, { expr = true, desc = 'FZF operator - line' })
-      vim.keymap.set("n", "gS", function() setup_opfunc(true); return "g@" end, { expr = true, desc = 'FZF operator - word' })
-      vim.keymap.set("n", "gSS", function() setup_opfunc(true); return "g@_" end, { expr = true, desc = 'FZF operator - word line' })
-      vim.keymap.set('x', 'gs', create_search_visual(false), { desc = 'FZF grep visual' })
-      vim.keymap.set('x', 'gS', create_search_visual(true), { desc = 'FZF grep visual - word' })
+      vim.keymap.set("n", "s", function() setup_opfunc(); return "g@" end, { expr = true, desc = 'FZF operator' })
+      vim.keymap.set("n", "ss", function() setup_opfunc(); return "g@_" end, { expr = true, desc = 'FZF operator - line' })
+      vim.keymap.set("n", "s<space>", fzf.grep_project, { desc = 'FZF grep project' })
+      vim.keymap.set('x', 's', function() grep(fzf.utils.get_visual_selection()) end, { desc = 'FZF grep visual' })
     end
   },
 }
