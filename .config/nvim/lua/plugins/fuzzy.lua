@@ -80,7 +80,7 @@ return {
 
       vim.keymap.set("n", "s", function() setup_opfunc(); return "g@" end, { expr = true, desc = 'FZF operator' })
       vim.keymap.set("n", "ss", function() setup_opfunc(); return "g@_" end, { expr = true, desc = 'FZF operator - line' })
-      vim.keymap.set("n", "s<space>", fzf.grep_project, { desc = 'FZF grep project' })
+      vim.keymap.set("n", "S", fzf.grep_project, { desc = 'FZF grep project' })
       vim.keymap.set('x', 's', function() grep(fzf.utils.get_visual_selection()) end, { desc = 'FZF grep visual' })
     end
   },
