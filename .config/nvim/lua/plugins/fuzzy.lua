@@ -21,6 +21,7 @@ return {
           fd_opts = fzf.defaults.files.fd_opts .. [[ --type d]],
         },
         grep = {
+          rg_opts = "--hidden -g '!.git' --multiline " .. fzf.defaults.grep.rg_opts,
           actions = {
             ["alt-w"] = function(_, opts)
               opts.toggle_flag = "--word-regexp"
@@ -58,7 +59,6 @@ return {
       local function grep(search)
         fzf.grep({
           search = search,
-          rg_opts = '--multiline ' .. fzf.defaults.grep.rg_opts,
         })
       end
 
