@@ -26,6 +26,10 @@ return {
           ["cd"] = { "actions.cd", opts = { scope = "win" }, mode = "n" },
           ["."] = { "actions.open_cmdline", opts = { shorten_path = true } },
           ["gy"] = { "actions.yank_entry", opts = { modify = ":~:." } },
+          ["g~"] = {
+            callback = function() require("oil").open("~") end,
+            desc = "Open home directory",
+          },
         },
       })
     end
