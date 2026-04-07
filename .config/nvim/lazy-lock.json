@@ -3,7 +3,6 @@
   "claudecode.nvim": { "branch": "main", "commit": "432121f0f5b9bda041030d1e9e83b7ba3a93dd8f" },
   "fzf-lua": { "branch": "main", "commit": "9f0432fdd7825ab163520045831a40b6df82ea28" },
   "gh-run-status.nvim": { "branch": "main", "commit": "578982cb48d147c7162a4a9bba6a517778c8a591" },
-  "gh-utils.nvim": { "branch": "main", "commit": "deb3100f03c755767b8b485e2ee992cbf7e2fbab" },
   "gitgraph.nvim": { "branch": "main", "commit": "c16daa7d7dd597caf9085644c009cfa80b75db8e" },
   "github-theme": { "branch": "main", "commit": "c106c9472154d6b2c74b74565616b877ae8ed31d" },
   "gitsigns.nvim": { "branch": "main", "commit": "0d797daee85366bc242580e352a4f62d67557b84" },
