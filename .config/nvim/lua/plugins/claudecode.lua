@@ -1,3 +1,17 @@
+local function focus_claude_insert()
+  local bufnr = require("claudecode.terminal").get_active_terminal_bufnr()
+  if not bufnr then
+    return
+  end
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    if vim.api.nvim_win_get_buf(win) == bufnr then
+      vim.api.nvim_set_current_win(win)
+      vim.cmd("startinsert")
+      return
+    end
+  end
+end
+
 return {
   "coder/claudecode.nvim",
   dependencies = { "folke/snacks.nvim" },
@@ -23,8 +37,24 @@ return {
   },
   keys = {
     { "<c-\\>", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
-    { "<c-'>", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
-    { "<c-'>", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
+    {
+      "<c-'>",
+      function()
+        vim.cmd("ClaudeCodeAdd %")
+        focus_claude_insert()
+      end,
+      desc = "Add current buffer",
+    },
+    {
+      "<c-'>",
+      function()
+        vim.api.nvim_feedkeys(vim.keycode("<Esc>"), "nx", false)
+        vim.cmd("'<,'>ClaudeCodeSend")
+        focus_claude_insert()
+      end,
+      mode = "x",
+      desc = "Send to Claude",
+    },
     {
       "<c-'>",
       "<cmd>ClaudeCodeTreeAdd<cr>",
