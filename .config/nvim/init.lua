@@ -23,11 +23,12 @@ vim.o.smarttab = true
 
 vim.o.shortmess = vim.o.shortmess .. 'I'
 vim.o.signcolumn = "yes"
-vim.o.diffopt = vim.o.diffopt .. ',iwhite'
-vim.o.diffopt = vim.o.diffopt .. ',algorithm:histogram'
-vim.o.diffopt = vim.o.diffopt .. ',vertical'
+vim.opt.diffopt:append('iwhite,algorithm:histogram,linematch:60,inline:word,vertical')
 
 vim.o.undofile = true
+
+-- Experimental: new messages/cmdline UI (Neovim 0.12+)
+require('vim._core.ui2').enable({})
 
 --
 -- Appearance
