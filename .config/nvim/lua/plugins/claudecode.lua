@@ -1,4 +1,4 @@
-local function focus_claude_insert()
+function _G.focus_claude_insert()
   local bufnr = require("claudecode.terminal").get_active_terminal_bufnr()
   if not bufnr then
     return
@@ -47,11 +47,7 @@ return {
     },
     {
       "<c-'>",
-      function()
-        vim.api.nvim_feedkeys(vim.keycode("<Esc>"), "nx", false)
-        vim.cmd("'<,'>ClaudeCodeSend")
-        focus_claude_insert()
-      end,
+      ":<C-u>'<,'>ClaudeCodeSend<CR><Cmd>lua focus_claude_insert()<CR>",
       mode = "x",
       desc = "Send to Claude",
     },
