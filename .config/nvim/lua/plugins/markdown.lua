@@ -25,8 +25,7 @@ return {
     end,
   },
   {
-    'gitusp/vim-metarw-docbase',
-    branch = 'use-group-id-instead-of-name',
+    'kyoh86/vim-metarw-docbase',
     dependencies = {
       'kana/vim-metarw',
       'kyoh86/vim-docbase',

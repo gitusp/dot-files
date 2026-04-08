@@ -28,7 +28,7 @@
   "vim-fugitive": { "branch": "master", "commit": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0" },
   "vim-matchup": { "branch": "master", "commit": "0fb1e6b7cea34e931a2af50b8ad565c5c4fd8f4d" },
   "vim-metarw": { "branch": "master", "commit": "2599b113275ac5820a735a01dbb5477e673ca105" },
-  "vim-metarw-docbase": { "branch": "main", "commit": "5d3fb6e2e02da0a8ae9e742c90341cac78aea0e9" },
+  "vim-metarw-docbase": { "branch": "main", "commit": "3f3b19f0b41d65db7847e002ded8bde28a028f0b" },
   "vim-projectionist": { "branch": "master", "commit": "5ff7bf79a6ef741036d2038a226bcb5f8b1cd296" },
   "vim-rhubarb": { "branch": "master", "commit": "5496d7c94581c4c9ad7430357449bb57fc59f501" },
   "vim-table-mode": { "branch": "master", "commit": "bb025308a45c67c7c8f0763ba37bc2ee3f534df0" }
