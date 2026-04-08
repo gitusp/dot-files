@@ -10,7 +10,7 @@ return {
           return {
             cmd = { "npx", "tsc", "--noEmit" },
             components = {
-              { "on_output_quickfix", open = true },
+              { "on_output_quickfix", open_on_exit = "failure" },
               "default",
             },
           }
