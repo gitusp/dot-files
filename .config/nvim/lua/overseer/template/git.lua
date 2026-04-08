@@ -5,33 +5,6 @@ return {
     end
     cb({
       {
-        name = "git push",
-        builder = function()
-          return { cmd = "git push" }
-        end,
-      },
-      {
-        name = "git pull",
-        builder = function()
-          return { cmd = "git pull" }
-        end,
-      },
-      {
-        name = "git fetch",
-        builder = function()
-          return { cmd = "git fetch" }
-        end,
-      },
-      {
-        name = "git checkout -b",
-        builder = function(params)
-          return { cmd = "git checkout -b " .. params.name }
-        end,
-        params = {
-          name = { type = "string", desc = "Branch name" },
-        },
-      },
-      {
         name = "claude commit",
         builder = function()
           local prompt = "Commit staged changes only. No Co-Authored-By, no mention of Claude, no email addresses."
