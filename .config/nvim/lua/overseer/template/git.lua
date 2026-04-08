@@ -32,6 +32,15 @@ return {
         },
       },
       {
+        name = "claude commit",
+        builder = function()
+          local prompt = "Commit staged changes only. No Co-Authored-By, no mention of Claude, no email addresses."
+          return {
+            cmd = { "claude", "-p", prompt, "--permission-mode", "acceptEdits" },
+          }
+        end,
+      },
+      {
         name = "gh pr create",
         builder = function(params)
           local cmd = "gh pr create -f"
