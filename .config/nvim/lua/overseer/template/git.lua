@@ -15,22 +15,11 @@ return {
       },
       {
         name = "gh pr create",
-        builder = function(params)
-          local cmd = "gh pr create -f"
-          if params.base ~= "" then
-            cmd = cmd .. " --base " .. params.base
-          end
-          return { cmd = cmd }
-        end,
-        params = {
-          base = { type = "string", default = "", optional = true, desc = "Base branch" },
-        },
+        builder = function() return { cmd = "gh pr create -f" } end,
       },
       {
         name = "gh pr merge",
-        builder = function()
-          return { cmd = "gh pr merge -d -m --admin" }
-        end,
+        builder = function() return { cmd = "gh pr merge -d -m --admin" } end,
       },
       {
         name = "gh pr view",
