@@ -5,7 +5,7 @@
   "gh-run-status.nvim": { "branch": "main", "commit": "578982cb48d147c7162a4a9bba6a517778c8a591" },
   "gitgraph.nvim": { "branch": "main", "commit": "c16daa7d7dd597caf9085644c009cfa80b75db8e" },
   "github-theme": { "branch": "main", "commit": "c106c9472154d6b2c74b74565616b877ae8ed31d" },
-  "gitsigns.nvim": { "branch": "main", "commit": "0d797daee85366bc242580e352a4f62d67557b84" },
+  "gitsigns.nvim": { "branch": "main", "commit": "8d82c240f190fc33723d48c308ccc1ed8baad69d" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "lualine.nvim": { "branch": "master", "commit": "8811f3f3f4dc09d740c67e9ce399e7a541e2e5b2" },
   "mdx.nvim": { "branch": "main", "commit": "c2644328587bbd58eede41b2cd0c1ccc99175661" },
@@ -30,6 +30,5 @@
   "vim-metarw": { "branch": "master", "commit": "2599b113275ac5820a735a01dbb5477e673ca105" },
   "vim-metarw-docbase": { "branch": "main", "commit": "3f3b19f0b41d65db7847e002ded8bde28a028f0b" },
   "vim-projectionist": { "branch": "master", "commit": "5ff7bf79a6ef741036d2038a226bcb5f8b1cd296" },
-  "vim-rhubarb": { "branch": "master", "commit": "5496d7c94581c4c9ad7430357449bb57fc59f501" },
   "vim-table-mode": { "branch": "master", "commit": "bb025308a45c67c7c8f0763ba37bc2ee3f534df0" }
 }

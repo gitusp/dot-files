@@ -36,6 +36,10 @@ return {
         name = "gh pr view",
         builder = function() return { cmd = "gh pr view --web" } end,
       },
+      {
+        name = "gh repo view",
+        builder = function() return { cmd = "gh repo view --web" } end,
+      },
     })
   end,
 }

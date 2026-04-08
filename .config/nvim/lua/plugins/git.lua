@@ -5,7 +5,6 @@ return {
       vim.api.nvim_create_user_command("GitDiffTool", "Git difftool -y <args>", { nargs = "*" })
     end,
   },
-  { "tpope/vim-rhubarb" },
   { "lewis6991/gitsigns.nvim",
       config = function()
         require("gitsigns").setup({
