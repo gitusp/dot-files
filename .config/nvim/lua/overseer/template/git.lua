@@ -1,11 +1,9 @@
 return {
-  condition = {
-    callback = function()
-      return #vim.fs.find(".git", { upward = true, path = vim.fn.getcwd() }) > 0
-    end,
-  },
-  generator = function()
-    return {
+  generator = function(search, cb)
+    if #vim.fs.find(".git", { upward = true, path = search.dir }) == 0 then
+      return cb({})
+    end
+    cb({
       {
         name = "git push",
         builder = function()
@@ -47,6 +45,6 @@ return {
         name = "gh pr view",
         builder = function() return { cmd = "gh pr view --web" } end,
       },
-    }
+    })
   end,
 }
