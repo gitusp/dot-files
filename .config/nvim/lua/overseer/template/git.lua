@@ -23,6 +23,15 @@ return {
         end,
       },
       {
+        name = "git checkout -b",
+        builder = function(params)
+          return { cmd = "git checkout -b " .. params.name }
+        end,
+        params = {
+          name = { type = "string", desc = "Branch name" },
+        },
+      },
+      {
         name = "gh pr create",
         builder = function(params)
           local cmd = "gh pr create -f"
