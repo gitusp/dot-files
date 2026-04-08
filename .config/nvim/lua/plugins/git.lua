@@ -1,10 +1,5 @@
 return {
-  {
-    "tpope/vim-fugitive",
-    config = function()
-      vim.api.nvim_create_user_command("GitDiffTool", "Git difftool -y <args>", { nargs = "*" })
-    end,
-  },
+  { "tpope/vim-fugitive" },
   { "lewis6991/gitsigns.nvim",
       config = function()
         require("gitsigns").setup({

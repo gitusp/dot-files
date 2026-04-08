@@ -1,8 +1,27 @@
 [commit]
   template=~/.config/git/commit.txt
 
+[push]
+  autoSetupRemote = true
+
+[fetch]
+  prune = true
+
+[pull]
+  rebase = true
+
+[rebase]
+  autoStash = true
+  autoSquash = true
+
 [alias]
+  pf = push --force-with-lease --force-if-includes
   co = checkout
   cp = cherry-pick
   f = fetch
+  dt = difftool -y
+  st = status
+  ci = commit
+  p = push
+  pl = pull
 
