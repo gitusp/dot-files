@@ -75,7 +75,7 @@ vim.keymap.set("n", "<leader>l", function() require("quicker").toggle({ loclist 
 vim.keymap.set("n", "<leader>g", toggle_git_status, { desc = "Toggle git status" })
 vim.keymap.set("n", "<leader>t", '<cmd>TodoQuickFix<cr>', { desc = "Set TODOs to qf" })
 vim.keymap.set("n", "<leader>d", vim.diagnostic.setqflist, { desc = "Set LSP diagnostics to qf" })
-vim.keymap.set("n", "<leader>o", "<cmd>OverseerRun<cr>", { desc = "Run task" })
+vim.keymap.set("n", "<leader>r", "<cmd>OverseerRun<cr>", { desc = "Run task" })
 vim.keymap.set("n", "<leader>:", function() require('fzf-lua').commands() end, { desc = 'FZF commands' })
 vim.keymap.set("n", "<leader>?", function() require('fzf-lua').keymaps({ query = "<Space>" }) end, { desc = "FZF leader key mappings" })
 vim.keymap.set("n", "<localleader>?", function() require('fzf-lua').keymaps({ query = "\\" }) end, { desc = "FZF localleader key mappings" })
