@@ -1,5 +1,15 @@
 return {
-  { "tpope/vim-fugitive" },
+  {
+    "tpope/vim-fugitive",
+    init = function()
+      vim.api.nvim_create_user_command("GH", function(opts)
+        local task = require("overseer").new_task({
+          cmd = "gh " .. opts.args,
+        })
+        task:start()
+      end, { nargs = "+" })
+    end,
+  },
   { "lewis6991/gitsigns.nvim",
       config = function()
         require("gitsigns").setup({
