@@ -24,6 +24,7 @@ return {
         "gitignore",
         "prisma",
         "sql",
+        "swift",
         "yaml",
       }
       require('nvim-treesitter').install(ensure_installed)
