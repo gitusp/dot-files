@@ -41,18 +41,12 @@ return {
           suffix_last = '',
           suffix_next = '',
         },
-        search_method = 'cover_or_next',
       })
       vim.keymap.del('x', 'ys')
       vim.keymap.set('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true, desc = 'Surround visual' })
       local gen_ai_spec = require("mini.extra").gen_ai_spec
       require("mini.ai").setup({
-        mappings = {
-          around_last = '',
-          inside_last = '',
-        },
         custom_textobjects = {
-          l = gen_ai_spec.line(),
           g = gen_ai_spec.buffer(),
         },
       })
