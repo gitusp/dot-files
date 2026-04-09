@@ -53,6 +53,149 @@ return {
 
       vim.api.nvim_create_user_command('FzfMru', function() fzf.oldfiles({ cwd_only = true }) end, { desc = 'FZF MRU' })
 
+      -- DocBase
+      do
+        local initial_per_page = 20
+        local per_page = 100
+        local posts_by_id = {}
+
+        local builtin = require('fzf-lua.previewer.builtin')
+        local DocBasePreviewer = builtin.base:extend()
+        DocBasePreviewer._ctor = function() return DocBasePreviewer end
+
+        function DocBasePreviewer:populate_preview_buf(entry_str)
+          local id = entry_str:match('^(%d+)')
+          local p = id and posts_by_id[id] or nil
+          local tmpbuf = self:get_tmp_buffer()
+          local lines = {}
+          if p then
+            lines[1] = '# ' .. (p.title or '')
+            lines[2] = ''
+            for _, line in ipairs(vim.split(p.body or '', '\n', { plain = true })) do
+              lines[#lines + 1] = (line:gsub('\r', ''))
+            end
+          end
+          vim.api.nvim_buf_set_lines(tmpbuf, 0, -1, false, lines)
+          vim.bo[tmpbuf].filetype = 'markdown'
+          self:set_preview_buf(tmpbuf)
+        end
+
+        vim.api.nvim_create_user_command('FzfDocBase', function()
+          local domain = vim.env.DOCBASE_DOMAIN
+          local token = vim.env.DOCBASE_TOKEN
+          if not domain or domain == '' or not token or token == '' then
+            vim.notify('DOCBASE_DOMAIN and DOCBASE_TOKEN must be set', vim.log.levels.ERROR)
+            return
+          end
+
+          local base = vim.fn.fnameescape('docbase:' .. domain .. ':')
+          posts_by_id = {}
+
+          local function make_entry(p)
+            local id = tostring(p.id)
+            posts_by_id[id] = p
+            local body_flat = (p.body or ''):gsub('[\r\n\t]', ' ')
+            return id .. '\t' .. (p.title or '') .. '\t\x1b[2m' .. body_flat .. '\x1b[0m'
+          end
+
+          local function fetch_page_async(page, size, callback)
+            local url = string.format(
+              'https://api.docbase.io/teams/%s/posts?per_page=%d&page=%d', domain, size, page)
+            vim.system(
+              { 'curl', '-sS', '-H', 'X-DocBaseToken: ' .. token, url },
+              { text = true },
+              function(obj)
+                if obj.code ~= 0 then
+                  vim.schedule(function()
+                    vim.notify('DocBase API request failed: ' .. (obj.stderr or ''), vim.log.levels.ERROR)
+                  end)
+                  callback(nil)
+                  return
+                end
+                local ok, data = pcall(vim.json.decode, obj.stdout or '')
+                if not ok or type(data) ~= 'table' then
+                  vim.schedule(function()
+                    vim.notify('DocBase API: invalid response', vim.log.levels.ERROR)
+                  end)
+                  callback(nil)
+                  return
+                end
+                if data.error then
+                  vim.schedule(function()
+                    local msg = data.error
+                    if data.messages then
+                      msg = msg .. ': ' .. table.concat(data.messages, ', ')
+                    end
+                    vim.notify('DocBase API: ' .. msg, vim.log.levels.ERROR)
+                  end)
+                  callback(nil)
+                  return
+                end
+                callback(data.posts)
+              end
+            )
+          end
+
+          local function fetch_all(fzf_cb, page)
+            fetch_page_async(page, per_page, function(posts)
+              if not posts or #posts == 0 then
+                fzf_cb(nil)
+                return
+              end
+              vim.schedule(function()
+                for _, p in ipairs(posts) do
+                  fzf_cb(make_entry(p))
+                end
+                if #posts < per_page then
+                  fzf_cb(nil)
+                else
+                  fetch_all(fzf_cb, page + 1)
+                end
+              end)
+            end)
+          end
+
+          local fzf_opts = {
+            prompt = 'DocBase> ',
+            previewer = DocBasePreviewer,
+            fzf_opts = {
+              ['--ansi'] = '',
+              ['--delimiter'] = '\\t',
+              ['--with-nth'] = '2..',
+              ['--header'] = 'ctrl-l: load all',
+            },
+            actions = {
+              ['default'] = function(selected)
+                if not selected or not selected[1] then return end
+                local id = selected[1]:match('^(%d+)')
+                if id then vim.cmd('edit ' .. base .. id) end
+              end,
+            },
+          }
+
+          fzf_opts.actions['ctrl-l'] = function()
+            fzf.fzf_exec(function(fzf_cb)
+              fetch_all(fzf_cb, 1)
+            end, fzf_opts)
+          end
+
+          fzf.fzf_exec(function(fzf_cb)
+            fetch_page_async(1, initial_per_page, function(posts)
+              if not posts or #posts == 0 then
+                fzf_cb(nil)
+                return
+              end
+              vim.schedule(function()
+                for _, p in ipairs(posts) do
+                  fzf_cb(make_entry(p))
+                end
+                fzf_cb(nil)
+              end)
+            end)
+          end, fzf_opts)
+        end, { desc = 'FZF DocBase' })
+      end
+
       --
       -- s mappings (grep operator)
       --

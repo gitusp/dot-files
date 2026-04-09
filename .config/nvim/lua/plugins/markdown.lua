@@ -30,10 +30,5 @@ return {
       'kana/vim-metarw',
       'kyoh86/vim-docbase',
     },
-    init = function()
-      vim.api.nvim_create_user_command('DocBase', function(opts)
-        vim.cmd('edit docbase:' .. vim.env.DOCBASE_DOMAIN .. ':' .. (opts.args or ''))
-      end, { nargs = '?' })
-    end,
   },
 }
