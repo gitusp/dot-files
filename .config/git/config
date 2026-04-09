@@ -22,7 +22,7 @@
   dt = difftool -y
   st = status
   ci = commit
-  cia = !claude -p 'Commit staged changes only. No Co-Authored-By, no mention of Claude, no email addresses.' --permission-mode acceptEdits
+  cia = !claude -p 'Commit staged changes only. No Co-Authored-By, no mention of Claude, no email addresses.' --permission-mode acceptEdits --output-format json 2>/dev/null | jq -r .result
   p = push
   pl = pull
 
