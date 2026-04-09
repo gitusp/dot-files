@@ -30,5 +30,15 @@ return {
       'kana/vim-metarw',
       'kyoh86/vim-docbase',
     },
+    config = function()
+      vim.api.nvim_create_user_command('DocBaseNew', function()
+        local domain = vim.env.DOCBASE_DOMAIN
+        if domain then
+          vim.cmd('e docbase:' .. domain .. ':new')
+        else
+          vim.notify('DOCBASE_DOMAIN is not set', vim.log.levels.ERROR)
+        end
+      end, {})
+    end,
   },
 }

@@ -57,28 +57,6 @@ return {
       do
         local initial_per_page = 20
         local per_page = 100
-        local posts_by_id = {}
-
-        local builtin = require('fzf-lua.previewer.builtin')
-        local DocBasePreviewer = builtin.base:extend()
-        DocBasePreviewer._ctor = function() return DocBasePreviewer end
-
-        function DocBasePreviewer:populate_preview_buf(entry_str)
-          local id = entry_str:match('^(%d+)')
-          local p = id and posts_by_id[id] or nil
-          local tmpbuf = self:get_tmp_buffer()
-          local lines = {}
-          if p then
-            lines[1] = '# ' .. (p.title or '')
-            lines[2] = ''
-            for _, line in ipairs(vim.split(p.body or '', '\n', { plain = true })) do
-              lines[#lines + 1] = (line:gsub('\r', ''))
-            end
-          end
-          vim.api.nvim_buf_set_lines(tmpbuf, 0, -1, false, lines)
-          vim.bo[tmpbuf].filetype = 'markdown'
-          self:set_preview_buf(tmpbuf)
-        end
 
         vim.api.nvim_create_user_command('FzfDocBase', function()
           local domain = vim.env.DOCBASE_DOMAIN
@@ -89,7 +67,29 @@ return {
           end
 
           local base = vim.fn.fnameescape('docbase:' .. domain .. ':')
-          posts_by_id = {}
+          local posts_by_id = {}
+          local stored_fzf_cb = nil
+
+          local builtin = require('fzf-lua.previewer.builtin')
+          local DocBasePreviewer = builtin.base:extend()
+          DocBasePreviewer._ctor = function() return DocBasePreviewer end
+
+          function DocBasePreviewer:populate_preview_buf(entry_str)
+            local id = entry_str:match('^(%d+)')
+            local p = id and posts_by_id[id] or nil
+            local tmpbuf = self:get_tmp_buffer()
+            local lines = {}
+            if p then
+              lines[1] = '# ' .. (p.title or '')
+              lines[2] = ''
+              for _, line in ipairs(vim.split(p.body or '', '\n', { plain = true })) do
+                lines[#lines + 1] = (line:gsub('\r', ''))
+              end
+            end
+            vim.api.nvim_buf_set_lines(tmpbuf, 0, -1, false, lines)
+            vim.bo[tmpbuf].filetype = 'markdown'
+            self:set_preview_buf(tmpbuf)
+          end
 
           local function make_entry(p)
             local id = tostring(p.id)
@@ -136,15 +136,18 @@ return {
             )
           end
 
-          local function fetch_all(fzf_cb, page)
+          local function fetch_all(fzf_cb, page, skip)
+            skip = skip or 0
             fetch_page_async(page, per_page, function(posts)
               if not posts or #posts == 0 then
                 fzf_cb(nil)
                 return
               end
               vim.schedule(function()
-                for _, p in ipairs(posts) do
-                  fzf_cb(make_entry(p))
+                for i, p in ipairs(posts) do
+                  if i > skip then
+                    fzf_cb(make_entry(p))
+                  end
                 end
                 if #posts < per_page then
                   fzf_cb(nil)
@@ -160,26 +163,42 @@ return {
             previewer = DocBasePreviewer,
             fzf_opts = {
               ['--ansi'] = '',
+              ['--multi'] = '',
               ['--delimiter'] = '\\t',
               ['--with-nth'] = '2..',
-              ['--header'] = 'ctrl-l: load all',
+              ['--header'] = 'ctrl-l: load all | tab: multi-select',
             },
             actions = {
               ['default'] = function(selected)
-                if not selected or not selected[1] then return end
-                local id = selected[1]:match('^(%d+)')
-                if id then vim.cmd('edit ' .. base .. id) end
+                if not selected then return end
+                if #selected == 1 then
+                  local id = selected[1]:match('^(%d+)')
+                  if id then vim.cmd('edit ' .. base .. id) end
+                else
+                  local items = {}
+                  for _, s in ipairs(selected) do
+                    local id, title = s:match('^(%d+)\t(.+)')
+                    if id then table.insert(items, { filename = base .. id, text = title or '' }) end
+                  end
+                  vim.fn.setqflist(items)
+                  vim.cmd('copen')
+                end
               end,
             },
           }
 
-          fzf_opts.actions['ctrl-l'] = function()
-            fzf.fzf_exec(function(fzf_cb)
-              fetch_all(fzf_cb, 1)
-            end, fzf_opts)
-          end
+          fzf_opts.actions['ctrl-l'] = {
+            fn = function()
+              if stored_fzf_cb then
+                fetch_all(stored_fzf_cb, 1, initial_per_page)
+              end
+            end,
+            field_index = false,
+            exec_silent = true,
+          }
 
           fzf.fzf_exec(function(fzf_cb)
+            stored_fzf_cb = fzf_cb
             fetch_page_async(1, initial_per_page, function(posts)
               if not posts or #posts == 0 then
                 fzf_cb(nil)
@@ -189,7 +208,6 @@ return {
                 for _, p in ipairs(posts) do
                   fzf_cb(make_entry(p))
                 end
-                fzf_cb(nil)
               end)
             end)
           end, fzf_opts)
