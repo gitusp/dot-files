@@ -17,13 +17,10 @@
 [alias]
   pf = push --force-with-lease --force-if-includes
   co = checkout
-  cp = cherry-pick
   dt = difftool -y
   st = status
   ci = commit
-  cia = !claude -p 'Commit staged changes only. No Co-Authored-By, no mention of Claude, no email addresses. After committing, output the commit hash and message on a single final line.' --permission-mode acceptEdits --output-format json 2>/dev/null | jq -r .result
-  p = push
-  pl = pull
+  cia = "!f() { msg=$(claude -p 'Generate a concise commit message for the staged changes. Output only the message, nothing else.' 2>/dev/null) && printf '%s' \"$msg\" | git commit -F -; }; f"
   prc = "!f() { git push && gh pr create --fill ${1:+--base \"$1\"}; }; f"
   prm = !gh pr merge -d -m --admin
   prv = !gh pr view --web
