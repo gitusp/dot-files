@@ -26,6 +26,7 @@ return {
         "sql",
         "swift",
         "python",
+        "bash",
         "yaml",
       }
       require('nvim-treesitter').install(ensure_installed)
