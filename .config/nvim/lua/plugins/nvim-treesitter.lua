@@ -25,6 +25,7 @@ return {
         "prisma",
         "sql",
         "swift",
+        "python",
         "yaml",
       }
       require('nvim-treesitter').install(ensure_installed)
