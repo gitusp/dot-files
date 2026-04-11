@@ -7,6 +7,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end
 })
 
+-- Switch to ascii input (macSKK) when entering normal mode
+vim.api.nvim_create_autocmd('ModeChanged', {
+  group = 'base',
+  pattern = '*:n',
+  callback = function()
+    vim.system({ 'macism', 'net.mtgto.inputmethod.macSKK.ascii' })
+  end
+})
+
 -- HACK: Fire projectionist apply template to files created via oil.nvim
 vim.api.nvim_create_autocmd('BufRead', {
   group = 'base',
