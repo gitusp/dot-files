@@ -151,17 +151,38 @@ local function open_line(direction)
     return
   end
 
-  local lines = {}
-  for i = 1, count do
-    -- O: 上から昇順に並べるため逆順に生成
-    local delta = (direction == "below") and i or (count - i + 1)
-    lines[i] = build_prefix(info, number_delta * delta)
+  local insert_row = (direction == "below") and row or (row - 1)
+  vim.api.nvim_buf_set_lines(0, insert_row, insert_row, false, { prefix })
+  local cursor_row = insert_row + 1
+  vim.api.nvim_win_set_cursor(0, { cursor_row, #prefix })
+
+  if count > 1 then
+    vim.api.nvim_create_autocmd("InsertLeave", {
+      once = true,
+      callback = function()
+        local r = vim.api.nvim_win_get_cursor(0)[1]
+        local typed_line = vim.api.nvim_get_current_line()
+        local content = typed_line:sub(#prefix + 1)
+        local lines = {}
+        if direction == "below" then
+          for i = 1, count - 1 do
+            lines[i] = build_prefix(info, number_delta + i) .. content
+          end
+        else
+          for i = 1, count - 1 do
+            lines[i] = build_prefix(info, number_delta - count + i) .. content
+          end
+        end
+        pcall(function() vim.cmd("undojoin") end)
+        local insert_at = (direction == "below") and r or (r - 1)
+        vim.api.nvim_buf_set_lines(0, insert_at, insert_at, false, lines)
+        local last_row = r + count - 1
+        local last_line = vim.api.nvim_buf_get_lines(0, last_row - 1, last_row, false)[1]
+        vim.api.nvim_win_set_cursor(0, { last_row, math.max(#last_line - 1, 0) })
+      end,
+    })
   end
 
-  local insert_row = (direction == "below") and row or (row - 1)
-  vim.api.nvim_buf_set_lines(0, insert_row, insert_row, false, lines)
-  local cursor_row = (direction == "below") and (row + count) or (row + count - 1)
-  vim.api.nvim_win_set_cursor(0, { cursor_row, #lines[count] })
   vim.api.nvim_feedkeys("A", "n", false)
 end
 
