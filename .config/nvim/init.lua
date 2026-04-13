@@ -54,7 +54,7 @@ vim.diagnostic.config({
 vim.keymap.set("n", "Q", "@q")
 vim.keymap.set({"n", "x"}, "Y", '"+y')
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-vim.keymap.set("n", "X", "@:", { desc = "Repeat last command" })
+vim.keymap.set({"n", "x"}, "_", "@:", { desc = "Repeat last command" })
 
 -- Single key mappings with leader
 local function toggle_git_status()
