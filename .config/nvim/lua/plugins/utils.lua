@@ -1,5 +1,4 @@
 return {
-  { 'tpope/vim-projectionist' },
   { 'tpope/vim-dadbod' },
   { 'tpope/vim-dotenv',
       config = function()

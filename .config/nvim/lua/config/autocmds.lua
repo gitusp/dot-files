@@ -15,15 +15,3 @@ vim.api.nvim_create_autocmd('ModeChanged', {
     vim.system({ 'macism', 'net.mtgto.inputmethod.macSKK.ascii' })
   end
 })
-
--- HACK: Fire projectionist apply template to files created via oil.nvim
-vim.api.nvim_create_autocmd('BufRead', {
-  group = 'base',
-  pattern = {'*'},
-  callback = function()
-    local lines = vim.fn.getline(1, '$')
-    if #lines == 1 and lines[1] == '' then
-      vim.cmd('doautocmd BufNewFile')
-    end
-  end
-})
