@@ -25,6 +25,8 @@ return {
             callback = function() require("oil").open("~") end,
             desc = "Open home directory",
           },
+          ["gw"] = "actions.open_cwd",
+          ["_"] = false,
         },
       })
     end
