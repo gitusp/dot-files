@@ -146,7 +146,8 @@ local function open_line(direction)
   local prefix = build_prefix(info, number_delta)
 
   if not prefix then
-    vim.cmd("normal! " .. count .. ((direction == "below") and "o" or "O"))
+    local key = count .. ((direction == "below") and "o" or "O")
+    vim.api.nvim_feedkeys(key, "n", false)
     return
   end
 
@@ -161,7 +162,7 @@ local function open_line(direction)
   vim.api.nvim_buf_set_lines(0, insert_row, insert_row, false, lines)
   local cursor_row = (direction == "below") and (row + count) or (row + count - 1)
   vim.api.nvim_win_set_cursor(0, { cursor_row, #lines[count] })
-  vim.cmd("startinsert!")
+  vim.api.nvim_feedkeys("A", "n", false)
 end
 
 function M.o() open_line("below") end
