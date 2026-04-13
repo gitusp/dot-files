@@ -7,11 +7,24 @@ return {
     config = function()
       local fzf = require('fzf-lua')
 
-      local function wrap_zoxide_action(action)
+      local function open_action(vimcmd)
+        vimcmd = vimcmd or "edit"
         return function(selected, opts)
-          selected[1] = selected[1]:match("[^\t]+$")
-          action(selected, opts)
-          require("oil.actions").cd.callback({ scope = "win" })
+          if #selected == 1 and vim.fn.isdirectory(fzf.path.entry_to_file(selected[1]).path) == 1 then
+            vim.cmd(vimcmd .. " " .. vim.fn.fnameescape(fzf.path.entry_to_file(selected[1]).path))
+          else
+            fzf.actions.file_edit_or_qf(selected, opts)
+          end
+        end
+      end
+
+      local function wrap_zoxide_action(vimcmd)
+        return function(selected)
+          if selected[1] then
+            selected[1] = selected[1]:match("[^\t]+$")
+            open_action(vimcmd)(selected)
+            require("oil.actions").cd.callback({ scope = "win" })
+          end
         end
       end
 
@@ -19,6 +32,7 @@ return {
       fzf.setup({
         files = {
           fd_opts = fzf.defaults.files.fd_opts .. [[ --type d]],
+          actions = { ["default"] = open_action() },
         },
         grep = {
           rg_opts = "--hidden -g '!.git' --multiline " .. fzf.defaults.grep.rg_opts,
@@ -31,10 +45,10 @@ return {
         },
         zoxide = {
           actions = {
-            ["enter"] = wrap_zoxide_action(fzf.actions.file_edit),
-            ["ctrl-s"] = wrap_zoxide_action(fzf.actions.file_split),
-            ["ctrl-v"] = wrap_zoxide_action(fzf.actions.file_vsplit),
-            ["ctrl-t"] = wrap_zoxide_action(fzf.actions.file_tabedit),
+            ["enter"] = wrap_zoxide_action(),
+            ["ctrl-s"] = wrap_zoxide_action("split"),
+            ["ctrl-v"] = wrap_zoxide_action("vsplit"),
+            ["ctrl-t"] = wrap_zoxide_action("tabedit"),
           },
         },
       })
