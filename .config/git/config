@@ -20,7 +20,7 @@
   dt = difftool -y
   st = status
   ci = commit
-  cia = "!f() { msg=$(claude -p 'Generate a commit message for the staged changes in Conventional Commits format (feat:, fix:, docs:, refactor:, etc.). Include a body explaining what and why when the change is non-trivial. Output only the raw message without code fences, formatting, or Co-Authored-By lines.' 2>/dev/null) && printf '%s' \"$msg\" | git commit -F -; }; f"
+  cia = "!f() { msg=$(claude -p 'Generate a commit message for the staged changes in Conventional Commits format (feat:, fix:, docs:, refactor:, etc.). Line 1: subject. Line 3+: body explaining what/why (only if non-trivial). Output ONLY the commit message, no commentary, no markdown formatting, no code fences, no Co-Authored-By lines.' 2>/dev/null) && printf '%s' \"$msg\" | git commit -F -; }; f"
   prc = "!f() { git push && gh pr create --fill ${1:+--base \"$1\"}; }; f"
   prm = !gh pr merge -d -m --admin
   prv = !gh pr view --web
