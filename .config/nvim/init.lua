@@ -54,6 +54,7 @@ vim.diagnostic.config({
 vim.keymap.set("n", "Q", "@q")
 vim.keymap.set({"n", "x"}, "Y", '"+y')
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+vim.keymap.set("n", "X", "@:", { desc = "Repeat last command" })
 
 -- Single key mappings with leader
 local function toggle_git_status()
@@ -73,7 +74,6 @@ vim.keymap.set("n", "<leader>s", function() require('fzf-lua').lsp_document_symb
 vim.keymap.set("n", "<leader>q", function() require("quicker").toggle() end, { desc = "Toggle quickfix" })
 vim.keymap.set("n", "<leader>l", function() require("quicker").toggle({ loclist = true }) end, { desc = "Toggle loclist" })
 vim.keymap.set("n", "<leader>g", toggle_git_status, { desc = "Toggle git status" })
-vim.keymap.set("n", "<leader>t", '<cmd>TodoQuickFix<cr>', { desc = "Set TODOs to qf" })
 vim.keymap.set("n", "<leader>d", vim.diagnostic.setqflist, { desc = "Set LSP diagnostics to qf" })
 vim.keymap.set("n", "<leader>r", "<cmd>OverseerRun<cr>", { desc = "Run task" })
 vim.keymap.set("n", "<leader>:", function() require('fzf-lua').commands() end, { desc = 'FZF commands' })
@@ -88,9 +88,9 @@ vim.keymap.set("n", "yow", function()
   vim.o.wrap = not vim.o.wrap
 end, { desc = "Toggle wrap" })
 
--- TODO shortcuts
-vim.keymap.set("n", "]t", function() require("todo-comments").jump_next() end, { desc = "Next todo comment" })
-vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end, { desc = "Previous todo comment" })
+-- Tab navigation
+vim.keymap.set("n", "]t", "<cmd>tabnext<cr>", { desc = "Next tab" })
+vim.keymap.set("n", "[t", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
 
 -- Extend window command
 vim.keymap.set("n", "<c-w>N", "<cmd>tabnew<cr>", { desc = "Open new tab" })
