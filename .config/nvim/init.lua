@@ -87,13 +87,6 @@ vim.keymap.set("n", "yow", function()
   vim.o.wrap = not vim.o.wrap
 end, { desc = "Toggle wrap" })
 
--- Tab navigation
-vim.keymap.set("n", "]t", "<cmd>tabnext<cr>", { desc = "Next tab" })
-vim.keymap.set("n", "[t", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
-
--- Extend window command
-vim.keymap.set("n", "<c-w>N", "<cmd>tabnew<cr>", { desc = "Open new tab" })
-
 -- Fzf shortcuts
 vim.keymap.set('n', '<leader>f', '<cmd>FzfFiles<cr>', { desc = 'FZF files' })
 vim.keymap.set("n", "<leader>/", '<cmd>FzfGrepCurbuf<cr>', { desc = "FZF grep current buffer" })

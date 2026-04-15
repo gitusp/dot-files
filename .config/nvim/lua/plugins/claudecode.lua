@@ -36,9 +36,9 @@ return {
     },
   },
   keys = {
-    { "<c-\\>", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
+    { "<c-'>", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
     {
-      "<c-'>",
+      "<c-.>",
       function()
         vim.cmd("ClaudeCodeAdd %")
         focus_claude_insert()
@@ -46,13 +46,13 @@ return {
       desc = "Add current buffer",
     },
     {
-      "<c-'>",
+      "<c-.>",
       ":<C-u>'<,'>ClaudeCodeSend<CR><Cmd>lua focus_claude_insert()<CR>",
       mode = "x",
       desc = "Send to Claude",
     },
     {
-      "<c-'>",
+      "<c-.>",
       "<cmd>ClaudeCodeTreeAdd<cr>",
       desc = "Add file",
       ft = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw" },
