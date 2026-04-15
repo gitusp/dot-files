@@ -61,7 +61,7 @@
       ]
     },
     {
-      "description": "c-j to c-s-j, except fast c-w c-j in terminal apps",
+      "description": "fast c-w c-j/c-q sends j/q in terminal apps",
       "manipulators": [
         {
           "type": "basic",
@@ -74,8 +74,50 @@
           },
           "to": [
             {
-              "key_code": "j",
-              "modifiers": ["control"]
+              "key_code": "j"
+            },
+            {
+              "set_variable": {
+                "name": "terminal_ctrl_w_recent",
+                "value": 0
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^com\\.googlecode\\.iterm2$",
+                "^com\\.github\\.wez\\.wezterm$",
+                "^net\\.kovidgoyal\\.kitty$",
+                "^org\\.alacritty$",
+                "^com\\.mitchellh\\.ghostty$",
+                "^dev\\.warp\\.Warp-Stable$",
+                "^co\\.zeit\\.hyper$",
+                "^org\\.tabby$",
+                "^com\\.raphaelamorim\\.rio$"
+              ]
+            },
+            {
+              "type": "variable_if",
+              "name": "terminal_ctrl_w_recent",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "q",
+            "modifiers": {
+              "mandatory": ["control"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "q"
             },
             {
               "set_variable": {
@@ -164,22 +206,6 @@
                 "^org\\.tabby$",
                 "^com\\.raphaelamorim\\.rio$"
               ]
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "j",
-            "modifiers": {
-              "mandatory": ["control"],
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "j",
-              "modifiers": ["control", "shift"]
             }
           ]
         }
