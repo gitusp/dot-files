@@ -96,7 +96,8 @@
                 "^dev\\.warp\\.Warp-Stable$",
                 "^co\\.zeit\\.hyper$",
                 "^org\\.tabby$",
-                "^com\\.raphaelamorim\\.rio$"
+                "^com\\.raphaelamorim\\.rio$",
+                "^local\\.weznote$"
               ]
             },
             {
@@ -139,7 +140,8 @@
                 "^dev\\.warp\\.Warp-Stable$",
                 "^co\\.zeit\\.hyper$",
                 "^org\\.tabby$",
-                "^com\\.raphaelamorim\\.rio$"
+                "^com\\.raphaelamorim\\.rio$",
+                "^local\\.weznote$"
               ]
             },
             {
@@ -204,7 +206,8 @@
                 "^dev\\.warp\\.Warp-Stable$",
                 "^co\\.zeit\\.hyper$",
                 "^org\\.tabby$",
-                "^com\\.raphaelamorim\\.rio$"
+                "^com\\.raphaelamorim\\.rio$",
+                "^local\\.weznote$"
               ]
             }
           ]
