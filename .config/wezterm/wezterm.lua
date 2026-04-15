@@ -19,6 +19,7 @@ else
   config.color_scheme = 'Tomorrow'
   config.initial_rows = 96
   config.initial_cols = 320
+  config.default_prog = { '/opt/homebrew/bin/tmux' }
 end
 
 return config
