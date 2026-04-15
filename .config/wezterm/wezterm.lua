@@ -19,7 +19,6 @@ else
   config.color_scheme = 'Tomorrow'
   config.initial_rows = 96
   config.initial_cols = 320
-  config.default_prog = { '/bin/zsh', '-lc', 'tmux' }
 end
 
 return config
