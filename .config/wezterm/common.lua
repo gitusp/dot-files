@@ -12,63 +12,79 @@ function M.decorate(config)
   config.cell_width = 1.05
   config.macos_forward_to_ime_modifier_mask = "SHIFT|CTRL"
 
-  config.leader = { key = "q", mods = "CTRL", timeout_milliseconds = 1000 }
+  local function is_nvim(pane)
+    return pane:get_user_vars().IS_NVIM == 'true'
+  end
 
   config.keys = {
-    { key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-    { key = "v", mods = "LEADER|CTRL", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-    { key = "s", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-    { key = "s", mods = "LEADER|CTRL", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-    { key = "q", mods = "LEADER", action = act.CloseCurrentPane({ confirm = true }) },
-    { key = "q", mods = "LEADER|CTRL", action = act.CloseCurrentPane({ confirm = true }) },
-
-    { key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
-    { key = "h", mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Left") },
-    { key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
-    { key = "j", mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Down") },
-    { key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
-    { key = "k", mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Up") },
-    { key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
-    { key = "l", mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Right") },
-
-    { key = "H", mods = "LEADER|SHIFT", action = act.Multiple({
-      act.AdjustPaneSize({ "Left", 10 }),
-      act.ActivateKeyTable({ name = "resize_horizontal", one_shot = false, until_unknown = true }),
-    })},
-    { key = "J", mods = "LEADER|SHIFT", action = act.Multiple({
-      act.AdjustPaneSize({ "Down", 10 }),
-      act.ActivateKeyTable({ name = "resize_vertical", one_shot = false, until_unknown = true }),
-    })},
-    { key = "K", mods = "LEADER|SHIFT", action = act.Multiple({
-      act.AdjustPaneSize({ "Up", 10 }),
-      act.ActivateKeyTable({ name = "resize_vertical", one_shot = false, until_unknown = true }),
-    })},
-    { key = "L", mods = "LEADER|SHIFT", action = act.Multiple({
-      act.AdjustPaneSize({ "Right", 10 }),
-      act.ActivateKeyTable({ name = "resize_horizontal", one_shot = false, until_unknown = true }),
-    })},
-
-    { key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
-    { key = "z", mods = "LEADER|CTRL", action = act.TogglePaneZoomState },
-
-    { key = "[", mods = "LEADER", action = act.ActivateCopyMode },
-    { key = "[", mods = "LEADER|CTRL", action = act.ActivateCopyMode },
+    {
+      key = "w",
+      mods = "CTRL",
+      action = wezterm.action_callback(function(window, pane)
+        if is_nvim(pane) then
+          window:perform_action(act.SendKey({ key = "w", mods = "CTRL" }), pane)
+        else
+          window:perform_action(act.ActivateKeyTable({ name = "ctrl_w", one_shot = true, timeout_milliseconds = 1000 }), pane)
+        end
+      end),
+    },
+    { key = "q", mods = "CTRL", action = act.SendKey({ key = "q", mods = "CTRL" }) },
   }
 
   config.key_tables = {
-    resize_horizontal = {
+    ctrl_w = {
+      { key = "v", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+      { key = "v", mods = "CTRL", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+      { key = "s", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+      { key = "s", mods = "CTRL", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+      { key = "q", action = act.CloseCurrentPane({ confirm = true }) },
+      { key = "q", mods = "CTRL", action = act.CloseCurrentPane({ confirm = true }) },
+
+      { key = "w", mods = "CTRL", action = act.SendKey({ key = "w", mods = "CTRL" }) },
+
+      { key = "h", action = act.ActivatePaneDirection("Left") },
+      { key = "h", mods = "CTRL", action = act.ActivatePaneDirection("Left") },
+      { key = "j", action = act.ActivatePaneDirection("Down") },
+      { key = "j", mods = "CTRL", action = act.ActivatePaneDirection("Down") },
+      { key = "k", action = act.ActivatePaneDirection("Up") },
+      { key = "k", mods = "CTRL", action = act.ActivatePaneDirection("Up") },
+      { key = "l", action = act.ActivatePaneDirection("Right") },
+      { key = "l", mods = "CTRL", action = act.ActivatePaneDirection("Right") },
+
+      { key = "r", action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false, until_unknown = true }) },
+      { key = "r", mods = "CTRL", action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false, until_unknown = true }) },
+
+      { key = "z", action = act.TogglePaneZoomState },
+      { key = "z", mods = "CTRL", action = act.TogglePaneZoomState },
+
+      { key = "[", action = act.ActivateCopyMode },
+      { key = "[", mods = "CTRL", action = act.ActivateCopyMode },
+
+      { key = "t", action = wezterm.action_callback(function(window, pane)
+        local tab, _ = pane:move_to_new_tab()
+        tab:activate()
+      end) },
+      { key = "t", mods = "CTRL", action = wezterm.action_callback(function(window, pane)
+        local tab, _ = pane:move_to_new_tab()
+        tab:activate()
+      end) },
+    },
+    resize_pane = {
       { key = "h", action = act.AdjustPaneSize({ "Left", 1 }) },
       { key = "H", mods = "SHIFT", action = act.AdjustPaneSize({ "Left", 10 }) },
-      { key = "l", action = act.AdjustPaneSize({ "Right", 1 }) },
-      { key = "L", mods = "SHIFT", action = act.AdjustPaneSize({ "Right", 10 }) },
-    },
-    resize_vertical = {
       { key = "j", action = act.AdjustPaneSize({ "Down", 1 }) },
       { key = "J", mods = "SHIFT", action = act.AdjustPaneSize({ "Down", 10 }) },
       { key = "k", action = act.AdjustPaneSize({ "Up", 1 }) },
       { key = "K", mods = "SHIFT", action = act.AdjustPaneSize({ "Up", 10 }) },
+      { key = "l", action = act.AdjustPaneSize({ "Right", 1 }) },
+      { key = "L", mods = "SHIFT", action = act.AdjustPaneSize({ "Right", 10 }) },
     },
   }
+  wezterm.on("user-var-changed", function(window, pane, name, _value)
+    if name == "WEZTERM_COPY_MODE" then
+      window:perform_action(act.ActivateCopyMode, pane)
+    end
+  end)
 end
 
 return M

@@ -79,7 +79,7 @@
       ]
     },
     {
-      "description": "fast c-w c-j/c-q sends j/q in terminal apps",
+      "description": "fast c-w c-{j,[} strips ctrl in terminal apps",
       "manipulators": [
         {
           "type": "basic",
@@ -128,7 +128,7 @@
         {
           "type": "basic",
           "from": {
-            "key_code": "q",
+            "key_code": "open_bracket",
             "modifiers": {
               "mandatory": ["control"],
               "optional": ["any"]
@@ -136,7 +136,7 @@
           },
           "to": [
             {
-              "key_code": "q"
+              "key_code": "open_bracket"
             },
             {
               "set_variable": {

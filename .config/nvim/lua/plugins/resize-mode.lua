@@ -1,48 +1,69 @@
 return {
-  dir = "resize-mode",
-  virtual = true,
-  keys = {
-    { "<C-w><", desc = "Resize mode (narrower)" },
-    { "<C-w>>", desc = "Resize mode (wider)" },
-    { "<C-w>-", desc = "Resize mode (shorter)" },
-    { "<C-w>+", desc = "Resize mode (taller)" },
+  "mrjones2014/smart-splits.nvim",
+  lazy = false,
+  opts = {
+    multiplexer_integration = "wezterm",
   },
-  config = function()
-    local function resize_mode(keys, direction)
-      local count = vim.v.count1
-      vim.cmd(keys.cmd_prefix .. (direction > 0 and "+" or "-") .. count)
-      local pending = 0
-      vim.api.nvim_echo({{"-- RESIZE --", "ModeMsg"}}, false, {})
+  config = function(_, opts)
+    local ss = require("smart-splits")
+    ss.setup(opts)
+
+    vim.keymap.set("n", "<C-w>h", ss.move_cursor_left, { desc = "Move to left split/pane" })
+    vim.keymap.set("n", "<C-w>j", ss.move_cursor_down, { desc = "Move to below split/pane" })
+    vim.keymap.set("n", "<C-w>k", ss.move_cursor_up, { desc = "Move to above split/pane" })
+    vim.keymap.set("n", "<C-w>l", ss.move_cursor_right, { desc = "Move to right split/pane" })
+    vim.keymap.set("n", "<C-w><C-h>", ss.move_cursor_left, { desc = "Move to left split/pane" })
+    vim.keymap.set("n", "<C-w><C-j>", ss.move_cursor_down, { desc = "Move to below split/pane" })
+    vim.keymap.set("n", "<C-w><C-k>", ss.move_cursor_up, { desc = "Move to above split/pane" })
+    vim.keymap.set("n", "<C-w><C-l>", ss.move_cursor_right, { desc = "Move to right split/pane" })
+
+    local function resize_mode()
+      vim.api.nvim_echo({ { "-- RESIZE --", "ModeMsg" } }, false, {})
       while true do
         local ok, key = pcall(vim.fn.getcharstr)
         if not ok then break end
-        if key:match("^%d$") then
-          pending = pending * 10 + tonumber(key)
-        elseif key == keys.minus or key == keys.plus then
-          local n = pending > 0 and pending or 1
-          pending = 0
-          vim.cmd(keys.cmd_prefix .. (key == keys.plus and "+" or "-") .. n)
+        local actions = {
+          h = function() ss.resize_left(1) end,
+          j = function() ss.resize_down(1) end,
+          k = function() ss.resize_up(1) end,
+          l = function() ss.resize_right(1) end,
+          H = function() ss.resize_left(10) end,
+          J = function() ss.resize_down(10) end,
+          K = function() ss.resize_up(10) end,
+          L = function() ss.resize_right(10) end,
+        }
+        local action = actions[key]
+        if action then
+          action()
         else
           vim.api.nvim_feedkeys(key, "m", true)
           break
         end
         vim.cmd("redraw")
       end
-      vim.api.nvim_echo({{"", ""}}, false, {})
+      vim.api.nvim_echo({ { "", "" } }, false, {})
     end
 
-    local horizontal = {
-      cmd_prefix = "vertical resize ",
-      minus = "<", plus = ">",
-    }
-    local vertical = {
-      cmd_prefix = "resize ",
-      minus = "-", plus = "+",
-    }
+    vim.keymap.set("n", "<C-w>r", resize_mode, { desc = "Resize mode" })
+    vim.keymap.set("n", "<C-w><C-r>", resize_mode, { desc = "Resize mode" })
 
-    vim.keymap.set("n", "<C-w><", function() resize_mode(horizontal, -1) end, { desc = "Resize mode (narrower)" })
-    vim.keymap.set("n", "<C-w>>", function() resize_mode(horizontal, 1) end, { desc = "Resize mode (wider)" })
-    vim.keymap.set("n", "<C-w>-", function() resize_mode(vertical, -1) end, { desc = "Resize mode (shorter)" })
-    vim.keymap.set("n", "<C-w>+", function() resize_mode(vertical, 1) end, { desc = "Resize mode (taller)" })
+    local function wezterm_cli(args)
+      vim.fn.system("wezterm cli " .. args)
+    end
+    vim.keymap.set("n", "<C-w>V", function() wezterm_cli("split-pane --right") end, { desc = "WezTerm split right" })
+    vim.keymap.set("n", "<C-w>S", function() wezterm_cli("split-pane --bottom") end, { desc = "WezTerm split bottom" })
+    vim.keymap.set("n", "<C-w>Q", function() wezterm_cli("kill-pane") end, { desc = "WezTerm close pane" })
+    vim.keymap.set("n", "<C-w>z", function() wezterm_cli("zoom-pane --toggle") end, { desc = "WezTerm toggle zoom" })
+    vim.keymap.set("n", "<C-w><c-z>", function() wezterm_cli("zoom-pane --toggle") end, { desc = "WezTerm toggle zoom" })
+    vim.keymap.set("n", "<C-w>[", function()
+      io.write("\x1b]1337;SetUserVar=WEZTERM_COPY_MODE=MQ==\x07")
+      io.flush()
+    end, { desc = "WezTerm copy mode" })
+    vim.keymap.set("n", "<C-w>t", "<C-w>T", { remap = false, desc = "Move window to new tab" })
+    vim.keymap.set("n", "<C-w><C-t>", "<C-w>T", { remap = false, desc = "Move window to new tab" })
+    vim.keymap.set("n", "<C-w>T", function()
+      wezterm_cli("move-pane-to-new-tab")
+      wezterm_cli("activate-tab --tab-index -1")
+    end, { desc = "WezTerm pane to tab" })
   end,
 }
