@@ -15,8 +15,12 @@ function M.decorate(config)
   config.leader = { key = "q", mods = "CTRL", timeout_milliseconds = 1000 }
 
   config.keys = {
-    { key = "%", mods = "LEADER|SHIFT", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-    { key = '"', mods = "LEADER|SHIFT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+    { key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+    { key = "v", mods = "LEADER|CTRL", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+    { key = "s", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+    { key = "s", mods = "LEADER|CTRL", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+    { key = "q", mods = "LEADER", action = act.CloseCurrentPane({ confirm = true }) },
+    { key = "q", mods = "LEADER|CTRL", action = act.CloseCurrentPane({ confirm = true }) },
 
     { key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
     { key = "h", mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Left") },
