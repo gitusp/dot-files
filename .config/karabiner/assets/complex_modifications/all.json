@@ -56,6 +56,24 @@
             {
               "key_code": "delete_or_backspace"
             }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^com\\.googlecode\\.iterm2$",
+                "^com\\.github\\.wez\\.wezterm$",
+                "^net\\.kovidgoyal\\.kitty$",
+                "^org\\.alacritty$",
+                "^com\\.mitchellh\\.ghostty$",
+                "^dev\\.warp\\.Warp-Stable$",
+                "^co\\.zeit\\.hyper$",
+                "^org\\.tabby$",
+                "^com\\.raphaelamorim\\.rio$",
+                "^local\\.weznote$"
+              ]
+            }
           ]
         }
       ]
@@ -284,7 +302,8 @@
               "key_code": "japanese_eisuu"
             },
             {
-              "key_code": "escape"
+              "key_code": "open_bracket",
+              "modifiers": ["control"]
             }
           ]
         }

@@ -19,9 +19,13 @@ function M.decorate(config)
     { key = '"', mods = "LEADER|SHIFT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
 
     { key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
+    { key = "h", mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Left") },
     { key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
+    { key = "j", mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Down") },
     { key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
+    { key = "k", mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Up") },
     { key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
+    { key = "l", mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Right") },
 
     { key = "H", mods = "LEADER|SHIFT", action = act.Multiple({
       act.AdjustPaneSize({ "Left", 10 }),
@@ -41,8 +45,10 @@ function M.decorate(config)
     })},
 
     { key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
+    { key = "z", mods = "LEADER|CTRL", action = act.TogglePaneZoomState },
 
     { key = "[", mods = "LEADER", action = act.ActivateCopyMode },
+    { key = "[", mods = "LEADER|CTRL", action = act.ActivateCopyMode },
   }
 
   config.key_tables = {
