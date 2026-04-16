@@ -29,16 +29,13 @@ function M.decorate(config)
       end),
     },
     { key = "q", mods = "CTRL", action = act.SendKey({ key = "q", mods = "CTRL" }) },
+    { key = "w", mods = "SUPER", action = act.CloseCurrentPane({ confirm = true }) },
   }
 
   config.key_tables = {
     ctrl_w = {
-      { key = "v", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-      { key = "v", mods = "CTRL", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-      { key = "s", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-      { key = "s", mods = "CTRL", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-      { key = "q", action = act.CloseCurrentPane({ confirm = true }) },
-      { key = "q", mods = "CTRL", action = act.CloseCurrentPane({ confirm = true }) },
+      { key = "%", mods = "SHIFT", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+      { key = '"', mods = "SHIFT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
 
       { key = "w", mods = "CTRL", action = act.SendKey({ key = "w", mods = "CTRL" }) },
 
@@ -60,11 +57,7 @@ function M.decorate(config)
       { key = "[", action = act.ActivateCopyMode },
       { key = "[", mods = "CTRL", action = act.ActivateCopyMode },
 
-      { key = "t", action = wezterm.action_callback(function(window, pane)
-        local tab, _ = pane:move_to_new_tab()
-        tab:activate()
-      end) },
-      { key = "t", mods = "CTRL", action = wezterm.action_callback(function(window, pane)
+      { key = "!", mods = "SHIFT", action = wezterm.action_callback(function(_, pane)
         local tab, _ = pane:move_to_new_tab()
         tab:activate()
       end) },
