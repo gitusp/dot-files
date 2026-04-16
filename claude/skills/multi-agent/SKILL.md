@@ -20,10 +20,12 @@ Start Claude Code in new panes: `wezterm cli split-pane --pane-id $MY_PANE --rig
 
 ### Layout
 
+The original pane is the orchestrator. Worker count = requested tasks, total panes = workers + 1.
+
 Split from top-level panes only, never sub-split a small pane.
 
-- **2**: `split-pane --right`
-- **4 (2x2)**: split right -> split right-pane bottom -> split left-pane bottom
+- **1 worker**: `split-pane --right`
+- **3 workers (2x2)**: split right -> split right-pane bottom -> split left-pane bottom
 - **Other**: aim for a grid. Split the largest pane each time.
 
 After all panes are open, `wezterm cli activate-pane` back to the original pane.
