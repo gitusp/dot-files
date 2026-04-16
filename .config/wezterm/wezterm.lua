@@ -19,6 +19,10 @@ else
   config.color_scheme = 'Tomorrow'
   config.initial_rows = 96
   config.initial_cols = 320
+  config.inactive_pane_hsb = {
+    saturation = 1,
+    brightness = 0.9,
+  }
 end
 
 return config

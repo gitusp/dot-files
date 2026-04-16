@@ -8,15 +8,20 @@ return {
         local is_weznote = vim.env.WEZNOTE_INSTANCE ~= nil
         local theme = is_weznote and 'github_dark' or 'github_light'
         local spec = require('github-theme.spec').load(theme)
+        local Color = require('github-theme.lib.color')
+        local is_light = spec.palette.meta.light
+        local dim_bg = Color(spec.bg1):shade(is_light and -0.05 or 0.06):to_css()
         local opts = {
           DiffAdd = { bg = spec.diff.add },
           DiffChange = { bg = spec.diff.change },
           DiffDelete = { bg = spec.diff.delete },
+          NormalNC = { bg = dim_bg },
         }
 
         require('github-theme').setup({
           groups = {
             github_light = opts,
+            github_dark = opts,
             github_dark_dimmed = opts,
           },
         })

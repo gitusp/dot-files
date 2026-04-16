@@ -18,6 +18,9 @@ return {
   opts = {
     terminal = {
       snacks_win_opts = {
+        wo = {
+          winhighlight = "NormalFloat:Normal",
+        },
         keys = {
           term_normal = false,
         },
