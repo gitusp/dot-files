@@ -32,6 +32,13 @@ function M.decorate(config)
     { key = "w", mods = "SUPER", action = act.CloseCurrentPane({ confirm = true }) },
   }
 
+  local function resize_trigger(direction, amount)
+    return act.Multiple {
+      act.AdjustPaneSize({ direction, amount }),
+      act.ActivateKeyTable({ name = "resize_pane", one_shot = false, until_unknown = true }),
+    }
+  end
+
   config.key_tables = {
     ctrl_w = {
       { key = "%", mods = "SHIFT", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
@@ -48,8 +55,14 @@ function M.decorate(config)
       { key = "l", action = act.ActivatePaneDirection("Right") },
       { key = "l", mods = "CTRL", action = act.ActivatePaneDirection("Right") },
 
-      { key = "Space", action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false, until_unknown = true }) },
-      { key = "Space", mods = "CTRL", action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false, until_unknown = true }) },
+      { key = "LeftArrow",  action = resize_trigger("Left", 1) },
+      { key = "DownArrow",  action = resize_trigger("Down", 1) },
+      { key = "UpArrow",    action = resize_trigger("Up", 1) },
+      { key = "RightArrow", action = resize_trigger("Right", 1) },
+      { key = "LeftArrow",  mods = "SHIFT", action = resize_trigger("Left", 10) },
+      { key = "DownArrow",  mods = "SHIFT", action = resize_trigger("Down", 10) },
+      { key = "UpArrow",    mods = "SHIFT", action = resize_trigger("Up", 10) },
+      { key = "RightArrow", mods = "SHIFT", action = resize_trigger("Right", 10) },
 
       { key = "z", action = act.TogglePaneZoomState },
       { key = "z", mods = "CTRL", action = act.TogglePaneZoomState },
@@ -63,14 +76,14 @@ function M.decorate(config)
       end) },
     },
     resize_pane = {
-      { key = "h", action = act.AdjustPaneSize({ "Left", 1 }) },
-      { key = "H", mods = "SHIFT", action = act.AdjustPaneSize({ "Left", 10 }) },
-      { key = "j", action = act.AdjustPaneSize({ "Down", 1 }) },
-      { key = "J", mods = "SHIFT", action = act.AdjustPaneSize({ "Down", 10 }) },
-      { key = "k", action = act.AdjustPaneSize({ "Up", 1 }) },
-      { key = "K", mods = "SHIFT", action = act.AdjustPaneSize({ "Up", 10 }) },
-      { key = "l", action = act.AdjustPaneSize({ "Right", 1 }) },
-      { key = "L", mods = "SHIFT", action = act.AdjustPaneSize({ "Right", 10 }) },
+      { key = "LeftArrow",  action = act.AdjustPaneSize({ "Left", 1 }) },
+      { key = "LeftArrow",  mods = "SHIFT", action = act.AdjustPaneSize({ "Left", 10 }) },
+      { key = "DownArrow",  action = act.AdjustPaneSize({ "Down", 1 }) },
+      { key = "DownArrow",  mods = "SHIFT", action = act.AdjustPaneSize({ "Down", 10 }) },
+      { key = "UpArrow",    action = act.AdjustPaneSize({ "Up", 1 }) },
+      { key = "UpArrow",    mods = "SHIFT", action = act.AdjustPaneSize({ "Up", 10 }) },
+      { key = "RightArrow", action = act.AdjustPaneSize({ "Right", 1 }) },
+      { key = "RightArrow", mods = "SHIFT", action = act.AdjustPaneSize({ "Right", 10 }) },
     },
   }
   wezterm.on("user-var-changed", function(window, pane, name, _value)

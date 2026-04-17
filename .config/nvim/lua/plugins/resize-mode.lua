@@ -17,22 +17,25 @@ return {
     vim.keymap.set("n", "<C-w><C-k>", ss.move_cursor_up, { desc = "Move to above split/pane" })
     vim.keymap.set("n", "<C-w><C-l>", ss.move_cursor_right, { desc = "Move to right split/pane" })
 
-    local function resize_mode()
+    local resize_actions = {
+      [vim.keycode("<Left>")] = function() ss.resize_left(1) end,
+      [vim.keycode("<Down>")] = function() ss.resize_down(1) end,
+      [vim.keycode("<Up>")] = function() ss.resize_up(1) end,
+      [vim.keycode("<Right>")] = function() ss.resize_right(1) end,
+      [vim.keycode("<S-Left>")] = function() ss.resize_left(10) end,
+      [vim.keycode("<S-Down>")] = function() ss.resize_down(10) end,
+      [vim.keycode("<S-Up>")] = function() ss.resize_up(10) end,
+      [vim.keycode("<S-Right>")] = function() ss.resize_right(10) end,
+    }
+
+    local function resize_mode(initial)
+      if initial then initial() end
       vim.api.nvim_echo({ { "-- RESIZE --", "ModeMsg" } }, false, {})
+      vim.cmd("redraw")
       while true do
         local ok, key = pcall(vim.fn.getcharstr)
         if not ok then break end
-        local actions = {
-          h = function() ss.resize_left(1) end,
-          j = function() ss.resize_down(1) end,
-          k = function() ss.resize_up(1) end,
-          l = function() ss.resize_right(1) end,
-          H = function() ss.resize_left(10) end,
-          J = function() ss.resize_down(10) end,
-          K = function() ss.resize_up(10) end,
-          L = function() ss.resize_right(10) end,
-        }
-        local action = actions[key]
+        local action = resize_actions[key]
         if action then
           action()
         else
@@ -44,8 +47,18 @@ return {
       vim.api.nvim_echo({ { "", "" } }, false, {})
     end
 
-    vim.keymap.set("n", "<C-w><Space>", resize_mode, { desc = "Resize mode" })
-    vim.keymap.set("n", "<C-w><C-Space>", resize_mode, { desc = "Resize mode" })
+    for lhs, fn in pairs({
+      ["<C-w><Left>"]  = function() ss.resize_left(1) end,
+      ["<C-w><Down>"]  = function() ss.resize_down(1) end,
+      ["<C-w><Up>"]    = function() ss.resize_up(1) end,
+      ["<C-w><Right>"] = function() ss.resize_right(1) end,
+      ["<C-w><S-Left>"]  = function() ss.resize_left(10) end,
+      ["<C-w><S-Down>"]  = function() ss.resize_down(10) end,
+      ["<C-w><S-Up>"]    = function() ss.resize_up(10) end,
+      ["<C-w><S-Right>"] = function() ss.resize_right(10) end,
+    }) do
+      vim.keymap.set("n", lhs, function() resize_mode(fn) end, { desc = "Resize mode" })
+    end
 
     local function wezterm_cli(args)
       vim.fn.system("wezterm cli " .. args)
