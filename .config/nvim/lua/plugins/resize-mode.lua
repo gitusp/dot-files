@@ -44,8 +44,8 @@ return {
       vim.api.nvim_echo({ { "", "" } }, false, {})
     end
 
-    vim.keymap.set("n", "<C-w>r", resize_mode, { desc = "Resize mode" })
-    vim.keymap.set("n", "<C-w><C-r>", resize_mode, { desc = "Resize mode" })
+    vim.keymap.set("n", "<C-w><Space>", resize_mode, { desc = "Resize mode" })
+    vim.keymap.set("n", "<C-w><C-Space>", resize_mode, { desc = "Resize mode" })
 
     local function wezterm_cli(args)
       vim.fn.system("wezterm cli " .. args)

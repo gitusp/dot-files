@@ -48,8 +48,8 @@ function M.decorate(config)
       { key = "l", action = act.ActivatePaneDirection("Right") },
       { key = "l", mods = "CTRL", action = act.ActivatePaneDirection("Right") },
 
-      { key = "r", action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false, until_unknown = true }) },
-      { key = "r", mods = "CTRL", action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false, until_unknown = true }) },
+      { key = "Space", action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false, until_unknown = true }) },
+      { key = "Space", mods = "CTRL", action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false, until_unknown = true }) },
 
       { key = "z", action = act.TogglePaneZoomState },
       { key = "z", mods = "CTRL", action = act.TogglePaneZoomState },
