@@ -37,6 +37,7 @@ return {
           if lang and pcall(vim.treesitter.start, args.buf, lang) then
             if lang == 'markdown' then
               vim.wo[0][0].foldexpr = 'v:lua.require("config.markdown_fold").foldexpr()'
+              vim.wo[0][0].foldtext = 'v:lua.require("config.markdown_fold").foldtext()'
               vim.wo[0][0].foldlevel = 10
             else
               vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
