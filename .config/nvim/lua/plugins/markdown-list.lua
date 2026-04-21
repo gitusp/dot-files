@@ -144,10 +144,16 @@ local function open_line(direction)
   local row = vim.api.nvim_win_get_cursor(0)[1]
   local number_delta = (direction == "below") and 1 or -1
   local prefix = build_prefix(info, number_delta)
+  -- <C-o> 経由で insert mode から呼ばれた場合は "ni*"
+  local from_ctrl_o = vim.startswith(vim.fn.mode(1), "ni")
 
   if not prefix then
-    local key = count .. ((direction == "below") and "o" or "O")
-    vim.api.nvim_feedkeys(key, "n", false)
+    local key = (direction == "below") and "o" or "O"
+    if from_ctrl_o then
+      vim.cmd("normal! " .. count .. key)
+    else
+      vim.api.nvim_feedkeys(count .. key, "n", false)
+    end
     return
   end
 
@@ -183,7 +189,11 @@ local function open_line(direction)
     })
   end
 
-  vim.api.nvim_feedkeys("A", "n", false)
+  -- <C-o> 経由の場合は自動で insert mode に戻るので "A" は送らない
+  -- (送ると insert mode で "A" がリテラル入力されてしまう)
+  if not from_ctrl_o then
+    vim.api.nvim_feedkeys("A", "n", false)
+  end
 end
 
 function M.o() open_line("below") end
