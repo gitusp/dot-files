@@ -1,12 +1,5 @@
 return {
   {
-    'dhruvasagar/vim-table-mode',
-    init = function()
-      vim.g.table_mode_disable_mappings = 1
-      vim.g.table_mode_disable_tableize_mappings = 1
-    end,
-  },
-  {
     'kyoh86/vim-docbase',
     init = function()
       local domain = vim.env.DOCBASE_DOMAIN
@@ -44,5 +37,15 @@ return {
   {
     "davidmh/mdx.nvim",
     dependencies = {"nvim-treesitter/nvim-treesitter"}
+  },
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' },
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {
+      render_modes = true,
+      anti_conceal = { enabled = true },
+    },
   },
 }
