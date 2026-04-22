@@ -1,7 +1,6 @@
 return {
   { "neovim/nvim-lspconfig",
     dependencies = {
-      { "yioneko/nvim-vtsls" },
       { "saghen/blink.cmp" },
     },
     config = function()
@@ -43,9 +42,6 @@ return {
         end,
       })
 
-      -- Configure vtsls
-      vim.lsp.config('vtsls', require("vtsls").lspconfig)
-
       -- Configure simple servers
       local simple_servers = {
         'cssmodules_ls',
@@ -54,6 +50,7 @@ return {
         'prismals',
         'sqls',
         'sourcekit',
+        'tsgo',
       }
 
       for _, server in ipairs(simple_servers) do
@@ -96,7 +93,6 @@ return {
       })
 
       -- Enable servers with custom configurations
-      vim.lsp.enable('vtsls')
       vim.lsp.enable('lua_ls')
       vim.lsp.enable('eslint')
       vim.lsp.enable('biome')

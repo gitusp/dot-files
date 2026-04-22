@@ -73,19 +73,10 @@ vim.keymap.set("n", "<leader>s", function() require('fzf-lua').lsp_document_symb
 vim.keymap.set("n", "<leader>q", function() require("quicker").toggle() end, { desc = "Toggle quickfix" })
 vim.keymap.set("n", "<leader>l", function() require("quicker").toggle({ loclist = true }) end, { desc = "Toggle loclist" })
 vim.keymap.set("n", "<leader>g", toggle_git_status, { desc = "Toggle git status" })
-vim.keymap.set("n", "<leader>d", vim.diagnostic.setqflist, { desc = "Set LSP diagnostics to qf" })
 vim.keymap.set("n", "<leader>r", "<cmd>OverseerRun<cr>", { desc = "Run task" })
 vim.keymap.set("n", "<leader>:", function() require('fzf-lua').commands() end, { desc = 'FZF commands' })
 vim.keymap.set("n", "<leader>?", function() require('fzf-lua').keymaps({ query = "<Space>" }) end, { desc = "FZF leader key mappings" })
 vim.keymap.set("n", "<localleader>?", function() require('fzf-lua').keymaps({ query = "\\" }) end, { desc = "FZF localleader key mappings" })
-
--- Toggle options
-vim.keymap.set("n", "yod", function()
-  if vim.o.diff then vim.cmd("diffoff") else vim.cmd("diffthis") end
-end, { desc = "Toggle diff" })
-vim.keymap.set("n", "yow", function()
-  vim.o.wrap = not vim.o.wrap
-end, { desc = "Toggle wrap" })
 
 -- Fzf shortcuts
 vim.keymap.set('n', '<leader>f', '<cmd>FzfFiles<cr>', { desc = 'FZF files' })
