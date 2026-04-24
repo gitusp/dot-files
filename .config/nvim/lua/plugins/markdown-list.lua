@@ -88,15 +88,15 @@ function M.open_bracket()
   return "["
 end
 
--- i <BS>: prefix だけの行で prefix を削除
+-- i <BS>/<C-w>: prefix だけの行で prefix を削除
 --   `- [ ] ` → `- `  /  `- ` → indent  /  `1. ` → indent
-function M.bs()
+local function delete_prefix(fallback)
   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
   local line = vim.api.nvim_get_current_line()
   local before = line:sub(1, col)
   local after = line:sub(col + 1)
-  -- `- [ ] ` → `- ` (カーソル後にテキストがあっても動作)
-  if before:match("^%s*- %[ %] $") then
+  -- `- [ ] ` / `- [x] ` → `- ` (カーソル後にテキストがあっても動作)
+  if before:match("^%s*- %[[ xX]%] $") then
     local new_before = before:sub(1, -5)
     vim.api.nvim_set_current_line(new_before .. after)
     vim.api.nvim_win_set_cursor(0, { row, col - 4 })
@@ -118,8 +118,11 @@ function M.bs()
       return
     end
   end
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<BS>", true, false, true), "n", false)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(fallback, true, false, true), "n", false)
 end
+
+function M.bs() delete_prefix("<BS>") end
+function M.cw() delete_prefix("<C-w>") end
 
 -- n/v <CR>: チェックボックスをトグル ([ ] ↔ [x])
 -- 範囲内の最初のチェックボックスの状態で方向を統一
@@ -206,6 +209,7 @@ local function setup_buffer()
   vim.keymap.set("i", "[", M.open_bracket, { buffer = true, silent = true, expr = true })
   vim.keymap.set("i", "<BS>", M.bs, opts)
   vim.keymap.set("i", "<C-h>", M.bs, opts)
+  vim.keymap.set("i", "<C-w>", M.cw, opts)
   vim.keymap.set("n", "<CR>", function()
     M.toggle_checkbox(vim.fn.line("."), vim.fn.line("."))
   end, opts)
