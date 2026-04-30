@@ -67,8 +67,12 @@ return {
 
       vim.api.nvim_create_user_command('FzfMru', function() fzf.oldfiles({ cwd_only = true }) end, { desc = 'FZF MRU' })
 
-      -- DocBase
+      --
+      -- DocBase picker (writes selected post to /tmp; opening triggers
+      -- the docbase plugin which handles publish on save)
+      --
       do
+        local yaml = require('yaml')
         local initial_per_page = 20
         local per_page = 100
 
@@ -80,9 +84,40 @@ return {
             return
           end
 
-          local base = vim.fn.fnameescape('docbase:' .. domain .. ':')
           local posts_by_id = {}
           local stored_fzf_cb = nil
+
+          local function expand_post(id)
+            local path = '/tmp/' .. id .. '.docbase.md'
+            local p = posts_by_id[id]
+            if not p then return path end
+            local tag_strs = {}
+            for _, t in ipairs(p.tags) do
+              table.insert(tag_strs, yaml.quote(t.name))
+            end
+            local group_ids = {}
+            for _, g in ipairs(p.groups) do
+              table.insert(group_ids, tostring(g.id))
+            end
+            local lines = {
+              '---',
+              'id: ' .. id,
+              'domain: ' .. domain,
+              'title: ' .. yaml.quote(p.title),
+              'draft: ' .. tostring(p.draft),
+              'notice: ' .. tostring(p.notice),
+              'scope: ' .. yaml.quote(p.scope),
+              'tags: [' .. table.concat(tag_strs, ', ') .. ']',
+              'groups: [' .. table.concat(group_ids, ', ') .. ']',
+              '---',
+              '',
+            }
+            for _, line in ipairs(vim.split(p.body, '\n', { plain = true })) do
+              table.insert(lines, (line:gsub('\r', '')))
+            end
+            vim.fn.writefile(lines, path)
+            return path
+          end
 
           local builtin = require('fzf-lua.previewer.builtin')
           local DocBasePreviewer = builtin.base:extend()
@@ -94,9 +129,9 @@ return {
             local tmpbuf = self:get_tmp_buffer()
             local lines = {}
             if p then
-              lines[1] = '# ' .. (p.title or '')
+              lines[1] = '# ' .. p.title
               lines[2] = ''
-              for _, line in ipairs(vim.split(p.body or '', '\n', { plain = true })) do
+              for _, line in ipairs(vim.split(p.body, '\n', { plain = true })) do
                 lines[#lines + 1] = (line:gsub('\r', ''))
               end
             end
@@ -108,8 +143,8 @@ return {
           local function make_entry(p)
             local id = tostring(p.id)
             posts_by_id[id] = p
-            local body_flat = (p.body or ''):gsub('[\r\n\t]', ' ')
-            return id .. '\t' .. (p.title or '') .. '\t\x1b[2m' .. body_flat .. '\x1b[0m'
+            local body_flat = p.body:gsub('[\r\n\t]', ' ')
+            return id .. '\t' .. p.title .. '\t\x1b[2m' .. body_flat .. '\x1b[0m'
           end
 
           local function fetch_page_async(page, size, callback)
@@ -187,12 +222,16 @@ return {
                 if not selected then return end
                 if #selected == 1 then
                   local id = selected[1]:match('^(%d+)')
-                  if id then vim.cmd('edit ' .. base .. id) end
+                  if id then
+                    vim.cmd('edit ' .. vim.fn.fnameescape(expand_post(id)))
+                  end
                 else
                   local items = {}
                   for _, s in ipairs(selected) do
                     local id, title = s:match('^(%d+)\t(.+)')
-                    if id then table.insert(items, { filename = base .. id, text = title or '' }) end
+                    if id then
+                      table.insert(items, { filename = expand_post(id), text = title or '' })
+                    end
                   end
                   vim.fn.setqflist(items)
                   vim.cmd('copen')

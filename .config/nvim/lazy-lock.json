@@ -22,10 +22,7 @@
   "snacks.nvim": { "branch": "main", "commit": "ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e" },
   "syncwd.nvim": { "branch": "main", "commit": "681c2f6dc4a93bdd553208a6a354b8742b402258" },
   "vim-dadbod": { "branch": "master", "commit": "6d1d41da4873a445c5605f2005ad2c68c99d8770" },
-  "vim-docbase": { "branch": "main", "commit": "6e103afd071946fa7242c954757ad9b7245a4e71" },
   "vim-dotenv": { "branch": "master", "commit": "5c51cfcf8d87280d6414e03cd6b253eb70ecb800" },
   "vim-fugitive": { "branch": "master", "commit": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0" },
-  "vim-matchup": { "branch": "master", "commit": "dccb2d12ef2a703d2f076b3cda36a3339449d1eb" },
-  "vim-metarw": { "branch": "master", "commit": "2599b113275ac5820a735a01dbb5477e673ca105" },
-  "vim-metarw-docbase": { "branch": "main", "commit": "3f3b19f0b41d65db7847e002ded8bde28a028f0b" }
+  "vim-matchup": { "branch": "master", "commit": "dccb2d12ef2a703d2f076b3cda36a3339449d1eb" }
 }
